@@ -1,0 +1,35 @@
+
+
+@if (cartItems().length > 0) {
+    <div class="container-body">
+        <div class="container">
+            <div class="shopping-cart">
+                <div class="header">
+                    <a (click)="navigateToVehicles()"  class="back-link">← Continue shopping</a>
+                </div>
+                <h2>Shopping cart</h2>
+                <p>You have {{cartItems().length}} items in your cart</p>
+
+                <div class="cart-items">
+                    @for (item of cartItems(); track item.customId) {
+                       <div class="cart-item">
+                        
+                        <div class="item-details">
+                            <h3>{{item.MakeName}}</h3>
+                            <p>{{item.VehicleTypeName}}</p>
+                        </div>
+                        <div class="item-price">
+                            <span>{{item.customId}}</span>
+                        </div>
+                        <div class="item-remove">
+                            <button (click)="removeFromCart(item)">🗑️</button>
+                        </div>
+                    </div> 
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+} @else {
+    <p>No items added to cart</p>
+}

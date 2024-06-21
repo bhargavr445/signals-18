@@ -1,1 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0 0px 10px 0px;
+    background-color: #f8f9fa
+}
+
+button {
+    background-color: #d56082;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+button:hover {
+    background-color: #c34e6b;
+}
+
+button:disabled {
+    background-color: rgb(47, 47, 47);
+    cursor: none;
+}
+
+.nav-container {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #0c50a2;;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: block;
+}
+
+.menu-item.active a {
+    background-color: #5cbfbf;
+    color: white;
+}
+
+.menu-item a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+.menu-item.cart {
+    margin-left: auto; /* Push the cart icon to the right */
+}
+
+.cart-icon {
+    width: 24px;
+    height: 24px;
+    background: url(http://www.clker.com/cliparts/U/D/n/G/6/h/white-shopping-cart-md.png) 2px 8px no-repeat;
+
+}
+
+.cart-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    transform: translate(50%, -50%);
+}

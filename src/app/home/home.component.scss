@@ -1,0 +1,117 @@
+/* styles.css */
+section {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    // display: flex;
+    // justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    left: 40%;
+    top: 20%;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px 0;
+  }
+  
+  .card-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card-header h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .card-header p {
+    margin: 5px 0 0;
+    color: #6c757d;
+  }
+  
+  .account {
+    margin-bottom: 20px;
+  }
+  
+  .account-info {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 5px solid;
+  }
+  
+  .green-border {
+    border-color: #d56082;;
+  }
+  
+  .yellow-border {
+    border-color: #5cbfbf;
+  }
+  
+  .account-info h3 {
+    margin: 0 0 5px;
+    font-size: 18px;
+    color: #6c757d;
+  }
+  
+  .account-info h2 {
+    margin: 0 0 5px;
+    font-size: 22px;
+    color: #000;
+  }
+  
+  .account-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .credit-score {
+    text-align: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .credit-score p {
+    margin: 0;
+    font-size: 14px;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .credit-score p:hover {
+    text-decoration: underline;
+  }

@@ -1,0 +1,16 @@
+<div class="nav-container">
+    <nav class="navbar">
+        <ul class="menu">
+            @for (item of navItems(); track item.label) {
+            <li class="menu-item" [ngClass]="{'active': item.isActive}"><a
+                    (click)="navigateTo(item.navigationUrl)">{{item.label}}</a></li>
+            }
+            <li class="menu-item cart" [ngClass]="{'active': iscartUrl()}">
+                <a (click)="navigateTo('cart')">
+                    <img src="/assets/shopping-cart-dark.png" alt="Cart" class="cart-icon">
+                    <span class="cart-count">{{noOfItemsInCart()}}</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

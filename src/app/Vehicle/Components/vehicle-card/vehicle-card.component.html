@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-content">
+        <h2 class="card-title">{{vehicleInfo().MakeName}}</h2>
+        <p class="card-author">{{vehicleInfo().VehicleTypeName}}</p>
+        <p class="progress-text">{{customVehicle().customId}}</p>
+        <!-- <p class="progress-text">{{vehicleInfo().combinedName}}</p> -->
+    </div>
+    <div class="card-menu">
+        <div class="menu-icon">•••</div>
+    </div>
+    <div class="button-section">
+        @if (customVehicle().isEligibleForAddToCart) {
+                    <button (click)="onSelectedItem(customVehicle())">Add to Cart</button>
+        }
+        <!-- <button (click)="increase()" class="button">Increment-{{counter()}} - {{derivedCounter()}}</button> -->
+
+    </div>
+</div>
