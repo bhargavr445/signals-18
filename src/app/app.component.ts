@@ -1,4 +1,4 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Ang18Component } from './Vehicle/Components/vehicle-overview/vehicle-overview.component';
 import { HeaderComponent } from './header/header.component';
@@ -7,6 +7,7 @@ import { CartComponent } from './Vehicle/Components/cart/cart.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, Ang18Component, HeaderComponent, CartComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
