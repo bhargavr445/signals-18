@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, effect, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import { CartService } from '../../Services/cart.service';
 import { Result } from '../../Models/VehiclesI';
 import { Router } from '@angular/router';
@@ -7,11 +7,12 @@ import { ModalComponent } from '../../../commons/components/modal/modal.componen
 import { JsonPipe } from '@angular/common';
 import { ToggleCloseTypes } from '../../../commons/Interfaces/ModalContentI';
 import { ModalConstants } from '../../../commons/constants/modal.constants';
+import { ModalContainerDirective } from '../../../commons/directives/modal-container.directive';
 
 @Component({
   selector: 'app-vehicles-table',
   standalone: true,
-  imports: [ModalComponent, JsonPipe],
+  imports: [ModalComponent, JsonPipe, ModalContainerDirective],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -19,6 +20,7 @@ import { ModalConstants } from '../../../commons/constants/modal.constants';
 export class CartComponent {
 
   cartService = inject(CartService);
+  @ViewChild(ModalContainerDirective) modalHost: ModalContainerDirective;
   modalService = inject(ModalService);
   router = inject(Router);
   // options = ['op1', 'op2', 'op3'];
@@ -37,7 +39,7 @@ export class CartComponent {
      'Item 7'
   ];
 
-  showModal = signal('c');
+  // showModal = signal('c');
   itemIdToDelete = signal<string>('');
   
   cartItems = computed(() => {
@@ -45,12 +47,13 @@ export class CartComponent {
   });
 
   removeFromCart(item: Result) {
-    this.modalService.openModal({
-      content: 'Are you sure that you want to remove this item from Cart?',
-      primaryButton: 'Cancel',
-      secondaryButton: 'Confirm',
-      headerLabel: 'Confirmation'
-    });
+    // this.modalService.openModal({
+    //   content: 'Are you sure that you want to remove this item from Cart?',
+    //   primaryButton: 'Cancel',
+    //   secondaryButton: 'Confirm',
+    //   headerLabel: 'Confirmation'
+    // });
+    this.showModal();
     this.itemIdToDelete.set(item.customId);
   }
 
@@ -64,6 +67,23 @@ export class CartComponent {
 
   selectedOptionEvent(event) {
     console.log(event.detail);
+  }
+
+  showModal() {
+    const compRef = this.modalService.dynamicComponentOnDOM(this.modalHost);
+    compRef.openModal({
+      content: 'Are you sure that you want to remove this item from Cart?',
+      primaryButton: 'Cancel',
+      secondaryButton: 'Confirm',
+      headerLabel: 'Confirmation',
+      toggleStatus: 'o'
+    });
+
+    compRef.closeEvent.subscribe((closeType) => {
+      console.log(closeType);
+      this.handleCloseType(closeType);
+    })
+
   }
 
 }

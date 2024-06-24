@@ -41,7 +41,7 @@ export class ModalComponent {
 
 
   handleCloseType(event) {
-    this.modalService.closeModal();
+    // this.modalService.closeModal();
     
     this.closeEvent.emit(event.detail)
     this.modalContent.set({

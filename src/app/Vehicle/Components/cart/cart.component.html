@@ -1,5 +1,5 @@
 
-<app-modal (closeEvent)="handleCloseType($event)"></app-modal>
+<ng-container appModalContainer></ng-container>
 <fepoc-drop-down-component [options]="options" [displayprops]="displayprops" (selectedOptionEvent)="selectedOptionEvent($event)"></fepoc-drop-down-component>
 <fepoc-drop-down-component [options]="items" (selectedOptionEvent)="selectedOptionEvent($event)"></fepoc-drop-down-component>
 @if (cartItems().length > 0) {
