@@ -1,5 +1,7 @@
 
-
+<app-modal (closeEvent)="handleCloseType($event)"></app-modal>
+<fepoc-drop-down-component [options]="options" [displayprops]="displayprops" (selectedOptionEvent)="selectedOptionEvent($event)"></fepoc-drop-down-component>
+<fepoc-drop-down-component [options]="items" (selectedOptionEvent)="selectedOptionEvent($event)"></fepoc-drop-down-component>
 @if (cartItems().length > 0) {
     <div class="container-body">
         <div class="container">
@@ -12,8 +14,8 @@
 
                 <div class="cart-items">
                     @for (item of cartItems(); track item.customId) {
-                       <div class="cart-item">
-                        
+                    <div class="cart-item">
+                
                         <div class="item-details">
                             <h3>{{item.MakeName}}</h3>
                             <p>{{item.VehicleTypeName}}</p>
@@ -24,7 +26,7 @@
                         <div class="item-remove">
                             <button (click)="removeFromCart(item)">🗑️</button>
                         </div>
-                    </div> 
+                    </div>
                     }
                 </div>
             </div>

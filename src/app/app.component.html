@@ -1,26 +1,37 @@
+<ng-container appModalContainer></ng-container>
+<button (click)="showModal()">Toggle Modal</button>
 <div>
-  <!-- {{counter()}}
-  <button (click)="inc()">Increas Counter</button>
-  @if (counter() % 2 === 0 ) {
+  <app-header />
+</div>
+
+<router-outlet />
+  <!-- <my-component [first]="counter()" last="'Dont call me a frameworkJS'" middle="'Gun'"></my-component> -->
+  <!-- <my-component props={
+    first="'Stencil'" 
+    last="'Dont call me a frameworkJS'"
+  }></my-component> -->
+  <!-- <fepoc-tooltip></fepoc-tooltip> -->
+  <!-- <fepoc-modal #fepocModalComp></fepoc-modal> -->
+   <!-- {{counter()}} -->
+  <!-- <button (click)="inc()">Increas Counter</button> -->
+ <!-- @if (counter() % 2 === 0 ) {
     {{ doubleCounter() }}
   } -->
-  <app-header />
-  <div class="body">
-    <button id="openModalBtn">Open Modal</button>
+  
 
-    <!-- Modal structure -->
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Modal Header</h2>
-        <p>This is the content of the modal.</p>
-        <div class="modal-footer">
-          <button class="btn cancel">Cancel</button>
-          <button class="btn confirm">Confirm</button>
-        </div>
-      </div>
+
+
+
+
+    <!-- <div class="drop-down-container">
+    <div class="custom-select-container">
+      <select id="customSelect">
+        <option value="html">Html</option>
+        <option value="css">CSS</option>
+        <option value="javascript">Javascript</option>
+        <option value="reactjs">ReactJS</option>
+        <option value="photoshop">Photoshop</option>
+      </select>
     </div>
-  </div>
+  </div> -->
 
-  <router-outlet />
-</div>

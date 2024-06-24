@@ -1,0 +1,8 @@
+<fepoc-modal 
+    [header]="modalContent().headerLabel"
+    [content]="modalContent().content"
+    [primarybutton]="modalContent().primaryButton"
+    [secondarybutton]="modalContent().secondaryButton"
+    [open]="modalContent().toggleStatus" 
+    (closeType)="handleCloseType($event)">
+</fepoc-modal>

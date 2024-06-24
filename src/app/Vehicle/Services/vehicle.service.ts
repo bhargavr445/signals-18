@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { VehiclesResponseI } from '../Models/VehiclesI';
-import { Observable, map } from 'rxjs';
+import { Observable, filter, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class VehicleService {
 
   getVehicleData(): Observable<VehiclesResponseI> {
     return this.http.get<VehiclesResponseI>('https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/merc?format=json').pipe(
+      filter(resp => !!resp),
       map(resp => this.addNewPropInResult(resp))
     );
   }

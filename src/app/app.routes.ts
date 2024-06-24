@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './Vehicle/Components/cart/cart.component';
 import { inject } from '@angular/core';
 import { CartService } from './Vehicle/Services/cart.service';
+import { AuthService } from './auth.service';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'vehicle', pathMatch: 'full' },
@@ -14,5 +15,7 @@ export const routes: Routes = [
 
 function checkCartItemsLength(): boolean {
     let cartService = inject(CartService);
+    let authService = inject(AuthService);
+    // authService.setSignal(cartService.vehicleCartSignal().length < 1)
     return cartService.vehicleCartSignal().length > 0;
 }

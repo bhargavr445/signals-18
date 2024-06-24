@@ -3,6 +3,7 @@ import { VehiclesResponseI } from '../../Models/VehiclesI';
 import { FormsModule } from '@angular/forms';
 import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 import { VehicleService } from '../../Services/vehicle.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'ang-18-comp',
@@ -24,13 +25,18 @@ export class Ang18Component {
   }
 
   fetchData() {
-    this.vehicleService.getVehicleData().subscribe({
-      next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
+    this.vehicleService.getVehicleData()
+    .subscribe({
+      next: (resp: VehiclesResponseI) => {
+          this.handleSuccess(resp)
+      },
       error: (err) => this.handleError(err)
     });
   }
 
   handleSuccess(resp: VehiclesResponseI) {
+    console.log(resp);
+    
     this.response.set(resp);
   }
 
