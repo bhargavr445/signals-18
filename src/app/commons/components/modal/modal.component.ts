@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, computed, inject, signal } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
-import { ModalDataI, ToggleCloseTypes } from '../../Interfaces/ModalContentI';
+import { ToggleCloseTypes } from '../../Interfaces/ModalContentI';
 
 @Component({
   selector: 'app-modal',
@@ -16,18 +16,6 @@ export class ModalComponent {
   @Output() closeEvent = new EventEmitter<ToggleCloseTypes>();
   modalContent = signal(null);
 
-  // modalContent = computed<ModalDataI>(() => {
-  //   const modalData = this.modalService.modalLabels();
-  //   const labels = {
-  //     headerLabel: modalData?.headerLabel,
-  //     content: modalData?.content,
-  //     primaryButton: modalData?.primaryButton,
-  //     secondaryButton: modalData?.secondaryButton,
-  //     toggleStatus: modalData?.toggleStatus
-  //   }
-  //   return labels;
-  // });
-
   openModal(modalData) {
     this.modalContent.set( {
       headerLabel: modalData?.headerLabel,
@@ -40,9 +28,7 @@ export class ModalComponent {
 
 
 
-  handleCloseType(event) {
-    // this.modalService.closeModal();
-    
+  handleCloseType(event) {    
     this.closeEvent.emit(event.detail)
     this.modalContent.set({
       headerLabel: '',

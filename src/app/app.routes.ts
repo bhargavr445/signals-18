@@ -5,6 +5,7 @@ import { CartComponent } from './Vehicle/Components/cart/cart.component';
 import { inject } from '@angular/core';
 import { CartService } from './Vehicle/Services/cart.service';
 import { AuthService } from './auth.service';
+import { ModalService } from './commons/services/modal.service';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'vehicle', pathMatch: 'full' },
@@ -15,7 +16,21 @@ export const routes: Routes = [
 
 function checkCartItemsLength(): boolean {
     let cartService = inject(CartService);
-    let authService = inject(AuthService);
-    // authService.setSignal(cartService.vehicleCartSignal().length < 1)
-    return cartService.vehicleCartSignal().length > 0;
+    let modalService = inject(ModalService);
+    if (cartService.vehicleCartSignal().length < 1) {
+        const compRef = modalService.dynamicComponentOnDOM();
+        compRef.openModal({
+            content: 'Add items to cart to access this page?',
+            primaryButton: 'Cancel',
+            secondaryButton: 'Confirm',
+            headerLabel: 'Confirmation',
+            toggleStatus: 'o'
+        });
+
+        compRef.closeEvent.subscribe((closeType) => {
+            console.log(closeType);
+        })
+
+    }
+    return true;
 }

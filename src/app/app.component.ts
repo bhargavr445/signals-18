@@ -1,16 +1,16 @@
-import { AfterContentInit, CUSTOM_ELEMENTS_SCHEMA, Component, ComponentFactoryResolver, ViewChild, computed, effect, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Ang18Component } from './Vehicle/Components/vehicle-overview/vehicle-overview.component';
 import { HeaderComponent } from './header/header.component';
 import { CartComponent } from './Vehicle/Components/cart/cart.component';
 import { AuthService } from './auth.service';
 import { ModalService } from './commons/services/modal.service';
-import { ModalComponent } from './commons/components/modal/modal.component';
 import { ModalContainerDirective } from './commons/directives/modal-container.directive';
+import { ModalHostComponent } from './commons/components/modal-host/modal-host.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Ang18Component, HeaderComponent, CartComponent, ModalContainerDirective],
+  imports: [RouterOutlet, Ang18Component, HeaderComponent, CartComponent, ModalContainerDirective, ModalHostComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -21,7 +21,6 @@ export class AppComponent {
 
   authService = inject(AuthService);
   modalService = inject(ModalService);
-  @ViewChild(ModalContainerDirective) modalHost: ModalContainerDirective;
   title = 'signals-18';
   counter = signal(0);
   showCounter = signal(false);
@@ -32,7 +31,7 @@ export class AppComponent {
   
 
   showModal() {
-    const compRef = this.modalService.dynamicComponentOnDOM(this.modalHost);
+    const compRef = this.modalService.dynamicComponentOnDOM();
     compRef.openModal({
       content: 'Are you sure that you want to remove this item from Cart?',
       primaryButton: 'Cancel',

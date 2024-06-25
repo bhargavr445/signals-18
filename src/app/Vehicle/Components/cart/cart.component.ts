@@ -20,7 +20,6 @@ import { ModalContainerDirective } from '../../../commons/directives/modal-conta
 export class CartComponent {
 
   cartService = inject(CartService);
-  @ViewChild(ModalContainerDirective) modalHost: ModalContainerDirective;
   modalService = inject(ModalService);
   router = inject(Router);
   // options = ['op1', 'op2', 'op3'];
@@ -47,12 +46,6 @@ export class CartComponent {
   });
 
   removeFromCart(item: Result) {
-    // this.modalService.openModal({
-    //   content: 'Are you sure that you want to remove this item from Cart?',
-    //   primaryButton: 'Cancel',
-    //   secondaryButton: 'Confirm',
-    //   headerLabel: 'Confirmation'
-    // });
     this.showModal();
     this.itemIdToDelete.set(item.customId);
   }
@@ -70,7 +63,7 @@ export class CartComponent {
   }
 
   showModal() {
-    const compRef = this.modalService.dynamicComponentOnDOM(this.modalHost);
+    const compRef = this.modalService.dynamicComponentOnDOM();
     compRef.openModal({
       content: 'Are you sure that you want to remove this item from Cart?',
       primaryButton: 'Cancel',
