@@ -13,7 +13,15 @@ section {
     left: 40%;
     top: 20%;
   }
-  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* One less than the slider */
+}
   .container {
     width: 100%;
     max-width: 400px;
@@ -115,3 +123,29 @@ section {
   .credit-score p:hover {
     text-decoration: underline;
   }
+
+  .slider {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+
+.slider.show {
+    right: 0;
+}
+
+.slider-content {
+    padding: 20px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

@@ -17,6 +17,7 @@ export class ModalService {
     const modalcompFactory = this.ComponentFactoryResolver.resolveComponentFactory(ModalComponent);
     const hostViewContainerRef = this.modalHost.viewContainerRef;
     hostViewContainerRef.clear();
+    
     const compRef = hostViewContainerRef.createComponent(modalcompFactory);
     return compRef.instance;
   }

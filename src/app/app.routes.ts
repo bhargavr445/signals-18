@@ -4,7 +4,6 @@ import { HomeComponent } from './home/home.component';
 import { CartComponent } from './Vehicle/Components/cart/cart.component';
 import { inject } from '@angular/core';
 import { CartService } from './Vehicle/Services/cart.service';
-import { AuthService } from './auth.service';
 import { ModalService } from './commons/services/modal.service';
 
 export const routes: Routes = [
@@ -20,17 +19,17 @@ function checkCartItemsLength(): boolean {
     if (cartService.vehicleCartSignal().length < 1) {
         const compRef = modalService.dynamicComponentOnDOM();
         compRef.openModal({
-            content: 'Add items to cart to access this page?',
-            primaryButton: 'Cancel',
+            content: 'Add items to cart to access this page.',
+            // primaryButton: 'Cancel',
             secondaryButton: 'Confirm',
             headerLabel: 'Confirmation',
             toggleStatus: 'o'
         });
 
-        compRef.closeEvent.subscribe((closeType) => {
-            console.log(closeType);
-        })
+        compRef.closeEvent.subscribe();
+        return false
 
+    } else {
+        return true;
     }
-    return true;
 }

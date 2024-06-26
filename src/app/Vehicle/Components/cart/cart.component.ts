@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, ViewChild, computed, effect, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import { CartService } from '../../Services/cart.service';
 import { Result } from '../../Models/VehiclesI';
 import { Router } from '@angular/router';
@@ -8,20 +8,39 @@ import { JsonPipe } from '@angular/common';
 import { ToggleCloseTypes } from '../../../commons/Interfaces/ModalContentI';
 import { ModalConstants } from '../../../commons/constants/modal.constants';
 import { ModalContainerDirective } from '../../../commons/directives/modal-container.directive';
+import { DropdownComponent } from '../../../commons/components/dropdown/dropdown.component';
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-vehicles-table',
   standalone: true,
-  imports: [ModalComponent, JsonPipe, ModalContainerDirective],
+  imports: [ModalComponent, JsonPipe, ModalContainerDirective, DropdownComponent, FormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
 
+  form = new FormGroup({
+    productType: new FormControl('')
+  })
+
+  nameprop = 'Stuname';
   cartService = inject(CartService);
   modalService = inject(ModalService);
   router = inject(Router);
+
+  ngOnInit(): void {
+    this.productTypeControl.valueChanges.subscribe( (value) => {
+      console.log(value);
+      
+    });
+
+    this.form.valueChanges.subscribe((v) => console.log(v)
+    )
+  }
+
+
   // options = ['op1', 'op2', 'op3'];
   displayprops = ['userId', 'userName'];
   options = [
@@ -37,6 +56,10 @@ export class CartComponent {
      'Item 5',
      'Item 7'
   ];
+
+  get productTypeControl() {
+    return this.form.get('productType') as FormControl;
+  }
 
   // showModal = signal('c');
   itemIdToDelete = signal<string>('');
@@ -76,6 +99,13 @@ export class CartComponent {
       console.log(closeType);
       this.handleCloseType(closeType);
     })
+
+    const stu = {
+      id: '101',
+      [this.nameprop]: 'Bhargav'
+    }
+    console.log(stu);
+    
 
   }
 

@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { catchError, debounce, debounceTime, distinctUntilChanged, of, switchMap, throwError } from 'rxjs';
 import { VehicleService } from '../Vehicle/Services/vehicle.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, NgIf],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -44,5 +45,15 @@ export class HomeComponent implements OnInit {
     ).subscribe(() => console.log('ece'))
     
   }
+
+  isVisible = false;
+
+    openSlider() {
+        this.isVisible = true;
+    }
+
+    closeSlider() {
+        this.isVisible = false;
+    }
 
 }
