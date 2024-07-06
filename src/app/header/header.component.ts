@@ -22,7 +22,8 @@ export class HeaderComponent {
   iscartUrl = signal<boolean>(false);
   navItems = signal([
     { label: 'Home', navigationUrl: '/home', isActive: false },
-    { label: 'Vehicle', navigationUrl: '/vehicle', isActive: false },
+    { label: 'Vehicle', navigationUrl: '/vehicle', isActive: true },
+    { label: 'student', navigationUrl: '/student', isActive: false },
   ]);
 
   constructor() {

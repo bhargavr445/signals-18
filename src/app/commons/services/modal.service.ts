@@ -13,7 +13,6 @@ export class ModalService {
   private modalHost: ModalContainerDirective;
 
   dynamicComponentOnDOM() {
-    console.log(this.modalHost);
     const modalcompFactory = this.ComponentFactoryResolver.resolveComponentFactory(ModalComponent);
     const hostViewContainerRef = this.modalHost.viewContainerRef;
     hostViewContainerRef.clear();

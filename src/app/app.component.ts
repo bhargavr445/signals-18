@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Ang18Component } from './Vehicle/Components/vehicle-overview/vehicle-overview.component';
+import { VehicleOverviewComponent } from './Vehicle/Components/vehicle-overview/vehicle-overview.component';
 import { HeaderComponent } from './header/header.component';
 import { CartComponent } from './Vehicle/Components/cart/cart.component';
 import { AuthService } from './auth.service';
@@ -10,7 +10,7 @@ import { ModalHostComponent } from './commons/components/modal-host/modal-host.c
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Ang18Component, HeaderComponent, CartComponent, ModalContainerDirective, ModalHostComponent],
+  imports: [RouterOutlet, VehicleOverviewComponent, HeaderComponent, CartComponent, ModalContainerDirective, ModalHostComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

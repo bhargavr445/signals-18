@@ -9,6 +9,7 @@ export class CartService {
 
   vehicleCartSignal = signal<Result[]>([]);
   //veh = new BehaviorSubject<Result[]>([]);
+  
 
   addVehicleToCartSignal(vehicle: Result): void {
     this.vehicleCartSignal.update((prevCartitems) => [...prevCartitems, vehicle]);

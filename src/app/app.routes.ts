@@ -1,14 +1,16 @@
 import { Routes } from '@angular/router';
-import { Ang18Component } from './Vehicle/Components/vehicle-overview/vehicle-overview.component';
+import { VehicleOverviewComponent } from './Vehicle/Components/vehicle-overview/vehicle-overview.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './Vehicle/Components/cart/cart.component';
 import { inject } from '@angular/core';
 import { CartService } from './Vehicle/Services/cart.service';
 import { ModalService } from './commons/services/modal.service';
+import { StudentOverviewComponent } from './student-overview/student-overview.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'vehicle', pathMatch: 'full' },
-    { path: 'vehicle', component: Ang18Component },
+    { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing').then((r) => r.VEHICLE_ROUTES) },
+    { path: 'student', component: StudentOverviewComponent },
     { path: 'cart', component: CartComponent, canActivate: [() => checkCartItemsLength()] },
     { path: 'home', component: HomeComponent },
 ];

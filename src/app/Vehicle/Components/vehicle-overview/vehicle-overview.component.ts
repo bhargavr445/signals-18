@@ -3,10 +3,9 @@ import { VehiclesResponseI } from '../../Models/VehiclesI';
 import { FormsModule } from '@angular/forms';
 import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 import { VehicleService } from '../../Services/vehicle.service';
-import { filter } from 'rxjs';
 
 @Component({
-  selector: 'ang-18-comp',
+  selector: 'vehicle-overview',
   standalone: true,
   imports: [VehicleCardComponent, FormsModule],
   template: `
@@ -15,7 +14,7 @@ import { filter } from 'rxjs';
     }
    `
 })
-export class Ang18Component {
+export class VehicleOverviewComponent {
 
   vehicleService = inject(VehicleService);
   response = signal<VehiclesResponseI>({ Count: null, Message: '', SearchCriteria: '', Results: [] });
