@@ -6,6 +6,7 @@ import { inject } from '@angular/core';
 import { CartService } from './Vehicle/Services/cart.service';
 import { ModalService } from './commons/services/modal.service';
 import { StudentOverviewComponent } from './student-overview/student-overview.component';
+import { StoreComponent } from './store/store.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'vehicle', pathMatch: 'full' },
@@ -13,6 +14,7 @@ export const routes: Routes = [
     { path: 'student', component: StudentOverviewComponent },
     { path: 'cart', component: CartComponent, canActivate: [() => checkCartItemsLength()] },
     { path: 'home', component: HomeComponent },
+    { path: 'store', component: StoreComponent },
 ];
 
 function checkCartItemsLength(): boolean {

@@ -90,8 +90,8 @@ export class CartComponent implements OnInit {
     compRef.openModal({
       content: 'Are you sure that you want to remove this item from Cart?',
       primaryButton: 'Cancel',
-      secondaryButton: 'Confirm',
-      headerLabel: 'Confirmation',
+      secondaryButton: 'Delete',
+      headerLabel: 'Alert',
       toggleStatus: 'o'
     });
 
