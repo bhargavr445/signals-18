@@ -6,21 +6,32 @@ import { VehicleService } from '../../Services/vehicle.service';
 import { FilterComponent } from '../../../commons/components/filter/filter.component';
 import { JsonPipe } from '@angular/common';
 import { endWith, forkJoin, interval, map, startWith, switchMap, withLatestFrom, zip } from 'rxjs';
+import { DeferComponent } from '../defer/defer.component';
 
 @Component({
   selector: 'vehicle-overview',
   standalone: true,
-  imports: [VehicleCardComponent, FormsModule, FilterComponent, JsonPipe],
+  imports: [VehicleCardComponent, FormsModule, FilterComponent, JsonPipe, DeferComponent],
   template: `
      
      <div class="pad-t-10">
        <app-filter  [(searchText)]="filterText"/>
      </div>
+      @if( filteredRecords().length > 0) {
+        @for (item of filteredRecords(); track $index) {
+            <app-vehicle-card [vehicleInfo]="item"  (emitSome)="emitSome($event)"/>
 
-      @for (item of filteredRecords(); track $index) {
-        <app-vehicle-card [vehicleInfo]="item"  (emitSome)="emitSome($event)"/>
-      } @empty {
-       <div>No Records Found...</div>
+          } @empty {
+          <div>No Records Found...</div>
+          }
+
+          @defer {
+            <app-defer />
+          } 
+          
+          <!-- @placeholder {
+            <div>Place Holder</div>
+          } -->
       }
    `
 })
@@ -79,7 +90,7 @@ export class VehicleOverviewComponent {
   }
 
   fetchData() {
-    this.vehicleService.getVehicleData()
+    this.vehicleService.getVehicleData('')
       // .pipe(
       //   startWith(this.loader(true)), 
       //   endWith('vjvjv')

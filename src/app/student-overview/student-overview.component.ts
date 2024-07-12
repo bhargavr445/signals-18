@@ -10,7 +10,7 @@ import { delay, forkJoin, of } from 'rxjs';
   imports: [TableComponent],
   template: `
     @defer (when isLoading()) {
-      <app-table [tableData]="response().Results"/>
+      <app-table [tableData]="response().Results" (dropDownSelection)=dropDownSelection($event)/>
     } @loading {
       <div>Loading...</div>
     }
@@ -32,12 +32,9 @@ export class StudentOverviewComponent {
 
 
   constructor() {
+    this.fun()
     this.isLoading.set(true);
-    this.vehicleService.getVehicleData()
-      .subscribe({
-        next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
-        error: (err) => this.handleError(err)
-      });
+    this.#getVehiclesData('ford');
 
       forkJoin({
         inner: this.inner$,
@@ -46,6 +43,14 @@ export class StudentOverviewComponent {
       }).subscribe(v => {
         console.log('********', new Date());
         console.log(v);  // This will log: { inner: 'destination', outer: 'source', third: 'third' }
+      });
+  }
+
+  #getVehiclesData(vehicleType: string) {
+    this.vehicleService.getVehicleData(vehicleType)
+      .subscribe({
+        next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
+        error: (err) => this.handleError(err)
       });
   }
 
@@ -58,6 +63,25 @@ export class StudentOverviewComponent {
   handleError(error) {
     console.log(error);
     this.isLoading.set(false);
+  }
+
+  dropDownSelection(event) {
+    this.#getVehiclesData(event);
+  }
+
+  fun() {
+    const str = {
+      apiResponse: null,
+      isLoading: false,
+      testData: null
+    }
+    console.log(str);
+    
+
+    const newO = {...str, testData: 'new value', apiResponse: 'some val', newProp: 'new prop add'}
+    console.log(newO);
+
+    //return {...str, testData: act.val}
 
   }
 

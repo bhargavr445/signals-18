@@ -11,8 +11,9 @@ export class VehicleService {
 
   constructor(private http: HttpClient) { }
 
-  getVehicleData(): Observable<VehiclesResponseI> {
-    return this.http.get<VehiclesResponseI>('https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/merc?format=json').pipe(
+  getVehicleData(vehicleType: string): Observable<VehiclesResponseI> {
+    
+    return this.http.get<VehiclesResponseI>(`https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/${vehicleType ? vehicleType : 'ford'}?format=json`).pipe(
       filter(resp => !!resp),
       map(resp => this.#addNewPropInResult(resp))
     );

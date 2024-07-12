@@ -1,7 +1,14 @@
 <div class="main">
-    <span class="pagination-bar pad-b-10">
+    <span class="tab-header pad-b-10">
+
+        <fepoc-drop-down-component
+    [options]="cars"
+    [displayprops]="['key']"
+    (selectedOptionEvent)="selectedOptionEvent($event)">
+</fepoc-drop-down-component>
         <app-filter [(searchText)]="filterValue" />
     </span>
+    
     <table>
         <thead>
             <tr>
@@ -17,11 +24,10 @@
         </tr>
         }
 
-
     </table>
-    @if (filteredTableData().length > 0) {
+    <!-- @if (filteredTableData().length > 0) { -->
     <span class="pagination-bar">
         <gbr-pagination [datalist]="filteredTableData()" (paginatedlisthandler)="handlePaginatedList($event)" />
     </span>
-    }
+    <!-- } -->
 </div>

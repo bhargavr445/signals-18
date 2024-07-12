@@ -9,7 +9,7 @@ import { StudentOverviewComponent } from './student-overview/student-overview.co
 import { StoreComponent } from './store/store.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'vehicle', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing').then((r) => r.VEHICLE_ROUTES) },
     { path: 'student', component: StudentOverviewComponent },
     { path: 'cart', component: CartComponent, canActivate: [() => checkCartItemsLength()] },

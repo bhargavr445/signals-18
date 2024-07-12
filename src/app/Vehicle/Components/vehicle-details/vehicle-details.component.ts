@@ -1,18 +1,18 @@
-import { Component, Input, Input as QueryParam, input} from '@angular/core';
+import { Component, Input, Input as RouteParam, Input as QueryParam} from '@angular/core';
 
 @Component({
   selector: 'app-vehicle-details',
   standalone: true,
   imports: [],
-  template: `{{cId()}}`,
+  template: `{{cIds}}`,
   styleUrl: './vehicle-details.component.scss'
 })
 export class VehicleDetailsComponent {
 
-  // @QueryParam('cId') cIds:  any;
-  // @Input() mid: any;
-  // @routeParam() id: any;
+  @RouteParam('custid') cIds:  any;
+  @Input() mid: any;
+  @QueryParam() id: any;
 
-  cId = input.required<any>({alias: 'custid'})
+  // cId = input.required<any>({alias: 'custid'})
 
 }

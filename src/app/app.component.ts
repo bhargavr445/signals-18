@@ -16,8 +16,6 @@ import { ModalHostComponent } from './commons/components/modal-host/modal-host.c
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  
-
 
   authService = inject(AuthService);
   modalService = inject(ModalService);

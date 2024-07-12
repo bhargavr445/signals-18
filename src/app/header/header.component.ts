@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CartService } from '../Vehicle/Services/cart.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, tap } from 'rxjs';
 import { NgClass } from '@angular/common';
 
 interface NavI {
@@ -19,11 +19,21 @@ interface NavI {
 })
 export class HeaderComponent {
 
+  nv = [
+    { label: 'Home', navigationUrl: '/home', isActive: false, rn: () => this.#navIt() },
+    { label: 'Vehicle', navigationUrl: '/vehicle', isActive: true }
+  ]
+
+  #navIt() {
+
+  }
+
   cartService = inject(CartService);
   router = inject(Router);
   noOfItemsInCart = computed(() =>  this.cartService.vehicleCartSignal().length);
   showCartItemsTable = signal<boolean>(false);
   iscartUrl = signal<boolean>(false);
+  defaultRoute = '/home'
   navItems = signal<NavI[]>([
     { label: 'Home', navigationUrl: '/home', isActive: false },
     { label: 'Vehicle', navigationUrl: '/vehicle', isActive: true },
@@ -33,8 +43,8 @@ export class HeaderComponent {
 
   constructor() {
     this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => this.checkForActiveRoute(event.url));
+      filter((event) => event instanceof NavigationEnd),
+    ).subscribe((event: NavigationEnd) => this.checkForActiveRoute(event?.url === '/' ? this.defaultRoute : event.url));
   }
 
   checkForActiveRoute(currentUrl: string): void {
@@ -53,4 +63,6 @@ export class HeaderComponent {
   navigateTo(url: string): void {
     this.router.navigate([url]);
   }
+
+
 }

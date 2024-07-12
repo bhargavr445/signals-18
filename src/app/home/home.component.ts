@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     .pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() =>  this.vehicleService.getVehicleData().pipe(catchError((error) => throwError(() => ({...error, errorFrom: 'API call 1'})))))
+      switchMap(() =>  this.vehicleService.getVehicleData('').pipe(catchError((error) => throwError(() => ({...error, errorFrom: 'API call 1'})))))
     ).subscribe((value) => {
       console.log(value);
     })
