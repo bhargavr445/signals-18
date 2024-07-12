@@ -36,8 +36,7 @@ export class CartComponent implements OnInit {
       
     });
 
-    this.form.valueChanges.subscribe((v) => console.log(v)
-    )
+    this.form.valueChanges.subscribe((v) => console.log(v))
   }
 
 
@@ -103,9 +102,7 @@ export class CartComponent implements OnInit {
     const stu = {
       id: '101',
       [this.nameprop]: 'Bhargav'
-    }
-    console.log(stu);
-    
+    }    
 
   }
 

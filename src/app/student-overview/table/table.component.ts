@@ -51,7 +51,6 @@ export class TableComponent {
   }
 
   selectedOptionEvent(event) {
-    console.log(event.detail);
     this.dropDownSelection.emit(event.detail['value']);
   }
 

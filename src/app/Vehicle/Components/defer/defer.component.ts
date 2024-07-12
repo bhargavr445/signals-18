@@ -10,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
 export class DeferComponent implements OnInit {
 
   ngOnInit(): void {
-    console.log('in it...');
   }
 
 }

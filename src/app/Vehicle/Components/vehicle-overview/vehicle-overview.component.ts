@@ -49,31 +49,6 @@ export class VehicleOverviewComponent {
 
   constructor() {
     this.fetchData();
-    // this.outer$
-    // .pipe(
-    //   // switchMap(() => this.inner$)
-    //   withLatestFrom(this.inner$)
-    // )
-    // .subscribe(v => {
-    //   console.log(new Date())
-    //   console.log(v)
-    // })
-
-    // zip(this.outer$,this.inner$,  this.third$).subscribe(v => {
-    //   console.log('********', new Date());
-    //   console.log(v)
-    // });
-
-    forkJoin({
-      inner: this.inner$,
-      outer: this.outer$,
-      third: this.third$
-    }).subscribe(v => {
-      console.log('********', new Date());
-      console.log(v);  // This will log: { inner: 'destination', outer: 'source', third: 'third' }
-    }, e => console.log(e));
-
-
   }
 
   filterRecords(text: string) {
@@ -85,30 +60,22 @@ export class VehicleOverviewComponent {
   }
 
   loader(indicator: boolean) {
-    console.log(indicator);
     this.isDataLoading = indicator;
   }
 
   fetchData() {
     this.vehicleService.getVehicleData('')
-      // .pipe(
-      //   startWith(this.loader(true)), 
-      //   endWith('vjvjv')
-      // )
       .subscribe({
         next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
         error: (err) => this.handleError(err)
       });
   }
 
-  handleSuccess(resp: VehiclesResponseI) {
-    console.log(resp);
-    
+  handleSuccess(resp: VehiclesResponseI) {    
     this.response.set(resp);
   }
 
   handleError(error) {
-    console.log(error);
   }
 
   emitSome(event: string) {

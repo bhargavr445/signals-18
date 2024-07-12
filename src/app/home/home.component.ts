@@ -14,8 +14,8 @@ import { NgIf } from '@angular/common';
 export class HomeComponent implements OnInit {
 
   vehicleService = inject(VehicleService);
-
   form: FormGroup;
+
   ngOnInit(): void {
     this.createForm()
 
@@ -26,7 +26,8 @@ export class HomeComponent implements OnInit {
       switchMap(() =>  this.vehicleService.getVehicleData('').pipe(catchError((error) => throwError(() => ({...error, errorFrom: 'API call 1'})))))
     ).subscribe((value) => {
       console.log(value);
-    })
+    });
+
   }
 
   createForm() {
@@ -35,11 +36,8 @@ export class HomeComponent implements OnInit {
     })
   }
 
-
-
   onEnter(event) {
     const value = event.target.value;
-    console.log(value);
     of(value).pipe(
       debounceTime(1000),
     ).subscribe(() => console.log('ece'))

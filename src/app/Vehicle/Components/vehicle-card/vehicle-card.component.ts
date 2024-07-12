@@ -34,7 +34,6 @@ export class VehicleCardComponent {
   customVehicle = computed(() => {
     const incomingVehicle = this.vehicleInfo();
     const cartitems = this.cartService.vehicleCartSignal();
-    // console.log('computed...');
     return {
       ...incomingVehicle,
       isEligibleForAddToCart: this.checkIsEligibleForAddToCart(cartitems)
@@ -48,11 +47,7 @@ export class VehicleCardComponent {
 
   constructor() {
     effect(() => {
-      // console.log('Exect1234...');
       const ctr = this.counter();
-      // u
-      // console.log(ctr)
-      //trigger api call here
     })
   }
 

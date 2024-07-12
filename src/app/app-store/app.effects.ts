@@ -10,7 +10,6 @@ export class AppEffects {
     getRosteData = createEffect(
         () => this.actions$.pipe(
             ofType(actions.API_FETCHING_START),
-            tap(a => console.log('in effect...', a)),
             switchMap((action) => {
                 return this.vehicleService.getVehicleData('').pipe(
                     map((resp) => actions.apiResultsAction({ value: resp })),

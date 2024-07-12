@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { ModalService } from './commons/services/modal.service';
 import { ModalContainerDirective } from './commons/directives/modal-container.directive';
 import { ModalHostComponent } from './commons/components/modal-host/modal-host.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -26,8 +27,6 @@ export class AppComponent {
     return this.counter() * 2;
   });
 
-  
-
   showModal() {
     const compRef = this.modalService.dynamicComponentOnDOM();
     compRef.openModal({
@@ -41,7 +40,6 @@ export class AppComponent {
     compRef.closeEvent.subscribe((closeType) => {
       console.log(closeType);
     })
-
   }
 
   inc() {
@@ -52,6 +50,5 @@ export class AppComponent {
 
     this.showCounter.update(prevValue => !prevValue);
   }
-
 
 }

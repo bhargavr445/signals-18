@@ -22,10 +22,8 @@ export class DropdownComponent {
   ];
 
   selectedOptionEvent(event) {
-    console.log(event.detail);
-    
+    console.log(event.detail);    
     this.formControlProp.setValue(event.detail);
-    // this.formControlProp.updateValueAndValidity({emitEvent: true});
   }
 
 

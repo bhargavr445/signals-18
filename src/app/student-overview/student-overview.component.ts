@@ -23,27 +23,9 @@ export class StudentOverviewComponent {
   response = signal<VehiclesResponseI>({ Count: null, Message: '', SearchCriteria: '', Results: [] });
   vehicleService = inject(VehicleService);
 
-  outer$ = of('source').pipe(delay(1000));
-  inner$ = of('destination').pipe(delay(5000));
-  third$ = of('third').pipe(delay(500));
-
-   
-  
-
-
   constructor() {
-    this.fun()
     this.isLoading.set(true);
     this.#getVehiclesData('ford');
-
-      forkJoin({
-        inner: this.inner$,
-        outer: this.outer$,
-        third: this.third$
-      }).subscribe(v => {
-        console.log('********', new Date());
-        console.log(v);  // This will log: { inner: 'destination', outer: 'source', third: 'third' }
-      });
   }
 
   #getVehiclesData(vehicleType: string) {
@@ -67,22 +49,6 @@ export class StudentOverviewComponent {
 
   dropDownSelection(event) {
     this.#getVehiclesData(event);
-  }
-
-  fun() {
-    const str = {
-      apiResponse: null,
-      isLoading: false,
-      testData: null
-    }
-    console.log(str);
-    
-
-    const newO = {...str, testData: 'new value', apiResponse: 'some val', newProp: 'new prop add'}
-    console.log(newO);
-
-    //return {...str, testData: act.val}
-
   }
 
 }
