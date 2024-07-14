@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { VehiclesResponseI } from '../Models/VehiclesI';
 import { Observable, filter, map } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root'

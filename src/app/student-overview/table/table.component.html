@@ -1,33 +1,22 @@
 <div class="main">
+
     <span class="tab-header pad-b-10">
 
-        <fepoc-drop-down-component
-    [options]="cars"
-    [displayprops]="['key']"
-    (selectedOptionEvent)="selectedOptionEvent($event)">
-</fepoc-drop-down-component>
+        <fepoc-drop-down-component [options]="cars" [displayprops]="['key']"
+            (selectedOptionEvent)="selectedOptionEvent($event)" />
+
         <app-filter [(searchText)]="filterValue" />
+
     </span>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Name</th>
-            </tr>
-        </thead>
 
-        @for (item of paginatedRecords(); track $index) {
-        <tr>
-            <td>{{item.MakeName}}</td>
-            <td>{{item.VehicleTypeName}}</td>
-        </tr>
-        }
+    <span class="info-section">
+        University List By Country's
+    </span>
 
-    </table>
-    <!-- @if (filteredTableData().length > 0) { -->
+    <gbr-table [dataList]=paginatedRecords() [tableHeaders]="tableHeaders()" />
+
     <span class="pagination-bar">
         <gbr-pagination [datalist]="filteredTableData()" (paginatedlisthandler)="handlePaginatedList($event)" />
     </span>
-    <!-- } -->
+
 </div>

@@ -39,6 +39,8 @@ export class HeaderComponent {
     { label: 'Vehicle', navigationUrl: '/vehicle', isActive: true },
     { label: 'student', navigationUrl: '/student', isActive: false },
     { label: 'Store', navigationUrl: '/store', isActive: false },
+    { label: 'Universities', navigationUrl: '/universities', isActive: false },
+    { label: 'Game', navigationUrl: '/game', isActive: false },
   ]);
 
   constructor() {

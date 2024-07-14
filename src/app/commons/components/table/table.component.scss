@@ -1,0 +1,59 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5em;
+}
+
+tr:nth-child(2n) {
+  background-color: #daeef4;
+}
+
+thead tr {
+  background-color: darkcyan;
+  color: white;
+}
+
+tr a,
+tr svg {
+  color: darkblue;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #1e1e1e;
+  color: #d1d1d1;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  border-left: 10px solid rgb(247, 98, 123);
+}
+
+.notification-icon {
+  margin-right: 10px;
+  font-size: 24px;
+  color: #4caf50; /* Color of the checkmark icon */
+}
+
+.notification-text {
+  font-size: 16px;
+}
+
+.notification-text b {
+  color: #4caf50; /* Color of the bold text */
+}
+
+.notification-text a {
+  color: #3a82f7; /* Color of the link text */
+  text-decoration: none;
+}
+
+.notification-text a:hover {
+  text-decoration: underline;
+}

@@ -7,6 +7,8 @@ import { CartService } from './Vehicle/Services/cart.service';
 import { ModalService } from './commons/services/modal.service';
 import { StudentOverviewComponent } from './student-overview/student-overview.component';
 import { StoreComponent } from './store/store.component';
+import { UniversityOverviewComponent } from './university/university-overview.component';
+import { GameComponent } from './game/game.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +17,8 @@ export const routes: Routes = [
     { path: 'cart', component: CartComponent, canActivate: [() => checkCartItemsLength()] },
     { path: 'home', component: HomeComponent },
     { path: 'store', component: StoreComponent },
+    { path: 'universities', component: UniversityOverviewComponent },
+    { path: 'game', component: GameComponent },
 ];
 
 function checkCartItemsLength(): boolean {

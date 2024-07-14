@@ -1,0 +1,34 @@
+<span class="tab-header pad-b-10">
+
+    <div class="typeahead-container">
+        <input type="text" [(ngModel)]="query" (input)="onInputChange()" placeholder="Type to search..."
+            class="typeahead-input" (focus)="onFocus($event)" />
+        @if (query) {
+        <span *ngIf="query" class="clear-icon" (click)="clearInput()">×</span>
+
+        }
+
+        @if (filteredItems.length) {
+        <ul class="typeahead-list">
+            @for (item of filteredItems; track $index) {
+            <li (click)="selectItem(item)" class="typeahead-item">
+                {{ item }}
+            </li>
+            }
+
+        </ul>
+        }
+
+    </div>
+
+    <!-- <fepoc-drop-down-component
+[options]="dropDownList"
+(selectedOptionEvent)="selectedOptionEvent($event)">
+</fepoc-drop-down-component> -->
+
+</span>
+<gbr-table [dataList]=paginatedRecords() [tableHeaders]="tableHeaders" />
+
+<span class="pagination-bar">
+    <gbr-pagination [datalist]="universityList()" (paginatedlisthandler)="handlePaginatedList($event)" />
+</span>

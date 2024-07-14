@@ -1,18 +1,22 @@
-import { Component, Input, signal, inject, model, CUSTOM_ELEMENTS_SCHEMA, input, computed, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { VehicleService } from '../../Vehicle/Services/vehicle.service';
-import { Result, VehiclesResponseI } from '../../Vehicle/Models/VehiclesI';
-import { FilterComponent } from '../../commons/components/filter/filter.component';
+import { Component, signal, CUSTOM_ELEMENTS_SCHEMA, input, computed, Output, EventEmitter } from '@angular/core';
+import { Result } from '../../Vehicle/Models/VehiclesI';
+import { reusableImports } from '../../imports.constants';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [FormsModule, FilterComponent],
+  imports: [...reusableImports, NgClass],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class TableComponent {
+
+  tableHeaders = signal([
+    { label: 'Type', key: 'MakeName', styleClass: ['customFont'] },
+    { label: 'Name', key: 'VehicleTypeName' },
+  ]);
 
   cars = [
     { value: 'ford', key: 'Ford' },
@@ -53,6 +57,5 @@ export class TableComponent {
   selectedOptionEvent(event) {
     this.dropDownSelection.emit(event.detail['value']);
   }
-
 
 }
