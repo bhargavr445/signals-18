@@ -11,7 +11,7 @@ section {
     width: 100%;
     position: absolute;
     left: 40%;
-    top: 20%;
+    top: 25%;
   }
   .overlay {
     position: fixed;
@@ -148,4 +148,25 @@ section {
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+.box-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  box-shadow: 0 15px 25px rgba(68,61,28,.08),0 6.26664px 10.4444px rgba(68,61,28,.058),0 3.35045px 5.58408px rgba(68,61,28,.048),0 1.87823px 3.13039px rgba(68,61,28,.04),0 .997515px 1.66253px rgba(68,61,28,.032),0 .415088px .691814px rgba(68,61,28,.022);
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 70%;
+  margin: auto;
+
+  .box {
+    padding: 8px 20px;
+    // border-radius: 10px; 
+    // border: 2px solid orange;
+    // background-color: #e7700d;
+    border-bottom: 4px solid #e7700d;
+    cursor: pointer;
+  }
 }

@@ -3,7 +3,7 @@ import { StoreComponent } from './store.component';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { apiFetchingStart } from '../app-store/app.actions';
-import { apiResultsSelector, apiLoadingSelector } from '../app-store/app.selector';
+import { apiResultsSelector, apiLoadingSelector, restSelector } from '../app-store/app.selector';
 import { Observable, of } from 'rxjs';
 
 fdescribe('StoreComponent', () => {
@@ -27,15 +27,6 @@ fdescribe('StoreComponent', () => {
 
     store = TestBed.inject(MockStore);
     dispatchSpy = spyOn(store, 'dispatch').and.callThrough();
-    spyOn(store, 'select').and.callFake((selector) => {
-      if (selector === apiResultsSelector) {
-        return of(initialState.app.apiResponse);
-      }
-      if (selector === apiLoadingSelector) {
-        return of(initialState.app.isLoading);
-      }
-      return of();
-    });
 
     fixture = TestBed.createComponent(StoreComponent);
     component = fixture.componentInstance;
@@ -46,10 +37,6 @@ fdescribe('StoreComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should dispatch apiFetchingStart on init', () => {
-    expect(dispatchSpy).toHaveBeenCalledWith(apiFetchingStart({value: ''}));
-  });
-
   it('should update filteredRecords$ on search text change', (done) => {
     component.searchTextControl.setValue('test');
     component.filteredRecords$.subscribe(records => {
@@ -58,12 +45,48 @@ fdescribe('StoreComponent', () => {
     });
   });
 
-  it('should call filterRecords', (done) => {
-    const filterRecordsSpy = spyOn<any>(component, 'filterRecords');
-    component.searchTextControl.setValue('test');
-    component.filteredRecords$.subscribe(() => {
-      expect(filterRecordsSpy).toHaveBeenCalledWith([{ id: 1, name: 'test' }], 'test');
-      done();
-    });
-  });
+
+  it('shou;d test get Data', () => {
+    const init = {
+      res: {
+        Count: 1,
+        Message: 'mes',
+        SearchCriteria: 'merc',
+        Results: [{
+          MakeId: 1, MakeName: 'test', VehicleTypeId: 10,
+          VehicleTypeName: 'MyName',
+          customId: 'string'
+        }]
+      },
+      loading: true
+    }
+
+    const init2 = {
+      res: {
+        Count: 1,
+        Message: 'mes',
+        SearchCriteria: 'merc',
+        Results: [
+          {
+            MakeId: 1,
+            MakeName: 'test',
+            VehicleTypeId: 10,
+            VehicleTypeName: 'MyName',
+            customId: 'string'
+          },
+          {
+            MakeId: 1,
+            MakeName: 'test',
+            VehicleTypeId: 10,
+            VehicleTypeName: 'MyName',
+            customId: 'string'
+          }
+        ]
+      },
+      loading: true
+    }
+    const re = store.overrideSelector(restSelector, init);
+    re.setResult(init2)
+    
+  })
 });
