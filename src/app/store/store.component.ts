@@ -5,6 +5,7 @@ import { apiLoadingSelector, apiResultsSelector, testDataSelector } from '../app
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Observable, combineLatest, debounceTime, distinctUntilChanged, filter, map, startWith, tap } from 'rxjs';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Result } from '../Vehicle/Models/VehiclesI';
 
 @Component({
   selector: 'app-store',
@@ -24,6 +25,14 @@ export class StoreComponent implements OnInit {
   x$ = this.store.select(testDataSelector);
 
   constructor() {
+
+    let a = 8 , b = 48;
+    console.log(a);
+    console.log(b);
+    
+    [a,b] = [b,a];
+    console.log(a);
+    console.log(b);
     
   }
 
@@ -45,11 +54,11 @@ export class StoreComponent implements OnInit {
       map(([d, s]) => this.#filterRecords(d, s)))
   }
 
-  #filterRecords(d, s) {
+  #filterRecords(d: Result[], s: string) {
     return d.filter(d => Object.keys(d).some(key => this.#check(d[key], s)))
   }
 
-  #check(data, searchText) {
+  #check(data: string | number, searchText: string) {
     return data.toString().toLowerCase().includes(searchText)
   }
 

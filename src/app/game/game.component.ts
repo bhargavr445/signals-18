@@ -1,5 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, inject, signal } from '@angular/core';
 import { GameService } from './game.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -12,22 +14,22 @@ import { GameService } from './game.service';
 export class GameComponent {
 
   gameService = inject(GameService);
-  gamesList = signal<any[]>([]);
+  gamesList = signal<any>([]);
   paginatedRecords = signal<any[]>([]);
   isLoading = false;
 
   constructor() {
     this.isLoading = true;
+    // this.gamesList.set(toSignal(this.gameService.getGamesData().pipe(map((resp) => resp['data'])), {initialValue: []}));
     this.gameService.getGamesData().subscribe(
       (resp) => {
-        this.gamesList.set(resp);
+       this.gamesList.set(resp['data']);
         this.isLoading = false;
       }
     )
   }
 
   handlePaginatedList(event) {
-    
     this.paginatedRecords.set(event.detail as any[]);
   }
 

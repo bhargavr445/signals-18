@@ -30,7 +30,7 @@ export class HeaderComponent {
 
   cartService = inject(CartService);
   router = inject(Router);
-  noOfItemsInCart = computed(() =>  this.cartService.vehicleCartSignal().length);
+  noOfItemsInCart = computed(() =>  this.cartService.vehicleCartReadonlySignal().length);
   showCartItemsTable = signal<boolean>(false);
   iscartUrl = signal<boolean>(false);
   defaultRoute = '/home'
@@ -41,6 +41,8 @@ export class HeaderComponent {
     { label: 'Store', navigationUrl: '/store', isActive: false },
     { label: 'Universities', navigationUrl: '/universities', isActive: false },
     { label: 'Game', navigationUrl: '/game', isActive: false },
+    { label: 'Population', navigationUrl: '/population', isActive: false },
+    { label: 'Movies', navigationUrl: '/movies', isActive: false },
   ]);
 
   constructor() {

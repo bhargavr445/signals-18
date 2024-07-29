@@ -2,8 +2,9 @@
 
     <div class="cards-container">
         @for (item of paginatedRecords(); track $index) {
+        @let thumbnail = item.thumbnail;
         <div class="card">
-            <img [src]="item.thumbnail" [alt]="item.title" class="card-image">
+            <img [src]="thumbnail" [alt]="item.title" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">{{item.title}}</h2>
                 <p class="card-description">{{handleShortDesc(item.short_description)}}</p>
@@ -24,14 +25,13 @@
             <div class="skeleton skeleton-button"></div>
         </div>
         }
-
         }
-
     </div>
-    @if(!isLoading) {
     <span class="pagination-bar">
+        @if(!isLoading) {
         <gbr-pagination [datalist]="gamesList()" [pagesize]="6" (paginatedlisthandler)="handlePaginatedList($event)" />
+        } @else {
+        <div class="skeleton skeleton-pagination"></div>
+        }
     </span>
-    }
-
 </div>

@@ -33,7 +33,7 @@ export class VehicleCardComponent {
 
   customVehicle = computed(() => {
     const incomingVehicle = this.vehicleInfo();
-    const cartitems = this.cartService.vehicleCartSignal();
+    const cartitems = this.cartService.vehicleCartReadonlySignal();
     return {
       ...incomingVehicle,
       isEligibleForAddToCart: this.checkIsEligibleForAddToCart(cartitems)

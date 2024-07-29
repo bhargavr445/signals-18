@@ -6,7 +6,7 @@ import { apiFetchingStart } from '../app-store/app.actions';
 import { apiResultsSelector, apiLoadingSelector, restSelector } from '../app-store/app.selector';
 import { Observable, of } from 'rxjs';
 
-fdescribe('StoreComponent', () => {
+describe('StoreComponent', () => {
   let component: StoreComponent;
   let fixture: ComponentFixture<StoreComponent>;
   let store: MockStore;

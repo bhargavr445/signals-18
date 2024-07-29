@@ -1,13 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
-import { universitiesListAction } from "./university.actions";
-import { UniversityListI } from "../interfaces/UniversityListI";
+import { countrysListFetchingStart, countrysListSuccess, universitiesListAction } from "./university.actions";
+import { CountrysApiResponseI, UniversitiesApiResponseI, UniversityListI } from "../interfaces/UniversityListI";
 
 export interface UniversityInitialStateI {
-    universities: UniversityListI[];
+    universities: UniversitiesApiResponseI;
+    countrysList: CountrysApiResponseI
 }
 
 const universityInitialValues: UniversityInitialStateI = {
-    universities: []
+    universities: null,
+    countrysList: null
 }
 
 
@@ -17,5 +19,10 @@ export const universityReducer = createReducer(
     on(universitiesListAction, (state, action) => ({
         ...state,
         universities: action.value
+    })),
+
+    on(countrysListSuccess, (state, action) => ({
+        ...state,
+        countrysList: action.value
     }))
 )

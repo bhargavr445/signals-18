@@ -1,3 +1,9 @@
 <div class="main">
-    <app-university-table [universityList]="universityList()" (dropDownSelection)=dropDownSelection($event)/>
+    @if (universityList().length) {
+    <app-university-table 
+        [universityList]="universityList()" 
+        [dropDownList]="countrysList()"
+        (dropDownSelection)=dropDownSelection($event) />
+
+    }
 </div>

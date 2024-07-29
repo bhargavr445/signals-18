@@ -4,7 +4,7 @@
         <input type="text" [(ngModel)]="query" (input)="onInputChange()" placeholder="Type to search..."
             class="typeahead-input" (focus)="onFocus($event)" />
         @if (query) {
-        <span *ngIf="query" class="clear-icon" (click)="clearInput()">×</span>
+        <span class="clear-icon" (click)="clearInput()">×</span>
 
         }
 

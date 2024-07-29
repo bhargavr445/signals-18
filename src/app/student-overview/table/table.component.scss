@@ -1,19 +1,15 @@
-.main {
-    width: 900px;
-    margin: 25px auto;
+.pagination-bar {
+  display: flex;
+  justify-content: right;
 }
 
-  .pagination-bar {
-    display: flex;
-    justify-content: right;
-  }
+.customFont {
+  font-style: italic;
+}
 
-  .customFont {
-    font-style: italic;
-  }
-  .bgs {
-    background-color: green;
-  }
+.bgs {
+  background-color: green;
+}
 
 .tab-header {
   display: flex;

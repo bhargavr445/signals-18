@@ -17,6 +17,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class FilterComponent {
 
-  searchText = model('');
+  searchText = model('');  
 
 }

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { FETCH_UNIVERSITIES, universitiesListAction } from "./university.actions";
-import { map, switchMap, tap } from "rxjs";
+import { COUNTRYS_LIST_FETCH_START, FETCH_UNIVERSITIES, countrysListSuccess, universitiesListAction } from "./university.actions";
+import { exhaustMap, map, switchMap, tap } from "rxjs";
 import { UniversityService } from "../services/university.service";
 import { Action } from "@ngrx/store";
 
@@ -17,6 +17,15 @@ export class UniversityEffects {
             switchMap((action: Action) => this.universityService.getUniversities(action['value']).pipe(
                 
                 map((resp) => universitiesListAction({value: resp}))
+            ))
+        )
+    )
+
+    fetchCountrysList = createEffect(
+        () => this.actions$.pipe(
+            ofType(COUNTRYS_LIST_FETCH_START),
+            exhaustMap(() => this.universityService.getCountrys().pipe(
+                map((response) => countrysListSuccess({value: response}))
             ))
         )
     )

@@ -1,10 +1,12 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, Signal, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as actions from './store/university.actions';
-import { UniversityListSelector } from './store/university.selectors';
-import { filter, map, tap } from 'rxjs';
+import { CountryListSelector, UniversityListSelector } from './store/university.selectors';
+import { filter, map, take, tap } from 'rxjs';
 import { UniversityTableComponent } from './components/university-table/university-table.component';
-import { UniversityListI } from './interfaces/UniversityListI';
+import { CountrysApiResponseI, CountrysI } from './interfaces/UniversityListI';
+import { UniversityService } from './services/university.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-university-overview',
@@ -16,29 +18,30 @@ import { UniversityListI } from './interfaces/UniversityListI';
 export class UniversityOverviewComponent {
 
   store = inject(Store);
-  universityList = signal<UniversityListI[]>([]);
+  universityService = inject(UniversityService);
+  universityList = toSignal(this.store.select(UniversityListSelector)
+    .pipe(
+      filter(d => !!d),
+      map((d) => [...d.data].sort((c, p) => p.name > c.name ? -1 : 1)),
+    ), { initialValue: [] });
+
+  countrysList: Signal<string[]> = toSignal(this.store.select(CountryListSelector)
+    .pipe(
+      filter((resp) => !!resp),
+      map((countrysResponse: CountrysApiResponseI) => countrysResponse.data.map((countryObj: CountrysI) => countryObj.name).sort()),
+      tap((countrysList: string[]) => this.#fetchUniversities(countrysList[0])),
+      take(1)
+    ), { initialValue: [] });
 
   constructor() {
-    this.#fetchUniversities('United Kingdom');
-    this.store.select(UniversityListSelector)
-      .pipe(
-        tap(d => console.log(d)),
-        filter(d => !!d),
-        map((d) => {
-
-          const uniL = [...d].sort((c, p) => p.name > c.name ? -1 : 1)
-          return uniL;
-
-        })
-      )
-      .subscribe(d => this.universityList.set(d))
+    this.store.dispatch(actions.countrysListFetchingStart());
   }
 
-  #fetchUniversities(countryName: string) {
+  #fetchUniversities(countryName: string): void {
     this.store.dispatch(actions.fetchUniversitiesAction({ value: countryName }));
   }
 
-  dropDownSelection(event) {
+  dropDownSelection(event): void {
     this.#fetchUniversities(event);
   }
 

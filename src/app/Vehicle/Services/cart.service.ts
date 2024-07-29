@@ -7,14 +7,12 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartService {
 
-  vehicleCartSignal = signal<Result[]>([]);
-  //veh = new BehaviorSubject<Result[]>([]);
+  private vehicleCartSignal = signal<Result[]>([]);
+  readonly vehicleCartReadonlySignal = this.vehicleCartSignal.asReadonly();
   
 
   addVehicleToCartSignal(vehicle: Result): void {
     this.vehicleCartSignal.update((prevCartitems) => [...prevCartitems, vehicle]);
-    // const prevValues = this.veh.value;
-    // this.veh.next([...prevValues, vehicle]);
   }
 
   removeitemFromCart(customId: string) {
@@ -22,11 +20,3 @@ export class CartService {
   }
 
 }
-
-  // addVehicleToCart(vehicle: Result): void {
-  //   const cartitems = this.vehiclesCart.value;
-  //   const updatedItems = [...cartitems, vehicle];
-  //   this.vehiclesCart.next(updatedItems);
-  // }
-  // vehiclesCart = new BehaviorSubject<Result[]>([]);
-

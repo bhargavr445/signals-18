@@ -113,3 +113,60 @@ button:disabled {
     width: 60%;
     margin: 25px auto;
 }
+
+.card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .skeleton {
+    animation: shimmer 1.5s infinite linear;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+  }
+  
+  .skeleton-header {
+    height: 200px;
+  }
+  
+  .skeleton-title {
+    height: 24px;
+    margin: 16px;
+    width: 60%;
+    border-radius: 4px;
+  }
+  
+  .skeleton-text {
+    height: 16px;
+    margin: 8px 16px;
+    border-radius: 4px;
+    width: 80%;
+  }
+  
+  .skeleton-button {
+    height: 32px;
+    margin: 16px;
+    width: 70%;
+    border-radius: 4px;
+  }
+
+  .skeleton-pagination {
+    height: 32px;
+    margin: 16px;
+    width: 40%;
+    border-radius: 4px;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+  
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  

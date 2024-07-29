@@ -64,7 +64,7 @@ export class CartComponent implements OnInit {
   itemIdToDelete = signal<string>('');
   
   cartItems = computed(() => {
-    return this.cartService.vehicleCartSignal()
+    return this.cartService.vehicleCartReadonlySignal()
   });
 
   removeFromCart(item: Result) {

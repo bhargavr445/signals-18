@@ -1,8 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { catchError, debounce, debounceTime, distinctUntilChanged, of, switchMap, throwError } from 'rxjs';
 import { VehicleService } from '../Vehicle/Services/vehicle.service';
 import { NgIf } from '@angular/common';
+import { DestroyComponent } from '../destroy/destroy.component';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +12,19 @@ import { NgIf } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends DestroyComponent implements OnInit {
 
   vehicleService = inject(VehicleService);
   form: FormGroup;
 
+  constructor(df: DestroyRef) {
+    super(df)
+    // trigger api to drpwn
+  }
+
   ngOnInit(): void {
     this.createForm()
+    this.df
 
     this.form.get('userName').valueChanges
     .pipe(

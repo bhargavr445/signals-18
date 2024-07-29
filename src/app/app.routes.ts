@@ -9,6 +9,8 @@ import { StudentOverviewComponent } from './student-overview/student-overview.co
 import { StoreComponent } from './store/store.component';
 import { UniversityOverviewComponent } from './university/university-overview.component';
 import { GameComponent } from './game/game.component';
+import { PopulationComponent } from './population/population.component';
+import { MoviesComponent } from './movies/movies.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,12 +21,14 @@ export const routes: Routes = [
     { path: 'store', component: StoreComponent },
     { path: 'universities', component: UniversityOverviewComponent },
     { path: 'game', component: GameComponent },
+    { path: 'population', component: PopulationComponent },
+    { path: 'movies', component: MoviesComponent },
 ];
 
 function checkCartItemsLength(): boolean {
     let cartService = inject(CartService);
     let modalService = inject(ModalService);
-    if (cartService.vehicleCartSignal().length < 1) {
+    if (cartService.vehicleCartReadonlySignal().length < 1) {
         const compRef = modalService.dynamicComponentOnDOM();
         compRef.openModal({
             content: 'Add items to cart to access this page.',

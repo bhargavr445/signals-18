@@ -13,7 +13,7 @@ import { DeferComponent } from '../defer/defer.component';
   standalone: true,
   imports: [VehicleCardComponent, FormsModule, FilterComponent, JsonPipe, DeferComponent],
   template: `
-     
+     <div class="main">
      <div class="pad-t-10">
        <app-filter  [(searchText)]="filterText"/>
      </div>
@@ -25,14 +25,14 @@ import { DeferComponent } from '../defer/defer.component';
           <div>No Records Found...</div>
           }
 
-          @defer {
+          @defer(when filteredRecords().length > 0) {
             <app-defer />
-          } 
-          
-          <!-- @placeholder {
+          } @placeholder {
             <div>Place Holder</div>
-          } -->
+          }
       }
+     </div>
+     
    `
 })
 export class VehicleOverviewComponent {
