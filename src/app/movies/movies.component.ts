@@ -32,7 +32,6 @@ export class MoviesComponent {
   }
 
   handlePaginatedList(event) {
-    console.log(event.detail);
     this.paginatedMovieResults.set(event.detail);
     
   }
