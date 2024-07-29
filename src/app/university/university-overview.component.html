@@ -1,0 +1,9 @@
+<div class="main">
+    @if (universityList().length) {
+    <app-university-table 
+        [universityList]="universityList()" 
+        [dropDownList]="countrysList()"
+        (dropDownSelection)=dropDownSelection($event) />
+
+    }
+</div>

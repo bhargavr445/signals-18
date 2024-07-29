@@ -1,0 +1,8 @@
+
+
+<div class="weekdays">
+    @for (item of updatedWeeks(); track item.week) {
+        <div class="day" [ngClass]="item.isActive ?'inactive-week':'active-week'">{{item.weekCode}}</div>
+    }
+   
+</div>

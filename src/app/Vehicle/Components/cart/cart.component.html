@@ -1,8 +1,18 @@
 
-<ng-container appModalContainer></ng-container>
-<fepoc-drop-down-component [options]="options" [displayprops]="displayprops" (selectedOptionEvent)="selectedOptionEvent($event)"></fepoc-drop-down-component>
-<fepoc-drop-down-component [options]="items" (selectedOptionEvent)="selectedOptionEvent($event)"></fepoc-drop-down-component>
-@if (cartItems().length > 0) {
+<!-- <fepoc-drop-down-component 
+    [options]="options"
+    [displayprops]="displayprops"
+    (selectedOptionEvent)="selectedOptionEvent($event)">
+</fepoc-drop-down-component>
+
+<fepoc-drop-down-component
+    [options]="items"
+    (selectedOptionEvent)="selectedOptionEvent($event)">
+</fepoc-drop-down-component>
+
+<app-dropdown [formControlProp]="productTypeControl" /> -->
+<div class="main">
+    @if (cartItems().length > 0) {
     <div class="container-body">
         <div class="container">
             <div class="shopping-cart">
@@ -35,3 +45,5 @@
 } @else {
     <p>No items added to cart</p>
 }
+</div>
+

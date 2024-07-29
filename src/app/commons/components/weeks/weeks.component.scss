@@ -1,0 +1,37 @@
+
+
+
+
+.weekdays {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 0px;
+}
+.day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #3b7a57; /* Default green background */
+    color: white;
+    // font-weight: ;
+    font-size: 14px;
+    // padding: 5px;
+}
+.day.selected {
+    background-color: #f4a261; /* Selected day background */
+    color: black;
+}
+
+.active-week {
+    background-color: #176917;
+    color: white;
+}
+
+.inactive-week {
+    background-color: orange;
+    color: black;
+}

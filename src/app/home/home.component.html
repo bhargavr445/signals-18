@@ -1,4 +1,12 @@
-<section>
+
+  <button (click)="openSlider()">Open Slider</button>
+<div class="main">
+  <div class="box-container">
+    <span class="box __name">Checking Account</span>
+    <span class="box __email">Savings Account</span>
+    <span class="box __p-no">Credit Card</span>
+  </div>
+</div>
 
   
 
@@ -7,6 +15,18 @@
     <input type="text" formControlName="userName">
 
   </form> -->
+  <div class="overlay" *ngIf="isVisible" (click)="closeSlider()"></div>
+  <div class="slider" [class.show]="isVisible">
+      <div class="slider-content">
+          <button class="close-button" (click)="closeSlider()">Close</button>
+          Add your slider content here
+          Add your slider content here
+          Add your slider content here
+          Add your slider content here
+          Add your slider content here
+      </div>
+  </div>
+<section>
 
     <div class="container">
         <div class="card">

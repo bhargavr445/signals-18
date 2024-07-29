@@ -1,0 +1,22 @@
+<div class="main">
+
+    <span class="tab-header pad-b-10">
+
+        <fepoc-drop-down-component [options]="cars" [displayprops]="['key']"
+            (selectedOptionEvent)="selectedOptionEvent($event)" />
+
+        <app-filter [(searchText)]="filterValue" />
+
+    </span>
+
+    <span class="info-section">
+        University List By Country's
+    </span>
+
+    <gbr-table [dataList]=paginatedRecords() [tableHeaders]="tableHeaders()" />
+
+    <span class="pagination-bar">
+        <gbr-pagination [datalist]="filteredTableData()" (paginatedlisthandler)="handlePaginatedList($event)" />
+    </span>
+
+</div>
