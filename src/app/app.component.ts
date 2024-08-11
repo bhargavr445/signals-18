@@ -7,16 +7,38 @@ import { AuthService } from './auth.service';
 import { ModalService } from './commons/services/modal.service';
 import { ModalContainerDirective } from './commons/directives/modal-container.directive';
 import { ModalHostComponent } from './commons/components/modal-host/modal-host.component';
+import { Observable, of } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, VehicleOverviewComponent, HeaderComponent, CartComponent, ModalContainerDirective, ModalHostComponent],
+  imports: [AsyncPipe, RouterOutlet, VehicleOverviewComponent, HeaderComponent, CartComponent, ModalContainerDirective, ModalHostComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
+  resp$: Observable<any> = of();
+
+  constructor() {
+    const data = {
+      searchOn: 'Bhargav',
+      limit: 20,
+      size: 10
+    }
+    this.buildParams(data)
+  }
+
+  buildParams(dataObj) {
+    const keys = Object.keys(dataObj);
+    const queryParams = keys.reduce((initialValue, key, index) => {
+      const prefix = index === 0 ? '?' : '&';
+      return `${initialValue}${prefix}${key}=${dataObj[key]}`
+    }, '');
+    console.log(queryParams);
+  }
 
   authService = inject(AuthService);
   modalService = inject(ModalService);

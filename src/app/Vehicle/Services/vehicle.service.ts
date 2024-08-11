@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { VehiclesResponseI } from '../Models/VehiclesI';
-import { Observable, delay, filter, map, tap } from 'rxjs';
+import { Observable, filter, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,6 @@ export class VehicleService {
 
     return this.http.get<VehiclesResponseI>(`https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/${vehicleType ? vehicleType : 'ford'}?format=json`)
       .pipe(
-        delay(3000),
         filter((resp) => !!resp),
         map(resp => this.#addNewPropInResult(resp)),
       );

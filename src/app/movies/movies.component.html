@@ -1,6 +1,7 @@
 <div class="main">
     @let moviesList = moviesResponse()?.data;
     <div class="cards-container">
+        @if (!isMoviesLoading()) {
 
         @for (item of paginatedMovieResults(); track $index) {
         @let days = item.schedule.days;
@@ -18,24 +19,35 @@
                 </div>
             </div>
         </div>
-        }@empty {
-        @for(d of [1,2,3,4,5,6]; track $index) {
-        <div class="card">
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text" style="width: 60%;"></div>
-            <div class="skeleton skeleton-button"></div>
-        </div>
-        <span class="pagination-bar">
-            <div class="skeleton skeleton-button"></div>
-        </span>
         }
-
+        } @else {
+        <div class="cards-container">
+            @for(d of [1,2,3,4,5,6]; track $index) {
+            <div class="card">
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text" style="width: 60%;"></div>
+                <div class="skeleton skeleton-button"></div>
+            </div>
+            <span class="pagination-bar">
+                <div class="skeleton skeleton-button"></div>
+            </span>
+            }
+        </div>
         }
 
     </div>
     <span class="pagination-bar">
+        @if (!isMoviesLoading()) {
+
         <gbr-pagination [datalist]="moviesList ?? []" [pagesize]="9"
             (paginatedlisthandler)="handlePaginatedList($event)" />
+
+        } @else {
+
+        <div class="skeleton skeleton-pagination"></div>
+
+        }
     </span>
+
 </div>

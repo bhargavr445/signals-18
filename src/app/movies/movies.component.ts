@@ -13,8 +13,11 @@ import { MoviesAPIResponseI, MoviesI } from '../university/interfaces/University
 })
 export class MoviesComponent {
 
+  // #region Signal API
   moviesResponse =  signal<MoviesAPIResponseI>(null);
   paginatedMovieResults =  signal<MoviesI[]>([]);
+  isMoviesLoading = signal(false);
+  //#endregion
 
   moviesService = inject(MoviesService);
 
@@ -23,11 +26,18 @@ export class MoviesComponent {
   }
 
   fetchMovies() {
+    this.isMoviesLoading.set(true);
     this.moviesService.fetchMoviesFromApi().subscribe(
       (resp) => { 
         this.moviesResponse.set(resp);
+        this.isMoviesLoading.set(false);
+
        },
-      () => { }
+      (error) => {
+        console.log(error);
+        this.isMoviesLoading.set(false);
+
+       }
     );
   }
 

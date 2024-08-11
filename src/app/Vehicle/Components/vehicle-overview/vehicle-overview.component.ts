@@ -30,6 +30,22 @@ import { DeferComponent } from '../defer/defer.component';
           } @placeholder {
             <div>Place Holder</div>
           }
+      } @else {
+        <div class="cards-container-vehicles">
+        @for(d of [1,2,3,4,5,6]; track $index) {
+         
+            <div class="card">
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text" style="width: 60%;"></div>
+                    <div class="skeleton skeleton-button"></div>
+                </div>
+                
+          
+                
+                
+                }
+                </div>
       }
      </div>
      

@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { TableComponent } from './table/table.component';
 import { VehicleService } from '../Vehicle/Services/vehicle.service';
 import { VehiclesResponseI } from '../Vehicle/Models/VehiclesI';
-import { delay, forkJoin, of } from 'rxjs';
 
 @Component({
   selector: 'app-student-overview',
