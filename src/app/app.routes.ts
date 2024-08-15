@@ -11,10 +11,12 @@ import { UniversityOverviewComponent } from './university/university-overview.co
 import { GameComponent } from './game/game.component';
 import { PopulationComponent } from './population/population.component';
 import { MoviesComponent } from './movies/movies.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing').then((r) => r.VEHICLE_ROUTES) },
+    { path: 'udemy', loadChildren: () => import('./udemy/udemy.routing').then((r) => r.UDEMY_ROUTES) },
     { path: 'student', component: StudentOverviewComponent },
     { path: 'cart', component: CartComponent, canActivate: [() => checkCartItemsLength()] },
     { path: 'home', component: HomeComponent },
@@ -23,6 +25,7 @@ export const routes: Routes = [
     { path: 'game', component: GameComponent },
     { path: 'population', component: PopulationComponent },
     { path: 'movies', component: MoviesComponent },
+    { path: 'login', component: LoginComponent },
 ];
 
 function checkCartItemsLength(): boolean {
