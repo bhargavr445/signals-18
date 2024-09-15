@@ -1,3 +1,22 @@
+<div class="horizontal-menu">
+    @for (item of udemyMenu; track $index) {
+    <a [routerLink]="item.path" routerLinkActive="active">{{item.label}}</a>
+    }
+    <!-- <a (click)="navigteTo('buy')" [ngClass]="{'active': matchingUrl === 'buy'}">Buy</a>
+    <a (click)="navigteTo('purchase')" [ngClass]="{'active': matchingUrl === 'purchase'}">My Courses</a>
+    <a (click)="navigteTo('update')" [ngClass]="{'active': matchingUrl === 'update'}">Update Profile</a>
+    @if(role() === 'U_INSTRUCTOR') {
+    <a (click)="navigteTo('add')" [ngClass]="{'active': matchingUrl === 'add'}">Add Course</a>
+
+    } -->
+</div>
+
+<!-- <div class="horizontal-menu">
+    @for (item of udemyMenu; track $index) {
+    <a (click)="navigteTo(item.path)" [ngClass]="{'active': item.isActive}">{{item.label}}</a>
+    }
+</div> -->
+
 <div class="main">
-    <create-course></create-course>
+    <router-outlet />
 </div>

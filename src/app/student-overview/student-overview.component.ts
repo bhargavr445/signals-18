@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { TableComponent } from './table/table.component';
-import { VehicleService } from '../Vehicle/Services/vehicle.service';
+import { VehicleService } from '../commons/services/api/vehicle.service';
 import { VehiclesResponseI } from '../Vehicle/Models/VehiclesI';
 
 @Component({

@@ -1,8 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, ViewChild, computed, effect, inject, signal } from '@angular/core';
-import { CartService } from '../../Services/cart.service';
+import { CartService } from '../../../commons/services/communication/cart.service';
 import { Result } from '../../Models/VehiclesI';
 import { Router } from '@angular/router';
-import { ModalService } from '../../../commons/services/modal.service';
 import { ModalComponent } from '../../../commons/components/modal/modal.component';
 import { JsonPipe } from '@angular/common';
 import { ToggleCloseTypes } from '../../../commons/Interfaces/ModalContentI';
@@ -10,6 +9,7 @@ import { ModalConstants } from '../../../commons/constants/modal.constants';
 import { ModalContainerDirective } from '../../../commons/directives/modal-container.directive';
 import { DropdownComponent } from '../../../commons/components/dropdown/dropdown.component';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { ModalService } from '../../../commons/services/api/modal.service';
 
 @Component({
   selector: 'app-vehicles-table',

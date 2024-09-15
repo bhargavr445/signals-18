@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import { Result } from '../../Models/VehiclesI';
-import { CartService } from '../../Services/cart.service';
+import { CartService } from '../../../commons/services/communication/cart.service';
 import { Router } from '@angular/router';
 
 @Component({

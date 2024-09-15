@@ -1,15 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, inject } from '@angular/core';
-import { UdemyService } from '../services/udemy.service';
+import { UdemyService } from '../../commons/services/api/udemy.service';
 import { AccountTypeI, CategorysI } from '../interfaces/udemy-i';
-import { Observable, delay, filter, map, of, switchMap } from 'rxjs';
-import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Observable, delay, filter, map, of, switchMap, tap } from 'rxjs';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
-import { AuthService } from '../../auth.service';
+import { CreatedCoursesListComponent } from '../created-courses-list/created-courses-list.component';
 
 @Component({
   selector: 'create-course',
   standalone: true,
-  imports: [AsyncPipe, FormsModule, ReactiveFormsModule],
+  imports: [AsyncPipe, FormsModule, ReactiveFormsModule, CreatedCoursesListComponent],
   templateUrl: './create-course.component.html',
   styleUrl: './create-course.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -20,14 +20,18 @@ export class CreateCourseComponent {
   createCourseForm: FormGroup;
   categorys$: Observable<CategorysI[]>;
   accountTypes$: Observable<AccountTypeI[]>;
+  createdCoursesList$: Observable<any[]>;
 
   constructor() {
+    
     let da = {
       name: 'bh'
     }
     this.createForm();
     this.getCategorys();
     this.getAccountTypes();
+    this.createdCoursesList$ = this.fetchAllCreatedCourses();
+    this.createCourseForm.valueChanges.subscribe(() => console.log(this.createCourseForm));
   }
 
   getCategorys() {
@@ -76,19 +80,17 @@ export class CreateCourseComponent {
 
   createForm() {
     this.createCourseForm = new FormGroup({
-      course_id: new FormControl('', {
-        nonNullable: true, asyncValidators: [
-          (control: AbstractControl) => {
-            inject(AuthService)
-            return of(control.value).pipe(
-              filter((value) => !!value),
-              delay(300),
-              switchMap((value) => this.udemyService.checkIfIdExists(value).pipe(map((resp) => resp ? { exist: true } : null)))
-            );
-          }
+      course_id: new FormControl('', { asyncValidators: [
+        (control: AbstractControl) => {
+          return of(control.value).pipe(
+            filter((value) => !!value),
+            delay(300),
+            switchMap((value) => this.udemyService.checkIfIdExists(value).pipe(map((resp) => resp ? { exist: true } : null)))
+          );
+        }
         ]
       }),
-      title: new FormControl(),
+      title: new FormControl(''),
       description: new FormControl(),
       price: new FormControl(),
       categoryType: new FormControl(),
@@ -102,17 +104,17 @@ export class CreateCourseComponent {
   createCourse(): void {
     if (this.createCourseForm.valid) {
       console.log(this.createCourseForm);
-      this.udemyService.createCourse(this.createCourseForm.value).subscribe({
-        next: (resp) => {
-          console.log(resp);
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      }
-
+      this.createdCoursesList$ = this.udemyService.createCourse(this.createCourseForm.value).pipe(
+        tap(() => this.createCourseForm.reset()),
+        switchMap(() => this.fetchAllCreatedCourses())
       )
     }
+  }
+
+  fetchAllCreatedCourses(): Observable<any> {
+    return this.udemyService.fetchAllCreatedCourses().pipe(
+      tap((resp) => console.log(resp)),
+      map((resp) => resp['data']));
   }
     
 

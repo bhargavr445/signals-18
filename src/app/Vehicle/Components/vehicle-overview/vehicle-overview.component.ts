@@ -2,11 +2,11 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, inject, signal } from '@an
 import { VehiclesResponseI } from '../../Models/VehiclesI';
 import { FormsModule } from '@angular/forms';
 import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
-import { VehicleService } from '../../Services/vehicle.service';
 import { FilterComponent } from '../../../commons/components/filter/filter.component';
 import { JsonPipe } from '@angular/common';
 import { endWith, forkJoin, interval, map, startWith, switchMap, withLatestFrom, zip } from 'rxjs';
 import { DeferComponent } from '../defer/defer.component';
+import { VehicleService } from '../../../commons/services/api/vehicle.service';
 
 @Component({
   selector: 'vehicle-overview',

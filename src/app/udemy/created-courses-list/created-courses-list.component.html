@@ -1,0 +1,23 @@
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+        <th>Price</th>
+        <th>Type</th>
+        </tr>
+        
+    </thead>
+
+    <tbody>
+        @for (item of createdCoursesList(); track $index) {
+            <tr>
+            <td>{{item.title}}</td>
+            <td>{{item.price | currency}}</td>
+            <td>{{item.categorys.type}}</td>
+         
+        </tr>
+        }
+        
+    </tbody>
+</table>

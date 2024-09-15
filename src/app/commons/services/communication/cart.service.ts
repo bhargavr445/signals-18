@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Result } from '../Models/VehiclesI';
+import { Result } from '../../../Vehicle/Models/VehiclesI';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({

@@ -1,9 +1,10 @@
-import { Component, Signal, computed, effect, inject, signal } from '@angular/core';
-import { CartService } from '../Vehicle/Services/cart.service';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter, findIndex, tap } from 'rxjs';
 import { JsonPipe, NgClass } from '@angular/common';
-import { AuthService } from '../auth.service';
+import { Component, computed, effect, inject, signal } from '@angular/core';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { filter } from 'rxjs';
+import { AuthService } from '../commons/services/api/auth.service';
+import { CartService } from '../commons/services/communication/cart.service';
+import { CommunicationService } from '../commons/services/communication/communication.service';
 
 interface NavI {
   label: string;
@@ -15,13 +16,14 @@ interface NavI {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgClass, JsonPipe],
+  imports: [NgClass, JsonPipe, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 
   authService = inject(AuthService);
+  communicationService = inject(CommunicationService);
   userProfileInfo = computed(() => this.authService.userProfileS());
 
 
@@ -53,26 +55,6 @@ export class HeaderComponent {
     { label: 'Login', navigationUrl: '/login', isActive: false, display: true },
   ]);
 
-  constructor() {
-
-    effect(() => {
-      console.log(this.userProfileInfo())
-      if (this.userProfileInfo()) {
-        let index = this.navItems().findIndex((nav) => nav.label.toLocaleLowerCase() === 'login');
-        console.log(index);
-        this.navItems()[index].display = false
-      }
-    })
-
-    this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-    ).subscribe((event: NavigationEnd) => this.checkForActiveRoute(event?.url === '/' ? this.defaultRoute : event.url));
-  }
-
-  checkForActiveRoute(currentUrl: string): void {
-    this.iscartUrl.set(currentUrl == '/cart');
-    this.navItems.update((navItemList) => navItemList.map((item: NavI) => ({ ...item, isActive: currentUrl.includes(item.navigationUrl) })));
-  }
 
   showCartItems(): void {
     this.showCartItemsTable.set(true);

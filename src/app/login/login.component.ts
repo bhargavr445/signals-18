@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { LoginResponseI } from './login-response-interface';
+import { CommunicationService } from '../commons/services/communication/communication.service';
+import { AuthService } from '../commons/services/api/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { LoginResponseI } from './login-response-interface';
 export class LoginComponent {
 
   authService = inject(AuthService);
+  communicationService = inject(CommunicationService);
   router = inject(Router);
 
 
@@ -28,7 +30,8 @@ export class LoginComponent {
       next: (resp: LoginResponseI) => {
         console.log(resp);
         const { userName, role } = resp.data.user
-        this.authService.updateUserProfile({userName, role });
+        this.communicationService.setUesrRole(role);
+        localStorage.setItem('TOKEN', resp.data.token);
         this.router.navigate(['udemy'])
       },
       error: (error) => {

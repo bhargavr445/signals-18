@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { apiFetchingStart, testAct } from '../app-store/app.actions';
+import { testAct } from '../app-store/app.actions';
 import { apiLoadingSelector, apiResultsSelector, testDataSelector } from '../app-store/app.selector';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Observable, combineLatest, debounceTime, distinctUntilChanged, filter, map, startWith, tap } from 'rxjs';
@@ -19,10 +19,11 @@ export class StoreComponent implements OnInit {
   store = inject(Store);
   searchTextControl = new FormControl('');
 
-  apiResp$ = this.store.select(apiResultsSelector);
-  apiLoading$ = this.store.select(apiLoadingSelector);
+  apiResp$ = this.store.select(apiResultsSelector).pipe(tap((d) => console.log(d)));
+  apiLoading$ = this.store.select(apiLoadingSelector).pipe(tap((d) => console.log(d)));
+  // data$ = this.store.select(testDataSelector);
   filteredRecords$: Observable<any>
-  x$ = this.store.select(testDataSelector);
+  x$ = this.store.select(testDataSelector).pipe(tap((d) => console.log(d)));
 
   constructor() {
 

@@ -66,7 +66,7 @@ button:disabled {
     display: block;
 }
 
-.menu-item.active a {
+.active {
     background-color: #5cbfbf;
     color: white;
 }
@@ -197,4 +197,9 @@ button:disabled {
   background-color: #eff0f6;
   padding: 20px;
   border-radius: 10px;
+ }
+
+ .error-msg {
+  margin: 10px 0;
+  color: red;
  }

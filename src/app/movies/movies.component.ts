@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, inject, signal } from '@angular/core';
 import { WeeksComponent } from '../commons/components/weeks/weeks.component';
-import { MoviesService } from '../movies.service';
 import { MoviesAPIResponseI, MoviesI } from '../university/interfaces/UniversityListI';
+import { MoviesService } from '../commons/services/api/movies.service';
 
 @Component({
   selector: 'app-movies',

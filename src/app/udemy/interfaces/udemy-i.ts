@@ -18,4 +18,20 @@ export interface CategorysResponseI {
     status: number
 }
 
+export interface UnEnrolledCourseApiResponseI {
+    data: CourseI[];
+    status: number;
+}
+
+export interface CourseI {
+    categoryType: string;
+    course_id: string;
+    description: string;  
+    price: string;
+    title: string;
+}
+
+export interface UpdatedCourseI extends CourseI {
+    isSelected: boolean;
+}
 

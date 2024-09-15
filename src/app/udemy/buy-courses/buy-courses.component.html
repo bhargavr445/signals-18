@@ -1,0 +1,28 @@
+@if (selectedCourses.length > 0) {
+    <button (click)="buyCourses()">Buy Course</button>
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Select/UnSelect</th>
+            <th>Title</th>
+        <th>Price</th>
+        <!-- <th>Type</th> -->
+        </tr>
+        
+    </thead>
+
+    <tbody>
+        @for (item of UnpurchasedCourses$ | async; track $index) {
+            <tr>
+                <td><input type="checkbox" (change)="item.isSelected = !item.isSelected; onToggleCheckbox($event, item.course_id)"></td>
+            <td>{{item.title}}</td>
+            <td>{{item.price | currency}}</td>
+            <!-- <td>{{item.categoryDetails.type}}</td> -->
+         
+        </tr>
+        }
+        
+    </tbody>
+</table>

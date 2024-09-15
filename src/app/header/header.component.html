@@ -1,12 +1,12 @@
-@if (userProfileInfo()) {
+<!-- @if (userProfileInfo()) { -->
     <div class="nav-container">
         @let userName = userProfileInfo()?.userName;
         <nav class="navbar">
             <ul class="menu">
                 @for (item of navItems(); track item.label) {
                     @if(item.display) {
-                        <li class="menu-item" [ngClass]="{'active': item.isActive}"><a
-                            (click)="navigateTo(item.navigationUrl)">{{item.label}}</a></li>
+                        <li class="menu-item"><a
+                            [routerLink]="item.navigationUrl"  routerLinkActive="active">{{item.label}}</a></li>
                     }
                 }
                 <li class="menu-item cart" [ngClass]="{'active': iscartUrl()}">
@@ -24,4 +24,4 @@
             
         </nav>
     </div>
-}
+<!-- } -->

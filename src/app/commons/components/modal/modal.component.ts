@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, computed, inject, signal } from '@angular/core';
-import { ModalService } from '../../services/modal.service';
 import { ToggleCloseTypes } from '../../Interfaces/ModalContentI';
+import { ModalService } from '../../services/api/modal.service';
 
 @Component({
   selector: 'app-modal',

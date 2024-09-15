@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalContainerDirective } from '../../directives/modal-container.directive';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '../../services/api/modal.service';
 
 @Component({
   selector: 'app-modal-host',

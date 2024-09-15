@@ -3,6 +3,12 @@
         <div class="form-group">
             <label for="fullName">Course ID</label>
             <input type="text" id="fullName" formControlName="course_id" placeholder="Enter Course ID">
+            @if(!createCourseForm.get('course_id').valid && createCourseForm.get('course_id').hasError('exist')) {
+            <div class="error-msg">
+                This ID already exist.
+            </div>
+            }
+        
         </div>
         <div class="form-group">
             <label for="title">Title</label>
@@ -31,3 +37,5 @@
     </div>
     <button style="margin-top: 22px;" (click)="createCourse()">Create Course</button>
 </form>
+
+<created-courses-list [createdCoursesList]="createdCoursesList$ | async" />

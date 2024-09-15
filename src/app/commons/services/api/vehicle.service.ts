@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { VehiclesResponseI } from '../Models/VehiclesI';
-import { Observable, filter, map } from 'rxjs';
+import { VehiclesResponseI } from '../../../Vehicle/Models/VehiclesI';
+import { Observable, delay, filter, map, tap } from 'rxjs';
+import { skipUrlModification } from '../../interceptor/skip-loading';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,13 @@ export class VehicleService {
 
   constructor(private http: HttpClient) { }
 
-  getVehicleData(vehicleType: string): Observable<VehiclesResponseI> {
+  getVehicleData(vehicleType?: string): Observable<VehiclesResponseI> {
 
-    return this.http.get<VehiclesResponseI>(`https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/${vehicleType ? vehicleType : 'ford'}?format=json`)
+    return this.http.get<VehiclesResponseI>(`https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/${vehicleType ? vehicleType : 'ford'}?format=json`, {
+      context: new HttpContext().set(skipUrlModification, true)
+    })
       .pipe(
+        tap((d) => console.log()),
         filter((resp) => !!resp),
         map(resp => this.#addNewPropInResult(resp)),
       );

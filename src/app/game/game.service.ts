@@ -10,7 +10,7 @@ export class GameService {
   http = inject(HttpClient);
 
   getGamesData(): Observable<any> {
-    return this.http.get('http://localhost:3010/api/games');
+    return this.http.get('games');
   }
 
 }

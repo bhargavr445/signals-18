@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../commons/services/api/auth.service';
 
 @Component({
   selector: 'app-destroy',

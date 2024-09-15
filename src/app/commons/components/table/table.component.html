@@ -4,6 +4,7 @@
         <b>HELPFUL:</b> This table is build with reusable table template.
     </div>
 </div>
+
 <table>
     <thead>
         <tr>
@@ -15,6 +16,7 @@
     @for (item of dataList(); track $index) {
     <tr>
         @for(tableProps of tableHeaders(); track tableProps.key) {
+            <!-- {{item[tableProps['key']]}} -->
         <td [ngClass]="tableProps?.styleClass ? tableProps?.styleClass : ''">{{item[tableProps['key']]}}</td>
         }
     </tr>
