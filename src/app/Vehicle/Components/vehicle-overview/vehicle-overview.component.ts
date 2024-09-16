@@ -1,12 +1,12 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, inject, signal } from '@angular/core';
-import { VehiclesResponseI } from '../../Models/VehiclesI';
-import { FormsModule } from '@angular/forms';
-import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
-import { FilterComponent } from '../../../commons/components/filter/filter.component';
 import { JsonPipe } from '@angular/common';
-import { endWith, forkJoin, interval, map, startWith, switchMap, withLatestFrom, zip } from 'rxjs';
-import { DeferComponent } from '../defer/defer.component';
+import { Component, computed, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { interval, map } from 'rxjs';
+import { FilterComponent } from '../../../commons/components/filter/filter.component';
 import { VehicleService } from '../../../commons/services/api/vehicle.service';
+import { VehiclesResponseI } from '../../Models/VehiclesI';
+import { DeferComponent } from '../defer/defer.component';
+import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 
 @Component({
   selector: 'vehicle-overview',

@@ -1,17 +1,17 @@
 import { Injectable, signal } from '@angular/core';
+import { U_ROLES } from '../../../udemy/interfaces/udemy-i';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommunicationService {
 
-  role = signal<string>('');
+  role = signal<U_ROLES>(null);
   userName = signal<string>('');
-  // roleC = this.role.asReadonly()
 
   constructor() { }
 
-  setUserName(name: string) {
+  setUserName(name: U_ROLES) {
     this.role.set(name);
   }
 
@@ -19,11 +19,11 @@ export class CommunicationService {
     return this.userName();
   }
 
-  setUesrRole(role: string) {
+  setUesrRole(role: U_ROLES) {
     this.role.set(role);
   }
 
-  getUserRole() {
+  getUserRole(): U_ROLES {
     return this.role();
   }
 }
