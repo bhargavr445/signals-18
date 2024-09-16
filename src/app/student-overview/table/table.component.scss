@@ -1,0 +1,24 @@
+.pagination-bar {
+  display: flex;
+  justify-content: right;
+}
+
+.customFont {
+  font-style: italic;
+}
+
+.bgs {
+  background-color: green;
+}
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-section {
+  display: flex;
+  padding: 10px 10px 10px 5px;
+  border-left: 5px solid #232b50;
+  margin: 10px 0;
+}

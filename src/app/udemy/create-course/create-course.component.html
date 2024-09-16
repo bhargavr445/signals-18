@@ -1,0 +1,41 @@
+<form [formGroup]="createCourseForm">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="fullName">Course ID</label>
+            <input type="text" id="fullName" formControlName="course_id" placeholder="Enter Course ID">
+            @if(!createCourseForm.get('course_id').valid && createCourseForm.get('course_id').hasError('exist')) {
+            <div class="error-msg">
+                This ID already exist.
+            </div>
+            }
+        
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" formControlName="title" placeholder="Enter title">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" formControlName="price" placeholder="Enter price">
+        </div>
+    </div>
+
+    <div class="form-row">
+        
+        <div class="form-group">
+            <label for="categoryType">Category Type</label>
+            <fepoc-drop-down-component [options]="categorys$| async" [displayprops]="['type']"
+                (selectedOptionEvent)="selectedOptionEvent($event)" />
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="description" id="description" formControlName="description" placeholder="Enter Description"></textarea>
+        </div>
+        <!-- <div class="form-group">
+            <button style="margin-top: 22px;" (click)="createCourse()">Create Course</button>
+        </div> -->
+    </div>
+    <button style="margin-top: 22px;" (click)="createCourse()">Create Course</button>
+</form>
+
+<created-courses-list [createdCoursesList]="createdCoursesList$ | async" />

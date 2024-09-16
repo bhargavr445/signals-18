@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import { Result } from '../../Models/VehiclesI';
-import { CartService } from '../../Services/cart.service';
+import { CartService } from '../../../commons/services/communication/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehicle-card',
@@ -10,6 +11,8 @@ import { CartService } from '../../Services/cart.service';
   styleUrl: './vehicle-card.component.scss'
 })
 export class VehicleCardComponent {
+
+  router = inject(Router);
 
   cartService = inject(CartService);
   vehicleInfo = input.required<Result>();
@@ -30,8 +33,7 @@ export class VehicleCardComponent {
 
   customVehicle = computed(() => {
     const incomingVehicle = this.vehicleInfo();
-    const cartitems = this.cartService.vehicleCartSignal();
-    // console.log('computed...');
+    const cartitems = this.cartService.vehicleCartReadonlySignal();
     return {
       ...incomingVehicle,
       isEligibleForAddToCart: this.checkIsEligibleForAddToCart(cartitems)
@@ -45,11 +47,7 @@ export class VehicleCardComponent {
 
   constructor() {
     effect(() => {
-      // console.log('Exect1234...');
       const ctr = this.counter();
-      // u
-      // console.log(ctr)
-      //trigger api call here
     })
   }
 
@@ -62,6 +60,10 @@ export class VehicleCardComponent {
   increase() {
     this.counter.update((previousValue) => previousValue + 1);
     this.emitSome.emit(this.counter().toString())
+  }
+
+  navigateToDetails(vehicleInfo: Result) {
+    this.router.navigate([`vehicle/details/${vehicleInfo.customId}`]);
   }
 
 }

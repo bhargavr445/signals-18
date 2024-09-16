@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    // outline: 1px solid red;
+}
+ 
 body {
     margin: 0 0px 10px 0px;
     background-color: #f8f9fa
@@ -28,6 +35,7 @@ button:disabled {
 
 .nav-container {
     margin: 0;
+    position: sticky;
     font-family: Arial, sans-serif;
 }
 
@@ -58,7 +66,7 @@ button:disabled {
     display: block;
 }
 
-.menu-item.active a {
+.active {
     background-color: #5cbfbf;
     color: white;
 }
@@ -89,3 +97,109 @@ button:disabled {
     right: 8px;
     transform: translate(50%, -50%);
 }
+
+.pad-b-10 {
+    padding-bottom: 10px;
+}
+
+.pad-t-10 {
+    padding-top: 10px;
+}
+
+.mar-b-20 {
+    margin-bottom: 20px;
+}
+
+.main {
+    width: 60%;
+    margin: 25px auto;
+}
+
+.card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .skeleton {
+    animation: shimmer 1.5s infinite linear;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+  }
+  
+  .skeleton-header {
+    height: 200px;
+  }
+  
+  .skeleton-title {
+    height: 24px;
+    margin: 16px;
+    width: 60%;
+    border-radius: 4px;
+  }
+  
+  .skeleton-text {
+    height: 16px;
+    margin: 8px 16px;
+    border-radius: 4px;
+    width: 80%;
+  }
+  
+  .skeleton-button {
+    height: 32px;
+    margin: 16px;
+    width: 70%;
+    border-radius: 4px;
+  }
+
+  .skeleton-pagination {
+    height: 32px;
+    margin: 16px;
+    width: 40%;
+    border-radius: 4px;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+  
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  .cards-container-vehicles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    /* Space between cards */
+    justify-content: center;
+    padding: 16px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
+    transition: transform 0.9s;
+    margin: 10px;
+    // border-bottom: 4px solid rgb(247, 98, 123);
+  
+  }
+
+ form {
+  background-color: #eff0f6;
+  padding: 20px;
+  border-radius: 10px;
+ }
+
+ .error-msg {
+  margin: 10px 0;
+  color: red;
+ }

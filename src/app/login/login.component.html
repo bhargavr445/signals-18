@@ -1,0 +1,20 @@
+<div class="login-main">
+    <div class="login-container">
+        <h1>Login</h1>
+        <form [formGroup]="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Username" formControlName="userName">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-group">
+                    <input type="password" id="password" placeholder="Password" formControlName="password">
+                    <!-- <label class="show-password" for="showPassword">Show Password</label>
+                    <input type="checkbox" id="showPassword"> -->
+                </div>
+            </div>
+            <button type="submit" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+        </form>
+    </div>
+</div>

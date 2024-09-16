@@ -1,0 +1,9 @@
+<div class="horizontal-menu">
+    @for (item of role(); track $index) {
+    <a [routerLink]="item.path" routerLinkActive="active">{{item.label}}</a>
+    }
+</div>
+
+<div class="main">
+    <router-outlet />
+</div>

@@ -11,7 +11,9 @@
     <div class="button-section">
         @if (customVehicle().isEligibleForAddToCart) {
                     <button (click)="onSelectedItem(customVehicle())">Add to Cart</button>
+                    
         }
+        <button (click)="navigateToDetails(customVehicle())">Details</button>
         <!-- <button (click)="increase()" class="button">Increment-{{counter()}} - {{derivedCounter()}}</button> -->
 
     </div>

@@ -1,0 +1,24 @@
+<div class="notification mar-b-20">
+    <div class="notification-icon">&#10003;</div>
+    <div class="notification-text">
+        <b>HELPFUL:</b> This table is build with reusable table template.
+    </div>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            @for(header of tableHeaders(); track header.label) {
+            <th>{{header.label}}</th>
+            }
+        </tr>
+    </thead>
+    @for (item of dataList(); track $index) {
+    <tr>
+        @for(tableProps of tableHeaders(); track tableProps.key) {
+            <!-- {{item[tableProps['key']]}} -->
+        <td [ngClass]="tableProps?.styleClass ? tableProps?.styleClass : ''">{{item[tableProps['key']]}}</td>
+        }
+    </tr>
+    }
+</table>

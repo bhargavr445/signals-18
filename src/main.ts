@@ -3,7 +3,7 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { defineCustomElements } from 'bhargav-uc-components/loader';
 
-defineCustomElements(window),
+defineCustomElements(window)
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
