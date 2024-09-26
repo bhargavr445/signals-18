@@ -15,3 +15,4 @@ const VEHICLE_ROUTES: Routes = [
 
 export default VEHICLE_ROUTES;
 
+// 1.52 kB | 

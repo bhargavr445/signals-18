@@ -14,7 +14,7 @@
                     <input type="checkbox" id="showPassword"> -->
                 </div>
             </div>
-            <button type="submit" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+            <button type="submit" (click)="login()" [disabled]="!loginForm.valid"> {{ loginApiCallProgress ? 'Loading...' : 'Login'}}</button>
         </form>
     </div>
 </div>

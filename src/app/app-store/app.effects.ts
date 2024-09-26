@@ -10,6 +10,7 @@ export class AppEffects {
 
     getPopulationInfo$ = createEffect(
         () => this.actions$.pipe(
+            tap(d => console.log('hgjfr',d)),
             ofType(actions.fetchPopulationDataStartAction),
             tap(d => console.log(d)),
             switchMap((action) => this.populationService.getPopulation(action.value).pipe(
@@ -23,6 +24,8 @@ export class AppEffects {
 
     getRosteData = createEffect(
         () => this.actions$.pipe(
+            tap(d => console.log('test test',d)),
+
             ofType(actions.API_FETCHING_START),
             tap(d => console.log(d)),
             switchMap((action) => {

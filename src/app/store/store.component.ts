@@ -49,7 +49,8 @@ export class StoreComponent implements OnInit {
     this.store.dispatch(testAct({value: {id: 10, name: 'Bhargav'}}));
     this.filteredRecords$ = combineLatest([
       this.apiResp$.pipe(map(d => d?.Results ?? [])),
-      searchTextControl$]
+      searchTextControl$
+    ]
     ).pipe(
       filter(([d, _]) => d.length > 0),
       map(([d, s]) => this.#filterRecords(d, s)))

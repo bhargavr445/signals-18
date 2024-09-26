@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommunicationService } from '../commons/services/communication/communication.service';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
+import { AuthService } from '../commons/services/api/auth.service';
 
 
 
@@ -17,9 +18,9 @@ import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 
 export class UdemyComponent {
 
-  #communicationService = inject(CommunicationService);
+  authService = inject(AuthService);
 
-  role = computed(() => this.#checkForInstructorRole(this.#communicationService.getUserRole()));
+  role = computed(() => this.#checkForInstructorRole(this.authService.userProfileComputed()?.role));
 
   #udemyMenu: NavMenuItem[] = [
     { label: 'Buy Courses', path: '/udemy/buy', isActive: true },

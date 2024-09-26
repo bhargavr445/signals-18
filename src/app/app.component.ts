@@ -145,7 +145,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authService.logout().subscribe()
-    localStorage.clear();
+    sessionStorage.clear();
   }
 
 }

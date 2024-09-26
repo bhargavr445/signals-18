@@ -4,7 +4,7 @@ import { skipUrlModification } from './skip-loading';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const urlPrefix = "http://localhost:3010/api/";
 
-  var authHeader = `Bearer ${localStorage.getItem('TOKEN')}`;
+  var authHeader = `Bearer ${sessionStorage.getItem('TOKEN')}`;
 
   return next(
     req.context.has(skipUrlModification) ?

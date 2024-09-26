@@ -1,27 +1,30 @@
-<!-- @if (userProfileInfo()) { -->
-    <div class="nav-container">
-        @let userName = userProfileInfo()?.userName;
-        <nav class="navbar">
-            <ul class="menu">
-                @for (item of navItems(); track item.label) {
-                    @if(item.display) {
-                        <li class="menu-item"><a
-                            [routerLink]="item.navigationUrl"  routerLinkActive="active">{{item.label}}</a></li>
-                    }
-                }
-                <li class="menu-item cart" [ngClass]="{'active': iscartUrl()}">
-                    <a (click)="navigateTo('cart')">
-                        <img src="/assets/shopping-cart-dark.png" alt="Cart" class="cart-icon">
-                        <span class="cart-count">{{noOfItemsInCart()}}</span>
-                    </a>
-                </li>
-            </ul>
-            @if(userName) {
-                <div style="color: white; padding-top: 10px; margin-left: 10px;">
-                   Hello, {{userName}}
-                </div>
+<div class="nav-container">
+    @if (userProfileInfo()) {
+    @let userName = userProfileInfo()?.userName;
+    @let role = userProfileInfo()?.role;
+    <nav class="navbar">
+        <ul class="menu">
+            @for (item of navItems(); track item.label) {
+            <li class="menu-item"><a [routerLink]="item.navigationUrl" routerLinkActive="active">{{item.label}}</a></li>
             }
-            
-        </nav>
-    </div>
-<!-- } -->
+            @if(userProfileInfo()) {
+            <li class="menu-item"><a (click)="logout()">Logout</a></li>
+            } @else {
+            <li class="menu-item"><a routerLink="login" routerLinkActive="active">Login</a></li>
+            }
+            <li class="menu-item cart" [ngClass]="{'active': iscartUrl()}">
+                <a (click)="navigateTo('cart')">
+                    <img src="/assets/shopping-cart-dark.png" alt="Cart" class="cart-icon">
+                    <span class="cart-count">{{noOfItemsInCart()}}</span>
+                </a>
+            </li>
+        </ul>
+        @if(userName) {
+        <div style="color: white; padding-top: 10px; margin-left: 10px;">
+            <div class="user-name-container">Hello, {{userName | titlecase}}</div>
+            <div class="user-name-container">{{role.substring(2)| titlecase}}</div>
+        </div>
+        }
+    </nav>
+    }
+</div>
