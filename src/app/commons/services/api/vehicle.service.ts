@@ -4,6 +4,14 @@ import { VehiclesResponseI } from '../../../Vehicle/Models/VehiclesI';
 import { Observable, delay, filter, map, tap } from 'rxjs';
 import { skipUrlModification } from '../../interceptor/skip-loading';
 
+function _tap<T>() {
+  return (source$: Observable<T>) => source$.pipe(tap(v => console.log(v)))
+}
+
+function _filter<T>() {
+  return (source$: Observable<T>) => source$.pipe(filter(v => !!v));
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +25,8 @@ export class VehicleService {
       context: new HttpContext().set(skipUrlModification, true)
     })
       .pipe(
-        tap((d) => console.log()),
-        filter((resp) => !!resp),
+       _tap<VehiclesResponseI>(),
+       _filter<VehiclesResponseI>(),
         map(resp => this.#addNewPropInResult(resp)),
       );
   }

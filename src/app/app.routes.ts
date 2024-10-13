@@ -44,6 +44,3 @@ function checkCartItemsLength(): boolean {
         return true;
     }
 }
-
-// Initial total                 | 159.13 kB
-// | Initial total                 | 169.66 kB

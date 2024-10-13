@@ -23,9 +23,9 @@ export class UdemyComponent {
   role = computed(() => this.#checkForInstructorRole(this.authService.userProfileComputed()?.role));
 
   #udemyMenu: NavMenuItem[] = [
+    { label: 'Add Course', path: '/udemy/add', isActive: false, role: 'U_INSTRUCTOR' },
     { label: 'Buy Courses', path: '/udemy/buy', isActive: true },
     { label: 'Purchased Courses', path: '/udemy/purchase', isActive: false },
-    { label: 'Add Course', path: '/udemy/add', isActive: false, role: 'U_INSTRUCTOR' },
     { label: 'Update Profile', path: '/udemy/update', isActive: false }
   ];
 
