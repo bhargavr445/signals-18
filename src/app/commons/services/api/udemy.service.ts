@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { AccountTypeResponseI, CategorysResponseI, UnEnrolledCourseApiResponseI } from '../../../udemy/interfaces/udemy-i';
+import { AccountTypeResponseI, CategorysResponseI, CreateAPIRespI, CreateCoursePayloadI, FetchAllCoursesI, UnEnrolledCourseApiResponseI } from '../../../udemy/interfaces/udemy-i';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -18,8 +18,8 @@ export class UdemyService {
     return this.http.get<AccountTypeResponseI>('accountTypes');
   }
 
-  createCourse(course: any) {
-    return this.http.post<any>('createCourse', course);
+  createCourse(course: CreateCoursePayloadI): Observable<boolean> {
+    return this.http.post<CreateAPIRespI>('createCourse', course).pipe(map((resp)=> resp.data.n ==1 && resp.data.ok ==1));
   }
 
   checkIfIdExists(id): Observable<boolean> {
@@ -30,8 +30,8 @@ export class UdemyService {
     return this.http.get<any>(`fetchEnrolledCourses`);
   }
 
-  fetchAllCreatedCourses() {
-    return this.http.get('fetchCreatedCourses');
+  fetchAllCreatedCourses(): Observable<FetchAllCoursesI> {
+    return this.http.get<FetchAllCoursesI>('fetchCreatedCourses');
   }
 
   fetchUnpurchasedCourses(): Observable<UnEnrolledCourseApiResponseI> {
@@ -43,3 +43,5 @@ export class UdemyService {
   }
   
 }
+
+

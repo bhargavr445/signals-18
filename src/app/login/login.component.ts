@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CommunicationService } from '../commons/services/communication/communication.service';
 import { LoginResponseI } from './login-response-interface';
+import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, ULabelComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

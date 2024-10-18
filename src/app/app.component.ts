@@ -60,28 +60,28 @@ export class AppComponent implements OnInit, OnDestroy {
     //     d => console.log(d),
     //     error => console.log(error)
     //   );
-    this.id$.pipe(
-      switchMap(() => {
-        this.mpdpCall && this.mpdpCall.unsubscribe()
-        this.mpdpCall = this.udemyService.fetchAllCreatedCourses().subscribe(
-          (resp) => {
-            console.log(resp);
+    // this.id$.pipe(
+    //   switchMap(() => {
+    //     this.mpdpCall && this.mpdpCall.unsubscribe()
+    //     this.mpdpCall = this.udemyService.fetchAllCreatedCourses().subscribe(
+    //       (resp) => {
+    //         console.log(resp);
             
-            this.mpdpCall.unsubscribe()
-          }
-        )
-        return combineLatest([
-          this.source1$,
-          this.source2$,
-        ])
-      }
-      )
-    )
-      .subscribe({
-        next: d => console.log(d),
-        error: error => console.log(error)
-      }
-      );
+    //         this.mpdpCall.unsubscribe()
+    //       }
+    //     )
+    //     return combineLatest([
+    //       this.source1$,
+    //       this.source2$,
+    //     ])
+    //   }
+    //   )
+    // )
+    //   .subscribe({
+    //     next: d => console.log(d),
+    //     error: error => console.log(error)
+    //   }
+    //   );
   //  .subscribe(
   //     (resp) => { console.log(resp) },
   //     (error) => { console.log(error) }

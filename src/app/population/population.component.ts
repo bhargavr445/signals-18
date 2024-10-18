@@ -4,8 +4,9 @@ import * as actions from '../../app/app-store/app.actions';
 import * as selectors from '../../app/app-store/app.selector';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { TableComponent } from '../commons/components/table/table.component';
-import { Observable, filter, map, tap } from 'rxjs';
+import { Observable, combineLatest, filter, map, tap } from 'rxjs';
 import { Datum } from './interfaces/population-responseI';
+import { AuthService } from '../commons/services/api/auth.service';
 
 @Component({
   selector: 'app-population',
@@ -16,6 +17,7 @@ import { Datum } from './interfaces/population-responseI';
 })
 export class PopulationComponent implements OnInit {
 
+  as = inject(AuthService)
   store = inject(Store);
   tableheaders = signal([
     { label: 'Country Name', key: 'Nation', },
@@ -33,6 +35,10 @@ export class PopulationComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(actions.fetchPopulationDataStartAction({ value: 'United States' }));
+
+    combineLatest([
+      this.as.userProfileSub$
+    ]).subscribe(d => console.log(d))
   }
 
   private calculateIncreasePercentage(data: any[]) {

@@ -2,17 +2,30 @@
     <div class="login-container">
         <h1>Login</h1>
         <form [formGroup]="loginForm">
-            <div class="form-group">
-                <label for="username">Username</label>
+            <div class="form-group" id="userName-sec">
+                @let userNameControl = loginForm.get('userName');
+                <u-label 
+                    [for]="'username'" 
+                    [isInValid]="userNameControl.invalid">
+                    Username
+                </u-label>
                 <input type="text" id="username" placeholder="Username" formControlName="userName">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <div class="password-group">
-                    <input type="password" id="password" placeholder="Password" formControlName="password">
-                    <!-- <label class="show-password" for="showPassword">Show Password</label>
-                    <input type="checkbox" id="showPassword"> -->
+                @if(!userNameControl.valid && userNameControl.touched && userNameControl.hasError('required')) {
+                    <div class="validation-msg">
+                    This is required field
                 </div>
+                }
+                
+            </div>
+            <div class="form-group" id="password-sec">
+                @let passwordControl = loginForm.get('password');
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" formControlName="password">
+                @if(!passwordControl.valid && passwordControl.touched && passwordControl.hasError('required')) {
+                <div class="validation-msg">
+                    This is required field
+                </div>
+                }
             </div>
             <button type="submit" (click)="login()" [disabled]="!loginForm.valid"> {{ loginApiCallProgress ? 'Loading...' : 'Login'}}</button>
         </form>
