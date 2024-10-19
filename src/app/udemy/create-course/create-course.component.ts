@@ -1,5 +1,5 @@
 import { AsyncPipe, NgClass } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, Component, inject } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, delay, filter, map, of, switchMap, tap } from 'rxjs';
@@ -21,7 +21,7 @@ import * as udemySelector from '../store/udemy.selectors';
   styleUrl: './create-course.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class CreateCourseComponent {
+export class CreateCourseComponent implements OnInit {
   
   udemyService = inject(UdemyService);
   store = inject(Store);
@@ -34,13 +34,13 @@ export class CreateCourseComponent {
   createCourseLoading$ = this.store.select(udemySelector.createCourseLoadingSelector);
   createCourseSuccess$ = this.store.select(udemySelector.createCourseSuccessSelector).pipe(
     filter(createCourseResponse => createCourseResponse),
-    tap(() => this.createCourseForm.reset())
-  ).subscribe();
+    tap(() => this.createCourseForm.reset()))
 
-  constructor() {
+  ngOnInit() {
     this.createForm();
     this.store.dispatch(udemyActions.fetchCategorysStartAction());
     this.store.dispatch(udemyActions.fetchAllCreatedCoursesStart());
+    this.createCourseSuccess$.subscribe();
   }
 
   createForm() {
