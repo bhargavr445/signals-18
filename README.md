@@ -13,3 +13,18 @@ Angular, typescript, cypress, ngrx, rxjs, signals, react, node, mongodb, mongoos
 [![](https://visitcount.itsvg.in/api?id=bhargavr445&icon=0&color=0)](https://visitcount.itsvg.in)
 
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+
+
+# services 
+
+@Injectable root - `Will download and create reference 1st time when component is used`
+
+providers [] in [App_Config] - `services which are registered here will be loaded at app initial loading time, [which means] these services are ignored by Angular tree shaking and included in the initial bundle`
+
+provider [] in [Component] - `will create multiple instance and references if we use this component based approach` ![i.e](`if we use this component selector multiple times, this service instance is create multiple time along with reference`)
+
+
+[Injecting_Service_into_another_Service] - `these 2 services can be registered as 1 or 2 approachees [MIX_AND_MATCH]`
+
+Note: student servie is created as approach 1
+Now if i create Logger service and if i use 3rd approach to register Logger service in component and if i inject logger into student service then it will give null injector error
