@@ -9,6 +9,7 @@ import { CreatedCoursesListComponent } from '../created-courses-list/created-cou
 import { CategorysI, CreateCoursePayloadI } from '../interfaces/udemy-i';
 import * as udemyActions from '../store/udemy.actions';
 import * as udemySelector from '../store/udemy.selectors';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'create-course',
@@ -28,7 +29,7 @@ export class CreateCourseComponent implements OnInit {
 
   createCourseForm: FormGroup;
   
-  categorys$: Observable<CategorysI[]> = this.store.select(udemySelector.categoryListSelector);
+  categorys$  = toSignal(this.store.select(udemySelector.categoryListSelector), {initialValue: []});
   createdCoursesList$ = this.store.select(udemySelector.createdCoursesListSelector);
   fetchCreatedCoursesLoading$ = this.store.select(udemySelector.createdCoursesLoadingSelector);
   createCourseLoading$ = this.store.select(udemySelector.createCourseLoadingSelector);

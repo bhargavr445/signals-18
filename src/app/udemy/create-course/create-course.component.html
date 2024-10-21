@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <u-label [for]="'categoryType'">Category Type</u-label>
-            <fepoc-drop-down-component [options]="categorys$| async" [displayprops]="['type']"
+            <fepoc-drop-down-component [options]="categorys$()" [displayprops]="['type']"
                 (selectedOptionEvent)="selectedOptionEvent($event)" />
         </div>
         <div class="form-group">
