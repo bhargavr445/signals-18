@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { GameService } from './game.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
@@ -14,6 +14,7 @@ import { map } from 'rxjs';
 export class GameComponent {
 
   gameService = inject(GameService);
+  cdr = inject(ChangeDetectorRef);
   gamesList = signal<any>([]);
   paginatedRecords = signal<any[]>([]);
   isLoading = false;
@@ -23,8 +24,11 @@ export class GameComponent {
     // this.gamesList.set(toSignal(this.gameService.getGamesData().pipe(map((resp) => resp['data'])), {initialValue: []}));
     this.gameService.getGamesData().subscribe(
       (resp) => {
-       this.gamesList.set(resp['data']);
+        console.log(resp);
+
+        this.gamesList.set(resp['data']);
         this.isLoading = false;
+        this.cdr.detectChanges();
       }
     )
   }

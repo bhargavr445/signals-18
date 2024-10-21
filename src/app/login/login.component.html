@@ -1,6 +1,7 @@
 <div class="login-main">
     <div class="login-container">
         <h1>Login</h1>
+        <button (click)="incr()">Incr --- {{counter()}} -- {{counter$ | async}}</button>
         <form [formGroup]="loginForm">
             <div class="form-group" id="userName-sec">
                 @let userNameControl = loginForm.get('userName');
@@ -27,7 +28,7 @@
                 </div>
                 }
             </div>
-            <button type="submit" (click)="login()" [disabled]="!loginForm.valid"> {{ loginApiCallProgress ? 'Loading...' : 'Login'}}</button>
+            <button type="submit" (click)="login()" [disabled]="!loginForm.valid"> {{ loginApiCallProgress() ? 'Loading...' : 'Login'}}</button>
         </form>
     </div>
 </div>

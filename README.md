@@ -15,6 +15,15 @@ Angular, typescript, cypress, ngrx, rxjs, signals, react, node, mongodb, mongoos
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
 
 ![Angular]()
+# Multiple Router outlets
+yes we can acheive this by using named router-outlet, and in router congig we need to pass `outlet` prop
+Ex: 
+<router-outlet name="left"></outlet>
+<router-outlet name="right"></outlet>
+{path: '', component: '', outlet: left}
+{path: '', component: '', outlet: right}
+![ref](https://www.youtube.com/watch?v=IXy9UmKfSeM)
+
 
 # services 
 
