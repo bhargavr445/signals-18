@@ -2,7 +2,7 @@
     <div class="login-container">
         <h1>Login</h1>
         <button (click)="incr()">Incr --- {{counter()}} -- {{counter$ | async}}</button>
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" id="log_in" (ngSubmit)="login()">
             <div class="form-group" id="userName-sec">
                 @let userNameControl = loginForm.get('userName');
                 <u-label 
@@ -28,7 +28,7 @@
                 </div>
                 }
             </div>
-            <button type="submit" (click)="login()" [disabled]="!loginForm.valid"> {{ loginApiCallProgress() ? 'Loading...' : 'Login'}}</button>
+            <button type="submit" [disabled]="!loginForm.valid"> {{ loginApiCallProgress() ? 'Loading...' : 'Login'}}</button>
         </form>
     </div>
 </div>

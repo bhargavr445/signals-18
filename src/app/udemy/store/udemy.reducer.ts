@@ -54,15 +54,13 @@ export const udemyReducer = createReducer(
     })),
 
     // fetch courses
-    on(udemyActions.fetchAllCreatedCoursesSuccess, (state, action) => {
-        console.log(action);
-
-        return {
+    on(udemyActions.fetchAllCreatedCoursesSuccess, (state, action) => ({
+        
             ...state,
             createdCoursesList: action.value,
             createdCoursesError: null
-        }
-    }),
+        
+    })),
 
     on(udemyActions.fetchAllCreatedCoursesFail, (state, action) => ({
         ...state,

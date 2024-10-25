@@ -12,6 +12,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authInterceptor } from './commons/interceptor/auth.interceptor';
 import { udemyReducer } from './udemy/store/udemy.reducer';
 import { UdemyEffects } from './udemy/store/udemy.effects';
+import { spinnerInterceptor } from './commons/interceptor/spinner.interceptor';
 
 const storeConfig = { app: appReducer, university: universityReducer, udemy: udemyReducer }
 
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, spinnerInterceptor])),
     provideStore(storeConfig),
     provideEffects([AppEffects, UniversityEffects, UdemyEffects]),
     provideStoreDevtools({

@@ -17,18 +17,18 @@ export class GameComponent {
   cdr = inject(ChangeDetectorRef);
   gamesList = signal<any>([]);
   paginatedRecords = signal<any[]>([]);
-  isLoading = false;
+  isLoading = signal(false);
 
   constructor() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     // this.gamesList.set(toSignal(this.gameService.getGamesData().pipe(map((resp) => resp['data'])), {initialValue: []}));
     this.gameService.getGamesData().subscribe(
       (resp) => {
         console.log(resp);
 
         this.gamesList.set(resp['data']);
-        this.isLoading = false;
-        this.cdr.detectChanges();
+        this.isLoading.set(false);
+        // this.cdr.detectChanges();
       }
     )
   }
