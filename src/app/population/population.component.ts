@@ -1,17 +1,17 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable, combineLatest, filter, map } from 'rxjs';
 import * as actions from '../../app/app-store/app.actions';
 import * as selectors from '../../app/app-store/app.selector';
-import { AsyncPipe, JsonPipe } from '@angular/common';
 import { TableComponent } from '../commons/components/table/table.component';
-import { Observable, combineLatest, filter, map, tap } from 'rxjs';
-import { Datum } from './interfaces/population-responseI';
 import { AuthService } from '../commons/services/api/auth.service';
+import { Datum } from './interfaces/population-responseI';
 
 @Component({
   selector: 'app-population',
   standalone: true,
-  imports: [AsyncPipe, TableComponent, JsonPipe],
+  imports: [AsyncPipe, TableComponent],
   templateUrl: './population.component.html',
   styleUrl: './population.component.scss'
 })

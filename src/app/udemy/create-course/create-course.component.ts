@@ -15,7 +15,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   selector: 'create-course',
   standalone: true,
   imports: [
-    AsyncPipe, ULabelComponent, NgClass, 
+    AsyncPipe, ULabelComponent, 
     FormsModule, ReactiveFormsModule, CreatedCoursesListComponent
   ],
   templateUrl: './create-course.component.html',

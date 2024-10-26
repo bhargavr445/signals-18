@@ -1,18 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { filter, interval, map, zip } from 'rxjs';
+import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CommunicationService } from '../commons/services/communication/communication.service';
 import { LoginResponseI } from './login-response-interface';
-import { ULabelComponent } from '../commons/components/u-label/u-label.component';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { AsyncPipe } from '@angular/common';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ULabelComponent, AsyncPipe],
+  imports: [FormsModule, ReactiveFormsModule, ULabelComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -24,6 +23,10 @@ export class LoginComponent {
   router = inject(Router);
   loginForm: FormGroup;
 
+  // todoResource = resource({
+  //   loader: () => this.authService.login({userName: '', password: ''})
+  // });
+
 
   counter = signal(0);
 
@@ -31,6 +34,7 @@ export class LoginComponent {
 
   constructor() {
     this.createForm();
+    // this.rxjsScenarios();
   }
 
   createForm() {
@@ -42,7 +46,8 @@ export class LoginComponent {
 
   login() {
     this.loginApiCallProgress.set(true);
-    this.authService.login(this.loginForm.getRawValue()).subscribe({
+    this.authService.login(this.loginForm.getRawValue())
+    .subscribe({
       next: (resp: LoginResponseI) => this.handleResponse(resp),
       error: (error) => this.loginApiCallProgress.set(false),
       complete: () => {}
@@ -61,5 +66,14 @@ export class LoginComponent {
   incr() {
     this.counter.update((prevCounter) => prevCounter+1);
   }
+
+  rxjsScenarios() {
+    const first$ = interval(1000).pipe(filter(d => !!d));
+    const second$ = interval(2000).pipe(filter(d => !!d));
+    const third$ = interval(3000).pipe(filter(d => !!d));
+
+    zip(first$, second$, third$).pipe().subscribe(data => console.log(data));
+  }
+
 
 }

@@ -18,10 +18,7 @@ import { UdemyService } from './commons/services/api/udemy.service';
   imports: [
     AsyncPipe, 
     RouterOutlet, 
-    VehicleOverviewComponent, 
     HeaderComponent, 
-    CartComponent, 
-    ModalContainerDirective, 
     ModalHostComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

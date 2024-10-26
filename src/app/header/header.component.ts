@@ -1,9 +1,10 @@
-import { JsonPipe, NgClass, TitleCasePipe } from '@angular/common';
+import { NgClass, TitleCasePipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CartService } from '../commons/services/communication/cart.service';
 import { CommunicationService } from '../commons/services/communication/communication.service';
+import { GameService } from '../game/game.service';
 
 interface NavI {
   label: string;
@@ -13,7 +14,7 @@ interface NavI {
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgClass, JsonPipe, RouterLink, RouterLinkActive, TitleCasePipe],
+  imports: [NgClass, RouterLink, RouterLinkActive, TitleCasePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

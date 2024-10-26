@@ -1,10 +1,10 @@
-import { JsonPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'gbr-table',
   standalone: true,
-  imports: [NgClass, JsonPipe],
+  imports: [NgClass],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })

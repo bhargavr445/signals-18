@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { interval, map } from 'rxjs';
@@ -11,7 +10,7 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 @Component({
   selector: 'vehicle-overview',
   standalone: true,
-  imports: [VehicleCardComponent, FormsModule, FilterComponent, JsonPipe, DeferComponent],
+  imports: [VehicleCardComponent, FormsModule, FilterComponent, DeferComponent],
   template: `
      <div class="main">
      <div class="pad-t-10">

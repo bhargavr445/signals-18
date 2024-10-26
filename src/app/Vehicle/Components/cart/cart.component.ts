@@ -1,20 +1,16 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, ViewChild, computed, effect, inject, signal } from '@angular/core';
-import { CartService } from '../../../commons/services/communication/cart.service';
-import { Result } from '../../Models/VehiclesI';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, computed, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModalComponent } from '../../../commons/components/modal/modal.component';
-import { JsonPipe } from '@angular/common';
 import { ToggleCloseTypes } from '../../../commons/Interfaces/ModalContentI';
 import { ModalConstants } from '../../../commons/constants/modal.constants';
-import { ModalContainerDirective } from '../../../commons/directives/modal-container.directive';
-import { DropdownComponent } from '../../../commons/components/dropdown/dropdown.component';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ModalService } from '../../../commons/services/api/modal.service';
+import { CartService } from '../../../commons/services/communication/cart.service';
+import { Result } from '../../Models/VehiclesI';
 
 @Component({
   selector: 'app-vehicles-table',
   standalone: true,
-  imports: [ModalComponent, JsonPipe, ModalContainerDirective, DropdownComponent, FormsModule],
+  imports: [FormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
