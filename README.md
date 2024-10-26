@@ -14,6 +14,7 @@ Angular, typescript, cypress, ngrx, rxjs, signals, react, node, mongodb, mongoos
 
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
 
+![Angular]()
 
 # services 
 
@@ -28,3 +29,33 @@ provider [] in [Component] - `will create multiple instance and references if we
 
 Note: student servie is created as approach 1
 Now if i create Logger service and if i use 3rd approach to register Logger service in component and if i inject logger into student service then it will give null injector error
+
+
+# new Control flow
+# @let
+
+[VAR]
+# signals
+# computed Signals
+# effects
+# signal inputs/outputs 
+# Modal inputs/outputs
+# signals instead of Behaviour Subjects
+# zone less apps
+
+# toSignal
+# toObservable
+
+
+[ROUTING]
+# Router Outlet input
+# load component
+# deferable views
+# functional guards
+# accessing data vie inputs
+
+
+[SSR
+# SSR with problems and solutions
+# Hydration
+
