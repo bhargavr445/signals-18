@@ -1,17 +1,14 @@
-import { NgClass } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { CommunicationService } from '../commons/services/communication/communication.service';
-import { CreateCourseComponent } from './create-course/create-course.component';
-import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 import { AuthService } from '../commons/services/api/auth.service';
+import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 
 
 
 @Component({
   selector: 'app-udemy',
   standalone: true,
-  imports: [CreateCourseComponent, RouterOutlet, NgClass, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './udemy.component.html',
   styleUrl: './udemy.component.scss'
 })

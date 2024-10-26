@@ -1,13 +1,11 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { UdemyService } from '../../commons/services/api/udemy.service';
-import { CommunicationService } from '../../commons/services/communication/communication.service';
-import { TableComponent } from '../../commons/components/table/table.component';
 import { CurrencyPipe } from '@angular/common';
+import { UdemyService } from '../../commons/services/api/udemy.service';
 
 @Component({
   selector: 'app-purchase-courses',
   standalone: true,
-  imports: [TableComponent, CurrencyPipe],
+  imports: [CurrencyPipe],
   templateUrl: './purchase-courses.component.html',
   styleUrl: './purchase-courses.component.scss'
 })

@@ -1,5 +1,5 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { VehiclesResponseI } from '../../../Vehicle/Models/VehiclesI';
 import { Observable, delay, filter, map, tap } from 'rxjs';
 import { skipUrlModification } from '../../interceptor/skip-loading';
@@ -17,7 +17,7 @@ function _filter<T>() {
 })
 export class VehicleService {
 
-  constructor(private http: HttpClient) { }
+  http = inject( HttpClient);
 
   getVehicleData(vehicleType?: string): Observable<VehiclesResponseI> {
 

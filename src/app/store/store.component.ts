@@ -1,16 +1,16 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Observable, combineLatest, debounceTime, distinctUntilChanged, filter, map, startWith, tap } from 'rxjs';
 import { testAct } from '../app-store/app.actions';
 import { apiLoadingSelector, apiResultsSelector, testDataSelector } from '../app-store/app.selector';
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Observable, combineLatest, debounceTime, distinctUntilChanged, filter, map, startWith, tap } from 'rxjs';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Result } from '../Vehicle/Models/VehiclesI';
 
 @Component({
   selector: 'app-store',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, FormsModule, ReactiveFormsModule],
+  imports: [AsyncPipe, FormsModule, ReactiveFormsModule],
   templateUrl: './store.component.html',
   styleUrl: './store.component.scss'
 })
