@@ -1,5 +1,5 @@
 import { AsyncPipe, NgClass } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, inject } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, Signal, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, delay, filter, map, of, switchMap, tap } from 'rxjs';
@@ -10,6 +10,7 @@ import { CategorysI, CreateCoursePayloadI } from '../interfaces/udemy-i';
 import * as udemyActions from '../store/udemy.actions';
 import * as udemySelector from '../store/udemy.selectors';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ROUTER_OUTLET_DATA } from '@angular/router';
 
 @Component({
   selector: 'create-course',
@@ -23,6 +24,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CreateCourseComponent implements OnInit {
+
+  data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
+
   
   udemyService = inject(UdemyService);
   store = inject(Store);
