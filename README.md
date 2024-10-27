@@ -52,7 +52,8 @@ Now if i create Logger service and if i use 3rd approach to register Logger serv
 # load component
 # deferable views
 # functional guards
-# accessing data vie inputs
+# accessing data vie inputs(`@Input() or input()`)
+# Router outlet data - v-19(can access data only in direct child components)
 
 
 [SSR
