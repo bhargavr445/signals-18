@@ -13,7 +13,8 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
   imports: [VehicleCardComponent, FormsModule, FilterComponent, DeferComponent],
   template: `
      <div class="main">
-     <div class="pad-t-10">
+      @if(!vehicleApiFailed()) {
+        <div class="pad-t-10">
        <app-filter  [(searchText)]="filterText"/>
      </div>
       @if( filteredRecords().length > 0) {
@@ -46,6 +47,9 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
                 }
                 </div>
       }
+      } @else {
+        <div>Down due to Technical issues.</div>
+      }
      </div>
      
    `
@@ -57,6 +61,7 @@ export class VehicleOverviewComponent {
   filteredRecords = computed(() => this.filterRecords(this.filterText()));
   vehicleService = inject(VehicleService);
   response = signal<VehiclesResponseI>({ Count: null, Message: '', SearchCriteria: '', Results: [] });
+  vehicleApiFailed = signal(false);
 
   outer$ = interval(5000).pipe(map(() => 'outer'));
   inner$ = interval(1000).pipe(map(() => 'inner'));
@@ -79,6 +84,7 @@ export class VehicleOverviewComponent {
   }
 
   fetchData() {
+    this.vehicleApiFailed.set(false);
     this.vehicleService.getVehicleData('')
       .subscribe({
         next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
@@ -91,6 +97,7 @@ export class VehicleOverviewComponent {
   }
 
   handleError(error) {
+    this.vehicleApiFailed.set(true);
   }
 
   emitSome(event: string) {
