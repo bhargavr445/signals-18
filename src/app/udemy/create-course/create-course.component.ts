@@ -11,6 +11,7 @@ import * as udemyActions from '../store/udemy.actions';
 import * as udemySelector from '../store/udemy.selectors';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
+import { UdemyInitialStateI } from '../store/udemy.reducer';
 
 @Component({
   selector: 'create-course',
@@ -29,7 +30,7 @@ export class CreateCourseComponent implements OnInit {
 
   
   udemyService = inject(UdemyService);
-  store = inject(Store);
+  store = inject(Store<UdemyInitialStateI>);
 
   createCourseForm: FormGroup;
   
