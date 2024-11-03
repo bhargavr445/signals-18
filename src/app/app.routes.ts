@@ -3,11 +3,21 @@ import { inject } from '@angular/core';
 import { CartService } from './commons/services/communication/cart.service';
 import { ModalService } from './commons/services/api/modal.service';
 import { HomeComponent } from './home/home.component';
+import { provideState } from '@ngrx/store';
+import { udemyReducer } from './udemy/store/udemy.reducer';
+import { provideEffects } from '@ngrx/effects';
+import { UdemyEffects } from './udemy/store/udemy.effects';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing') },
-    { path: 'udemy', loadChildren: () => import('./udemy/udemy.routing') },
+    { path: 'udemy', 
+        loadChildren: () => import('./udemy/udemy.routing'),
+        providers: [
+            provideState('udemy', udemyReducer),
+            provideEffects(UdemyEffects)
+        ]
+    },
     { path: 'student', loadComponent: () => import('./student-overview/student-overview.component').then(c => c.StudentOverviewComponent) },
     { path: 'cart', loadComponent: () => import('./Vehicle/Components/cart/cart.component').then(c => c.CartComponent), 
         canActivate: [() => checkCartItemsLength(), () => checkUserRole()] },
