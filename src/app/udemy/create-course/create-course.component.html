@@ -2,24 +2,22 @@
     <div class="form-row">
         <div class="form-group">
             @let course_id_control = createCourseForm.get('course_id');
-            <u-label 
-                [for]="'course_id'" 
-                [isInValid] = "course_id_control.invalid">
+            <u-label [for]="'course_id'" [isInValid]="course_id_control.invalid">
                 Course ID -- {{data()}}
             </u-label>
             <input type="text" id="course_id" formControlName="course_id" placeholder="Enter Course ID">
 
             @if(course_id_control.invalid && course_id_control.dirty && course_id_control.hasError('maxlength')) {
-                <div class="validation-msg">
-                    max len is 12.
-                </div>
-                }
+            <div class="validation-msg">
+                max len is 12.
+            </div>
+            }
 
-                @if(course_id_control.invalid && course_id_control.dirty && course_id_control.hasError('minlength')) {
-                    <div class="validation-msg">
-                        min len is 5.
-                    </div>
-                    }
+            @if(course_id_control.invalid && course_id_control.dirty && course_id_control.hasError('minlength')) {
+            <div class="validation-msg">
+                min len is 5.
+            </div>
+            }
 
             @if(course_id_control.invalid && course_id_control.dirty && course_id_control.hasError('required')) {
             <div class="validation-msg">
@@ -55,11 +53,16 @@
             <textarea type="description" id="description" formControlName="description"
                 placeholder="Enter Description"></textarea>
         </div>
-        <!-- <div class="form-group">
-            <button style="margin-top: 22px;" (click)="createCourse()">Create Course</button>
-        </div> -->
     </div>
-    <button style="margin-top: 22px;" (click)="createCourse()">{{(createCourseLoading$ | async) ? 'Creating.....' : 'Create Course'}}</button>
+    <button style="margin-top: 22px;" (click)="createCourse()">{{(createCourseLoading$ | async) ? 'Creating.....' :
+        'Create Course'}}</button>
 </form>
-
-<created-courses-list [createdCoursesList]="createdCoursesList$ | async" />
+<div>
+    @let coursesList = createdCoursesList$ | async;
+    @let isCoursesListLoading = !(fetchCreatedCoursesLoading$ | async);
+    @if(coursesList?.length > 0 && isCoursesListLoading) {
+    <created-courses-list [createdCoursesList]="coursesList" />
+    } @else {
+    <table-skeleton />
+    }
+</div>
