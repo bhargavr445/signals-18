@@ -11,7 +11,7 @@ import { UdemyEffects } from './udemy/store/udemy.effects';
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing') },
-    { path: 'udemy', 
+    {   path: 'udemy', 
         loadChildren: () => import('./udemy/udemy.routing'),
         providers: [
             provideState('udemy', udemyReducer),

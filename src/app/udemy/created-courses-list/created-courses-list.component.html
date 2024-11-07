@@ -10,7 +10,7 @@
     </thead>
 
     <tbody>
-        @for (item of createdCoursesList(); track $index) {
+        @for (item of paginatedRecords(); track $index) {
             <tr>
             <td>{{item.title}}</td>
             <td>{{item.price | currency}}</td>
@@ -21,3 +21,6 @@
         
     </tbody>
 </table>
+<div class="pagination-bar">
+    <gbr-pagination [datalist]="createdCoursesList()" [pagesize]="10" (paginatedlisthandler)="handlePaginatedList($event)" />
+</div>

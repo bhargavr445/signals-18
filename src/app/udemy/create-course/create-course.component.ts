@@ -12,13 +12,14 @@ import * as udemySelector from '../store/udemy.selectors';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { UdemyInitialStateI } from '../store/udemy.reducer';
+import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
 
 @Component({
   selector: 'create-course',
   standalone: true,
   imports: [
     AsyncPipe, ULabelComponent, 
-    FormsModule, ReactiveFormsModule, CreatedCoursesListComponent
+    FormsModule, ReactiveFormsModule, CreatedCoursesListComponent, TableSkeletonComponent
   ],
   templateUrl: './create-course.component.html',
   styleUrl: './create-course.component.scss',

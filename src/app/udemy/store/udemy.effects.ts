@@ -4,7 +4,6 @@ import { UdemyService } from "../../commons/services/api/udemy.service";
 import * as udemyActions from "./udemy.actions";
 import { catchError, endWith, exhaustMap, finalize, map, mergeMap, of, startWith, switchMap } from "rxjs";
 import { CategorysResponseI, FetchAllCoursesI } from "../interfaces/udemy-i";
-import { Action } from "@ngrx/store";
 
 @Injectable()
 export class UdemyEffects {
