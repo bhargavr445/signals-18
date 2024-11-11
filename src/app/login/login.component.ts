@@ -1,13 +1,13 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { filter, interval, map, Subject, takeUntil, zip } from 'rxjs';
+import { RadioButtonsComponent } from '../commons/components/radio-buttons/radio-buttons.component';
 import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CommunicationService } from '../commons/services/communication/communication.service';
 import { LoginResponseI } from './login-response-interface';
-import { RadioButtonsComponent } from '../commons/components/radio-buttons/radio-buttons.component';
 
 @Component({
   selector: 'app-login',

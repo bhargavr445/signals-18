@@ -1,16 +1,12 @@
+import { AsyncPipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { VehicleOverviewComponent } from './Vehicle/Components/vehicle-overview/vehicle-overview.component';
-import { HeaderComponent } from './header/header.component';
-import { CartComponent } from './Vehicle/Components/cart/cart.component';
-import { ModalContainerDirective } from './commons/directives/modal-container.directive';
+import { BehaviorSubject, Observable, Subject, delay, of } from 'rxjs';
 import { ModalHostComponent } from './commons/components/modal-host/modal-host.component';
-import { BehaviorSubject, Observable, Subject, combineLatest, delay, filter, interval, of, startWith, switchMap, take, takeUntil, tap } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import { ModalService } from './commons/services/api/modal.service';
 import { AuthService } from './commons/services/api/auth.service';
-import { VehicleService } from './commons/services/api/vehicle.service';
+import { ModalService } from './commons/services/api/modal.service';
 import { UdemyService } from './commons/services/api/udemy.service';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',

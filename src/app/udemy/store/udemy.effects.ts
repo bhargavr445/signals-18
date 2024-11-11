@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { catchError, endWith, exhaustMap, finalize, map, mergeMap, of, startWith } from "rxjs";
 import { UdemyService } from "../../commons/services/api/udemy.service";
-import * as udemyActions from "./udemy.actions";
-import { catchError, endWith, exhaustMap, finalize, map, mergeMap, of, startWith, switchMap } from "rxjs";
 import { CategorysResponseI, FetchAllCoursesI } from "../interfaces/udemy-i";
+import * as udemyActions from "./udemy.actions";
 
 @Injectable()
 export class UdemyEffects {

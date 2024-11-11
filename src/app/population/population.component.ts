@@ -4,10 +4,10 @@ import { Store } from '@ngrx/store';
 import { Observable, combineLatest, filter, map } from 'rxjs';
 import * as actions from '../../app/app-store/app.actions';
 import * as selectors from '../../app/app-store/app.selector';
+import { TableSkeletonComponent } from '../commons/components/table-skeleton/table-skeleton.component';
 import { TableComponent } from '../commons/components/table/table.component';
 import { AuthService } from '../commons/services/api/auth.service';
 import { Datum } from './interfaces/population-responseI';
-import { TableSkeletonComponent } from '../commons/components/table-skeleton/table-skeleton.component';
 
 @Component({
   selector: 'app-population',

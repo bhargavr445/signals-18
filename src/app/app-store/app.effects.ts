@@ -1,9 +1,9 @@
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import * as actions from "./app.actions";
 import { Injectable } from "@angular/core";
-import { catchError, endWith, map, of, startWith, switchMap, tap } from "rxjs";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { catchError, endWith, map, of, startWith, switchMap } from "rxjs";
 import { VehicleService } from "../commons/services/api/vehicle.service";
 import { PopulationService } from "../population/population.service";
+import * as actions from "./app.actions";
 
 @Injectable()
 export class AppEffects {

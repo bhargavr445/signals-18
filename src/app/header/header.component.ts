@@ -4,7 +4,6 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CartService } from '../commons/services/communication/cart.service';
 import { CommunicationService } from '../commons/services/communication/communication.service';
-import { GameService } from '../game/game.service';
 
 interface NavI {
   label: string;
