@@ -1,12 +1,11 @@
-import { Routes } from '@angular/router';
 import { inject } from '@angular/core';
-import { CartService } from './commons/services/communication/cart.service';
-import { ModalService } from './commons/services/api/modal.service';
-import { HomeComponent } from './home/home.component';
-import { provideState } from '@ngrx/store';
-import { udemyReducer } from './udemy/store/udemy.reducer';
+import { Routes } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
+import { provideState } from '@ngrx/store';
+import { ModalService } from './commons/services/api/modal.service';
+import { CartService } from './commons/services/communication/cart.service';
 import { UdemyEffects } from './udemy/store/udemy.effects';
+import { udemyReducer } from './udemy/store/udemy.reducer';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
