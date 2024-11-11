@@ -1,12 +1,12 @@
 import { Component, Signal, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
-import * as actions from './store/university.actions';
-import { CountryListSelector, UniversityListSelector } from './store/university.selectors';
-import { filter, map, pairwise, take, tap } from 'rxjs';
+import { filter, map, take, tap } from 'rxjs';
 import { UniversityTableComponent } from './components/university-table/university-table.component';
 import { CountrysApiResponseI, CountrysI } from './interfaces/UniversityListI';
 import { UniversityService } from './services/university.service';
-import { toSignal } from '@angular/core/rxjs-interop';
+import * as actions from './store/university.actions';
+import { CountryListSelector, UniversityListSelector } from './store/university.selectors';
 
 @Component({
   selector: 'app-university-overview',

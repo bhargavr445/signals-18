@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
-import { apiLoading, apiResultsAction, fetchPopulationDataStartAction, populationDataErrorResponse, populationDataLoading, populationDataSuccessResponse, testAct } from "./app.actions";
 import { VehiclesResponseI } from "../Vehicle/Models/VehiclesI";
 import { PopulationResponseI } from "../population/interfaces/population-responseI";
+import { apiLoading, apiResultsAction, fetchPopulationDataStartAction, populationDataErrorResponse, populationDataLoading, populationDataSuccessResponse, testAct } from "./app.actions";
 
 export interface AppInitialStateI {
     apiResponse: VehiclesResponseI;

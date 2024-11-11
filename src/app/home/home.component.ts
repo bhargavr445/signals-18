@@ -1,8 +1,8 @@
+import { NgIf } from '@angular/common';
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { catchError, debounce, debounceTime, distinctUntilChanged, of, switchMap, throwError } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, of, switchMap, throwError } from 'rxjs';
 import { VehicleService } from '../commons/services/api/vehicle.service';
-import { NgIf } from '@angular/common';
 import { DestroyComponent } from '../destroy/destroy.component';
 
 @Component({

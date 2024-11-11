@@ -1,8 +1,8 @@
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PopulationResponseI } from './interfaces/population-responseI';
 import { skipUrlModification } from '../commons/interceptor/skip-loading';
+import { PopulationResponseI } from './interfaces/population-responseI';
 
 @Injectable({
   providedIn: 'root'

@@ -1,18 +1,18 @@
-import { AsyncPipe, NgClass } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, Signal, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, delay, filter, map, of, switchMap, tap } from 'rxjs';
+import { delay, filter, map, of, switchMap, tap } from 'rxjs';
+import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
 import { ULabelComponent } from '../../commons/components/u-label/u-label.component';
 import { UdemyService } from '../../commons/services/api/udemy.service';
 import { CreatedCoursesListComponent } from '../created-courses-list/created-courses-list.component';
-import { CategorysI, CreateCoursePayloadI } from '../interfaces/udemy-i';
+import { CreateCoursePayloadI } from '../interfaces/udemy-i';
 import * as udemyActions from '../store/udemy.actions';
-import * as udemySelector from '../store/udemy.selectors';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { UdemyInitialStateI } from '../store/udemy.reducer';
-import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
+import * as udemySelector from '../store/udemy.selectors';
 
 @Component({
   selector: 'create-course',

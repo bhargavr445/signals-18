@@ -1,7 +1,7 @@
 import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
-import { Result } from '../../Models/VehiclesI';
-import { CartService } from '../../../commons/services/communication/cart.service';
 import { Router } from '@angular/router';
+import { CartService } from '../../../commons/services/communication/cart.service';
+import { Result } from '../../Models/VehiclesI';
 
 @Component({
   selector: 'app-vehicle-card',
