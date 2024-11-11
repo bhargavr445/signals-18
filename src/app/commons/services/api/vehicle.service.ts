@@ -17,11 +17,11 @@ function _filter<T>() {
 })
 export class VehicleService {
 
-  http = inject( HttpClient);
+  #http = inject( HttpClient);
 
   getVehicleData(vehicleType?: string): Observable<VehiclesResponseI> {
 
-    return this.http.get<VehiclesResponseI>(`https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/${vehicleType ? vehicleType : 'ford'}?format=json`, {
+    return this.#http.get<VehiclesResponseI>(`https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/${vehicleType ? vehicleType : 'ford'}?format=json`, {
       context: new HttpContext().set(skipUrlModification, true)
     })
       .pipe(

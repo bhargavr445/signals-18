@@ -30,23 +30,23 @@ export class CreateCourseComponent implements OnInit {
   data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
 
   
-  udemyService = inject(UdemyService);
-  store = inject(Store<UdemyInitialStateI>);
+  #udemyService = inject(UdemyService);
+  #store = inject(Store<UdemyInitialStateI>);
 
   createCourseForm: FormGroup;
   
-  categorys$  = toSignal(this.store.select(udemySelector.categoryListSelector), {initialValue: []});
-  createdCoursesList$ = this.store.select(udemySelector.createdCoursesListSelector);
-  fetchCreatedCoursesLoading$ = this.store.select(udemySelector.createdCoursesLoadingSelector);
-  createCourseLoading$ = this.store.select(udemySelector.createCourseLoadingSelector);
-  createCourseSuccess$ = this.store.select(udemySelector.createCourseSuccessSelector).pipe(
+  categorys$  = toSignal(this.#store.select(udemySelector.categoryListSelector), {initialValue: []});
+  createdCoursesList$ = this.#store.select(udemySelector.createdCoursesListSelector);
+  fetchCreatedCoursesLoading$ = this.#store.select(udemySelector.createdCoursesLoadingSelector);
+  createCourseLoading$ = this.#store.select(udemySelector.createCourseLoadingSelector);
+  createCourseSuccess$ = this.#store.select(udemySelector.createCourseSuccessSelector).pipe(
     filter(createCourseResponse => createCourseResponse),
     tap(() => this.createCourseForm.reset()))
 
   ngOnInit() {
     this.createForm();
-    this.store.dispatch(udemyActions.fetchCategorysStartAction());
-    this.store.dispatch(udemyActions.fetchAllCreatedCoursesStart());
+    this.#store.dispatch(udemyActions.fetchCategorysStartAction());
+    this.#store.dispatch(udemyActions.fetchAllCreatedCoursesStart());
     this.createCourseSuccess$.subscribe();
   }
 
@@ -58,7 +58,7 @@ export class CreateCourseComponent implements OnInit {
             return of(control.value).pipe(
               filter((value) => !!value),
               delay(300),
-              switchMap((value) => this.udemyService.checkIfIdExists(value).pipe(map((resp) => resp ? { exist: true } : null)))
+              switchMap((value) => this.#udemyService.checkIfIdExists(value).pipe(map((resp) => resp ? { exist: true } : null)))
             );
           }
         ]
@@ -76,7 +76,7 @@ export class CreateCourseComponent implements OnInit {
 
   createCourse(): void {
     if (this.createCourseForm.valid) {
-      this.store.dispatch(udemyActions.createCourseStart({ value: this.createCourseForm.value as CreateCoursePayloadI }))
+      this.#store.dispatch(udemyActions.createCourseStart({ value: this.createCourseForm.value as CreateCoursePayloadI }))
     }
   }
 

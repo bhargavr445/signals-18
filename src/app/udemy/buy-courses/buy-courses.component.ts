@@ -13,7 +13,7 @@ import { CourseI, UpdatedCourseI } from '../interfaces/udemy-i';
 })
 export class BuyCoursesComponent {
 
-  udemyService = inject(UdemyService);
+  #udemyService = inject(UdemyService);
   UnpurchasedCourses$: Observable<UpdatedCourseI[]>;
   selectedCourses: string[] = [];
 
@@ -22,7 +22,7 @@ export class BuyCoursesComponent {
   }
 
   fetchCourses(): Observable<UpdatedCourseI[]> {
-    return this.udemyService.fetchUnpurchasedCourses().pipe(map((response) => this.updatedCourseObjWithIsSelectProp(response.data)));
+    return this.#udemyService.fetchUnpurchasedCourses().pipe(map((response) => this.updatedCourseObjWithIsSelectProp(response.data)));
   }
 
   fetchUnpurchasedCourses(): void {
@@ -45,7 +45,7 @@ export class BuyCoursesComponent {
   }
 
   buyCourses(): void {
-    this.UnpurchasedCourses$ = this.udemyService.purchaseCourses(this.selectedCourses).pipe(
+    this.UnpurchasedCourses$ = this.#udemyService.purchaseCourses(this.selectedCourses).pipe(
       tap(() => this.selectedCourses = []),
       switchMap(() => this.fetchCourses())
     )

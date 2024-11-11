@@ -11,7 +11,7 @@ export class AuthService {
 
   private socket$: WebSocketSubject<any>;
 
-  http = inject(HttpClient);
+  #http = inject(HttpClient);
 
   userProfileS = signal<User>(null);
   userProfileComputed = this.userProfileS.asReadonly();
@@ -30,11 +30,11 @@ export class AuthService {
   }
 
   login(credentials: any): Observable<LoginResponseI> {
-    return this.http.post<LoginResponseI>('login', credentials);
+    return this.#http.post<LoginResponseI>('login', credentials);
   }
 
   logout() {
-    return this.http.get<LoginResponseI>('logoutAll')
+    return this.#http.get<LoginResponseI>('logoutAll')
   }
 
   getStockPrices() {

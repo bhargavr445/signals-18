@@ -18,8 +18,8 @@ import { Datum } from './interfaces/population-responseI';
 })
 export class PopulationComponent implements OnInit {
 
-  as = inject(AuthService)
-  store = inject(Store);
+  #authService = inject(AuthService)
+  #store = inject(Store);
   tableheaders = signal([
     { label: 'Country Name', key: 'Nation', },
     { label: 'Year', key: 'Year', },
@@ -27,18 +27,18 @@ export class PopulationComponent implements OnInit {
     { label: 'Increase/Descrease in %', key: 'diff' }
   ]);
 
-  payload$ = this.store.select(selectors.populationDataPayloadSelector);
-  dataList$: Observable<Datum[]> = this.store.select(selectors.populationDataResponseSelector).pipe(
+  payload$ = this.#store.select(selectors.populationDataPayloadSelector);
+  dataList$: Observable<Datum[]> = this.#store.select(selectors.populationDataResponseSelector).pipe(
     filter((d => !!d)),
     map((resp) => this.calculateIncreasePercentage(resp.data)),
   );
-  isLoading$ = this.store.select(selectors.populationDataLoadingStatusSelector);
+  isLoading$ = this.#store.select(selectors.populationDataLoadingStatusSelector);
 
   ngOnInit(): void {
-    this.store.dispatch(actions.fetchPopulationDataStartAction({ value: 'United States' }));
+    this.#store.dispatch(actions.fetchPopulationDataStartAction({ value: 'United States' }));
 
     combineLatest([
-      this.as.userProfileSub$
+      this.#authService.userProfileSub$
     ]).subscribe(d => console.log(d))
   }
 

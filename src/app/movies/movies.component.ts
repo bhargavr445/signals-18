@@ -19,7 +19,7 @@ export class MoviesComponent {
   isMoviesLoading = signal(false);
   //#endregion
 
-  moviesService = inject(MoviesService);
+  #moviesService = inject(MoviesService);
 
   constructor() {
     this.fetchMovies();
@@ -27,7 +27,7 @@ export class MoviesComponent {
 
   fetchMovies() {
     this.isMoviesLoading.set(true);
-    this.moviesService.fetchMoviesFromApi().subscribe(
+    this.#moviesService.fetchMoviesFromApi().subscribe(
       (resp) => { 
         this.moviesResponse.set(resp);
         this.isMoviesLoading.set(false);

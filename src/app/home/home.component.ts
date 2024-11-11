@@ -14,7 +14,7 @@ import { DestroyComponent } from '../destroy/destroy.component';
 })
 export class HomeComponent extends DestroyComponent implements OnInit {
 
-  vehicleService = inject(VehicleService);
+  #vehicleService = inject(VehicleService);
   form: FormGroup;
 
   constructor(df: DestroyRef) {
@@ -30,7 +30,7 @@ export class HomeComponent extends DestroyComponent implements OnInit {
     .pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(() =>  this.vehicleService.getVehicleData('').pipe(catchError((error) => throwError(() => ({...error, errorFrom: 'API call 1'})))))
+      switchMap(() =>  this.#vehicleService.getVehicleData('').pipe(catchError((error) => throwError(() => ({...error, errorFrom: 'API call 1'})))))
     ).subscribe((value) => {
       console.log(value);
     });

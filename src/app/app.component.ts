@@ -23,7 +23,7 @@ import { HeaderComponent } from './header/header.component';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  udemyService = inject(UdemyService)
+  #udemyService = inject(UdemyService)
   id = new BehaviorSubject<number>(0);
   id$ = this.id.asObservable();
   sub$ = new Subject<boolean>();
@@ -98,8 +98,8 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log(queryParams);
   }
 
-  authService = inject(AuthService);
-  modalService = inject(ModalService);
+  #authService = inject(AuthService);
+  #modalService = inject(ModalService);
   title = 'signals-18';
   counter = signal(0);
   showCounter = signal(false);
@@ -108,7 +108,7 @@ export class AppComponent implements OnInit, OnDestroy {
   });
 
   showModal() {
-    const compRef = this.modalService.dynamicComponentOnDOM();
+    const compRef = this.#modalService.dynamicComponentOnDOM();
     compRef.openModal({
       content: 'Are you sure that you want to remove this item from Cart?',
       primaryButton: 'Cancel',
@@ -137,7 +137,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authService.logout().subscribe()
+    this.#authService.logout().subscribe()
     sessionStorage.clear();
   }
 

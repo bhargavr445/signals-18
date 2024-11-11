@@ -33,16 +33,15 @@ export class HeaderComponent {
     { label: 'Udemy', navigationUrl: '/udemy' }
   ]);
 
-  authService = inject(AuthService);
-  communicationService = inject(CommunicationService);
-  cartService = inject(CartService);
-  router = inject(Router);
+  #authService = inject(AuthService);
+  #cartService = inject(CartService);
+  #router = inject(Router);
 
   userProfileInfo = computed(() => {
-    this.checkIfuserInfoExists(this.authService.userProfileS());
-    return this.authService.userProfileS()
+    this.checkIfuserInfoExists(this.#authService.userProfileS());
+    return this.#authService.userProfileS()
   });
-  noOfItemsInCart = computed(() => this.cartService.vehicleCartReadonlySignal().length);
+  noOfItemsInCart = computed(() => this.#cartService.vehicleCartReadonlySignal().length);
 
   checkIfuserInfoExists(userInfo) {
     if (!userInfo) {
@@ -51,11 +50,11 @@ export class HeaderComponent {
   }
 
   navigateTo(url: string): void {
-    this.router.navigate([url]);
+    this.#router.navigate([url]);
   }
 
   logout() {
-    this.authService.updateUserProfile(null)
+    this.#authService.updateUserProfile(null)
     sessionStorage.clear();
     this.navigateTo('login')
   }

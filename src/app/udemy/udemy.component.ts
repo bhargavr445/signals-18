@@ -15,10 +15,10 @@ import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 
 export class UdemyComponent {
 
-  authService = inject(AuthService);
+  #authService = inject(AuthService);
   data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
 
-  role = computed(() => this.#checkForInstructorRole(this.authService.userProfileComputed()?.role));
+  role = computed(() => this.#checkForInstructorRole(this.#authService.userProfileComputed()?.role));
 
   #udemyMenu: NavMenuItem[] = [
     { label: 'Add Course', path: '/udemy/add', isActive: false, role: 'U_INSTRUCTOR' },

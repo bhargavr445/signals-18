@@ -4,10 +4,7 @@ import { spinnerInterceptor } from '../interceptor/spinner.interceptor';
 
 export const authGuard: CanActivateFn = (route, state) => {
 
-  let sp = inject(spinnerInterceptor);
- const  checkIfSpinnerIsActive = () => {
-  
-  }
+
   return true;
 };
 
