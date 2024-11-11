@@ -7,11 +7,12 @@ import * as selectors from '../../app/app-store/app.selector';
 import { TableComponent } from '../commons/components/table/table.component';
 import { AuthService } from '../commons/services/api/auth.service';
 import { Datum } from './interfaces/population-responseI';
+import { TableSkeletonComponent } from '../commons/components/table-skeleton/table-skeleton.component';
 
 @Component({
   selector: 'app-population',
   standalone: true,
-  imports: [AsyncPipe, TableComponent],
+  imports: [AsyncPipe, TableComponent, TableSkeletonComponent],
   templateUrl: './population.component.html',
   styleUrl: './population.component.scss'
 })

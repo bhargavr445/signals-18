@@ -5,8 +5,23 @@ import { Component, input } from '@angular/core';
   selector: 'u-label',
   standalone: true,
   imports: [NgClass],
-  templateUrl: './u-label.component.html',
-  styleUrl: './u-label.component.scss'
+  template: `
+  <label 
+    [for]="for()"
+    [ngClass]="{'label-error': isInValid()}">
+    <ng-content></ng-content>
+  </label>`,
+  styles: `
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.label-error {
+    color: red ;
+}
+  `
 })
 export class ULabelComponent {
 

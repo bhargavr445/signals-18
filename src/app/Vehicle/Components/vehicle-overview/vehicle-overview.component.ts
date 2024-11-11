@@ -25,10 +25,10 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
           <div>No Records Found...</div>
           }
 
-          @defer(when filteredRecords().length > 0) {
+          @defer (on viewport) {
             <app-defer />
           } @placeholder {
-            <div>Place Holder</div>
+            <div>Something is loading...</div>
           }
       } @else {
         <div class="cards-container-vehicles">
