@@ -6,24 +6,22 @@
                 Course ID -- {{data()}}
             </u-label>
             <input type="text" id="course_id" formControlName="course_id" placeholder="Enter Course ID">
-
-            @if(course_id_control.invalid && course_id_control.dirty && course_id_control.hasError('maxlength')) {
+            @if(course_id_control.invalid && course_id_control.dirty) {
             <div class="validation-msg">
+                @if(course_id_control.hasError('maxlength')) {
                 max len is 12.
-            </div>
-            }
-
-            @if(course_id_control.invalid && course_id_control.dirty && course_id_control.hasError('minlength')) {
-            <div class="validation-msg">
+                }
+            
+                @if(course_id_control.hasError('minlength')) {
                 min len is 5.
+                }
+            
+                @if(course_id_control.hasError('required')) {
+                This is a required field.
+                }
             </div>
             }
 
-            @if(course_id_control.invalid && course_id_control.dirty && course_id_control.hasError('required')) {
-            <div class="validation-msg">
-                This is a required field.
-            </div>
-            }
             @if(!course_id_control.valid && course_id_control.hasError('exist')) {
             <div class="validation-msg">
                 This ID already exist.
