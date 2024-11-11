@@ -9,10 +9,10 @@ import { PopulationResponseI } from './interfaces/population-responseI';
 })
 export class PopulationService {
 
-  httpClient = inject(HttpClient)
+  #http = inject(HttpClient)
 
   getPopulation(country: string): Observable<PopulationResponseI> {
-    return this.httpClient.get<PopulationResponseI>('https://datausa.io/api/data?drilldowns=Nation&measures=Population',{
+    return this.#http.get<PopulationResponseI>('https://datausa.io/api/data?drilldowns=Nation&measures=Population',{
       context: new HttpContext().set(skipUrlModification, true)
     });
   }

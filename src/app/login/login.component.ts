@@ -6,7 +6,6 @@ import { filter, interval, map, Subject, takeUntil, zip } from 'rxjs';
 import { RadioButtonsComponent } from '../commons/components/radio-buttons/radio-buttons.component';
 import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 import { AuthService } from '../commons/services/api/auth.service';
-import { CommunicationService } from '../commons/services/communication/communication.service';
 import { LoginResponseI } from './login-response-interface';
 
 @Component({
@@ -25,39 +24,22 @@ export class LoginComponent implements OnInit {
 
   
 
-  authService = inject(AuthService);
+  #authService = inject(AuthService);
   loginApiCallProgress = signal(false);
-  communicationService = inject(CommunicationService);
-  router = inject(Router);
+  #router = inject(Router);
   loginForm: FormGroup;
   unsub = new Subject();
+  counter = signal(0);
+  counter$ = toObservable(this.counter).pipe(map((val) => val*2));
   stocks = toSignal(
-    this.authService.getStockPrices().pipe(map((stockInfo) =>( {...this.stocks(), ...stockInfo}))),
+    this.#authService.getStockPrices().pipe(map((stockInfo) =>( {...this.stocks(), ...stockInfo}))),
     {initialValue: null}
   )
 
-  // todoResource = resource({
-  //   loader: () => this.authService.login({userName: '', password: ''})
-  // });
 
-
-  counter = signal(0);
-
-  counter$ = toObservable(this.counter).pipe(map((val) => val*2));
-
-  constructor() {
-    this.createForm();
-    // this.rxjsScenarios();
-  }
 
   ngOnInit(): void {
-    // this.authService.getStockPrices()
-    // .pipe(takeUntil(this.unsub))
-    // .subscribe(stocksInfo => {
-    //   console.log(stocksInfo);
-      
-    //   this.stocks.update(preev =>  ({...preev, ...stocksInfo}))
-    // })
+    this.createForm();
     this.loginForm.get('role').valueChanges.subscribe(d => console.log(d));
   }
 
@@ -73,7 +55,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginApiCallProgress.set(true);
-    this.authService.login(this.loginForm.getRawValue())
+    this.#authService.login(this.loginForm.getRawValue())
     .subscribe({
       next: (resp: LoginResponseI) => this.handleResponse(resp),
       error: (error) => this.loginApiCallProgress.set(false),
@@ -84,9 +66,9 @@ export class LoginComponent implements OnInit {
 
   handleResponse(resp: LoginResponseI) {
     const { userName, role } = resp.data.user;
-    this.authService.updateUserProfile({ userName, role })
+    this.#authService.updateUserProfile({ userName, role })
     sessionStorage.setItem('TOKEN', resp.data.token);
-    this.router.navigate(['udemy'])
+    this.#router.navigate(['udemy'])
     this.loginApiCallProgress.set(false);
   }
 
@@ -108,7 +90,7 @@ export class LoginComponent implements OnInit {
 
 
   getStocks1() {
-    this.authService.getStockPrices()
+    this.#authService.getStockPrices()
     .pipe(takeUntil(this.unsub))
     .subscribe(stocksInfo => 
       this.stocks.update(preev =>  ({...preev, ...stocksInfo})))
@@ -120,18 +102,3 @@ export class LoginComponent implements OnInit {
 
 
 }
-
-// main.js             | main                          |  28.80 kB | 
-// styles.css          | styles                        |   3.63 kB | 
-// chunk-RDNUWX3H.js   | -                             |   3.60 kB | 
-// chunk-JH7DFIUV.js   | -                             |   1.96 kB | 
-// chunk-LACGZ4NR.js   | -                             |   1.95 kB | 
-// chunk-KK2JKVHH.js   | -                             |   1.74 kB | 
-// chunk-AY3MJH7C.js   | -                             |   1.47 kB | 
-// chunk-JHVNSDMN.js   | -                             |   1.43 kB | 
-// chunk-A2AWFSPO.js   | -                             |   1.40 kB | 
-// chunk-YNNGTGMQ.js   | -                             | 983 bytes | 
-// chunk-VUJOFXKG.js   | -                             | 938 bytes | 
-// chunk-TTQJLFAI.js   | -                             | 729 bytes | 
-
-//                     | Initial total                 |  48.61 kB

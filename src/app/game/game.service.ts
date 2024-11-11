@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 export class GameService {
 
 
-  http = inject(HttpClient);
+  #http = inject(HttpClient);
 
   getGamesData(): Observable<any> {
-    return this.http.get('games');
+    return this.#http.get('games');
   }
 
 }

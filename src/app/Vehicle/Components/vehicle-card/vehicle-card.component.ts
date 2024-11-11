@@ -12,9 +12,9 @@ import { Result } from '../../Models/VehiclesI';
 })
 export class VehicleCardComponent {
 
-  router = inject(Router);
+  #router = inject(Router);
 
-  cartService = inject(CartService);
+  #cartService = inject(CartService);
   vehicleInfo = input.required<Result>();
   emitSome = output<string>();
   counter = signal<number>(0);
@@ -33,7 +33,7 @@ export class VehicleCardComponent {
 
   customVehicle = computed(() => {
     const incomingVehicle = this.vehicleInfo();
-    const cartitems = this.cartService.vehicleCartReadonlySignal();
+    const cartitems = this.#cartService.vehicleCartReadonlySignal();
     return {
       ...incomingVehicle,
       isEligibleForAddToCart: this.checkIsEligibleForAddToCart(cartitems)
@@ -53,7 +53,7 @@ export class VehicleCardComponent {
 
   onSelectedItem(vehicleInfo: Result) {
     this.selectedVehicle.set(vehicleInfo);
-    this.cartService.addVehicleToCartSignal(vehicleInfo);
+    this.#cartService.addVehicleToCartSignal(vehicleInfo);
 
   }
 
@@ -63,7 +63,7 @@ export class VehicleCardComponent {
   }
 
   navigateToDetails(vehicleInfo: Result) {
-    this.router.navigate([`vehicle/details/${vehicleInfo.customId}`]);
+    this.#router.navigate([`vehicle/details/${vehicleInfo.customId}`]);
   }
 
 }

@@ -12,7 +12,7 @@ import { UdemyService } from '../../commons/services/api/udemy.service';
 export class PurchaseCoursesComponent implements OnInit {
   
   coursesList = [];
-  udemyService = inject(UdemyService);
+  #udemyService = inject(UdemyService);
   tableheaders = signal([
     { label: 'Title', key: 'title', },
     { label: 'Price', key: 'price', },
@@ -24,7 +24,7 @@ export class PurchaseCoursesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.udemyService.getEnrolledCourses().subscribe(
+    this.#udemyService.getEnrolledCourses().subscribe(
       (resp) => {
         console.log(resp);
         this.coursesList = resp.data

@@ -22,9 +22,9 @@ export class CartComponent implements OnInit {
   })
 
   nameprop = 'Stuname';
-  cartService = inject(CartService);
-  modalService = inject(ModalService);
-  router = inject(Router);
+  #cartService = inject(CartService);
+  #modalService = inject(ModalService);
+  #router = inject(Router);
 
   ngOnInit(): void {
     this.productTypeControl.valueChanges.subscribe( (value) => {
@@ -60,7 +60,7 @@ export class CartComponent implements OnInit {
   itemIdToDelete = signal<string>('');
   
   cartItems = computed(() => {
-    return this.cartService.vehicleCartReadonlySignal()
+    return this.#cartService.vehicleCartReadonlySignal()
   });
 
   removeFromCart(item: Result) {
@@ -69,11 +69,11 @@ export class CartComponent implements OnInit {
   }
 
   handleCloseType(type: ToggleCloseTypes) {
-    type === ModalConstants.confirmClick ? this.cartService.removeitemFromCart(this.itemIdToDelete()) : this.itemIdToDelete.set('');
+    type === ModalConstants.confirmClick ? this.#cartService.removeitemFromCart(this.itemIdToDelete()) : this.itemIdToDelete.set('');
   }
 
   navigateToVehicles() {
-    this.router.navigate(['vehicle'])
+    this.#router.navigate(['vehicle'])
   }
 
   selectedOptionEvent(event) {
@@ -81,7 +81,7 @@ export class CartComponent implements OnInit {
   }
 
   showModal() {
-    const compRef = this.modalService.dynamicComponentOnDOM();
+    const compRef = this.#modalService.dynamicComponentOnDOM();
     compRef.openModal({
       content: 'Are you sure that you want to remove this item from Cart?',
       primaryButton: 'Cancel',

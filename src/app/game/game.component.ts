@@ -11,8 +11,7 @@ import { GameService } from './game.service';
 })
 export class GameComponent {
 
-  gameService = inject(GameService);
-  cdr = inject(ChangeDetectorRef);
+  #gameService = inject(GameService);
   gamesList = signal<any>([]);
   paginatedRecords = signal<any[]>([]);
   isLoading = signal(false);
@@ -20,7 +19,7 @@ export class GameComponent {
   constructor() {
     this.isLoading.set(true);
     // this.gamesList.set(toSignal(this.gameService.getGamesData().pipe(map((resp) => resp['data'])), {initialValue: []}));
-    this.gameService.getGamesData().subscribe(
+    this.#gameService.getGamesData().subscribe(
       (resp) => {
         console.log(resp);
 

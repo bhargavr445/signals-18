@@ -16,14 +16,14 @@ import { Result } from '../Vehicle/Models/VehiclesI';
 })
 export class StoreComponent implements OnInit {
 
-  store = inject(Store);
+  #store = inject(Store);
   searchTextControl = new FormControl('');
 
-  apiResp$ = this.store.select(apiResultsSelector).pipe(tap((d) => console.log(d)));
-  apiLoading$ = this.store.select(apiLoadingSelector).pipe(tap((d) => console.log(d)));
-  // data$ = this.store.select(testDataSelector);
+  apiResp$ = this.#store.select(apiResultsSelector).pipe(tap((d) => console.log(d)));
+  apiLoading$ = this.#store.select(apiLoadingSelector).pipe(tap((d) => console.log(d)));
+  // data$ = this.#store.select(testDataSelector);
   filteredRecords$: Observable<any>
-  x$ = this.store.select(testDataSelector).pipe(tap((d) => console.log(d)));
+  x$ = this.#store.select(testDataSelector).pipe(tap((d) => console.log(d)));
 
   constructor() {
 
@@ -46,7 +46,7 @@ export class StoreComponent implements OnInit {
       debounceTime(1000),
       distinctUntilChanged()
     )
-    this.store.dispatch(testAct({value: {id: 10, name: 'Bhargav'}}));
+    this.#store.dispatch(testAct({value: {id: 10, name: 'Bhargav'}}));
     this.filteredRecords$ = combineLatest([
       this.apiResp$.pipe(map(d => d?.Results ?? [])),
       searchTextControl$

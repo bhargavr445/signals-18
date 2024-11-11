@@ -59,7 +59,7 @@ export class VehicleOverviewComponent {
   isDataLoading = false;
   filterText = signal('');
   filteredRecords = computed(() => this.filterRecords(this.filterText()));
-  vehicleService = inject(VehicleService);
+  #vehicleService = inject(VehicleService);
   response = signal<VehiclesResponseI>({ Count: null, Message: '', SearchCriteria: '', Results: [] });
   vehicleApiFailed = signal(false);
 
@@ -85,7 +85,7 @@ export class VehicleOverviewComponent {
 
   fetchData() {
     this.vehicleApiFailed.set(false);
-    this.vehicleService.getVehicleData('')
+    this.#vehicleService.getVehicleData('')
       .subscribe({
         next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
         error: (err) => this.handleError(err)

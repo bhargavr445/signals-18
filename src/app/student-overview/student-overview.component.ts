@@ -25,7 +25,7 @@ export class StudentOverviewComponent {
 
   isLoading = signal<boolean>(false);
   response = signal<VehiclesResponseI>({ Count: null, Message: '', SearchCriteria: '', Results: [] });
-  vehicleService = inject(VehicleService);
+  #vehicleService = inject(VehicleService);
   countryList: string[] = [
     "Brazil",
     "United Kingdom",
@@ -47,7 +47,7 @@ export class StudentOverviewComponent {
   }
 
   #getVehiclesData(vehicleType: string) {
-    this.vehicleService.getVehicleData(vehicleType)
+    this.#vehicleService.getVehicleData(vehicleType)
       .subscribe({
         next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
         error: (err) => this.handleError(err)

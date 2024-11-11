@@ -10,7 +10,6 @@ import { AuthService } from '../commons/services/api/auth.service';
 })
 export class DestroyComponent {
 
-  ser = inject(AuthService)
   constructor(public df: DestroyRef) {
 
   }
