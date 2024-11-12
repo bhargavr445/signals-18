@@ -13,6 +13,4 @@ export class TableComponent {
   dataList = input.required<any[]>();
   tableHeaders = input.required<any[]>();
 
-
-
 }

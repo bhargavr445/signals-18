@@ -10,6 +10,7 @@ export interface Datum {
     Year:          string;
     Population:    number;
     "Slug Nation": string;
+    percentageDifference?: any
 }
 
 
