@@ -1,4 +1,4 @@
-import { Component, signal, CUSTOM_ELEMENTS_SCHEMA, input, computed, Output, EventEmitter } from '@angular/core';
+import { Component, signal, CUSTOM_ELEMENTS_SCHEMA, input, computed, Output, EventEmitter, OnInit } from '@angular/core';
 import { Result } from '../../Vehicle/Models/VehiclesI';
 import { reusableImports } from '../../imports.constants';
 import { NgClass } from '@angular/common';
@@ -11,7 +11,8 @@ import { NgClass } from '@angular/common';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
+
 
   tableHeaders = signal([
     { label: 'Type', key: 'MakeName', styleClass: ['customFont'] },
@@ -39,10 +40,16 @@ export class TableComponent {
 
   filteredTableData = computed(() => this.filterRecords(this.filterValue(), this.tableData()));
 
+  ngOnInit(): void {
+    this.selectedOptionEvent({detail: this.cars[0]})
+  }
+
+
+
 
 
   filterRecords(text: string, list: Result[]) {
-    return list.filter((vehiclle) => ['MakeName', 'VehicleTypeName'].some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
+    return list?.filter((vehiclle) => ['MakeName', 'VehicleTypeName'].some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
   }
 
   checkFormatchingString(data: string, text: string): boolean {
@@ -55,6 +62,8 @@ export class TableComponent {
   }
 
   selectedOptionEvent(event) {
+    console.log('bfghjfgh');
+    
     this.dropDownSelection.emit(event.detail['value']);
   }
 

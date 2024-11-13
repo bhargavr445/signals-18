@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, Signal, inject } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, Signal, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
@@ -13,13 +13,17 @@ import { CreateCoursePayloadI } from '../interfaces/udemy-i';
 import * as udemyActions from '../store/udemy.actions';
 import { UdemyInitialStateI } from '../store/udemy.reducer';
 import * as udemySelector from '../store/udemy.selectors';
+import { ValidationMessages as vm } from '../../commons/constants/validation.constants';
+import { TableHeaderComponent } from '../../commons/components/table-header/table-header.component';
+
 
 @Component({
   selector: 'create-course',
   standalone: true,
   imports: [
     AsyncPipe, ULabelComponent, 
-    FormsModule, ReactiveFormsModule, CreatedCoursesListComponent, TableSkeletonComponent
+    FormsModule, ReactiveFormsModule, TableHeaderComponent,
+    CreatedCoursesListComponent, TableSkeletonComponent
   ],
   templateUrl: './create-course.component.html',
   styleUrl: './create-course.component.scss',
@@ -29,6 +33,10 @@ export class CreateCourseComponent implements OnInit {
 
   data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
 
+
+  validations = signal([vm.maxLength, vm.minLength, vm.required]);
+
+
   
   #udemyService = inject(UdemyService);
   #store = inject(Store<UdemyInitialStateI>);
@@ -36,8 +44,8 @@ export class CreateCourseComponent implements OnInit {
   createCourseForm: FormGroup;
   
   categorys$  = toSignal(this.#store.select(udemySelector.categoryListSelector), {initialValue: []});
-  createdCoursesList$ = this.#store.select(udemySelector.createdCoursesListSelector);
-  fetchCreatedCoursesLoading$ = this.#store.select(udemySelector.createdCoursesLoadingSelector);
+  createdCoursesList = toSignal(this.#store.select(udemySelector.createdCoursesListSelector));
+  fetchCreatedCoursesLoading = toSignal(this.#store.select(udemySelector.createdCoursesLoadingSelector), {initialValue: false});
   createCourseLoading$ = this.#store.select(udemySelector.createCourseLoadingSelector);
   createCourseSuccess$ = this.#store.select(udemySelector.createCourseSuccessSelector).pipe(
     filter(createCourseResponse => createCourseResponse),
