@@ -83,3 +83,17 @@ label {
         margin: 0;
     }
 }
+
+.custom-input {
+    border: 1px solid #ccc; /* Default border */
+    padding: 8px;
+    border-radius: 4px;
+    transition: border 0.3s ease; /* Smooth transition */
+    width: 20px;
+  }
+  
+  .custom-input:hover {
+    border-color: currentColor; /* New border color on hover */
+    border-width: 2px; /* New border width on hover */
+    // padding: 8px;
+  }

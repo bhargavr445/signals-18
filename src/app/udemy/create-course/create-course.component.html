@@ -8,16 +8,10 @@
             <input type="text" id="course_id" formControlName="course_id" placeholder="Enter Course ID">
             @if(course_id_control.invalid && course_id_control.dirty) {
             <div class="validation-msg">
-                @if(course_id_control.hasError('maxlength')) {
-                max len is 12.
-                }
-            
-                @if(course_id_control.hasError('minlength')) {
-                min len is 5.
-                }
-            
-                @if(course_id_control.hasError('required')) {
-                This is a required field.
+                @for (item of validations(); track item.validationTypekey) {
+                    @if(course_id_control.hasError(item.validationTypekey)) {
+                        {{item.message}}
+                    }
                 }
             </div>
             }
@@ -56,10 +50,12 @@
         'Create Course'}}</button>
 </form>
 <div>
-    @let coursesList = createdCoursesList$ | async;
-    @let isCoursesListLoading = !(fetchCreatedCoursesLoading$ | async);
-    @if(coursesList?.length > 0 && isCoursesListLoading) {
-    <created-courses-list [createdCoursesList]="coursesList" />
+    @if(createdCoursesList()?.length > 0 && !fetchCreatedCoursesLoading()) {
+        <div class="mar-t-10">
+            <table-header  [headerText]="'Courses Created By you'"/>
+
+        </div>
+    <created-courses-list [createdCoursesList]="createdCoursesList()" />
     } @else {
     <table-skeleton />
     }

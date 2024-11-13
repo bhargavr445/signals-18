@@ -10,6 +10,9 @@
          <div style="margin-top: 20px;">
              Ethereum: {{stocks()?.ethereum}}
          </div>
+
+<input type="text" class="custom-input" placeholder="Hover over me">
+
         <form [formGroup]="loginForm" id="log_in" (ngSubmit)="login()">
             <div class="form-group" id="userName-sec">
                 @let userNameControl = loginForm.get('userName');
@@ -46,3 +49,5 @@
         </form>
     </div>
 </div>
+
+
