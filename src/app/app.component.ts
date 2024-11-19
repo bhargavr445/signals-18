@@ -9,17 +9,16 @@ import { UdemyService } from './commons/services/api/udemy.service';
 import { HeaderComponent } from './header/header.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    AsyncPipe, 
-    RouterOutlet, 
-    HeaderComponent, 
-    ModalHostComponent
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [
+        AsyncPipe,
+        RouterOutlet,
+        HeaderComponent,
+        ModalHostComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit, OnDestroy {
 

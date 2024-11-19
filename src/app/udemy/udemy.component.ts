@@ -4,11 +4,10 @@ import { AuthService } from '../commons/services/api/auth.service';
 import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 
 @Component({
-  selector: 'app-udemy',
-  standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
-  templateUrl: './udemy.component.html',
-  styleUrl: './udemy.component.scss'
+    selector: 'app-udemy',
+    imports: [RouterOutlet, RouterLink, RouterLinkActive],
+    templateUrl: './udemy.component.html',
+    styleUrl: './udemy.component.scss'
 })
 
 export class UdemyComponent {

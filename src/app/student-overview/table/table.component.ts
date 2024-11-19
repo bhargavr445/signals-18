@@ -4,12 +4,11 @@ import { reusableImports } from '../../imports.constants';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-table',
-  standalone: true,
-  imports: [...reusableImports],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+    selector: 'app-table',
+    imports: [...reusableImports],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './table.component.html',
+    styleUrl: './table.component.scss'
 })
 export class TableComponent implements OnInit {
 

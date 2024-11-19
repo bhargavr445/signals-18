@@ -2,16 +2,15 @@ import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'u-label',
-  standalone: true,
-  imports: [NgClass],
-  template: `
+    selector: 'u-label',
+    imports: [NgClass],
+    template: `
   <label 
     [for]="for()"
     [ngClass]="{'label-error': isInValid()}">
     <ng-content></ng-content>
   </label>`,
-  styles: `
+    styles: `
   label {
     display: block;
     font-weight: bold;

@@ -4,12 +4,11 @@ import { TableComponent } from '../../../commons/components/table/table.componen
 import { UniversityListI } from '../../interfaces/UniversityListI';
 
 @Component({
-  selector: 'app-university-table',
-  standalone: true,
-  imports: [FormsModule, TableComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './university-table.component.html',
-  styleUrl: './university-table.component.scss'
+    selector: 'app-university-table',
+    imports: [FormsModule, TableComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './university-table.component.html',
+    styleUrl: './university-table.component.scss'
 })
 export class UniversityTableComponent {
 

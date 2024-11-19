@@ -9,11 +9,10 @@ import { AuthService } from '../commons/services/api/auth.service';
 import { LoginResponseI } from './login-response-interface';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ULabelComponent, RadioButtonsComponent],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+    selector: 'app-login',
+    imports: [FormsModule, ReactiveFormsModule, ULabelComponent, RadioButtonsComponent],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
 

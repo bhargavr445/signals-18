@@ -2,12 +2,11 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-dropdown',
-  standalone: true,
-  imports: [],
-  templateUrl: './dropdown.component.html',
-  styleUrl: './dropdown.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-dropdown',
+    imports: [],
+    templateUrl: './dropdown.component.html',
+    styleUrl: './dropdown.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DropdownComponent {
 

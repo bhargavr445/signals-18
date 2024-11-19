@@ -8,10 +8,9 @@ import { DeferComponent } from '../defer/defer.component';
 import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 
 @Component({
-  selector: 'vehicle-overview',
-  standalone: true,
-  imports: [VehicleCardComponent, FormsModule, FilterComponent, DeferComponent],
-  template: `
+    selector: 'vehicle-overview',
+    imports: [VehicleCardComponent, FormsModule, FilterComponent, DeferComponent],
+    template: `
      <div class="main">
       @if(!vehicleApiFailed()) {
         <div class="pad-t-10">

@@ -3,11 +3,9 @@ import { ModalContainerDirective } from '../../directives/modal-container.direct
 import { ModalService } from '../../services/api/modal.service';
 
 @Component({
-  selector: 'app-modal-host',
-  standalone: true,
-  imports: [ModalContainerDirective],
-  template: `<ng-container appModalContainer></ng-container>`,
-
+    selector: 'app-modal-host',
+    imports: [ModalContainerDirective],
+    template: `<ng-container appModalContainer></ng-container>`
 })
 export class ModalHostComponent {
   @ViewChild(ModalContainerDirective) modalHost: ModalContainerDirective;

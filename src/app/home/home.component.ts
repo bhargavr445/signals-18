@@ -6,11 +6,10 @@ import { VehicleService } from '../commons/services/api/vehicle.service';
 import { DestroyComponent } from '../destroy/destroy.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    imports: [FormsModule, ReactiveFormsModule, NgIf],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent extends DestroyComponent implements OnInit {
 

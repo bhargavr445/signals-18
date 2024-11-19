@@ -8,11 +8,10 @@ import { apiLoadingSelector, apiResultsSelector, testDataSelector } from '../app
 import { Result } from '../Vehicle/Models/VehiclesI';
 
 @Component({
-  selector: 'app-store',
-  standalone: true,
-  imports: [AsyncPipe, FormsModule, ReactiveFormsModule],
-  templateUrl: './store.component.html',
-  styleUrl: './store.component.scss'
+    selector: 'app-store',
+    imports: [AsyncPipe, FormsModule, ReactiveFormsModule],
+    templateUrl: './store.component.html',
+    styleUrl: './store.component.scss'
 })
 export class StoreComponent implements OnInit {
 

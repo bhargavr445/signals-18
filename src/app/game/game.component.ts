@@ -2,12 +2,11 @@ import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef, Component, inject, signal } 
 import { GameService } from './game.service';
 
 @Component({
-  selector: 'app-game',
-  standalone: true,
-  imports: [],
-  templateUrl: './game.component.html',
-  styleUrl: './game.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-game',
+    imports: [],
+    templateUrl: './game.component.html',
+    styleUrl: './game.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GameComponent {
 

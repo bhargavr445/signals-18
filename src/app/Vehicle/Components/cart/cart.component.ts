@@ -8,12 +8,11 @@ import { CartService } from '../../../commons/services/communication/cart.servic
 import { Result } from '../../Models/VehiclesI';
 
 @Component({
-  selector: 'app-vehicles-table',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-vehicles-table',
+    imports: [FormsModule],
+    templateUrl: './cart.component.html',
+    styleUrl: './cart.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CartComponent implements OnInit {
 

@@ -6,11 +6,10 @@ import { UdemyService } from '../../commons/services/api/udemy.service';
 import { CourseI, UpdatedCourseI } from '../interfaces/udemy-i';
 
 @Component({
-  selector: 'app-buy-courses',
-  standalone: true,
-  imports: [CurrencyPipe],
-  templateUrl: './buy-courses.component.html',
-  styleUrl: './buy-courses.component.scss'
+    selector: 'app-buy-courses',
+    imports: [CurrencyPipe],
+    templateUrl: './buy-courses.component.html',
+    styleUrl: './buy-courses.component.scss'
 })
 export class BuyCoursesComponent {
 

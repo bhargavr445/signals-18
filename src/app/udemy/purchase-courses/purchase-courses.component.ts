@@ -3,11 +3,10 @@ import { CurrencyPipe } from '@angular/common';
 import { UdemyService } from '../../commons/services/api/udemy.service';
 
 @Component({
-  selector: 'app-purchase-courses',
-  standalone: true,
-  imports: [CurrencyPipe],
-  templateUrl: './purchase-courses.component.html',
-  styleUrl: './purchase-courses.component.scss'
+    selector: 'app-purchase-courses',
+    imports: [CurrencyPipe],
+    templateUrl: './purchase-courses.component.html',
+    styleUrl: './purchase-courses.component.scss'
 })
 export class PurchaseCoursesComponent implements OnInit {
   

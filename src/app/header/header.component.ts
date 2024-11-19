@@ -11,11 +11,10 @@ interface NavI {
 }
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [NgClass, RouterLink, RouterLinkActive, TitleCasePipe],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+    selector: 'app-header',
+    imports: [NgClass, RouterLink, RouterLinkActive, TitleCasePipe],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 

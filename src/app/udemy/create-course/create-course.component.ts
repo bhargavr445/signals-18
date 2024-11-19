@@ -18,16 +18,15 @@ import { TableHeaderComponent } from '../../commons/components/table-header/tabl
 
 
 @Component({
-  selector: 'create-course',
-  standalone: true,
-  imports: [
-    AsyncPipe, ULabelComponent, 
-    FormsModule, ReactiveFormsModule, TableHeaderComponent,
-    CreatedCoursesListComponent, TableSkeletonComponent
-  ],
-  templateUrl: './create-course.component.html',
-  styleUrl: './create-course.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'create-course',
+    imports: [
+        AsyncPipe, ULabelComponent,
+        FormsModule, ReactiveFormsModule, TableHeaderComponent,
+        CreatedCoursesListComponent, TableSkeletonComponent
+    ],
+    templateUrl: './create-course.component.html',
+    styleUrl: './create-course.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CreateCourseComponent implements OnInit {
 

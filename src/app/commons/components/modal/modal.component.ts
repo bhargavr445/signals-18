@@ -2,12 +2,11 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, inject, signal
 import { ToggleCloseTypes } from '../../Interfaces/ModalContentI';
 
 @Component({
-  selector: 'app-modal',
-  standalone: true,
-  imports: [],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-modal',
+    imports: [],
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ModalComponent {
 

@@ -4,12 +4,11 @@ import { MoviesService } from '../commons/services/api/movies.service';
 import { MoviesAPIResponseI, MoviesI } from '../university/interfaces/UniversityListI';
 
 @Component({
-  selector: 'app-movies',
-  standalone: true,
-  imports: [WeeksComponent],
-  templateUrl: './movies.component.html',
-  styleUrl: './movies.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-movies',
+    imports: [WeeksComponent],
+    templateUrl: './movies.component.html',
+    styleUrl: './movies.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MoviesComponent {
 
