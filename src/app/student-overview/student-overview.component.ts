@@ -6,10 +6,9 @@ import { VehiclesResponseI } from '../Vehicle/Models/VehiclesI';
 import { TableComponent } from './table/table.component';
 
 @Component({
-  selector: 'app-student-overview',
-  standalone: true,
-  imports: [TableComponent],
-  template: `
+    selector: 'app-student-overview',
+    imports: [TableComponent],
+    template: `
     @defer (when isLoading()) {
       <app-table [tableData]="response.value()?.Results" (dropDownSelection)=dropDownSelection($event)/>
     } @loading {

@@ -8,11 +8,10 @@ import * as actions from './store/university.actions';
 import { CountryListSelector, UniversityListSelector } from './store/university.selectors';
 
 @Component({
-  selector: 'app-university-overview',
-  standalone: true,
-  imports: [UniversityTableComponent],
-  templateUrl: './university-overview.component.html',
-  styleUrl: './university-overview.component.scss'
+    selector: 'app-university-overview',
+    imports: [UniversityTableComponent],
+    templateUrl: './university-overview.component.html',
+    styleUrl: './university-overview.component.scss'
 })
 export class UniversityOverviewComponent {
 

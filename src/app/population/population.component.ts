@@ -9,10 +9,9 @@ import { TableComponent } from '../commons/components/table/table.component';
 import { Datum } from './interfaces/population-responseI';
 
 @Component({
-  selector: 'app-population',
-  standalone: true,
-  imports: [TableComponent, TableSkeletonComponent],
-  template: `
+    selector: 'app-population',
+    imports: [TableComponent, TableSkeletonComponent],
+    template: `
   <div class="main">
     @if(!isLoading()) {
     <gbr-table [tableHeaders]="tableheaders()" [dataList]="dataList()" />

@@ -2,11 +2,10 @@ import { Component, input, Input } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'radio-buttons',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
-  templateUrl: './radio-buttons.component.html',
-  styleUrl: './radio-buttons.component.scss'
+    selector: 'radio-buttons',
+    imports: [FormsModule, ReactiveFormsModule],
+    templateUrl: './radio-buttons.component.html',
+    styleUrl: './radio-buttons.component.scss'
 })
 
 export class RadioButtonsComponent {

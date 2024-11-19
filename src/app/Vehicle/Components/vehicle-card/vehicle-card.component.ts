@@ -4,11 +4,10 @@ import { CartService } from '../../../commons/services/communication/cart.servic
 import { Result } from '../../Models/VehiclesI';
 
 @Component({
-  selector: 'app-vehicle-card',
-  standalone: true,
-  imports: [],
-  templateUrl: './vehicle-card.component.html',
-  styleUrl: './vehicle-card.component.scss'
+    selector: 'app-vehicle-card',
+    imports: [],
+    templateUrl: './vehicle-card.component.html',
+    styleUrl: './vehicle-card.component.scss'
 })
 export class VehicleCardComponent {
 
