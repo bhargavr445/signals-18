@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
   source2$ = of('Second').pipe(delay(4000));
 
   resp$: Observable<any> = of();
-  name: string = 'Bhargav';
+  name = signal('Bhargav');
 
   constructor() {
     const data = {
@@ -82,7 +82,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   unsub() {
-    this.name = 'boby' 
+    // this.name = 'boby' 
     this.sub$.next(true);
     this.sub$.complete();
     
@@ -134,6 +134,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   incrId() {
     this.id.next(this.id.value+1);
+  }
+
+  changeUerName() {
+    this.name.set(Math.random().toString());
   }
 
   ngOnDestroy(): void {

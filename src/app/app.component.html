@@ -3,12 +3,14 @@
   <p>Hello</p>
 }
 
+<button (click)="changeUerName()">Change User data</button>
+
 <!-- <button (click)="incrId()">Incr</button>
 <button (click)="unsub()">Un Sub</button> -->
 
   <app-header />
 
-  <router-outlet [routerOutletData]="'Bhargav R G'"/>
+  <router-outlet [routerOutletData]="name()"/>
 
 
 
