@@ -3,8 +3,6 @@ import { ROUTER_OUTLET_DATA, RouterLink, RouterLinkActive, RouterOutlet } from '
 import { AuthService } from '../commons/services/api/auth.service';
 import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 
-
-
 @Component({
   selector: 'app-udemy',
   standalone: true,
@@ -17,7 +15,6 @@ export class UdemyComponent {
 
   #authService = inject(AuthService);
   data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
-
   role = computed(() => this.#checkForInstructorRole(this.#authService.userProfileComputed()?.role));
 
   #udemyMenu: NavMenuItem[] = [

@@ -6,12 +6,13 @@ import { ModalService } from './commons/services/api/modal.service';
 import { CartService } from './commons/services/communication/cart.service';
 import { UdemyEffects } from './udemy/store/udemy.effects';
 import { udemyReducer } from './udemy/store/udemy.reducer';
-import { HomeComponent } from './home/home.component';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing') },
-    {   path: 'udemy', 
+    {
+        path: 'udemy',
         loadChildren: () => import('./udemy/udemy.routing'),
         providers: [
             provideState('udemy', udemyReducer),
@@ -19,10 +20,11 @@ export const routes: Routes = [
         ]
     },
     { path: 'student', loadComponent: () => import('./student-overview/student-overview.component').then(c => c.StudentOverviewComponent) },
-    { path: 'cart', loadComponent: () => import('./Vehicle/Components/cart/cart.component').then(c => c.CartComponent), 
-        canActivate: [() => checkCartItemsLength(), () => checkUserRole()] },
-    // { path: 'home', loadComponent: () => import('./home/home.component').then(c => c.HomeComponent) },
-    {path: 'home', component: HomeComponent},
+    {
+        path: 'cart', loadComponent: () => import('./Vehicle/Components/cart/cart.component').then(c => c.CartComponent),
+        canActivate: [() => checkCartItemsLength(), () => checkUserRole()]
+    },
+    { path: 'home', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent) },
     { path: 'store', loadComponent: () => import('./store/store.component').then(c => c.StoreComponent) },
     { path: 'universities', loadComponent: () => import('./university/university-overview.component').then(c => c.UniversityOverviewComponent) },
     { path: 'game', loadComponent: () => import('./game/game.component').then(c => c.GameComponent) },
