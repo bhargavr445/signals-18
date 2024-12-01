@@ -12,11 +12,11 @@ import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 
 export class UdemyComponent {
 
-  #authService = inject(AuthService);
+  readonly #authService = inject(AuthService);
   data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
   role = computed(() => this.#checkForInstructorRole(this.#authService.userProfileComputed()?.role));
 
-  #udemyMenu: NavMenuItem[] = [
+  readonly #udemyMenu: NavMenuItem[] = [
     { label: 'Add Course', path: '/udemy/add', isActive: false, role: 'U_INSTRUCTOR' },
     { label: 'Buy Courses', path: '/udemy/buy', isActive: true },
     { label: 'Purchased Courses', path: '/udemy/purchase', isActive: false },
@@ -24,7 +24,7 @@ export class UdemyComponent {
   ];
 
   #checkForInstructorRole(role: U_ROLES): NavMenuItem[] {
-    return this.#udemyMenu.filter((menu: NavMenuItem) => !!menu?.role ? this.#checkIfRoleIsMatching(menu, role) : true)
+    return this.#udemyMenu.filter((menu: NavMenuItem) => menu?.role ? this.#checkIfRoleIsMatching(menu, role) : true)
   }
 
   #checkIfRoleIsMatching(menu: NavMenuItem, role: U_ROLES): boolean {

@@ -15,6 +15,9 @@ import { LoginResponseI } from './login-response-interface';
     styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
+  
+  private buttonClick$ = new Subject<void>();
+
 
   roles = [
     { label: 'Instructor', key: 'I' },
@@ -40,6 +43,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.loginForm.get('role').valueChanges.subscribe(d => console.log(d));
+    this.buttonClick$.subscribe(d => console.log(d));
+  }
+
+  onButtonClick() {
+    // Emit a value to the Subject when the button is clicked
+    this.buttonClick$.next();
   }
 
   createForm() {
