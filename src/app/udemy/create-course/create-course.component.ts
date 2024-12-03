@@ -14,7 +14,7 @@ import * as udemySelector from '../store/udemy.selectors';
   selector: 'create-course',
   standalone: true,
   imports: [
-    AsyncPipe, ULabelComponent, NgClass, 
+    AsyncPipe, ULabelComponent, 
     FormsModule, ReactiveFormsModule, CreatedCoursesListComponent
   ],
   templateUrl: './create-course.component.html',

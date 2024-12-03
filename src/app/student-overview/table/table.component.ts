@@ -6,7 +6,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [...reusableImports, NgClass],
+  imports: [...reusableImports],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'

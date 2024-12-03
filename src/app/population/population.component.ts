@@ -11,7 +11,7 @@ import { AuthService } from '../commons/services/api/auth.service';
 @Component({
   selector: 'app-population',
   standalone: true,
-  imports: [AsyncPipe, TableComponent, JsonPipe],
+  imports: [AsyncPipe, TableComponent],
   templateUrl: './population.component.html',
   styleUrl: './population.component.scss'
 })
