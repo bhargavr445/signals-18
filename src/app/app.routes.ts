@@ -3,9 +3,14 @@ import { inject } from '@angular/core';
 import { CartService } from './commons/services/communication/cart.service';
 import { ModalService } from './commons/services/api/modal.service';
 import { HomeComponent } from './home/home.component';
+import { UdemyEffects } from './udemy/store/udemy.effects';
+import { udemyReducer } from './udemy/store/udemy.reducer';
+import { MessagingAppWrapperComponent } from './messaging-app-wrapper/messaging-app-wrapper.component';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'messaging', pathMatch: 'full' },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing') },
     { path: 'udemy', loadChildren: () => import('./udemy/udemy.routing') },
     { path: 'student', loadComponent: () => import('./student-overview/student-overview.component').then(c => c.StudentOverviewComponent) },
@@ -18,7 +23,18 @@ export const routes: Routes = [
     { path: 'population', loadComponent: () => import('./population/population.component').then(c => c.PopulationComponent) },
     { path: 'movies', loadComponent: () => import('./movies/movies.component').then(c => c.MoviesComponent) },
     { path: 'login', loadComponent: () => import('./login/login.component').then(c => c.LoginComponent) },
+    { path: 'messaging',component: MessagingAppWrapperComponent },
 ];
+
+function cleanUpmessagingApp() {
+    const platform = platformBrowserDynamic();
+    console.log(platform);
+    
+    if (platform && platform.destroy) {
+        platform.destroy();
+      }
+      return true;
+}
 
 function checkUserRole(): boolean {
     return true

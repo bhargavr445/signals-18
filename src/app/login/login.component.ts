@@ -1,15 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CommunicationService } from '../commons/services/communication/communication.service';
 import { LoginResponseI } from './login-response-interface';
-import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, ULabelComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
