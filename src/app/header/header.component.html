@@ -1,13 +1,13 @@
 <div class="nav-container">
-    @if (userProfileInfo()) {
+    <!-- @if (userProfileInfo()) {
     @let userName = userProfileInfo()?.userName;
-    @let role = userProfileInfo()?.role;
+    @let role = userProfileInfo()?.role; -->
     <nav class="navbar">
         <ul class="menu">
             @for (item of navItems(); track item.label) {
             <li class="menu-item"><a [routerLink]="item.navigationUrl" routerLinkActive="active">{{item.label}}</a></li>
             }
-            @if(userProfileInfo()) {
+            <!-- @if(userProfileInfo()) {
             <li class="menu-item"><a (click)="logout()">Logout</a></li>
             } @else {
             <li class="menu-item"><a routerLink="login" routerLinkActive="active">Login</a></li>
@@ -17,14 +17,14 @@
                     <img src="/assets/shopping-cart-dark.png" alt="Cart" class="cart-icon">
                     <span class="cart-count">{{noOfItemsInCart()}}</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
-        @if(userName) {
+        <!-- @if(userName) {
         <div style="color: white; padding-top: 10px; margin-left: 10px;">
             <div class="user-name-container">Hello, {{userName | titlecase}}</div>
             <div class="user-name-container">{{role.substring(2)| titlecase}}</div>
         </div>
-        }
+        } -->
     </nav>
-    }
+    <!-- } -->
 </div>

@@ -25,12 +25,12 @@ export class HeaderComponent {
     { label: 'Home', navigationUrl: '/home' },
     { label: 'Vehicle', navigationUrl: '/vehicle' },
     { label: 'Student', navigationUrl: '/student' },
-    { label: 'Store', navigationUrl: '/store' },
-    { label: 'Universities', navigationUrl: '/universities' },
-    { label: 'Game', navigationUrl: '/game' },
-    { label: 'Population', navigationUrl: '/population' },
-    { label: 'Movies', navigationUrl: '/movies' },
-    { label: 'Udemy', navigationUrl: '/udemy' },
+    // { label: 'Store', navigationUrl: '/store' },
+    // { label: 'Universities', navigationUrl: '/universities' },
+    // { label: 'Game', navigationUrl: '/game' },
+    // { label: 'Population', navigationUrl: '/population' },
+    // { label: 'Movies', navigationUrl: '/movies' },
+    // { label: 'Udemy', navigationUrl: '/udemy' },
     { label: 'Messaging', navigationUrl: '/messaging' }
   ]);
 
@@ -47,7 +47,7 @@ export class HeaderComponent {
 
   checkIfuserInfoExists(userInfo) {
     if (!userInfo) {
-      this.navigateTo('login');
+      // this.navigateTo('login');
     }
   }
 
@@ -58,7 +58,7 @@ export class HeaderComponent {
   logout() {
     this.authService.updateUserProfile(null)
     sessionStorage.clear();
-    this.navigateTo('login')
+    // this.navigateTo('login')
   }
 
 }

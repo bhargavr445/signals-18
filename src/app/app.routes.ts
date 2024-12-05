@@ -10,7 +10,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'messaging', pathMatch: 'full' },
+    { path: '', redirectTo: 'vehicle', pathMatch: 'full' },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing') },
     { path: 'udemy', loadChildren: () => import('./udemy/udemy.routing') },
     { path: 'student', loadComponent: () => import('./student-overview/student-overview.component').then(c => c.StudentOverviewComponent) },
@@ -22,7 +22,7 @@ export const routes: Routes = [
     { path: 'game', loadComponent: () => import('./game/game.component').then(c => c.GameComponent) },
     { path: 'population', loadComponent: () => import('./population/population.component').then(c => c.PopulationComponent) },
     { path: 'movies', loadComponent: () => import('./movies/movies.component').then(c => c.MoviesComponent) },
-    { path: 'login', loadComponent: () => import('./login/login.component').then(c => c.LoginComponent) },
+    // { path: 'login', loadComponent: () => import('./login/login.component').then(c => c.LoginComponent) },
     { path: 'messaging',component: MessagingAppWrapperComponent },
 ];
 
