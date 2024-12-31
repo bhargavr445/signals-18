@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject, signal, Signal } from '@angular/core';
 import { ROUTER_OUTLET_DATA, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
@@ -12,6 +12,7 @@ import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 
 export class UdemyComponent {
 
+  data1: Signal<number> = signal(1);
   readonly #authService = inject(AuthService);
   data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
   role = computed(() => this.#checkForInstructorRole(this.#authService.userProfileComputed()?.role));
