@@ -1,15 +1,17 @@
 import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { GameService } from './game.service';
+import { GameCardComponent } from './game-card.component';
 
 @Component({
     selector: 'app-game',
-    imports: [],
+    imports: [GameCardComponent],
     templateUrl: './game.component.html',
     styleUrl: './game.component.scss',
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GameComponent {
 
+  articleName = 'Input Signals';
   #gameService = inject(GameService);
   gamesList = signal<any>([]);
   paginatedRecords = signal<any[]>([]);
@@ -33,11 +35,10 @@ export class GameComponent {
     this.paginatedRecords.set(event.detail as any[]);
   }
 
-  handleShortDesc(data: string) {    
-    if(data.length > 80) {
-      return `${data.substring(0,80)}...`
-    }
-    return data
+  selectedGameInfo(event) {
+    
   }
+
+
 
 }

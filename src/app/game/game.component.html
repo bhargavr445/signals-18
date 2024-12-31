@@ -2,18 +2,7 @@
 <div class="main">
     <div class="cards-container">
         @for (item of paginatedRecords(); track $index) {
-        @let thumbnail = item.thumbnail;
-        <div class="card">
-            <img [src]="thumbnail" [alt]="item.title" class="card-image">
-            <div class="card-content">
-                <h2 class="card-title">{{item.title}}</h2>
-                <p class="card-description">{{handleShortDesc(item.short_description)}}</p>
-                <div class="footer-section">
-                    <div class="platform-section">{{item.platform}}</div>
-                    <div><a [href]="item.freetogame_profile_url" target="_blank">Open</a></div>
-                </div>
-            </div>
-        </div>
+            <game-card [item]="item" [articleName]="articleName" (selectedGameInfo)="selectedGameInfo($event)"/>
         } @empty {
         @for(d of [1,2,3]; track $index) {
         <div class="card">
