@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
     const { userName, role } = resp.data.user;
     this.#authService.updateUserProfile({ userName, role })
     sessionStorage.setItem('TOKEN', resp.data.token);
-    this.#router.navigate(['login'])
+    this.#router.navigate(['udemy'])
     this.loginApiCallProgress.set(false);
   }
 

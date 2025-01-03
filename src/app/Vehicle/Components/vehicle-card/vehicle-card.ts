@@ -1,0 +1,68 @@
+import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { CartService } from '../../../commons/services/communication/cart.service';
+import { Result } from '../../Models/VehiclesI';
+
+@Component({
+    selector: 'app-vehicle-card',
+    imports: [],
+    templateUrl: './vehicle-card.html',
+    styleUrl: './vehicle-card.scss'
+})
+export class VehicleCard {
+
+  #router = inject(Router);
+
+  #cartService = inject(CartService);
+  vehicleInfo = input.required<Result>();
+  emitSome = output<string>();
+  counter = signal<number>(0);
+  derivedCounter = computed(() => {
+    // this.counter.set(100)
+    return this.counter() * 2
+  });
+
+  selectedVehicle = signal<Result>({
+    MakeId: null,
+    MakeName: '',
+    VehicleTypeId: null,
+    VehicleTypeName: '',
+    customId: ''
+  });
+
+  customVehicle = computed(() => {
+    const incomingVehicle = this.vehicleInfo();
+    const cartitems = this.#cartService.vehicleCartReadonlySignal();
+    return {
+      ...incomingVehicle,
+      isEligibleForAddToCart: this.checkIsEligibleForAddToCart(cartitems)
+    }
+  })
+
+  checkIsEligibleForAddToCart(cartItems: Result[]): boolean {
+    const found = cartItems.find(item => item.customId === this.vehicleInfo().customId)
+    return !found;
+  }
+
+  constructor() {
+    effect(() => {
+      const ctr = this.counter();
+    })
+  }
+
+  onSelectedItem(vehicleInfo: Result) {
+    this.selectedVehicle.set(vehicleInfo);
+    this.#cartService.addVehicleToCartSignal(vehicleInfo);
+
+  }
+
+  increase() {
+    this.counter.update((previousValue) => previousValue + 1);
+    this.emitSome.emit(this.counter().toString())
+  }
+
+  navigateToDetails(vehicleInfo: Result) {
+    this.#router.navigate([`vehicle/details/${vehicleInfo.customId}`]);
+  }
+
+}

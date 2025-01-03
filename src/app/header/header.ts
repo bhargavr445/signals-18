@@ -1,0 +1,61 @@
+import { NgClass, TitleCasePipe } from '@angular/common';
+import { Component, computed, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../commons/services/api/auth.service';
+import { CartService } from '../commons/services/communication/cart.service';
+import { CommunicationService } from '../commons/services/communication/communication.service';
+
+interface NavI {
+  label: string;
+  navigationUrl: string;
+}
+
+@Component({
+    selector: 'app-header',
+    imports: [NgClass, RouterLink, RouterLinkActive, TitleCasePipe],
+    templateUrl: './header.html',
+    styleUrl: './header.scss'
+})
+export class Header {
+
+  showCartItemsTable = signal<boolean>(false);
+  iscartUrl = signal<boolean>(false);
+  navItems = signal<NavI[]>([
+    { label: 'Home', navigationUrl: '/home' },
+    { label: 'Game', navigationUrl: '/game' },
+    { label: 'Vehicle', navigationUrl: '/vehicle' },
+    { label: 'Student', navigationUrl: '/student' },
+    { label: 'Store', navigationUrl: '/store' },
+    { label: 'Universities', navigationUrl: '/universities' },
+    { label: 'Population', navigationUrl: '/population' },
+    { label: 'Movies', navigationUrl: '/movies' },
+    { label: 'Udemy', navigationUrl: '/udemy' }
+  ]);
+
+  #authService = inject(AuthService);
+  #cartService = inject(CartService);
+  #router = inject(Router);
+
+  userProfileInfo = computed(() => {
+    this.checkIfuserInfoExists(this.#authService.userProfileS());
+    return this.#authService.userProfileS()
+  });
+  noOfItemsInCart = computed(() => this.#cartService.vehicleCartReadonlySignal().length);
+
+  checkIfuserInfoExists(userInfo) {
+    if (!userInfo) {
+      this.navigateTo('login');
+    }
+  }
+
+  navigateTo(url: string): void {
+    this.#router.navigate([url]);
+  }
+
+  logout() {
+    this.#authService.updateUserProfile(null)
+    sessionStorage.clear();
+    this.navigateTo('login')
+  }
+
+}

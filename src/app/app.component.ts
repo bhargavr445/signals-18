@@ -6,14 +6,14 @@ import { ModalHostComponent } from './commons/components/modal-host/modal-host.c
 import { AuthService } from './commons/services/api/auth.service';
 import { ModalService } from './commons/services/api/modal.service';
 import { UdemyService } from './commons/services/api/udemy.service';
-import { HeaderComponent } from './header/header.component';
+import { Header } from './header/header';
 
 @Component({
     selector: 'app-root',
     imports: [
         AsyncPipe,
         RouterOutlet,
-        HeaderComponent,
+        Header,
         ModalHostComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
