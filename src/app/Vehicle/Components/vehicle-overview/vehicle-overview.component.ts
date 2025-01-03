@@ -24,11 +24,11 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
           <div>No Records Found...</div>
           }
 
-          @defer (on viewport) {
+          <!-- @defer (on viewport) {
             <app-defer />
           } @placeholder {
             <div>Something is loading...</div>
-          }
+          } -->
       } @else {
         <div class="cards-container-vehicles">
         @for(d of [1,2,3,4,5,6]; track $index) {
