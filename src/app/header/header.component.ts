@@ -22,14 +22,14 @@ export class HeaderComponent {
   iscartUrl = signal<boolean>(false);
   navItems = signal<NavI[]>([
     { label: 'Home', navigationUrl: '/home' },
-    { label: 'Vehicle', navigationUrl: '/vehicle' },
-    { label: 'Student', navigationUrl: '/student' },
-    { label: 'Store', navigationUrl: '/store' },
-    { label: 'Universities', navigationUrl: '/universities' },
     { label: 'Game', navigationUrl: '/game' },
-    { label: 'Population', navigationUrl: '/population' },
-    { label: 'Movies', navigationUrl: '/movies' },
-    { label: 'Udemy', navigationUrl: '/udemy' }
+    { label: 'Vehicle', navigationUrl: '/vehicle' },
+    // { label: 'Student', navigationUrl: '/student' },
+    // { label: 'Store', navigationUrl: '/store' },
+    // { label: 'Universities', navigationUrl: '/universities' },
+    // { label: 'Population', navigationUrl: '/population' },
+    // { label: 'Movies', navigationUrl: '/movies' },
+    // { label: 'Udemy', navigationUrl: '/udemy' }
   ]);
 
   #authService = inject(AuthService);
