@@ -4,12 +4,10 @@ import { interval, map } from 'rxjs';
 import { FilterComponent } from '../../../commons/components/filter/filter.component';
 import { VehicleService } from '../../../commons/services/api/vehicle.service';
 import { VehiclesResponseI } from '../../Models/VehiclesI';
-import { DeferComponent } from '../defer/defer.component';
 import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 
 @Component({
-    selector: 'vehicle-overview',
-    imports: [VehicleCardComponent, FormsModule, FilterComponent, DeferComponent],
+    imports: [VehicleCardComponent, FormsModule, FilterComponent],
     template: `
      <div class="main">
       @if(!vehicleApiFailed()) {
@@ -18,7 +16,7 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
      </div>
       @if( filteredRecords().length > 0) {
         @for (item of filteredRecords(); track $index) {
-            <app-vehicle-card [vehicleInfo]="item"  (emitSome)="emitSome($event)"/>
+            <VehicleCard [vehicleInfo]="item"  (emitSome)="emitSome($event)"/>
 
           } @empty {
           <div>No Records Found...</div>
@@ -91,7 +89,23 @@ export class VehicleOverviewComponent {
       });
   }
 
-  handleSuccess(resp: VehiclesResponseI) {    
+  handleSuccess(resp: VehiclesResponseI) { 
+    const vehiclesArray = resp.Results;
+    for (let mainIndex = 0; mainIndex < vehiclesArray.length; mainIndex++) {
+      for (let index = mainIndex+1; index < vehiclesArray.length; index++) {
+        debugger;
+        const vehicleFormUnSortedList = vehiclesArray[mainIndex];
+        const vehicleFromSubLoop =  vehiclesArray[index];
+
+        if(parseInt(vehicleFormUnSortedList.customId) < parseInt(vehicleFromSubLoop.customId)) {
+          const temp = vehicleFormUnSortedList;
+          vehiclesArray[mainIndex] = vehicleFromSubLoop;
+          vehiclesArray[index] = temp;
+        } 
+      }
+      
+    }   
+    console.log(vehiclesArray)
     this.response.set(resp);
   }
 

@@ -24,12 +24,12 @@ export class HeaderComponent {
     { label: 'Home', navigationUrl: '/home' },
     { label: 'Game', navigationUrl: '/game' },
     { label: 'Vehicle', navigationUrl: '/vehicle' },
-    // { label: 'Student', navigationUrl: '/student' },
-    // { label: 'Store', navigationUrl: '/store' },
-    // { label: 'Universities', navigationUrl: '/universities' },
-    // { label: 'Population', navigationUrl: '/population' },
-    // { label: 'Movies', navigationUrl: '/movies' },
-    // { label: 'Udemy', navigationUrl: '/udemy' }
+    { label: 'Student', navigationUrl: '/student' },
+    { label: 'Store', navigationUrl: '/store' },
+    { label: 'Universities', navigationUrl: '/universities' },
+    { label: 'Population', navigationUrl: '/population' },
+    { label: 'Movies', navigationUrl: '/movies' },
+    { label: 'Udemy', navigationUrl: '/udemy' }
   ]);
 
   #authService = inject(AuthService);

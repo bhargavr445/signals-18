@@ -3,7 +3,6 @@ import { GameService } from './game.service';
 import { GameCardComponent } from './game-card.component';
 
 @Component({
-    selector: 'app-game',
     imports: [GameCardComponent],
     templateUrl: './game.component.html',
     styleUrl: './game.component.scss',
