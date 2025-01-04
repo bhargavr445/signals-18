@@ -1,20 +1,17 @@
-import { NgIf } from '@angular/common';
 import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { catchError, debounceTime, distinctUntilChanged, filter, map, of, switchMap, throwError } from 'rxjs';
+import { fetchPopulationDataStartAction } from '../app-store/app.actions';
+import * as selectors from '../app-store/app.selector';
 import { VehicleService } from '../commons/services/api/vehicle.service';
 import { DestroyComponent } from '../destroy/destroy.component';
-import { Store } from '@ngrx/store';
 import { Datum } from '../population/interfaces/population-responseI';
-import { toSignal } from '@angular/core/rxjs-interop';
-import * as selectors from '../app-store/app.selector';
-import { fetchPopulationDataStartAction } from '../app-store/app.actions';
-import { TableComponent } from "../commons/components/table/table.component";
-import { TableSkeletonComponent } from "../commons/components/table-skeleton/table-skeleton.component";
 
 @Component({
     selector: 'app-home',
-    imports: [FormsModule, ReactiveFormsModule, NgIf, TableComponent, TableSkeletonComponent],
+    imports: [FormsModule, ReactiveFormsModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })

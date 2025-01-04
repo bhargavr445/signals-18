@@ -4,7 +4,7 @@ import { CartService } from '../../../commons/services/communication/cart.servic
 import { Result } from '../../Models/VehiclesI';
 
 @Component({
-    selector: 'app-vehicle-card',
+    selector: 'VehicleCard',
     imports: [],
     templateUrl: './vehicle-card.component.html',
     styleUrl: './vehicle-card.component.scss'
