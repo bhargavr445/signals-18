@@ -3,12 +3,10 @@ import { Routes } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { ModalService } from './commons/services/api/modal.service';
-import { CartService } from './commons/services/communication/cart.service';
 import { UdemyEffects } from './udemy/store/udemy.effects';
 import { udemyReducer } from './udemy/store/udemy.reducer';
 import { HomeComponent } from './home/home.component';
-import { GameComponent } from './game/game.component';
-import { VehicleComponent } from './Vehicle/vehicle.component';
+import { CommonSignalStore } from './commons/common-signal-store/store';
 
 
 export const routes: Routes = [
@@ -45,9 +43,9 @@ function checkUserRole(): boolean {
 }
 
 function checkCartItemsLength(): boolean {
-    let cartService = inject(CartService);
+    let commonSignalStore = inject(CommonSignalStore);
     let modalService = inject(ModalService);
-    if (cartService.vehicleCartReadonlySignal().length < 1) {
+    if (commonSignalStore.noOfVehiclesInCart() < 1) {
         const compRef = modalService.dynamicComponentOnDOM();
         compRef.openModal({
             content: 'Add items to cart to access this page.',

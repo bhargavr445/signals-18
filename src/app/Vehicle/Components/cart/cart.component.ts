@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { ToggleCloseTypes } from '../../../commons/Interfaces/ModalContentI';
 import { ModalConstants } from '../../../commons/constants/modal.constants';
 import { ModalService } from '../../../commons/services/api/modal.service';
-import { CartService } from '../../../commons/services/communication/cart.service';
 import { Result } from '../../Models/VehiclesI';
+import { CommonSignalStore } from '../../../commons/common-signal-store/store';
 
 @Component({
     selector: 'app-vehicles-table',
@@ -16,14 +16,16 @@ import { Result } from '../../Models/VehiclesI';
 })
 export class CartComponent implements OnInit {
 
+  commonSignalStore = inject(CommonSignalStore);
+  #modalService = inject(ModalService);
+  #router = inject(Router);
+
   form = new FormGroup({
     productType: new FormControl('')
   })
 
   nameprop = 'Stuname';
-  #cartService = inject(CartService);
-  #modalService = inject(ModalService);
-  #router = inject(Router);
+
 
   ngOnInit(): void {
     this.productTypeControl.valueChanges.subscribe( (value) => {
@@ -59,7 +61,7 @@ export class CartComponent implements OnInit {
   itemIdToDelete = signal<string>('');
   
   cartItems = computed(() => {
-    return this.#cartService.vehicleCartReadonlySignal()
+    return this.commonSignalStore.vehilesInCart()
   });
 
   removeFromCart(item: Result) {
@@ -68,7 +70,7 @@ export class CartComponent implements OnInit {
   }
 
   handleCloseType(type: ToggleCloseTypes) {
-    type === ModalConstants.confirmClick ? this.#cartService.removeitemFromCart(this.itemIdToDelete()) : this.itemIdToDelete.set('');
+    type === ModalConstants.confirmClick ? this.commonSignalStore.removeitemFromCart(this.itemIdToDelete()) : this.itemIdToDelete.set('');
   }
 
   navigateToVehicles() {
