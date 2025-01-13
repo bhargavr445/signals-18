@@ -2,8 +2,7 @@ import { NgClass, TitleCasePipe } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
-import { CartService } from '../commons/services/communication/cart.service';
-import { CommunicationService } from '../commons/services/communication/communication.service';
+import { CommonSignalStore } from '../commons/common-signal-store/store';
 
 interface NavI {
   label: string;
@@ -17,6 +16,8 @@ interface NavI {
     styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  commonSignalStore = inject(CommonSignalStore);
 
   showCartItemsTable = signal<boolean>(false);
   iscartUrl = signal<boolean>(false);
@@ -33,14 +34,12 @@ export class HeaderComponent {
   ]);
 
   #authService = inject(AuthService);
-  #cartService = inject(CartService);
   #router = inject(Router);
 
   userProfileInfo = computed(() => {
     this.checkIfuserInfoExists(this.#authService.userProfileS());
     return this.#authService.userProfileS()
   });
-  noOfItemsInCart = computed(() => this.#cartService.vehicleCartReadonlySignal().length);
 
   checkIfuserInfoExists(userInfo) {
     if (!userInfo) {
@@ -56,6 +55,11 @@ export class HeaderComponent {
     this.#authService.updateUserProfile(null)
     sessionStorage.clear();
     this.navigateTo('login')
+  }
+
+  getUser() {
+    console.log('trigger....');
+    return 'Bhargav'
   }
 
 }

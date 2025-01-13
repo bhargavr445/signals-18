@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^19.0.5",
     "@angular/router": "^19.0.5",
     "@ngrx/effects": "^19.0.0",
+    "@ngrx/signals": "^19.0.0",
     "@ngrx/store": "^19.0.0",
     "@ngrx/store-devtools": "^19.0.0",
     "bhargav-uc-components": "^0.0.63",

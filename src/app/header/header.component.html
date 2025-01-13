@@ -15,7 +15,7 @@
             <li class="menu-item cart" [ngClass]="{'active': iscartUrl()}">
                 <a (click)="navigateTo('cart')">
                     <img src="/assets/shopping-cart-dark.png" alt="Cart" class="cart-icon">
-                    <span class="cart-count">{{noOfItemsInCart()}}</span>
+                    <span class="cart-count">{{commonSignalStore.noOfVehiclesInCart()}}</span>
                 </a>
             </li>
         </ul>
