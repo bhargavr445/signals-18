@@ -11,8 +11,10 @@ import { UniversityEffects } from './university/store/university.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authInterceptor } from './commons/interceptor/auth.interceptor';
 import { spinnerInterceptor } from './commons/interceptor/spinner.interceptor';
+import { electionsReducer } from './elections/store/elections-reducer';
+import { ElectionEffects } from './elections/store/elections-effects';
 
-const storeConfig = { app: appReducer, university: universityReducer }
+const storeConfig = { app: appReducer, university: universityReducer, elections: electionsReducer }
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([authInterceptor, spinnerInterceptor])),
     provideStore(storeConfig),
-    provideEffects([AppEffects, UniversityEffects]),
+    provideEffects([AppEffects, UniversityEffects, ElectionEffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode()

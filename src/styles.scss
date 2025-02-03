@@ -45,6 +45,12 @@ button:disabled {
     padding: 10px 0;
     display: flex;
     justify-content: center;
+  //   position: fixed; /* Makes the header sticky */
+  // top: 0; /* 
+  // z-index: 10;
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
 }
 
 .menu {
@@ -194,6 +200,7 @@ button:disabled {
     box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
     transition: transform 0.9s;
     margin: 10px;
+    
     // border-bottom: 4px solid rgb(247, 98, 123);
   
   }

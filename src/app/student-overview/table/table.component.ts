@@ -12,6 +12,9 @@ import { NgClass } from '@angular/common';
 })
 export class TableComponent implements OnInit {
 
+  tableData = input.required<Result[]>();
+
+  @Output() dropDownSelection = new EventEmitter<string>();
 
   tableHeaders = signal([
     { label: 'Type', key: 'MakeName', styleClass: ['customFont'] },
@@ -32,10 +35,8 @@ export class TableComponent implements OnInit {
   
 
   isLoading = signal<boolean>(false);
-  tableData = input.required<Result[]>();
   filterValue = signal('');
   paginatedRecords = signal<Result[]>([]);
-  @Output() dropDownSelection = new EventEmitter<string>();
 
   filteredTableData = computed(() => this.filterRecords(this.filterValue(), this.tableData()));
 
@@ -43,12 +44,12 @@ export class TableComponent implements OnInit {
     this.selectedOptionEvent({detail: this.cars[0]})
   }
 
-
-
-
-
   filterRecords(text: string, list: Result[]) {
-    return list?.filter((vehiclle) => ['MakeName', 'VehicleTypeName'].some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
+    if(!!list) {
+      return list?.filter((vehiclle) => ['MakeName', 'VehicleTypeName'].some((prop) => this.checkFormatchingString(vehiclle[prop], text)))
+    } else {
+      return [];
+    }
   }
 
   checkFormatchingString(data: string, text: string): boolean {
@@ -61,8 +62,6 @@ export class TableComponent implements OnInit {
   }
 
   selectedOptionEvent(event) {
-    console.log('bfghjfgh');
-    
     this.dropDownSelection.emit(event.detail['value']);
   }
 

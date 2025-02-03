@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
@@ -9,15 +9,25 @@ import { TableComponent } from '../commons/components/table/table.component';
 import { Datum } from './interfaces/population-responseI';
 
 @Component({
-    selector: 'app-population',
-    imports: [TableComponent, TableSkeletonComponent],
-    template: `
+  selector: 'app-population',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TableComponent, TableSkeletonComponent],
+  template: `
   <div class="main">
-    @if(!isLoading()) {
-    <gbr-table [tableHeaders]="tableheaders()" [dataList]="dataList()" />
-    } @else {
-    <table-skeleton />
+    <button (click)="fetchData()" #fetchButton>Fetch Data</button>
+
+    @defer (on interaction(fetchButton); prefetch on hover(fetchButton)) {
+      @if(!isLoading()) {
+        <gbr-table [tableHeaders]="tableheaders()" [dataList]="dataList()" />
+      } @else {
+        <table-skeleton />
+      }
+    } @placeholder {
+      <div>CLick button</div>
+    } @error {
+      <div>Failed to load Table due to net works issues</div>
     }
+   
   </div>
   `
 })
@@ -39,10 +49,14 @@ export class PopulationComponent implements OnInit {
   );
   isLoading = toSignal(
     this.#store.select(selectors.populationDataLoadingStatusSelector),
-    { initialValue: true }
+    { initialValue: false }
   );
 
   ngOnInit(): void {
+    // this.fetchData();
+  }
+
+  fetchData() {
     this.#store.dispatch(actions.fetchPopulationDataStartAction({ value: 'United States' }));
   }
 

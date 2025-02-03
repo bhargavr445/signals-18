@@ -5,14 +5,14 @@ import { VehicleService } from '../../../commons/services/api/vehicle.service';
 import { VehiclesResponseI } from '../../Models/VehiclesI';
 import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 import { VehicleStore } from '../../signal-store/vehicle-store';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { debounceTime } from 'rxjs';
 
 @Component({
   imports: [VehicleCardComponent, FormsModule, FilterComponent],
   providers: [VehicleStore],
   template: `
      <div class="main">
-      {{vehicleStore.vehiclesCount()}}
-      <!-- {{vehicleStore.vehiclesList() | json}} -->
       @if(!vehicleApiFailed()) {
         <div class="pad-t-10">
        <app-filter  [(searchText)]="filterText"/>
@@ -24,12 +24,6 @@ import { VehicleStore } from '../../signal-store/vehicle-store';
           } @empty {
           <div>No Records Found...</div>
           }
-
-          <!-- @defer (on viewport) {
-            <app-defer />
-          } @placeholder {
-            <div>Something is loading...</div>
-          } -->
       } @else {
         <div class="cards-container-vehicles">
         @for(d of [1,2,3,4,5,6]; track $index) {
@@ -54,20 +48,23 @@ export class VehicleOverviewComponent {
   vehicleStore = inject(VehicleStore);
   isDataLoading = false;
   filterText = signal('');
-  filteredRecords = computed(() => this.filterRecords(this.filterText()));
-  #vehicleService = inject(VehicleService);
+  debounceQuery = toSignal(toObservable(this.filterText).pipe(debounceTime(300)))
   response: Signal<VehiclesResponseI> = this.vehicleStore.vehiclesListC;
+  filteredRecords = computed(() => this.filterRecords(this.debounceQuery(), this.response()));
+  #vehicleService = inject(VehicleService);
   vehicleApiFailed = signal(false);
 
   constructor() {
-    this.vehicleStore.loadVehicles('');
+    this.vehicleStore.loadVehicles();
   }
 
   updateState() {
     this.vehicleStore.updateCount();
   }
 
-  filterRecords(text: string) {
+  filterRecords(text: string, records: VehiclesResponseI) {
+    console.log(text);
+    
     return this.response()?.Results.filter((vehiclle) => Object.keys(vehiclle).some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
   }
 

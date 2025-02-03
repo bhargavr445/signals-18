@@ -1,5 +1,5 @@
 import { NgClass, TitleCasePipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CommonSignalStore } from '../commons/common-signal-store/store';
@@ -10,10 +10,11 @@ interface NavI {
 }
 
 @Component({
-    selector: 'app-header',
-    imports: [NgClass, RouterLink, RouterLinkActive, TitleCasePipe],
-    templateUrl: './header.component.html',
-    styleUrl: './header.component.scss'
+  selector: 'app-header',
+  imports: [NgClass, RouterLink, RouterLinkActive, TitleCasePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 
@@ -21,6 +22,7 @@ export class HeaderComponent {
 
   showCartItemsTable = signal<boolean>(false);
   iscartUrl = signal<boolean>(false);
+  
   navItems = signal<NavI[]>([
     { label: 'Home', navigationUrl: '/home' },
     { label: 'Game', navigationUrl: '/game' },
@@ -30,7 +32,8 @@ export class HeaderComponent {
     { label: 'Universities', navigationUrl: '/universities' },
     { label: 'Population', navigationUrl: '/population' },
     { label: 'Movies', navigationUrl: '/movies' },
-    { label: 'Udemy', navigationUrl: '/udemy' }
+    { label: 'Udemy', navigationUrl: '/udemy' },
+    { label: 'Elections', navigationUrl: '/elections' },
   ]);
 
   #authService = inject(AuthService);
