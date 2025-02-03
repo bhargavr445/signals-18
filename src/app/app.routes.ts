@@ -10,7 +10,7 @@ import { CommonSignalStore } from './commons/common-signal-store/store';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'elections', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     // { path: 'game', component: GameComponent },
     // { path: 'vehicle', component: VehicleComponent },
@@ -36,6 +36,7 @@ export const routes: Routes = [
     { path: 'population', loadComponent: () => import('./population/population.component').then(c => c.PopulationComponent) },
     { path: 'movies', loadComponent: () => import('./movies/movies.component').then(c => c.MoviesComponent) },
     { path: 'login', loadComponent: () => import('./login/login.component').then(c => c.LoginComponent) },
+    { path: 'elections', loadComponent: () => import('./elections/elections.component').then(c => c.ElectionsComponent) },
 ];
 
 function checkUserRole(): boolean {

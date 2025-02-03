@@ -1,8 +1,9 @@
 <!-- <iframe src="https://www.addictinggames.com/embed/html5-games/19016"  style="border:none"></iframe> -->
 <div class="main">
     <div class="cards-container">
+        @defer(when isLoading()) {
         @for (item of paginatedRecords(); track $index) {
-            <game-card [item]="item" [articleName]="articleName" (selectedGameInfo)="selectedGameInfo($event)"/>
+        <game-card [item]="item" [articleName]="articleName" (selectedGameInfo)="selectedGameInfo($event)"/>
         } @empty {
         @for(d of [1,2,3]; track $index) {
         <div class="card">
@@ -14,6 +15,9 @@
             <div class="skeleton skeleton-button"></div>
         </div>
         }
+        }
+        } @placeholder {
+        <div>Large component placeholder</div>
         }
     </div>
     <span class="pagination-bar">

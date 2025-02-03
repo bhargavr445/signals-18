@@ -33,10 +33,10 @@ export class LoginComponent implements OnInit {
   unsub = new Subject();
   counter = signal(0);
   counter$ = toObservable(this.counter).pipe(map((val) => val*2));
-  stocks = toSignal(
-    this.#authService.getStockPrices().pipe(map((stockInfo) =>( {...this.stocks(), ...stockInfo}))),
-    {initialValue: null}
-  )
+  // stocks = toSignal(
+    // this.#authService.getStockPrices().pipe(map((stockInfo) =>( {...this.stocks(), ...stockInfo}))),
+    // {initialValue: null}
+  // )
 
 
 
@@ -97,14 +97,18 @@ export class LoginComponent implements OnInit {
   }
 
 
-  getStocks1() {
-    this.#authService.getStockPrices()
-    .pipe(takeUntil(this.unsub))
-    .subscribe(stocksInfo => 
-      this.stocks.update(preev =>  ({...preev, ...stocksInfo})))
+  // getStocks1() {
+  //   this.#authService.getStockPrices()
+  //   .pipe(takeUntil(this.unsub))
+  //   .subscribe(stocksInfo => 
+  //     this.stocks.update(preev =>  ({...preev, ...stocksInfo})))
+
+  //     setTimeout(() => {
+  //       this.#authService.closeConnection()
+  //     }, 5000)
       
     
-  }
+  // }
 
 
 

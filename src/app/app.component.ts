@@ -22,6 +22,13 @@ import { HeaderComponent } from './header/header.component';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
+  name1: string = 'Bhargav';
+  name2: string = this.name1;
+
+  stu1 = {name: 'Surya', id: 10};
+  stu2 = this.stu1;
+
+
   #udemyService = inject(UdemyService)
   id = new BehaviorSubject<number>(0);
   id$ = this.id.asObservable();
@@ -44,6 +51,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.name1 = 'Bhargav R G';
+    console.log(this.name1);
+    console.log(this.name2);
+
+    this.stu1.name = 'Surya Teja';
+    console.log(this.stu1.name);
+    console.log(this.stu2.name);
     // this.udemyService.fetchAllCreatedCourses()
     // .pipe(
     //   takeUntil(this.sub$)
@@ -89,6 +103,7 @@ export class AppComponent implements OnInit, OnDestroy {
  
 
   buildParams(dataObj) {
+    const name = 'bhargav';
     const keys = Object.keys(dataObj);
     const queryParams = keys.reduce((initialValue, key, index) => {
       const prefix = index === 0 ? '?' : '&';

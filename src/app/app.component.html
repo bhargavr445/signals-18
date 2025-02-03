@@ -1,6 +1,6 @@
 <app-modal-host />
 @if(resp$ | async; as re) {
-  <p>Hello</p>
+<p>Hello</p>
 }
 
 <!-- <button (click)="changeUerName()">Change User data</button> -->
@@ -8,9 +8,9 @@
 <!-- <button (click)="incrId()">Incr</button>
 <button (click)="unsub()">Un Sub</button> -->
 
-  <app-header />
+<app-header />
 
-  <router-outlet [routerOutletData]="name()"/>
+<router-outlet [routerOutletData]="name()" />
 
 
 

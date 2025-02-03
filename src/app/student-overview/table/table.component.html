@@ -12,11 +12,8 @@
     </span>
 
     <gbr-table [dataList]=paginatedRecords() [tableHeaders]="tableHeaders()" />
-    
-    @if(filteredTableData()?.length > 0) {
     <span class="pagination-bar">
-        <gbr-pagination [datalist]="filteredTableData()" (paginatedlisthandler)="handlePaginatedList($event)" />
+        <gbr-pagination [datalist]="filteredTableData()?.length > 0 ? filteredTableData() : []" (paginatedlisthandler)="handlePaginatedList($event)" />
     </span>
-    }
 
 </div>

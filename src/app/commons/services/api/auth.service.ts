@@ -20,7 +20,7 @@ export class AuthService {
   userProfileSub$ = this.userProfileSub.asObservable();
 
   constructor() {
-    this.socket$ = webSocket('wss://ws.coincap.io/prices?assets=ethereum,bitcoin,dogecoin');
+   // this.socket$ = webSocket('wss://ws.coincap.io/prices?assets=ethereum,bitcoin,dogecoin');
   }
 
   updateUserProfile(userProfile: User) {
@@ -38,11 +38,12 @@ export class AuthService {
   }
 
   getStockPrices() {
-    return this.socket$.asObservable();
+    // return this.socket$.asObservable();
   }
 
   closeConnection() {
     this.socket$.complete();
+    this.socket$.unsubscribe()
   }
 
 

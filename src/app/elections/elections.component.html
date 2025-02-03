@@ -1,3 +1,12 @@
 <div class="main">Elections</div>
-{{eleectiondData$ | async | json}}
-{{eleectiondDataError$ | async | json}}
+
+
+
+<button (click)="addNewCand()">Add new Candidate</button>
+
+{{candidatesC() | json}}
+
+{{completeElectionSuccessDataC() | json}}
+
+<!-- {{eleectiondData$ | async | json}}
+{{eleectiondDataError$ | async | json}} -->

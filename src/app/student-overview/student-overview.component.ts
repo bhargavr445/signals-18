@@ -1,15 +1,16 @@
 import { Component, inject, ResourceRef, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { VehicleService } from '../commons/services/api/vehicle.service';
 import { VehiclesResponseI } from '../Vehicle/Models/VehiclesI';
 import { TableComponent } from './table/table.component';
 
 @Component({
-    selector: 'app-student-overview',
-    imports: [TableComponent],
-    template: `
-    @defer (when isLoading()) {
+  selector: 'app-student-overview',
+  imports: [TableComponent],
+  template: `
+  <!-- {{response.isLoading()}} -->
+    @defer (when response.isLoading()) {
       <app-table [tableData]="response.value()?.Results" (dropDownSelection)=dropDownSelection($event)/>
     } @loading {
       <div>Loading...</div>
@@ -19,46 +20,28 @@ import { TableComponent } from './table/table.component';
 
 export class StudentOverviewComponent {
 
-  vehicleType = signal('');
-  isLoading = signal<boolean>(false);
   #vehicleService = inject(VehicleService);
 
+  vehicleType = signal('');
 
   response: ResourceRef<VehiclesResponseI> = rxResource({
-    request: () => this.vehicleType(),
-    loader: ({ request }) => {
-      this.isLoading.set(true)
-      return this.#vehicleService.getVehicleData(request).pipe(tap({
-        next: () => this.isLoading.set(false),
-        error: () => this.isLoading.set(false)
-      }
-      ))
-    }
+    request: () => ({ vehicleType: this.vehicleType() }),
+    loader: (request) => this.fetchData(request.request.vehicleType)
   })
 
+  constructor() {
+    this.response.isLoading();
+    // this.response.update((prevValue) => ({...prevValue}))
+  }
 
-  // vehResp = rxResource({
-  //   request: () => this.vehicleType(),
-  //   loader: () => this.#vehicleService.getVehicleData() 
-  // })
+  fetchData(vehicleType: string): Observable<VehiclesResponseI> {
+    return this.#vehicleService.getVehicleData(vehicleType)
+  }
 
-  // constructor() {
-  //   this.vehResp.value()
-  //   this.vehResp.error
-  // }
-
-  // .status(
-
-  //   (res) => {
-  //     this.response.set(res);
-  //   }
-  // )
-
-  dropDownSelection(event) {
-    console.log('kjgjhkgkjg');
-
-    this.vehicleType.set(event)
+  dropDownSelection(event: string) {
+    console.log(event);
+    
+    this.vehicleType.set(event);
   }
 
 }
-

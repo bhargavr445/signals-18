@@ -25,7 +25,7 @@ export const VehicleStore = signalStore(
             patchState(store, (state: VehicleStoreI) => ({ ...state, vehiclesCount: 20 }))
         },
 
-        loadVehicles: rxMethod<any>(
+        loadVehicles: rxMethod<void>(
             pipe(
                 tap(d => console.log(d)),
                 switchMap(() => vehicleService.getVehicleData().pipe(

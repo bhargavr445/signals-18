@@ -4,13 +4,13 @@
         <!-- <h1>Login</h1> -->
         <!-- <button (click)="incr()">Incr --- {{counter()}} -- {{counter$ | async}}</button> -->
          <!-- {{stocks() | json}} -->
-         <div>
+         <!-- <div>
              Bitcoin: {{stocks()?.bitcoin}}
          </div>
 
          <div style="margin-top: 20px;">
              Ethereum: {{stocks()?.ethereum}}
-         </div>
+         </div> -->
 
 <!-- <input type="text" class="custom-input" placeholder="Hover over me"> -->
 
@@ -43,9 +43,6 @@
                 <radio-buttons [radioButtonControl]="getRoleControl" [options]="roles" />
             </div>
 
-            
-
-            
             <button type="submit" [disabled]="!loginForm.valid"> {{ loginApiCallProgress() ? 'Loading...' : 'Login'}}</button>
         </form>
     </div>

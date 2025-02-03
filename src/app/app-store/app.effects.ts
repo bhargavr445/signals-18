@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, endWith, map, of, startWith, switchMap } from "rxjs";
+import { catchError, endWith, map, of, startWith, switchMap, tap } from "rxjs";
 import { VehicleService } from "../commons/services/api/vehicle.service";
 import { PopulationService } from "../population/population.service";
 import * as actions from "./app.actions";
@@ -12,7 +12,7 @@ export class AppEffects {
         () => this.actions$.pipe(
             // tap(d => console.log('hgjfr',d)),
             ofType(actions.fetchPopulationDataStartAction),
-            // tap(d => console.log(d)),
+            tap(d => console.log(d)),
             switchMap((action) => this.populationService.getPopulation(action.value).pipe(
                 map((resp) => actions.populationDataSuccessResponse({ value: resp })),
                 startWith(actions.populationDataLoading({ value: true })),
