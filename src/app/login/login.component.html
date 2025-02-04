@@ -43,9 +43,16 @@
                 <radio-buttons [radioButtonControl]="getRoleControl" [options]="roles" />
             </div>
 
-            <button type="submit" [disabled]="!loginForm.valid"> {{ loginApiCallProgress() ? 'Loading...' : 'Login'}}</button>
+            <button type="submit" #loginButton > {{ loginApiCallProgress() ? 'Loading...' : 'Login'}}</button>
         </form>
     </div>
 </div>
+
+    @defer (on interaction(loginButton); prefetch when loginForm.valid) {
+        @if (true) {
+        <users-list/>
+    }
+}
+
 
 

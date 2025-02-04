@@ -22,7 +22,7 @@
     </div>
     <span class="pagination-bar">
         @if(!isLoading()) {
-        <gbr-pagination [datalist]="gamesList()" [pagesize]="6" (paginatedlisthandler)="handlePaginatedList($event)" />
+        <gbr-pagination [datalist]="gamesList()" [pagesize]="8" (paginatedlisthandler)="handlePaginatedList($event)" />
         } @else {
         <div class="skeleton skeleton-pagination"></div>
         }
