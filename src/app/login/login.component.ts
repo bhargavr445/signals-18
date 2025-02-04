@@ -7,10 +7,11 @@ import { RadioButtonsComponent } from '../commons/components/radio-buttons/radio
 import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 import { AuthService } from '../commons/services/api/auth.service';
 import { LoginResponseI } from './login-response-interface';
+import { UsersListComponent } from "./users-list/users-list.component";
 
 @Component({
     selector: 'app-login',
-    imports: [FormsModule, ReactiveFormsModule, ULabelComponent, RadioButtonsComponent],
+    imports: [FormsModule, ReactiveFormsModule, ULabelComponent, RadioButtonsComponent, UsersListComponent],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss'
 })
