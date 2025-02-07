@@ -1,0 +1,15 @@
+<div class="module">
+    <!-- Toggle button -->
+    <button (click)="toggleExpand()">
+      {{ expanded ? '▼' : '▶' }} {{ module.label }} 
+    </button>
+    <input type="checkbox" name="" id="">
+
+  
+    <!-- Show nested modules if expanded -->
+    <div *ngIf="expanded" class="nested">
+      <div *ngFor="let subModule of module.modules">
+        <app-expandable-module [module]="subModule"></app-expandable-module>
+      </div>
+    </div>
+  </div>
