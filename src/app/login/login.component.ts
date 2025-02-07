@@ -8,10 +8,11 @@ import { ULabelComponent } from '../commons/components/u-label/u-label.component
 import { AuthService } from '../commons/services/api/auth.service';
 import { LoginResponseI } from './login-response-interface';
 import { UsersListComponent } from "./users-list/users-list.component";
+import { NestedSectionsComponent } from "../nested-sections/nested-sections.component";
 
 @Component({
     selector: 'app-login',
-    imports: [FormsModule, ReactiveFormsModule, ULabelComponent, RadioButtonsComponent, UsersListComponent],
+    imports: [FormsModule, ReactiveFormsModule, ULabelComponent, RadioButtonsComponent, UsersListComponent, NestedSectionsComponent],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss'
 })
