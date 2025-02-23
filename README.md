@@ -1,4 +1,9 @@
+kafka_2.13-3.9.0/bin/zookeeper-server-start.sh kafka_2.13-3.9.0/config/zookeeper.properties
+kafka_2.13-3.9.0/bin/kafka-server-start.sh kafka_2.13-3.9.0/config/server.properties
+
+
 # 💫 About Me:
+
 Angular, typescript, cypress, ngrx, rxjs, signals, react, node, mongodb, mongoose
 
 

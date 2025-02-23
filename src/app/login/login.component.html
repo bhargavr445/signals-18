@@ -1,5 +1,16 @@
 <div class="login-main">
     <div class="login-container">
+        <div class="score-container">
+            <div>Score: <b>{{cricketScore().score}}/{{cricketScore().wickets}}</b></div>
+            <div>Overs: <b>{{cricketScore().overs}}</b></div>
+        </div>
+        
+        <button (click)="disconnect()">Close Connection</button>
+
+    </div>
+    <div class="login-container">
+        
+        
         <!-- <button (click)="onButtonClick()">Trigger</button> -->
         <!-- <h1>Login</h1> -->
         <!-- <button (click)="incr()">Incr --- {{counter()}} -- {{counter$ | async}}</button> -->
@@ -14,7 +25,8 @@
 
 <!-- <input type="text" class="custom-input" placeholder="Hover over me"> -->
 
-        <form [formGroup]="loginForm" id="log_in" (ngSubmit)="login()">
+
+        <!-- <form [formGroup]="loginForm" id="log_in" (ngSubmit)="login()">
             <div class="form-group" id="userName-sec">
                 @let userNameControl = loginForm.get('userName');
                 <u-label 
@@ -44,15 +56,39 @@
             </div>
 
             <button type="submit" #loginButton > {{ loginApiCallProgress() ? 'Loading...' : 'Login'}}</button>
-        </form>
+        </form> -->
     </div>
 </div>
 
-    @defer (on interaction(loginButton); prefetch when loginForm.valid) {
+    <!-- @defer (on interaction(loginButton); prefetch when loginForm.valid) {
         @if (true) {
         <users-list/>
-    }
-}
+    } -->
+<!-- } -->
 
-<app-nested-sections />
+<!-- <app-nested-sections /> -->
+<section class="section-book">
+    <div class="row">
+        <div class="book">
+            <div class="book__form">
+                <div class="center-header u-header-marginn-5">
+                    <h2 class="header-teritory"> Login to Continue</h2>
+                </div>
+                <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="form__group">
+                        <input formControlName="userName" type="text" class="form__input" id="name" name="name" placeholder="Enter User Name" required>
+                        <label class="form__label" for="name">Enter User Name</label>
+                    </div>
+                    <div class="form__group">
+                        <input formControlName="password" type="password" class="form__input" id="password" name="password" placeholder="Enter Password"
+                            required>
+                        <label class="form__label" for="email">Enter Password</label>
+                    </div>
+                    <button type="submit" #loginButton > {{ loginApiCallProgress() ? 'Loading...' : 'Login'}}</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
 
