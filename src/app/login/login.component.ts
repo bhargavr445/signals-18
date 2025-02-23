@@ -20,6 +20,12 @@ export class LoginComponent implements OnInit {
   
   private buttonClick$ = new Subject<void>();
 
+  cricketScore = signal({
+    score: 0,
+    wickets: 0,
+    overs: 0
+  });
+
 
   roles = [
     { label: 'Instructor', key: 'I' },
@@ -43,6 +49,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getStocks1();
     this.createForm();
     this.loginForm.get('role').valueChanges.subscribe(d => console.log(d));
     this.buttonClick$.subscribe(d => console.log(d));
@@ -99,18 +106,36 @@ export class LoginComponent implements OnInit {
   }
 
 
-  // getStocks1() {
-  //   this.#authService.getStockPrices()
-  //   .pipe(takeUntil(this.unsub))
-  //   .subscribe(stocksInfo => 
-  //     this.stocks.update(preev =>  ({...preev, ...stocksInfo})))
+  getStocks1() {
+    this.#authService.getStockPrices()
+    .pipe(takeUntil(this.unsub))
+    .subscribe(stocksInfo => {
+      console.log(stocksInfo);
+      if(typeof stocksInfo) {
+        
+        console.log('string');
+      } else {
+        console.log('not string');
+        
+      }
 
-  //     setTimeout(() => {
-  //       this.#authService.closeConnection()
-  //     }, 5000)
+      this.cricketScore.set(stocksInfo);
+
+    }
+      )
+      
+      // this.stocks.update(preev =>  ({...preev, ...stocksInfo})))
+
+      // setTimeout(() => {
+      //   this.#authService.closeConnection()
+      // }, 5000)
       
     
-  // }
+  }
+
+  disconnect() {
+    this.#authService.closeConnection();
+  }
 
 
 
