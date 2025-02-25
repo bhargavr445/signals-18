@@ -12,7 +12,7 @@ import { NestedSectionsComponent } from "../nested-sections/nested-sections.comp
 
 @Component({
     selector: 'app-login',
-    imports: [FormsModule, ReactiveFormsModule, ULabelComponent, RadioButtonsComponent, UsersListComponent, NestedSectionsComponent],
+    imports: [FormsModule, ReactiveFormsModule],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss'
 })
