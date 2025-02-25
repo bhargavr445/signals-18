@@ -90,6 +90,12 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://bhargavr445.github.io/signals-18/"
+          }
         }
       }
     }
