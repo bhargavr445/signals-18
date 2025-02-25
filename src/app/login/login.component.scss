@@ -194,8 +194,17 @@ button:hover {
     background-image: linear-gradient(to right, #563d7c, #28b485);
     display: inline;
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
 }
 .center-header {
     text-align: center;
+  }
+
+  .test-clip {
+    background-image: linear-gradient(to right, #563d7c, #28b485);
+    display: inline;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
