@@ -3,6 +3,7 @@
     <div class="cards-container">
         @defer(when isLoading()) {
         @for (item of paginatedRecords(); track $index) {
+            <!-- <p>{{`dispa ${gamesList().length}`}}</p> -->
         <game-card [item]="item" [articleName]="articleName" (selectedGameInfo)="selectedGameInfo($event)"/>
         } @empty {
         @for(d of [1,2,3]; track $index) {
