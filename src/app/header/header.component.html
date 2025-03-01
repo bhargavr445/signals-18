@@ -21,7 +21,7 @@
         </ul>
         @if(userName) {
         <div style="color: white; padding-top: 10px; margin-left: 10px;">
-            <div class="user-name-container">Hello, {{userName | titlecase}}====== {{getUser()}}</div>
+            <div class="user-name-container">{{ `Hello, ${userName}!` }}</div>
             <div class="user-name-container">{{role.substring(2)| titlecase}}</div>
         </div>
         }
