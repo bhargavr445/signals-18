@@ -1,0 +1,16 @@
+<div class="main">
+    <select (change)="onOptionChange($event)">
+        @for (item of items(); track $index) {
+            <option [value]="item">{{item}}</option>
+        }
+    </select>
+
+    @for (item of vehiclesList(); track $index) {
+        <VehicleCard [vehicleInfo]="item" />
+
+      }
+
+     ==== {{errorResponse() | json}}
+</div>
+
+
