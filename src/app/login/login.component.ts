@@ -1,14 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { filter, interval, map, observable, Observable, of, Subject, takeUntil, zip } from 'rxjs';
-import { RadioButtonsComponent } from '../commons/components/radio-buttons/radio-buttons.component';
-import { ULabelComponent } from '../commons/components/u-label/u-label.component';
+import { filter, interval, map, of, Subject, takeUntil, zip } from 'rxjs';
 import { AuthService } from '../commons/services/api/auth.service';
 import { LoginResponseI } from './login-response-interface';
-import { UsersListComponent } from "./users-list/users-list.component";
-import { NestedSectionsComponent } from "../nested-sections/nested-sections.component";
 
 @Component({
     selector: 'app-login',
@@ -19,7 +15,7 @@ import { NestedSectionsComponent } from "../nested-sections/nested-sections.comp
 export class LoginComponent implements OnInit {
   
   private buttonClick$ = new Subject<void>();
-  
+
 
   cricketScore = signal({
     score: 0,

@@ -37,6 +37,7 @@ export const routes: Routes = [
     { path: 'movies', loadComponent: () => import('./movies/movies.component').then(c => c.MoviesComponent) },
     { path: 'login', loadComponent: () => import('./login/login.component').then(c => c.LoginComponent) },
     { path: 'elections', loadComponent: () => import('./elections/elections.component').then(c => c.ElectionsComponent) },
+    { path: 'resource', loadComponent: () => import('./resource/resource.component').then(c => c.ResourceComponent) },
 ];
 
 function checkUserRole(): boolean {

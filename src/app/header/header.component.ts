@@ -34,6 +34,7 @@ export class HeaderComponent {
     { label: 'Movies', navigationUrl: '/movies' },
     { label: 'Udemy', navigationUrl: '/udemy' },
     { label: 'Elections', navigationUrl: '/elections' },
+    { label: 'Resource', navigationUrl: '/resource' },
   ]);
 
   #authService = inject(AuthService);

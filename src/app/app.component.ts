@@ -103,7 +103,6 @@ export class AppComponent implements OnInit, OnDestroy {
  
 
   buildParams(dataObj) {
-    const name = 'bhargav';
     const keys = Object.keys(dataObj);
     const queryParams = keys.reduce((initialValue, key, index) => {
       const prefix = index === 0 ? '?' : '&';
