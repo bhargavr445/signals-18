@@ -1,2 +1,0 @@
-import"./chunk-77LEFX72.js";var e=[{path:"",loadComponent:()=>import("./chunk-2ZQB7BR3.js").then(t=>t.VehicleComponent),children:[{path:"",redirectTo:"roster",pathMatch:"full"},{path:"roster",loadComponent:()=>import("./chunk-BV5YJBCE.js").then(t=>t.VehicleOverviewComponent)},{path:"details/:custid",loadComponent:()=>import("./chunk-YIUARH5C.js").then(t=>t.VehicleDetailsComponent)}]}],o=e;export{o as default};
-//# sourceMappingURL=chunk-PMMPRYOQ.js.map
