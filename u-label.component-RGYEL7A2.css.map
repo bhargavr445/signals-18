@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/commons/components/u-label/u-label.component.ts"],
+  "sourcesContent": ["\n  label {\n    display: block;\n    font-weight: bold;\n    margin-bottom: 5px;\n}\n\n.label-error {\n    color: red ;\n}\n  "],
+  "mappings": "AACE,MACE,QAAA,MACA,YAAA,IACA,cAAA,IAGJ,CAAA,YACI,MAAA",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/commons/interceptor/skip-loading.ts"],
+  "sourcesContent": ["import { HttpContextToken } from \"@angular/common/http\";\n\nexport const skipUrlModification = new HttpContextToken(() => false);"],
+  "mappings": "wCAEO,IAAMA,EAAsB,IAAIC,EAAiB,IAAM,EAAK",
+  "names": ["skipUrlModification", "HttpContextToken"]
+}

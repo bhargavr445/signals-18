@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/udemy/create-course/create-course.component.scss"],
+  "sourcesContent": [".form-row {\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: 20px;\n}\n\n.form-group {\n    flex: 1;\n    margin-right: 20px;\n}\n\n.form-group:last-child {\n    margin-right: 0;\n}\n\nlabel {\n    display: block;\n    font-weight: bold;\n    margin-bottom: 5px;\n}\n\n.label-error {\n    color: red ;\n}\n\ninput, textarea {\n    width: 100%;\n    height: 52px;\n    padding: 5px 10px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    box-sizing: border-box;\n}"],
+  "mappings": "AAAA,CAAA,SACI,QAAA,KACA,gBAAA,cACA,cAAA,KAGJ,CAAA,WACI,KAAA,EACA,aAAA,KAGJ,CALA,UAKA,YACI,aAAA,EAGJ,MACI,QAAA,MACA,YAAA,IACA,cAAA,IAGJ,CAAA,YACI,MAAA,IAGJ,MAAA,SACI,MAAA,KACA,OAAA,KA3BJ,QA4BI,IAAA,KACA,OAAA,IAAA,MAAA,KA7BJ,cA8BI,IACA,WAAA",
+  "names": []
+}

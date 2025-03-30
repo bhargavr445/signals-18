@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/commons/components/table-header/table-header.component.scss"],
+  "sourcesContent": [".notification {\n    display: flex;\n    align-items: center;\n    padding: 10px;\n    background-color: #1e1e1e;\n    color: #d1d1d1;\n    border-radius: 5px;\n    font-family: Arial, sans-serif;\n    border-left: 10px solid rgb(247, 98, 123);\n  }\n  \n  .notification-icon {\n    margin-right: 10px;\n    font-size: 24px;\n    color: #4caf50;\n    /* Color of the checkmark icon */\n  }\n  \n  .notification-text {\n    font-size: 16px;\n  }\n  \n  .notification-text b {\n    color: #4caf50;\n    /* Color of the bold text */\n  }\n  \n  .notification-text a {\n    color: #3a82f7;\n    /* Color of the link text */\n    text-decoration: none;\n  }\n  \n  .notification-text a:hover {\n    text-decoration: underline;\n  }"],
+  "mappings": "AAAA,CAAA,aACI,QAAA,KACA,YAAA,OAFJ,QAGI,KACA,iBAAA,QACA,MAAA,QALJ,cAMI,IACA,YAAA,KAAA,CAAA,WACA,YAAA,KAAA,MAAA,IAAA,GAAA,CAAA,EAAA,CAAA,KAGF,CAAA,kBACE,aAAA,KACA,UAAA,KACA,MAAA,QAIF,CAAA,kBACE,UAAA,KAGF,CAJA,kBAIA,EACE,MAAA,QAIF,CATA,kBASA,EACE,MAAA,QAEA,gBAAA,KAGF,CAfA,kBAeA,CAAA,OACE,gBAAA",
+  "names": []
+}

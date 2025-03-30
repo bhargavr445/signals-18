@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/commons/components/weeks/weeks.component.scss"],
+  "sourcesContent": ["\n\n\n\n.weekdays {\n    display: flex;\n    justify-content: center;\n    gap: 5px;\n    padding: 0px;\n}\n.day {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    width: 30px;\n    height: 30px;\n    border-radius: 50%;\n    background-color: #3b7a57; /* Default green background */\n    color: white;\n    // font-weight: ;\n    font-size: 14px;\n    // padding: 5px;\n}\n.day.selected {\n    background-color: #f4a261; /* Selected day background */\n    color: black;\n}\n\n.active-week {\n    background-color: #176917;\n    color: white;\n}\n\n.inactive-week {\n    background-color: orange;\n    color: black;\n}"],
+  "mappings": "AAIA,CAAA,SACI,QAAA,KACA,gBAAA,OACA,IAAA,IAHJ,QAII,EAEJ,CAAA,IACI,QAAA,KACA,gBAAA,OACA,YAAA,OACA,MAAA,KACA,OAAA,KAXJ,cAYI,IACA,iBAAA,QACA,MAAA,KAEA,UAAA,KAGJ,CAbA,GAaA,CAAA,SACI,iBAAA,QACA,MAAA,KAGJ,CAAA,YACI,iBAAA,QACA,MAAA,KAGJ,CAAA,cACI,iBAAA,OACA,MAAA",
+  "names": []
+}

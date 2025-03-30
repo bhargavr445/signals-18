@@ -1,0 +1,2 @@
+import{Mb as p,ab as o,xb as n,yb as i}from"./chunk-A62QQ52M.js";import"./chunk-77LEFX72.js";var l=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=o({type:e,selectors:[["app-update-profile"]],decls:2,vars:0,template:function(t,a){t&1&&(n(0,"p"),p(1,"update-profile works!"),i())},encapsulation:2})}}return e})();export{l as UpdateProfileComponent};
+//# sourceMappingURL=chunk-2KH5RYR6.js.map

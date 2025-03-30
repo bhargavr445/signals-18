@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/udemy/buy-courses/buy-courses.component.scss"],
+  "sourcesContent": ["table {\n    width: 100%;\n    border-collapse: collapse;\n    margin-bottom: 20px;\n  }\n  \n  th,\n  td {\n    text-align: left;\n    padding: 0.5em;\n  }\n  \n  tr:nth-child(2n) {\n    background-color: #daeef4;\n  }\n  \n  thead tr {\n    background-color: darkcyan;\n    color: white;\n  }\n  \n  tr a,\n  tr svg {\n    color: darkblue;\n  }\n\n  // tr:hover {\n  //   background-color: green\n  // }"],
+  "mappings": "AAAA,MACI,MAAA,KACA,gBAAA,SACA,cAAA,KAGF,GAAA,GAEE,WAAA,KARJ,QASI,KAGF,EAAA,eACE,iBAAA,QAGF,MAAA,GACE,iBAAA,QACA,MAAA,KAGF,GAAA,EAAA,GAAA,IAEE,MAAA",
+  "names": []
+}

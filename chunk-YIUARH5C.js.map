@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/Vehicle/Components/vehicle-details/vehicle-details.component.ts"],
+  "sourcesContent": ["import { Component, Input, Input as RouteParam, Input as QueryParam} from '@angular/core';\n\n@Component({\n    selector: 'app-vehicle-details',\n    imports: [],\n    template: `<div class=\"main\">\n      <h5>VSelected Vehicle ID: </h5><h3>{{cIds}}</h3>\n    </div>`,\n    styleUrl: './vehicle-details.component.scss'\n})\nexport class VehicleDetailsComponent {\n\n  @RouteParam('custid') cIds:  any;\n  @Input() mid: any;\n  @QueryParam() id: any;\n\n  // cId = input.required<any>({alias: 'custid'})\n\n}\n"],
+  "mappings": "6GAUA,IAAaA,GAAuB,IAAA,CAA9B,MAAOA,CAAuB,iDAAvBA,EAAuB,CAAA,+BAAvBA,EAAuBC,UAAA,CAAA,CAAA,qBAAA,CAAA,EAAAC,OAAA,CAAAC,KAAA,CAAA,EAAA,SAAA,MAAA,EAAAC,IAAA,MAAAC,GAAA,IAAA,EAAAC,MAAA,EAAAC,KAAA,EAAAC,OAAA,CAAA,CAAA,EAAA,MAAA,CAAA,EAAAC,SAAA,SAAAC,EAAAC,EAAA,CAAAD,EAAA,IALrBE,EAAA,EAAA,MAAA,CAAA,EAAkB,EAAA,IAAA,EACvBC,EAAA,EAAA,wBAAA,EAAsBC,EAAA,EAAKF,EAAA,EAAA,IAAA,EAAIC,EAAA,CAAA,EAAQC,EAAA,EAAK,SAAbC,EAAA,CAAA,EAAAC,EAAAL,EAAAR,IAAA,8BAI5BH,CAAuB,GAAA",
+  "names": ["VehicleDetailsComponent", "selectors", "inputs", "cIds", "mid", "id", "decls", "vars", "consts", "template", "rf", "ctx", "\u0275\u0275elementStart", "\u0275\u0275text", "\u0275\u0275elementEnd", "\u0275\u0275advance", "\u0275\u0275textInterpolate"]
+}

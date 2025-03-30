@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/Vehicle/vehicle.routing.ts"],
+  "sourcesContent": ["import { Routes } from \"@angular/router\";\n\n\n\nconst VEHICLE_ROUTES: Routes = [\n    {\n        path: '', loadComponent: () => import('./vehicle.component').then(m => m.VehicleComponent), children: [\n            { path: '', redirectTo: 'roster', pathMatch: 'full' },\n            { path: 'roster', loadComponent: () => import('./Components/vehicle-overview/vehicle-overview.component').then(c => c.VehicleOverviewComponent) },\n            { path: 'details/:custid', loadComponent: () => import('./Components/vehicle-details/vehicle-details.component').then(c => c.VehicleDetailsComponent) }\n        ]\n    },\n\n];\n\nexport default VEHICLE_ROUTES;\n\n// 1.52 kB | "],
+  "mappings": "4BAIA,IAAMA,EAAyB,CAC3B,CACIC,KAAM,GAAIC,cAAeA,IAAM,OAAO,qBAAqB,EAAEC,KAAKC,GAAKA,EAAEC,gBAAgB,EAAGC,SAAU,CAClG,CAAEL,KAAM,GAAIM,WAAY,SAAUC,UAAW,MAAM,EACnD,CAAEP,KAAM,SAAUC,cAAeA,IAAM,OAAO,qBAA0D,EAAEC,KAAKM,GAAKA,EAAEC,wBAAwB,CAAC,EAC/I,CAAET,KAAM,kBAAmBC,cAAeA,IAAM,OAAO,qBAAwD,EAAEC,KAAKM,GAAKA,EAAEE,uBAAuB,CAAC,CAAE,EAE9J,EAILC,EAAeZ",
+  "names": ["VEHICLE_ROUTES", "path", "loadComponent", "then", "m", "VehicleComponent", "children", "redirectTo", "pathMatch", "c", "VehicleOverviewComponent", "VehicleDetailsComponent", "vehicle_routing_default"]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/header/header.component.scss"],
+  "sourcesContent": [".profile-pic {\n    border-radius: 58px;\n    width: 30px;\n    border-color: wheat;\n}\n\n.user-name-container {\n    font-size: 12px;\n    line-height: 14px;\n    height: 14px;\n    font-weight: 400;\n    padding: 0 15px;\n}"],
+  "mappings": "AAAA,CAAA,YAAA,cACI,KACA,MAAA,KACA,aAAA,MAGJ,CAAA,oBACI,UAAA,KACA,YAAA,KACA,OAAA,KACA,YAAA,IAVJ,QAWI,EAAA",
+  "names": []
+}

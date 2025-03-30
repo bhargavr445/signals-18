@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/university/store/university.actions.ts"],
+  "sourcesContent": ["import { createAction, props } from \"@ngrx/store\";\nimport { CountrysApiResponseI, UniversitiesApiResponseI, UniversityListI } from \"../interfaces/UniversityListI\";\n\nexport const FETCH_UNIVERSITIES = 'FETCH_UNIVERSITIES';\nexport const UNIVERSITIES_LIST = 'UNIVERSITIES_LIST';\n\nexport const COUNTRYS_LIST_FETCH_START = 'COUNTRYS_LIST_FETCH_START';\nexport const COUNTRYS_LIST_FETCH_SUCCESS = 'COUNTRYS_LIST_FETCH_SUCCESS';\n\n\nexport const fetchUniversitiesAction = createAction(\n    FETCH_UNIVERSITIES,\n    props<{value: string}>()\n)\n\nexport const universitiesListAction = createAction(\n    UNIVERSITIES_LIST,\n    props<{value: UniversitiesApiResponseI}>()\n)\n\nexport const countrysListFetchingStart = createAction(\n    COUNTRYS_LIST_FETCH_START,\n    //props<{value: string}>()\n)\n\nexport const countrysListSuccess = createAction(\n    COUNTRYS_LIST_FETCH_SUCCESS,\n    props<{value: CountrysApiResponseI}>()\n)\n\n\n\n"],
+  "mappings": "+CAGO,IAAMA,EAAqB,qBACrBC,EAAoB,oBAEpBC,EAA4B,4BAC5BC,EAA8B,8BAG9BC,EAA0BC,EACnCL,EACAM,EAAK,CAAmB,EAGfC,EAAyBF,EAClCJ,EACAK,EAAK,CAAqC,EAGjCE,EAA4BH,EACrCH,CAAyB,EAIhBO,EAAsBJ,EAC/BF,EACAG,EAAK,CAAiC",
+  "names": ["FETCH_UNIVERSITIES", "UNIVERSITIES_LIST", "COUNTRYS_LIST_FETCH_START", "COUNTRYS_LIST_FETCH_SUCCESS", "fetchUniversitiesAction", "createAction", "props", "universitiesListAction", "countrysListFetchingStart", "countrysListSuccess"]
+}

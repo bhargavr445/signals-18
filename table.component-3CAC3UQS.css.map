@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/student-overview/table/table.component.scss"],
+  "sourcesContent": [".customFont {\n  font-style: italic;\n}\n\n.bgs {\n  background-color: green;\n}\n\n.tab-header {\n  display: flex;\n  justify-content: space-between;\n}\n\n.info-section {\n  display: flex;\n  padding: 10px 10px 10px 5px;\n  border-left: 5px solid #232b50;\n  margin: 10px 0;\n}"],
+  "mappings": "AAAA,CAAA,WACE,WAAA,OAGF,CAAA,IACE,iBAAA,MAGF,CAAA,WACE,QAAA,KACA,gBAAA,cAGF,CAAA,aACE,QAAA,KAdF,QAeE,KAAA,KAAA,KAAA,IACA,YAAA,IAAA,MAAA,QAhBF,OAiBE,KAAA",
+  "names": []
+}

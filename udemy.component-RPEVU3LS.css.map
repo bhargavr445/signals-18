@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/udemy/udemy.component.scss"],
+  "sourcesContent": ["body {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n}\n.horizontal-menu {\n    display: flex;\n    justify-content: center;\n    background-color: #f8f8f8;\n    padding: 10px 0;\n    border-top: 1px solid #ddd;\n    border-bottom: 1px solid #ddd;\n}\n.horizontal-menu a {\n    margin: 0 15px;\n    padding: 10px 0;\n    color: #333;\n    text-decoration: none;\n    font-size: 16px;\n    cursor: pointer;\n}\n// .horizontal-menu a:hover {\n//     border-bottom: 2px solid #333;\n// }\n\n.active-udemy-menu {\n    color: #0c50a2;\n   // border-bottom: 2px solid #333;\n    //background-color: #5cbfbf;\n    color: white;\n    border-bottom: 5px solid #5cbfbf;\n  \n\n}"],
+  "mappings": "AAAA,KACI,YAAA,KAAA,CAAA,WADJ,OAEI,EAFJ,QAGI,EAEJ,CAAA,gBACI,QAAA,KACA,gBAAA,OACA,iBAAA,QARJ,QASI,KAAA,EACA,WAAA,IAAA,MAAA,KACA,cAAA,IAAA,MAAA,KAEJ,CARA,gBAQA,EAbA,OAcI,EAAA,KAdJ,QAeI,KAAA,EACA,MAAA,KACA,gBAAA,KACA,UAAA,KACA,OAAA,QAMJ,CAAA,kBACI,MAAA,QAGA,MAAA,KACA,cAAA,IAAA,MAAA",
+  "names": []
+}

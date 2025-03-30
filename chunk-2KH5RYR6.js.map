@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/udemy/update-profile/update-profile.component.ts", "src/app/udemy/update-profile/update-profile.component.html"],
+  "sourcesContent": ["import { Component } from '@angular/core';\n\n@Component({\n    selector: 'app-update-profile',\n    imports: [],\n    templateUrl: './update-profile.component.html',\n    styleUrl: './update-profile.component.scss'\n})\nexport class UpdateProfileComponent {\n\n}\n", "<p>update-profile works!</p>\n"],
+  "mappings": "6FAQA,IAAaA,GAAsB,IAAA,CAA7B,MAAOA,CAAsB,iDAAtBA,EAAsB,CAAA,+BAAtBA,EAAsBC,UAAA,CAAA,CAAA,oBAAA,CAAA,EAAAC,MAAA,EAAAC,KAAA,EAAAC,SAAA,SAAAC,EAAAC,EAAA,CAAAD,EAAA,ICRnCE,EAAA,EAAA,GAAA,EAAGC,EAAA,EAAA,uBAAA,EAAqBC,EAAA,8BDQXT,CAAsB,GAAA",
+  "names": ["UpdateProfileComponent", "selectors", "decls", "vars", "template", "rf", "ctx", "\u0275\u0275elementStart", "\u0275\u0275text", "\u0275\u0275elementEnd"]
+}
