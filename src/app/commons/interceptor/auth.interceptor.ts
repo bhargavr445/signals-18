@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { skipUrlModification } from './skip-loading';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const urlPrefix = "http://localhost:3010/api/";
+  const urlPrefix = "https://backend-api-node.onrender.com/api/";
 
   const authHeader = `Bearer ${sessionStorage.getItem('TOKEN')}`;
   console.log(req.context.has(skipUrlModification));
