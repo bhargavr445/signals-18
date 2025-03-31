@@ -6,8 +6,9 @@
     "start": "ng serve --port=4300",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "deploy:prod": "ng deploy --configuration=production",
     "test": "ng test",
-"bundle-report": "ng build --configuration development --source-map && source-map-explorer dist/signals-18/browser/*.js",
+    "bundle-report": "ng build --configuration development --source-map && source-map-explorer dist/signals-18/browser/*.js",
     "test-headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,

@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CommonSignalStore } from '../commons/common-signal-store/store';
+import { environment } from '../../environments/environment';
 
 interface NavI {
   label: string;
@@ -19,12 +20,14 @@ interface NavI {
 export class HeaderComponent {
 
   commonSignalStore = inject(CommonSignalStore);
+  #authService = inject(AuthService);
+  #router = inject(Router);
 
   showCartItemsTable = signal<boolean>(false);
   iscartUrl = signal<boolean>(false);
   
   navItems = signal<NavI[]>([
-    { label: 'Home', navigationUrl: '/home' },
+    { label: 'Home1', navigationUrl: '/home' },
     { label: 'Game', navigationUrl: '/game' },
     { label: 'Vehicle', navigationUrl: '/vehicle' },
     { label: 'Student', navigationUrl: '/student' },
@@ -37,8 +40,6 @@ export class HeaderComponent {
     { label: 'Resource', navigationUrl: '/resource' },
   ]);
 
-  #authService = inject(AuthService);
-  #router = inject(Router);
 
   userProfileInfo = computed(() => {
     this.checkIfuserInfoExists(this.#authService.userProfileS());
@@ -56,9 +57,16 @@ export class HeaderComponent {
   }
 
   logout() {
-    this.#authService.updateUserProfile(null)
-    sessionStorage.clear();
-    this.navigateTo('login')
+    this.#authService.logout().subscribe({
+      next: () => {
+        this.#authService.updateUserProfile(null)
+        sessionStorage.clear();
+        this.navigateTo('login');
+      },
+      error: () => {
+        console.warn('Not able to logout...');
+      }
+    })
   }
 
   getUser() {

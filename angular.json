@@ -36,6 +36,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -96,6 +102,11 @@
           "builder": "angular-cli-ghpages:deploy",
           "options": {
             "baseHref": "https://bhargavr445.github.io/signals-18/"
+          },
+          "configurations": {
+            "production": {
+              "baseHref": "https://bhargavr445.github.io/signals-18/"
+            }
           }
         }
       }
