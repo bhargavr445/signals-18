@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/udemy/purchase-courses/purchase-courses.component.scss"],
+  "sourcesContent": ["table {\n    width: 100%;\n    border-collapse: collapse;\n    margin-bottom: 20px;\n  }\n  \n  th,\n  td {\n    text-align: left;\n    padding: 0.5em;\n  }\n  \n  tr:nth-child(2n) {\n    background-color: #daeef4;\n  }\n  \n  thead tr {\n    background-color: darkcyan;\n    color: white;\n  }\n  \n  tr a,\n  tr svg {\n    color: darkblue;\n  }\n\n  .cat {\n    display: inline-block;\n    padding: 0.25em 0.6em;\n    font-size: 0.75rem;\n    font-weight: 600;\n    border-radius: 0.25rem;\n    color: white;\n    // text-transform: uppercase;\n    white-space: nowrap;\n    margin: 8px;\n    \n    &.IT {\n      background-color: #456BBC;\n    }\n    &.Sports {\n      background-color: #beaa11;\n    }\n    &.Music {\n      background-color: #cb1762;\n    }\n    &.real-estate {\n      background-color: #17cb20;\n    }\n\n  }"],
+  "mappings": "AAAA,MACI,MAAA,KACA,gBAAA,SACA,cAAA,KAGF,GAAA,GAEE,WAAA,KARJ,QASI,KAGF,EAAA,eACE,iBAAA,QAGF,MAAA,GACE,iBAAA,QACA,MAAA,KAGF,GAAA,EAAA,GAAA,IAEE,MAAA,QAGF,CAAA,IACE,QAAA,aA3BJ,QA4BI,MAAA,KACA,UAAA,OACA,YAAA,IA9BJ,cA+BI,OACA,MAAA,KAEA,YAAA,OAlCJ,OAmCI,IAEA,CAXF,GAWE,CAAA,GACE,iBAAA,QAEF,CAdF,GAcE,CAAA,OACE,iBAAA,QAEF,CAjBF,GAiBE,CAAA,MACE,iBAAA,QAEF,CApBF,GAoBE,CAAA,YACE,iBAAA",
+  "names": []
+}

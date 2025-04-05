@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/Vehicle/vehicle.component.ts"],
-  "sourcesContent": ["import { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\n\n@Component({\n    selector: 'app-vehicle',\n    imports: [RouterOutlet],\n    template: `<router-outlet />`,\n    styleUrl: './vehicle.component.scss'\n})\nexport class VehicleComponent {\n\n}\n"],
-  "mappings": "6KASA,IAAaA,GAAgB,IAAA,CAAvB,MAAOA,CAAgB,iDAAhBA,EAAgB,CAAA,+BAAhBA,EAAgBC,UAAA,CAAA,CAAA,aAAA,CAAA,EAAAC,MAAA,EAAAC,KAAA,EAAAC,SAAA,SAAAC,EAAAC,EAAA,CAAAD,EAAA,GAHdE,EAAA,EAAA,eAAA,iBADDC,CAAY,EAAAC,cAAA,CAAA,CAAA,CAAA,SAIbT,CAAgB,GAAA",
-  "names": ["VehicleComponent", "selectors", "decls", "vars", "template", "rf", "ctx", "\u0275\u0275element", "RouterOutlet", "encapsulation"]
-}

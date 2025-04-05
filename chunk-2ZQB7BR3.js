@@ -1,2 +1,0 @@
-import{c as i}from"./chunk-S2OJBX2G.js";import"./chunk-SSDS4MMN.js";import"./chunk-RG4KZSHJ.js";import{ab as o,zb as n}from"./chunk-A62QQ52M.js";import"./chunk-77LEFX72.js";var l=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=o({type:e,selectors:[["app-vehicle"]],decls:1,vars:0,template:function(t,r){t&1&&n(0,"router-outlet")},dependencies:[i],encapsulation:2})}}return e})();export{l as VehicleComponent};
-//# sourceMappingURL=chunk-2ZQB7BR3.js.map

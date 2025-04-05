@@ -1,0 +1,2 @@
+import{Mb as a,Nb as c,Ra as o,_a as s,xb as i,yb as n}from"./chunk-XX2YFC2B.js";import"./chunk-77LEFX72.js";var p=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=s({type:e,selectors:[["app-vehicle-details"]],inputs:{cIds:[0,"custid","cIds"],mid:"mid",id:"id"},decls:5,vars:1,consts:[[1,"main"]],template:function(t,l){t&1&&(i(0,"div",0)(1,"h5"),a(2,"VSelected Vehicle ID: "),n(),i(3,"h3"),a(4),n()()),t&2&&(o(4),c(l.cIds))},encapsulation:2})}}return e})();export{p as VehicleDetailsComponent};
+//# sourceMappingURL=chunk-UJUQ7U4T.js.map

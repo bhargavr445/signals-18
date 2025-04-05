@@ -1,0 +1,2 @@
+import{a as c,b as l,d as r,e as m,f as a}from"./chunk-H73KZPJ3.js";import{ec as h}from"./chunk-XX2YFC2B.js";import{a as o,b as s}from"./chunk-77LEFX72.js";var v={vehiclesList:[]},L=l({providedIn:"root"},a(v),m(e=>({addVehicleToCart(i){c(e,t=>s(o({},t),{vehiclesList:[...t.vehiclesList,i]}))},removeitemFromCart(i){c(e,t=>s(o({},t),{vehiclesList:t.vehiclesList.filter(n=>n.customId!==i)}))}})),r(e=>({noOfVehiclesInCart:h(()=>e.vehiclesList().length),vehilesInCart:h(()=>e.vehiclesList())})));export{L as a};
+//# sourceMappingURL=chunk-55XYMSIL.js.map
