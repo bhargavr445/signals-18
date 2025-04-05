@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, inject, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { UdemyService } from '../../commons/services/api/udemy.service';
 
@@ -6,11 +6,20 @@ import { UdemyService } from '../../commons/services/api/udemy.service';
   selector: 'app-purchase-courses',
   imports: [CurrencyPipe],
   templateUrl: './purchase-courses.component.html',
-  styleUrl: './purchase-courses.component.scss'
+  styleUrl: './purchase-courses.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PurchaseCoursesComponent implements OnInit {
 
-  coursesList = [];
+  categoryClassMap = {
+    'IT': 'IT',
+    'Sports': 'Sports',
+    'Music': 'Music',
+    'Real Estate': 'real-estate'
+  };
+
+  coursesList = signal([]);
+  paginatedRecords = signal<any[]>([]);
   #udemyService = inject(UdemyService);
   tableheaders = signal([
     { label: 'Title', key: 'title', },
@@ -23,12 +32,16 @@ export class PurchaseCoursesComponent implements OnInit {
     this.#udemyService.getEnrolledCourses().subscribe(
       (resp) => {
         console.log(resp);
-        this.coursesList = resp.data
+        this.coursesList.set(resp.data);
       },
       (error) => {
         console.log(error);
       }
     )
+  }
+
+  handlePaginatedList(event) {
+    this.paginatedRecords.set(event.detail as any[]);
   }
 
 }

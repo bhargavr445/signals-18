@@ -9,6 +9,12 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, input, signal } from '@angular/core'
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CreatedCoursesListComponent {
+  categoryClassMap = {
+    'IT': 'IT',
+    'Sports': 'Sports',
+    'Music': 'Music',
+    'Real Estate': 'real-estate'
+  };
 
   createdCoursesList = input.required<any[]>();
   paginatedRecords = signal<any[]>([]);
@@ -19,3 +25,5 @@ export class CreatedCoursesListComponent {
   }
 
 }
+
+

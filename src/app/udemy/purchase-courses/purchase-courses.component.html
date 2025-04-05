@@ -9,16 +9,24 @@
     </thead>
 
     <tbody>
-        @for (item of coursesList; track $index) {
+        @for (item of paginatedRecords(); track $index) {
             <tr>
             <td>{{item.title}}</td>
             <td>{{item.price | currency}}</td>
-            <td>{{item.categoryDetails.type}}</td>
+            <td [class]="`${categoryClassMap[item.categoryDetails.type] } cat`">{{item.categoryDetails.type}}</td>
          
         </tr>
         }
         
     </tbody>
 </table>
+@if (coursesList().length) {
+    <div class="pagination-bar">
+        <gbr-pagination
+            [datalist]="coursesList()" 
+            [pagesize]="10"
+            (paginatedlisthandler)="handlePaginatedList($event)" />
+    </div>
+}
 
 <!-- <gbr-table [tableHeaders]="tableheaders()" [dataList]="coursesList" /> -->

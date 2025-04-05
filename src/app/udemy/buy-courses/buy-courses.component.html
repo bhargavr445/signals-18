@@ -9,17 +9,28 @@
             <th>Title</th>
             <th>Price</th>
         </tr>
-
     </thead>
-
     <tbody>
-        @for (item of unpurchasedCourses.value(); track $index) {
+        @for (item of paginatedRecords(); track $index) {
         <tr>
-            <td><input type="checkbox"
-                    (change)="item.isSelected = !item.isSelected; onToggleCheckbox($event, item.course_id)"></td>
-            <td>{{item.title}}</td>
+            <td>
+                <input type="checkbox"
+                    (change)="item.isSelected = !item.isSelected; 
+                    onToggleCheckbox($event, item.course_id)">
+            </td>
+            <td>{{item.title | titlecase}}</td>
             <td>{{item.price | currency}}</td>
         </tr>
         }
     </tbody>
 </table>
+
+@let unpurchasedCourses = unpurchasedCourses$ | async;
+@if (unpurchasedCourses?.length) {
+<div class="pagination-bar">
+    <gbr-pagination 
+        [datalist]="unpurchasedCourses" 
+        [pagesize]="10"
+        (paginatedlisthandler)="handlePaginatedList($event)" />
+</div>
+}
