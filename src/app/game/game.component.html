@@ -1,7 +1,7 @@
 <!-- <iframe src="https://www.addictinggames.com/embed/html5-games/19016"  style="border:none"></iframe> -->
 <div class="main">
     <div class="cards-container">
-        @defer(when isLoading()) {
+        @defer(when gamesListLoadingIndicator() || paginatedRecords().length >0) {
         @for (item of paginatedRecords(); track $index) {
             <!-- <p>{{`dispa ${gamesList().length}`}}</p> -->
         <game-card [item]="item" [articleName]="articleName" (selectedGameInfo)="selectedGameInfo($event)"/>
@@ -22,8 +22,8 @@
         }
     </div>
     <span class="pagination-bar">
-        @if(!isLoading()) {
-        <gbr-pagination [datalist]="gamesList()" [pagesize]="8" (paginatedlisthandler)="handlePaginatedList($event)" />
+        @if(!gamesListLoadingIndicator()) {
+        <gbr-pagination [datalist]="gamesList()" [pagesize]="6" (paginatedlisthandler)="handlePaginatedList($event)" />
         } @else {
         <div class="skeleton skeleton-pagination"></div>
         }

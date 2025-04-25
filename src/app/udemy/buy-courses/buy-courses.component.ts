@@ -1,30 +1,38 @@
-import { AsyncPipe, CurrencyPipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, ResourceRef, signal } from '@angular/core';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { AsyncPipe, CurrencyPipe, JsonPipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, input, OnDestroy, ResourceRef, signal } from '@angular/core';
+import { map, Observable, of, tap } from 'rxjs';
 import { UdemyService } from '../../commons/services/api/udemy.service';
 import { CourseI, UpdatedCourseI } from '../interfaces/udemy-i';
+import { Buy } from './buy';
+import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
 
 @Component({
-    selector: 'app-buy-courses',
-    imports: [CurrencyPipe, AsyncPipe, TitleCasePipe],
-    templateUrl: './buy-courses.component.html',
-    styleUrl: './buy-courses.component.scss',
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
-
+  selector: 'app-buy-courses',
+  imports: [CurrencyPipe, TitleCasePipe, AsyncPipe, TableSkeletonComponent],
+  templateUrl: './buy-courses.component.html',
+  styleUrl: './buy-courses.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [Buy]
 })
 export class BuyCoursesComponent {
 
   categoryClassMap = {
-    'IT': 'IT',
-    'Sports': 'Sports',
-    'Music': 'Music',
-    'Real Estate': 'real-estate'
+    'U_IT': 'IT',
+    'U_SPORTS': 'Sports',
+    'U_MUSIC': 'Music',
+    'U_REAL_ESTATE': 'real-estate'
   };
 
   paginatedRecords = signal<any[]>([]);
+  purchaseCourseApiStatus$: Observable<any> = of();
 
-  #udemyService = inject(UdemyService);
-  unpurchasedCourses$ = this.fetchCourses();
+  #udemyService = inject(Buy);
+
+  unpurchasedCourses = this.#udemyService.fetchUnpurchasedCoursesResource;
+
+
+  updatedUnpurchasedCourses = computed(() => this.updatedCourseObjWithIsSelectProp(this.unpurchasedCourses.value()?.data));
+  unpurchasedCoursesListLoading = computed(() => this.unpurchasedCourses.isLoading());
   // = rxResource({
   //   loader: () =>  this.fetchUnpurchasedCourses()
   // })
@@ -34,9 +42,9 @@ export class BuyCoursesComponent {
   //   this.fetchUnpurchasedCourses();
   // }
 
-  fetchCourses(): Observable<UpdatedCourseI[]> {    
-    return this.#udemyService.fetchUnpurchasedCourses().pipe(map((response) => this.updatedCourseObjWithIsSelectProp(response.data)));
-  }
+  // fetchCourses(): Observable<UpdatedCourseI[]> {    
+  //   return this.#udemyService.fetchUnpurchasedCourses().pipe(map((response) => this.updatedCourseObjWithIsSelectProp(response.data)));
+  // }
 
   // fetchUnpurchasedCourses(): void {
   //   this.unpurchasedCourses = rxResource({
@@ -67,23 +75,19 @@ export class BuyCoursesComponent {
     //   )
     // })
 
-    this.unpurchasedCourses$ =this.#udemyService.purchaseCourses(this.selectedCourses).pipe(
+    this.purchaseCourseApiStatus$ = this.#udemyService.purchaseCourses(this.selectedCourses).pipe(
       tap(() => {
         this.selectedCourses = [];
         this.paginatedRecords.set([]);
+        this.#udemyService.reloadUnpurchasedCoursesResource();
       }),
-      switchMap(() => this.fetchCourses())
+      map(() => 'Sleceted course(s) succesfully created.')
     )
-    // .subscribe((courses: UpdatedCourseI[]) => {
-    //   console.log(courses);
-      
-    //   // this.unpurchasedCourses.
-    // })
-
   }
 
   updatedCourseObjWithIsSelectProp(coursesList: CourseI[]): UpdatedCourseI[] {
-    return coursesList.map((course) => ({ ...course, isSelected: false }));
+    console.log('COURSES 🔴 🔴', coursesList);
+    return coursesList?.map((course) => ({ ...course, isSelected: false }));
   }
 
   handlePaginatedList(event) {

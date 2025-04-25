@@ -1,27 +1,27 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { HttpResourceRef } from '@angular/common/http';
+import { Component, computed, inject, signal } from '@angular/core';
 import { ResourceService } from '../resource.service';
 import { VehicleCardComponent } from "../Vehicle/Components/vehicle-card/vehicle-card.component";
-import { HttpResourceFn, HttpResourceRef } from '@angular/common/http';
-import { JsonPipe } from '@angular/common';
+import { VehiclesResponseI } from '../Vehicle/Models/VehiclesI';
+import { VehicleStore } from '../Vehicle/signal-store/vehicle-store';
 
 @Component({
   selector: 'app-resource',
-  imports: [VehicleCardComponent, JsonPipe],
+  imports: [VehicleCardComponent],
+  providers: [VehicleStore],
   templateUrl: './resource.component.html'
 })
 export class ResourceComponent {
 
-  items = signal(['ford', 'merc', 'lexus'])
+  items = signal(['ford', 'merc', 'lexus', 'tesla']);
   selectedVehicle = signal('ford');
 
   resourceService = inject(ResourceService);
   // vehiclesList = this.resourceService.response;
-  response: HttpResourceRef<any> = this.resourceService.fetchData(this.selectedVehicle);
+  response: HttpResourceRef<VehiclesResponseI> = this.resourceService.fetchData(this.selectedVehicle);
 
   errorResponse = computed(() => this.response.error());
   vehiclesList = computed(() => this.response.value());
-
-
 
   onOptionChange(event) {
     console.log(event.target.value);

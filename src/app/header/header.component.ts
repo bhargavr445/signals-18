@@ -28,6 +28,7 @@ export class HeaderComponent {
   
   navItems = signal<NavI[]>([
     { label: 'Home1', navigationUrl: '/home' },
+    { label: 'Chat', navigationUrl: '/chat' },
     { label: 'Game', navigationUrl: '/game' },
     { label: 'Vehicle', navigationUrl: '/vehicle' },
     { label: 'Student', navigationUrl: '/student' },

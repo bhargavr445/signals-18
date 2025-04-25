@@ -19,9 +19,8 @@ export class AuthService {
   userProfileSub = new BehaviorSubject<User>(null);
   userProfileSub$ = this.userProfileSub.asObservable();
 
-  constructor() {
-   // this.socket$ = webSocket('wss://ws.coincap.io/prices?assets=ethereum,bitcoin,dogecoin');
-   this.socket$ = webSocket('ws://localhost:8080');
+  createConnection() {
+    this.socket$ = webSocket('ws://localhost:8080');
   }
 
   updateUserProfile(userProfile: User) {

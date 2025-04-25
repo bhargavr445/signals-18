@@ -1,32 +1,32 @@
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-        <th>Price</th>
-        <th>Type</th>
-        </tr>
-        
-    </thead>
-
-    <tbody>
-        @for (item of paginatedRecords(); track $index) {
+@if (coursesListLoading()) {
+    <div class="mar-t-20">
+        <table-skeleton />
+    </div>
+} @else if (coursesList()?.data.length) {
+    <table class="mar-t-20">
+        <thead>
             <tr>
-            <td>{{item.title}}</td>
-            <td>{{item.price | currency}}</td>
-            <td [class]="`${categoryClassMap[item.categoryDetails.type] } cat`">{{item.categoryDetails.type}}</td>
-         
-        </tr>
-        }
-        
-    </tbody>
-</table>
-@if (coursesList().length) {
+                <th>Title</th>
+                <th>Price</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of paginatedRecords(); track $index) {
+            <tr>
+                <td>{{item.title}}</td>
+                <td>{{item.price | currency}}</td>
+                <td [class]="`${categoryClassMap[item.categoryDetails.type] } cat`">{{item.categoryDetails.type}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <!-- @if (coursesList()?.data.length) { -->
     <div class="pagination-bar">
-        <gbr-pagination
-            [datalist]="coursesList()" 
+        <gbr-pagination 
+            [datalist]="coursesList().data" 
             [pagesize]="10"
             (paginatedlisthandler)="handlePaginatedList($event)" />
     </div>
+    <!-- } -->
 }
-
-<!-- <gbr-table [tableHeaders]="tableheaders()" [dataList]="coursesList" /> -->

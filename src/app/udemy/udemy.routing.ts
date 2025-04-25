@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 
 import { inject } from "@angular/core";
 import { AuthService } from "../commons/services/api/auth.service";
+import { Buy } from "./buy-courses/buy";
 
 const UDEMY_ROUTES: Routes = [
     {

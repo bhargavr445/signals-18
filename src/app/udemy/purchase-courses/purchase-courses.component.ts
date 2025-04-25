@@ -1,15 +1,16 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, inject, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import { UdemyService } from '../../commons/services/api/udemy.service';
+import { httpResource } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, signal } from '@angular/core';
+import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
 
 @Component({
   selector: 'app-purchase-courses',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, TableSkeletonComponent],
   templateUrl: './purchase-courses.component.html',
   styleUrl: './purchase-courses.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PurchaseCoursesComponent implements OnInit {
+export class PurchaseCoursesComponent {
 
   categoryClassMap = {
     'IT': 'IT',
@@ -18,27 +19,13 @@ export class PurchaseCoursesComponent implements OnInit {
     'Real Estate': 'real-estate'
   };
 
-  coursesList = signal([]);
   paginatedRecords = signal<any[]>([]);
-  #udemyService = inject(UdemyService);
-  tableheaders = signal([
-    { label: 'Title', key: 'title', },
-    { label: 'Price', key: 'price', },
-    { label: 'Type', key: 'categoryDetails.type' },
-    // { label: 'Increase/Descrease in %', key: 'diff' }
-  ]);
+  fetchEnrolledCoursesResource = httpResource<{data: [], status: null}>(() => ({
+    url: 'fetchEnrolledCourses'
+  }));
 
-  ngOnInit(): void {
-    this.#udemyService.getEnrolledCourses().subscribe(
-      (resp) => {
-        console.log(resp);
-        this.coursesList.set(resp.data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
-  }
+  coursesList = computed(() => this.fetchEnrolledCoursesResource.value()); 
+  coursesListLoading = computed(() => this.fetchEnrolledCoursesResource.isLoading()); 
 
   handlePaginatedList(event) {
     this.paginatedRecords.set(event.detail as any[]);

@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { HttpClient, httpResource, HttpResourceRef } from '@angular/common/http';
+import { Injectable, computed, inject } from '@angular/core';
 import { AccountTypeResponseI, CategorysResponseI, CreateAPIRespI, CreateCoursePayloadI, FetchAllCoursesI, UnEnrolledCourseApiResponseI } from '../../../udemy/interfaces/udemy-i';
 import { Observable, map } from 'rxjs';
 
@@ -34,13 +34,10 @@ export class UdemyService {
     return this.#http.get<FetchAllCoursesI>('fetchCreatedCourses');
   }
 
-  fetchUnpurchasedCourses(): Observable<UnEnrolledCourseApiResponseI> {
-    return this.#http.get<UnEnrolledCourseApiResponseI>('unEnrolledCourses');
-  }
+  // fetchUnpurchasedCourses(): Observable<UnEnrolledCourseApiResponseI> {
+  //   return this.#http.get<UnEnrolledCourseApiResponseI>('unEnrolledCourses');
+  // }
 
-  purchaseCourses(coursesList: string[]) {
-    return this.#http.post<UnEnrolledCourseApiResponseI>('purchaseNewCourses', coursesList);
-  }
   
 }
 

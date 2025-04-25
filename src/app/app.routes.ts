@@ -7,11 +7,13 @@ import { UdemyEffects } from './udemy/store/udemy.effects';
 import { udemyReducer } from './udemy/store/udemy.reducer';
 import { HomeComponent } from './home/home.component';
 import { CommonSignalStore } from './commons/common-signal-store/store';
+import { Chat } from './chat/chat';
 
 
 export const routes: Routes = [
     { path: '', redirectTo: 'elections', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'chat', component: Chat },
     // { path: 'game', component: GameComponent },
     // { path: 'vehicle', component: VehicleComponent },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing') },
