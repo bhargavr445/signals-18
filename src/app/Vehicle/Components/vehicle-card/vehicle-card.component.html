@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-content">
-        <h2 class="card-title">{{vehicleInfo().MakeName}}</h2>
+        <h2 class="card-title">{{vehicleInfo().MakeName}}-{{vehicleStore.vehiclesCount()}}</h2>
         <p class="card-author">{{vehicleInfo().VehicleTypeName}}</p>
         <p class="progress-text">{{customVehicle().customId}}</p>
         <!-- <p class="progress-text">{{vehicleInfo().combinedName}}</p> -->
@@ -9,10 +9,7 @@
         <div class="menu-icon">•••</div>
     </div>
     <div class="button-section">
-        @if (customVehicle().isEligibleForAddToCart) {
-                    <button (click)="onSelectedItem(customVehicle())">Add to Cart</button>
-                    
-        }
+                    <button (click)="customVehicle().isEligibleForAddToCart ? onSelectedItem(customVehicle()) : removeFromCart(customVehicle().customId)">{{ customVehicle().isEligibleForAddToCart ? 'Add to Cart' : 'Remove From cart' }}</button>
         <button (click)="navigateToDetails(customVehicle())">Details</button>
         <!-- <button (click)="increase()" class="button">Increment-{{counter()}} - {{derivedCounter()}}</button> -->
 

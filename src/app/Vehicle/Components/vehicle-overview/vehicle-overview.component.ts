@@ -1,74 +1,71 @@
-import { JsonPipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, Signal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { interval, map } from 'rxjs';
 import { FilterComponent } from '../../../commons/components/filter/filter.component';
 import { VehicleService } from '../../../commons/services/api/vehicle.service';
 import { VehiclesResponseI } from '../../Models/VehiclesI';
-import { DeferComponent } from '../defer/defer.component';
 import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
+import { VehicleStore } from '../../signal-store/vehicle-store';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { debounceTime } from 'rxjs';
 
 @Component({
-  selector: 'vehicle-overview',
-  standalone: true,
-  imports: [VehicleCardComponent, FormsModule, FilterComponent, JsonPipe, DeferComponent],
+  imports: [VehicleCardComponent, FormsModule, FilterComponent],
+  providers: [VehicleStore],
   template: `
      <div class="main">
-     <div class="pad-t-10">
+      @if(!vehicleApiFailed()) {
+        <div class="pad-t-10">
        <app-filter  [(searchText)]="filterText"/>
      </div>
       @if( filteredRecords().length > 0) {
         @for (item of filteredRecords(); track $index) {
-            <app-vehicle-card [vehicleInfo]="item"  (emitSome)="emitSome($event)"/>
+            <VehicleCard [vehicleInfo]="item"  (emitSome)="emitSome($event)"/>
 
           } @empty {
           <div>No Records Found...</div>
           }
-
-          @defer(when filteredRecords().length > 0) {
-            <app-defer />
-          } @placeholder {
-            <div>Place Holder</div>
-          }
       } @else {
         <div class="cards-container-vehicles">
         @for(d of [1,2,3,4,5,6]; track $index) {
-         
-            <div class="card">
-                    <div class="skeleton skeleton-text"></div>
-                    <div class="skeleton skeleton-text"></div>
-                    <div class="skeleton skeleton-text" style="width: 60%;"></div>
-                    <div class="skeleton skeleton-button"></div>
-                </div>
-                
-          
-                
-                
-                }
-                </div>
+          <div class="card">
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text" style="width: 60%;"></div>
+            <div class="skeleton skeleton-button"></div>
+          </div>
+        }
+        </div>
       }
+      } @else {
+        <div>Down due to Technical issues.</div>
+      }
+      <button (click)="updateState()">Update State</button>
      </div>
-     
    `
 })
 export class VehicleOverviewComponent {
 
+  vehicleStore = inject(VehicleStore);
   isDataLoading = false;
   filterText = signal('');
-  filteredRecords = computed(() => this.filterRecords(this.filterText()));
-  vehicleService = inject(VehicleService);
-  response = signal<VehiclesResponseI>({ Count: null, Message: '', SearchCriteria: '', Results: [] });
-
-  outer$ = interval(5000).pipe(map(() => 'outer'));
-  inner$ = interval(1000).pipe(map(() => 'inner'));
-  third$ = interval(500).pipe(map(() => 'third'));
+  debounceQuery = toSignal(toObservable(this.filterText).pipe(debounceTime(300)))
+  response: Signal<VehiclesResponseI> = this.vehicleStore.vehiclesListC;
+  filteredRecords = computed(() => this.filterRecords(this.debounceQuery(), this.response()));
+  #vehicleService = inject(VehicleService);
+  vehicleApiFailed = signal(false);
 
   constructor() {
-    this.fetchData();
+    this.vehicleStore.loadVehicles();
   }
 
-  filterRecords(text: string) {
-    return this.response().Results.filter((vehiclle) => Object.keys(vehiclle).some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
+  updateState() {
+    this.vehicleStore.updateCount();
+  }
+
+  filterRecords(text: string, records: VehiclesResponseI) {
+    console.log(text);
+    
+    return this.response()?.Results.filter((vehiclle) => Object.keys(vehiclle).some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
   }
 
   checkFormatchingString(data: string, text: string): boolean {
@@ -79,19 +76,37 @@ export class VehicleOverviewComponent {
     this.isDataLoading = indicator;
   }
 
-  fetchData() {
-    this.vehicleService.getVehicleData('')
-      .subscribe({
-        next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
-        error: (err) => this.handleError(err)
-      });
-  }
 
-  handleSuccess(resp: VehiclesResponseI) {    
-    this.response.set(resp);
-  }
+  // fetchData() {
+  //   this.vehicleApiFailed.set(false);
+  //   this.#vehicleService.getVehicleData('')
+  //     .subscribe({
+  //       next: (resp: VehiclesResponseI) => this.handleSuccess(resp),
+  //       error: (err) => this.handleError(err)
+  //     });
+  // }
+
+  // handleSuccess(resp: VehiclesResponseI) {
+  //   const vehiclesArray = resp.Results;
+  //   for (let mainIndex = 0; mainIndex < vehiclesArray.length; mainIndex++) {
+  //     for (let index = mainIndex + 1; index < vehiclesArray.length; index++) {
+  //       const vehicleFormUnSortedList = vehiclesArray[mainIndex];
+  //       const vehicleFromSubLoop = vehiclesArray[index];
+
+  //       if (parseInt(vehicleFormUnSortedList.customId) < parseInt(vehicleFromSubLoop.customId)) {
+  //         const temp = vehicleFormUnSortedList;
+  //         vehiclesArray[mainIndex] = vehicleFromSubLoop;
+  //         vehiclesArray[index] = temp;
+  //       }
+  //     }
+
+  //   }
+  //   console.log(vehiclesArray)
+  //   //this.response.set(resp);
+  // }
 
   handleError(error) {
+    this.vehicleApiFailed.set(true);
   }
 
   emitSome(event: string) {

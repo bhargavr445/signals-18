@@ -1,34 +1,31 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, ViewChild, computed, effect, inject, signal } from '@angular/core';
-import { CartService } from '../../../commons/services/communication/cart.service';
-import { Result } from '../../Models/VehiclesI';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, computed, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModalComponent } from '../../../commons/components/modal/modal.component';
-import { JsonPipe } from '@angular/common';
 import { ToggleCloseTypes } from '../../../commons/Interfaces/ModalContentI';
 import { ModalConstants } from '../../../commons/constants/modal.constants';
-import { ModalContainerDirective } from '../../../commons/directives/modal-container.directive';
-import { DropdownComponent } from '../../../commons/components/dropdown/dropdown.component';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ModalService } from '../../../commons/services/api/modal.service';
+import { Result } from '../../Models/VehiclesI';
+import { CommonSignalStore } from '../../../commons/common-signal-store/store';
 
 @Component({
-  selector: 'app-vehicles-table',
-  standalone: true,
-  imports: [ModalComponent, JsonPipe, ModalContainerDirective, DropdownComponent, FormsModule],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-vehicles-table',
+    imports: [FormsModule],
+    templateUrl: './cart.component.html',
+    styleUrl: './cart.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CartComponent implements OnInit {
+
+  commonSignalStore = inject(CommonSignalStore);
+  #modalService = inject(ModalService);
+  #router = inject(Router);
 
   form = new FormGroup({
     productType: new FormControl('')
   })
 
   nameprop = 'Stuname';
-  cartService = inject(CartService);
-  modalService = inject(ModalService);
-  router = inject(Router);
+
 
   ngOnInit(): void {
     this.productTypeControl.valueChanges.subscribe( (value) => {
@@ -64,7 +61,7 @@ export class CartComponent implements OnInit {
   itemIdToDelete = signal<string>('');
   
   cartItems = computed(() => {
-    return this.cartService.vehicleCartReadonlySignal()
+    return this.commonSignalStore.vehilesInCart()
   });
 
   removeFromCart(item: Result) {
@@ -73,11 +70,11 @@ export class CartComponent implements OnInit {
   }
 
   handleCloseType(type: ToggleCloseTypes) {
-    type === ModalConstants.confirmClick ? this.cartService.removeitemFromCart(this.itemIdToDelete()) : this.itemIdToDelete.set('');
+    type === ModalConstants.confirmClick ? this.commonSignalStore.removeitemFromCart(this.itemIdToDelete()) : this.itemIdToDelete.set('');
   }
 
   navigateToVehicles() {
-    this.router.navigate(['vehicle'])
+    this.#router.navigate(['vehicle'])
   }
 
   selectedOptionEvent(event) {
@@ -85,7 +82,7 @@ export class CartComponent implements OnInit {
   }
 
   showModal() {
-    const compRef = this.modalService.dynamicComponentOnDOM();
+    const compRef = this.#modalService.dynamicComponentOnDOM();
     compRef.openModal({
       content: 'Are you sure that you want to remove this item from Cart?',
       primaryButton: 'Cancel',

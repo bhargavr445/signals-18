@@ -1,17 +1,20 @@
-import { Component, signal, CUSTOM_ELEMENTS_SCHEMA, input, computed, Output, EventEmitter } from '@angular/core';
+import { Component, signal, CUSTOM_ELEMENTS_SCHEMA, input, computed, Output, EventEmitter, OnInit } from '@angular/core';
 import { Result } from '../../Vehicle/Models/VehiclesI';
 import { reusableImports } from '../../imports.constants';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-table',
-  standalone: true,
-  imports: [...reusableImports],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+    selector: 'app-table',
+    imports: [...reusableImports],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './table.component.html',
+    styleUrl: './table.component.scss'
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
+
+  tableData = input.required<Result[]>();
+
+  @Output() dropDownSelection = new EventEmitter<string>();
 
   tableHeaders = signal([
     { label: 'Type', key: 'MakeName', styleClass: ['customFont'] },
@@ -32,17 +35,21 @@ export class TableComponent {
   
 
   isLoading = signal<boolean>(false);
-  tableData = input.required<Result[]>();
   filterValue = signal('');
   paginatedRecords = signal<Result[]>([]);
-  @Output() dropDownSelection = new EventEmitter<string>();
 
   filteredTableData = computed(() => this.filterRecords(this.filterValue(), this.tableData()));
 
-
+  ngOnInit(): void {
+    this.selectedOptionEvent({detail: this.cars[0]})
+  }
 
   filterRecords(text: string, list: Result[]) {
-    return list.filter((vehiclle) => ['MakeName', 'VehicleTypeName'].some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
+    if(!!list) {
+      return list?.filter((vehiclle) => ['MakeName', 'VehicleTypeName'].some((prop) => this.checkFormatchingString(vehiclle[prop], text)))
+    } else {
+      return [];
+    }
   }
 
   checkFormatchingString(data: string, text: string): boolean {

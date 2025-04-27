@@ -8,10 +8,10 @@ import { MoviesAPIResponseI } from '../../../university/interfaces/UniversityLis
 })
 export class MoviesService {
 
-  http = inject(HttpClient);
+  #http = inject(HttpClient);
 
   fetchMoviesFromApi(): Observable<MoviesAPIResponseI> {
-    return this.http.get<MoviesAPIResponseI>('movies').pipe(
+    return this.#http.get<MoviesAPIResponseI>('movies').pipe(
       filter(resp => !!resp),
       catchError((error) => throwError(() => {
         return { ...error, msg: 'Handled Error in service************' }

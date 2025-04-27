@@ -1,28 +1,25 @@
-import { NgClass } from '@angular/common';
-import { Component, computed, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { CommunicationService } from '../commons/services/communication/communication.service';
-import { CreateCourseComponent } from './create-course/create-course.component';
-import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
+import { Component, computed, inject, signal, Signal } from '@angular/core';
+import { ROUTER_OUTLET_DATA, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
-
-
+import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
+import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-udemy',
-  standalone: true,
-  imports: [CreateCourseComponent, RouterOutlet, NgClass, RouterLink, RouterLinkActive],
-  templateUrl: './udemy.component.html',
-  styleUrl: './udemy.component.scss'
+    selector: 'app-udemy',
+    imports: [RouterOutlet, RouterLink, RouterLinkActive],
+    templateUrl: './udemy.component.html',
+    styleUrl: './udemy.component.scss'
 })
 
 export class UdemyComponent {
 
-  authService = inject(AuthService);
 
-  role = computed(() => this.#checkForInstructorRole(this.authService.userProfileComputed()?.role));
+  data1: Signal<number> = signal(1);
+  readonly #authService = inject(AuthService);
+  data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
+  role = computed(() => this.#checkForInstructorRole(this.#authService.userProfileComputed()?.role));
 
-  #udemyMenu: NavMenuItem[] = [
+  readonly #udemyMenu: NavMenuItem[] = [
     { label: 'Add Course', path: '/udemy/add', isActive: false, role: 'U_INSTRUCTOR' },
     { label: 'Buy Courses', path: '/udemy/buy', isActive: true },
     { label: 'Purchased Courses', path: '/udemy/purchase', isActive: false },
@@ -30,7 +27,7 @@ export class UdemyComponent {
   ];
 
   #checkForInstructorRole(role: U_ROLES): NavMenuItem[] {
-    return this.#udemyMenu.filter((menu: NavMenuItem) => !!menu?.role ? this.#checkIfRoleIsMatching(menu, role) : true)
+    return this.#udemyMenu.filter((menu: NavMenuItem) => menu?.role ? this.#checkIfRoleIsMatching(menu, role) : true)
   }
 
   #checkIfRoleIsMatching(menu: NavMenuItem, role: U_ROLES): boolean {

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StudentOverviewComponent } from './student-overview.component';
+import { NestedSectionsComponent } from './nested-sections.component';
 
-describe('StudentOverviewComponent', () => {
-  let component: StudentOverviewComponent;
-  let fixture: ComponentFixture<StudentOverviewComponent>;
+describe('NestedSectionsComponent', () => {
+  let component: NestedSectionsComponent;
+  let fixture: ComponentFixture<NestedSectionsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StudentOverviewComponent]
+      imports: [NestedSectionsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(StudentOverviewComponent);
+    fixture = TestBed.createComponent(NestedSectionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

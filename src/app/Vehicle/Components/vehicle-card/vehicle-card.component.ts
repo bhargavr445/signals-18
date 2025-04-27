@@ -1,20 +1,22 @@
 import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
-import { Result } from '../../Models/VehiclesI';
-import { CartService } from '../../../commons/services/communication/cart.service';
 import { Router } from '@angular/router';
+import { Result } from '../../Models/VehiclesI';
+import { VehicleStore } from '../../signal-store/vehicle-store';
+import { CommonSignalStore } from '../../../commons/common-signal-store/store';
 
 @Component({
-  selector: 'app-vehicle-card',
-  standalone: true,
-  imports: [],
-  templateUrl: './vehicle-card.component.html',
-  styleUrl: './vehicle-card.component.scss'
+    selector: 'VehicleCard',
+    imports: [],
+    templateUrl: './vehicle-card.component.html',
+    styleUrl: './vehicle-card.component.scss'
 })
 export class VehicleCardComponent {
 
-  router = inject(Router);
+  #router = inject(Router);
+  vehicleStore = inject(VehicleStore);
+  commonSignalStore = inject(CommonSignalStore);
+  
 
-  cartService = inject(CartService);
   vehicleInfo = input.required<Result>();
   emitSome = output<string>();
   counter = signal<number>(0);
@@ -33,7 +35,7 @@ export class VehicleCardComponent {
 
   customVehicle = computed(() => {
     const incomingVehicle = this.vehicleInfo();
-    const cartitems = this.cartService.vehicleCartReadonlySignal();
+    const cartitems = this.commonSignalStore.vehiclesList();
     return {
       ...incomingVehicle,
       isEligibleForAddToCart: this.checkIsEligibleForAddToCart(cartitems)
@@ -53,8 +55,11 @@ export class VehicleCardComponent {
 
   onSelectedItem(vehicleInfo: Result) {
     this.selectedVehicle.set(vehicleInfo);
-    this.cartService.addVehicleToCartSignal(vehicleInfo);
+    this.commonSignalStore.addVehicleToCart(vehicleInfo);
+  }
 
+  removeFromCart(id: string) {
+    this.commonSignalStore.removeitemFromCart(id);
   }
 
   increase() {
@@ -63,7 +68,7 @@ export class VehicleCardComponent {
   }
 
   navigateToDetails(vehicleInfo: Result) {
-    this.router.navigate([`vehicle/details/${vehicleInfo.customId}`]);
+    this.#router.navigate([`vehicle/details/${vehicleInfo.customId}`]);
   }
 
 }

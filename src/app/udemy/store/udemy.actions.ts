@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { CategorysI, CourseI, CreateCoursePayloadI, PurchasedCourseI } from "../interfaces/udemy-i";
+import { CategorysI, CreateCoursePayloadI, PurchasedCourseI } from "../interfaces/udemy-i";
 
 export const FETCH_CATEGORYS_SUCCESS = 'FETCH_CATEGORYS_SUCCESS';
 export const FETCH_CATEGORYS = 'FETCH_CATEGORYS';

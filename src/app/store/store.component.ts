@@ -1,29 +1,28 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Observable, combineLatest, debounceTime, distinctUntilChanged, filter, map, startWith, tap } from 'rxjs';
 import { testAct } from '../app-store/app.actions';
 import { apiLoadingSelector, apiResultsSelector, testDataSelector } from '../app-store/app.selector';
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Observable, combineLatest, debounceTime, distinctUntilChanged, filter, map, startWith, tap } from 'rxjs';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Result } from '../Vehicle/Models/VehiclesI';
 
 @Component({
-  selector: 'app-store',
-  standalone: true,
-  imports: [AsyncPipe, JsonPipe, FormsModule, ReactiveFormsModule],
-  templateUrl: './store.component.html',
-  styleUrl: './store.component.scss'
+    selector: 'app-store',
+    imports: [AsyncPipe, FormsModule, ReactiveFormsModule],
+    templateUrl: './store.component.html',
+    styleUrl: './store.component.scss'
 })
 export class StoreComponent implements OnInit {
 
-  store = inject(Store);
+  #store = inject(Store);
   searchTextControl = new FormControl('');
 
-  apiResp$ = this.store.select(apiResultsSelector).pipe(tap((d) => console.log(d)));
-  apiLoading$ = this.store.select(apiLoadingSelector).pipe(tap((d) => console.log(d)));
-  // data$ = this.store.select(testDataSelector);
+  apiResp$ = this.#store.select(apiResultsSelector).pipe(tap((d) => console.log(d)));
+  apiLoading$ = this.#store.select(apiLoadingSelector).pipe(tap((d) => console.log(d)));
+  // data$ = this.#store.select(testDataSelector);
   filteredRecords$: Observable<any>
-  x$ = this.store.select(testDataSelector).pipe(tap((d) => console.log(d)));
+  x$ = this.#store.select(testDataSelector).pipe(tap((d) => console.log(d)));
 
   constructor() {
 
@@ -46,7 +45,7 @@ export class StoreComponent implements OnInit {
       debounceTime(1000),
       distinctUntilChanged()
     )
-    this.store.dispatch(testAct({value: {id: 10, name: 'Bhargav'}}));
+    this.#store.dispatch(testAct({value: {id: 10, name: 'Bhargav'}}));
     this.filteredRecords$ = combineLatest([
       this.apiResp$.pipe(map(d => d?.Results ?? [])),
       searchTextControl$

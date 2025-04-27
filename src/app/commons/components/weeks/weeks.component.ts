@@ -1,13 +1,12 @@
-import { JsonPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, input } from '@angular/core';
 
 @Component({
-  selector: 'app-weeks',
-  standalone: true,
-  imports: [JsonPipe, NgClass],
-  templateUrl: './weeks.component.html',
-  styleUrl: './weeks.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-weeks',
+    imports: [NgClass],
+    templateUrl: './weeks.component.html',
+    styleUrl: './weeks.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WeeksComponent {
 

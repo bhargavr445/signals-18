@@ -1,9 +1,12 @@
+<div class="main pad-t-46">
+
 <div class="horizontal-menu">
     @for (item of role(); track $index) {
     <a [routerLink]="item.path" routerLinkActive="active-udemy-menu">{{item.label}}</a>
+    <!-- --{{data()}} -->
     }
 </div>
 
-<div class="main">
+
     <router-outlet />
 </div>

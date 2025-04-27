@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
+import { ApplicationConfig, isDevMode, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -10,18 +10,20 @@ import { universityReducer } from './university/store/university.reducer';
 import { UniversityEffects } from './university/store/university.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authInterceptor } from './commons/interceptor/auth.interceptor';
-import { udemyReducer } from './udemy/store/udemy.reducer';
-import { UdemyEffects } from './udemy/store/udemy.effects';
+import { spinnerInterceptor } from './commons/interceptor/spinner.interceptor';
+import { electionsReducer } from './elections/store/elections-reducer';
+import { ElectionEffects } from './elections/store/elections-effects';
 
-const storeConfig = { app: appReducer, university: universityReducer, udemy: udemyReducer }
+const storeConfig = { app: appReducer, university: universityReducer, elections: electionsReducer }
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    // provideZoneChangeDetection({ eventCoalescing: true }),
+    provideExperimentalZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, spinnerInterceptor])),
     provideStore(storeConfig),
-    provideEffects([AppEffects, UniversityEffects, UdemyEffects]),
+    provideEffects([AppEffects, UniversityEffects, ElectionEffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode()

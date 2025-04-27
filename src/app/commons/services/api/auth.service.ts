@@ -1,20 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, first, Observable, take } from 'rxjs';
 import { LoginResponseI, User } from '../../../login/login-response-interface';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  http = inject(HttpClient);
+  private socket$: WebSocketSubject<any>;
+
+  #http = inject(HttpClient);
 
   userProfileS = signal<User>(null);
   userProfileComputed = this.userProfileS.asReadonly();
 
   userProfileSub = new BehaviorSubject<User>(null);
   userProfileSub$ = this.userProfileSub.asObservable();
+
+  createConnection() {
+    this.socket$ = webSocket('ws://localhost:8080');
+  }
 
   updateUserProfile(userProfile: User) {
     console.log();
@@ -23,11 +30,21 @@ export class AuthService {
   }
 
   login(credentials: any): Observable<LoginResponseI> {
-    return this.http.post<LoginResponseI>('login', credentials)
+    return this.#http.post<LoginResponseI>('login', credentials);
   }
 
   logout() {
-    return this.http.get<LoginResponseI>('logoutAll')
+    return this.#http.get<LoginResponseI>('logoutAll')
   }
+
+  getStockPrices() {
+    return this.socket$.asObservable();
+  }
+
+  closeConnection() {
+    this.socket$.complete();
+    this.socket$.unsubscribe()
+  }
+
 
 }

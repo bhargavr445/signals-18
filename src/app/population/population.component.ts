@@ -1,24 +1,39 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
+import { filter, map } from 'rxjs';
 import * as actions from '../../app/app-store/app.actions';
 import * as selectors from '../../app/app-store/app.selector';
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { TableSkeletonComponent } from '../commons/components/table-skeleton/table-skeleton.component';
 import { TableComponent } from '../commons/components/table/table.component';
-import { Observable, combineLatest, filter, map, tap } from 'rxjs';
 import { Datum } from './interfaces/population-responseI';
-import { AuthService } from '../commons/services/api/auth.service';
 
 @Component({
   selector: 'app-population',
-  standalone: true,
-  imports: [AsyncPipe, TableComponent],
-  templateUrl: './population.component.html',
-  styleUrl: './population.component.scss'
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TableComponent, TableSkeletonComponent],
+  template: `
+  <div class="main">
+    <button (click)="fetchData()" #fetchButton>Fetch Data</button>
+
+    @defer (on interaction(fetchButton); prefetch on hover(fetchButton)) {
+      @if(!isLoading()) {
+        <gbr-table [tableHeaders]="tableheaders()" [dataList]="dataList()" />
+      } @else {
+        <table-skeleton />
+      }
+    } @placeholder {
+      <div>CLick button</div>
+    } @error {
+      <div>Failed to load Table due to net works issues</div>
+    }
+   
+  </div>
+  `
 })
 export class PopulationComponent implements OnInit {
 
-  as = inject(AuthService)
-  store = inject(Store);
+  #store = inject(Store);
   tableheaders = signal([
     { label: 'Country Name', key: 'Nation', },
     { label: 'Year', key: 'Year', },
@@ -26,22 +41,26 @@ export class PopulationComponent implements OnInit {
     { label: 'Increase/Descrease in %', key: 'diff' }
   ]);
 
-  payload$ = this.store.select(selectors.populationDataPayloadSelector);
-  dataList$: Observable<Datum[]> = this.store.select(selectors.populationDataResponseSelector).pipe(
-    filter((d => !!d)),
-    map((resp) => this.calculateIncreasePercentage(resp.data)),
+  dataList = toSignal<Datum[]>(
+    this.#store.select(selectors.populationDataResponseSelector).pipe(
+      filter((d => !!d)),
+      map((resp) => this.#calculateIncreasePercentage(resp.data))),
+    this.#initialValue(null)
   );
-  isLoading$ = this.store.select(selectors.populationDataLoadingStatusSelector);
+  isLoading = toSignal(
+    this.#store.select(selectors.populationDataLoadingStatusSelector),
+    { initialValue: false }
+  );
 
   ngOnInit(): void {
-    this.store.dispatch(actions.fetchPopulationDataStartAction({ value: 'United States' }));
-
-    combineLatest([
-      this.as.userProfileSub$
-    ]).subscribe(d => console.log(d))
+    // this.fetchData();
   }
 
-  private calculateIncreasePercentage(data: any[]) {
+  fetchData() {
+    this.#store.dispatch(actions.fetchPopulationDataStartAction({ value: 'United States' }));
+  }
+
+  #calculateIncreasePercentage(data: any[]): Datum[] {
     return data.map(d => {
       const previousYear = data.find(dl => parseInt(dl.Year) === parseInt(d.Year) - 1);
 
@@ -51,13 +70,12 @@ export class PopulationComponent implements OnInit {
         percentageDifference = ((diff / previousYear.Population) * 100).toFixed(2);
         percentageDifference = (diff >= 0 ? '+' : '') + percentageDifference + '%';
       }
-
-      return {
-        ...d,
-        diff: percentageDifference
-      };
+      return { ...d, diff: percentageDifference };
     });
   }
 
+  #initialValue<T>(value: T) {
+    return { initialValue: value }
+  }
 
 }

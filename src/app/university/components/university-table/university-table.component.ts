@@ -1,17 +1,14 @@
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, effect, input, signal } from '@angular/core';
-import { UniversityListI } from '../../interfaces/UniversityListI';
 import { FormsModule } from '@angular/forms';
 import { TableComponent } from '../../../commons/components/table/table.component';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { UniversityListI } from '../../interfaces/UniversityListI';
 
 @Component({
-  selector: 'app-university-table',
-  standalone: true,
-  imports: [JsonPipe, FormsModule, NgFor, NgIf, TableComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './university-table.component.html',
-  styleUrl: './university-table.component.scss'
+    selector: 'app-university-table',
+    imports: [FormsModule, TableComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './university-table.component.html',
+    styleUrl: './university-table.component.scss'
 })
 export class UniversityTableComponent {
 

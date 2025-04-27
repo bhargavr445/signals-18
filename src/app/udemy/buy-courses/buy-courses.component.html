@@ -1,28 +1,48 @@
-@if (selectedCourses.length > 0) {
-    <button (click)="buyCourses()">Buy Course</button>
-}
+<div>
+    @let purchaseCourseApiStatus = purchaseCourseApiStatus$ | async;
+    @if(purchaseCourseApiStatus) {
+    {{purchaseCourseApiStatus}}
+    }
+</div>
 
-<table>
+@if (selectedCourses.length > 0) {
+<button class="mar-t-20" (click)="buyCourses()">Buy Course</button>
+}
+@if (paginatedRecords().length) {
+<table class="mar-t-20">
     <thead>
         <tr>
             <th>Select/UnSelect</th>
             <th>Title</th>
-        <th>Price</th>
-        <!-- <th>Type</th> -->
+            <th>Price</th>
+            <th>Type</th>
         </tr>
-        
     </thead>
-
     <tbody>
-        @for (item of UnpurchasedCourses$ | async; track $index) {
-            <tr>
-                <td><input type="checkbox" (change)="item.isSelected = !item.isSelected; onToggleCheckbox($event, item.course_id)"></td>
-            <td>{{item.title}}</td>
+        @for (item of paginatedRecords(); track item.course_id) {
+        <tr>
+            <td>
+                <input type="checkbox" (change)="item.isSelected = !item.isSelected; 
+                        onToggleCheckbox($event, item.course_id)">
+            </td>
+            <td>{{item.title | titlecase}}</td>
             <td>{{item.price | currency}}</td>
-            <!-- <td>{{item.categoryDetails.type}}</td> -->
-         
+            <td [class]="`${categoryClassMap[item.categoryType] } cat`">{{categoryClassMap[item.categoryType]}}</td>
         </tr>
         }
-        
     </tbody>
 </table>
+}
+
+@let unpurchasedCourses = updatedUnpurchasedCourses();
+@if (unpurchasedCourses?.length) {
+<div class="pagination-bar">
+    <gbr-pagination [datalist]="unpurchasedCourses" [pagesize]="10"
+        (paginatedlisthandler)="handlePaginatedList($event)" />
+</div>
+}
+@if (unpurchasedCoursesListLoading()) {
+    <div class="mar-t-20">
+        <table-skeleton />
+    </div>
+}

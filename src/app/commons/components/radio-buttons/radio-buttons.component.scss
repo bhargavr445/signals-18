@@ -1,0 +1,13 @@
+.roles-container {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px; /* Space between radio buttons */
+
+    label {
+        margin-left: 10px;
+    }
+  }
+  
+  .check-box-label {
+    margin-left: 15px; /* Space between radio input and label */
+  }

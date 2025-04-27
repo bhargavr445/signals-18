@@ -1,9 +1,9 @@
-import { JsonPipe, NgClass, TitleCasePipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { NgClass, TitleCasePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
-import { CartService } from '../commons/services/communication/cart.service';
-import { CommunicationService } from '../commons/services/communication/communication.service';
+import { CommonSignalStore } from '../commons/common-signal-store/store';
+import { environment } from '../../environments/environment';
 
 interface NavI {
   label: string;
@@ -12,37 +12,40 @@ interface NavI {
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [NgClass, JsonPipe, RouterLink, RouterLinkActive, TitleCasePipe],
+  imports: [NgClass, RouterLink, RouterLinkActive, TitleCasePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
 
+  commonSignalStore = inject(CommonSignalStore);
+  #authService = inject(AuthService);
+  #router = inject(Router);
+
   showCartItemsTable = signal<boolean>(false);
   iscartUrl = signal<boolean>(false);
+  
   navItems = signal<NavI[]>([
-    { label: 'Home', navigationUrl: '/home' },
+    { label: 'Home1', navigationUrl: '/home' },
+    { label: 'Chat', navigationUrl: '/chat' },
+    { label: 'Game', navigationUrl: '/game' },
     { label: 'Vehicle', navigationUrl: '/vehicle' },
     { label: 'Student', navigationUrl: '/student' },
     { label: 'Store', navigationUrl: '/store' },
     { label: 'Universities', navigationUrl: '/universities' },
-    { label: 'Game', navigationUrl: '/game' },
     { label: 'Population', navigationUrl: '/population' },
     { label: 'Movies', navigationUrl: '/movies' },
-    { label: 'Udemy', navigationUrl: '/udemy' }
+    { label: 'Udemy', navigationUrl: '/udemy' },
+    { label: 'Elections', navigationUrl: '/elections' },
+    { label: 'Resource', navigationUrl: '/resource' },
   ]);
 
-  authService = inject(AuthService);
-  communicationService = inject(CommunicationService);
-  cartService = inject(CartService);
-  router = inject(Router);
 
   userProfileInfo = computed(() => {
-    this.checkIfuserInfoExists(this.authService.userProfileS());
-    return this.authService.userProfileS()
+    this.checkIfuserInfoExists(this.#authService.userProfileS());
+    return this.#authService.userProfileS()
   });
-  noOfItemsInCart = computed(() => this.cartService.vehicleCartReadonlySignal().length);
 
   checkIfuserInfoExists(userInfo) {
     if (!userInfo) {
@@ -51,13 +54,25 @@ export class HeaderComponent {
   }
 
   navigateTo(url: string): void {
-    this.router.navigate([url]);
+    this.#router.navigate([url]);
   }
 
   logout() {
-    this.authService.updateUserProfile(null)
-    sessionStorage.clear();
-    this.navigateTo('login')
+    this.#authService.logout().subscribe({
+      next: () => {
+        this.#authService.updateUserProfile(null)
+        sessionStorage.clear();
+        this.navigateTo('login');
+      },
+      error: () => {
+        console.warn('Not able to logout...');
+      }
+    })
+  }
+
+  getUser() {
+    console.log('trigger....');
+    return 'Bhargav'
   }
 
 }

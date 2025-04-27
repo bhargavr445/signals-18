@@ -1,40 +1,41 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { UdemyService } from '../../commons/services/api/udemy.service';
-import { CommunicationService } from '../../commons/services/communication/communication.service';
-import { TableComponent } from '../../commons/components/table/table.component';
 import { CurrencyPipe } from '@angular/common';
+import { httpResource } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, signal } from '@angular/core';
+import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
+import { add } from '@bhargavr445/search-utilities';
 
 @Component({
   selector: 'app-purchase-courses',
-  standalone: true,
-  imports: [TableComponent, CurrencyPipe],
+  imports: [CurrencyPipe, TableSkeletonComponent],
   templateUrl: './purchase-courses.component.html',
-  styleUrl: './purchase-courses.component.scss'
+  styleUrl: './purchase-courses.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PurchaseCoursesComponent implements OnInit {
-  
-  coursesList = [];
-  udemyService = inject(UdemyService);
-  tableheaders = signal([
-    { label: 'Title', key: 'title', },
-    { label: 'Price', key: 'price', },
-    { label: 'Type', key: 'categoryDetails.type' },
-    // { label: 'Increase/Descrease in %', key: 'diff' }
-  ]);
+export class PurchaseCoursesComponent {
 
+  data = add(10,20);
 
+  constructor() {
+    console.log(this.data);    
+  }
 
+  categoryClassMap = {
+    'IT': 'IT',
+    'Sports': 'Sports',
+    'Music': 'Music',
+    'Real Estate': 'real-estate'
+  };
 
-  ngOnInit(): void {
-    this.udemyService.getEnrolledCourses().subscribe(
-      (resp) => {
-        console.log(resp);
-        this.coursesList = resp.data
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
+  paginatedRecords = signal<any[]>([]);
+  fetchEnrolledCoursesResource = httpResource<{data: [], status: null}>(() => ({
+    url: 'fetchEnrolledCourses'
+  }));
+
+  coursesList = computed(() => this.fetchEnrolledCoursesResource.value()); 
+  coursesListLoading = computed(() => this.fetchEnrolledCoursesResource.isLoading()); 
+
+  handlePaginatedList(event) {
+    this.paginatedRecords.set(event.detail as any[]);
   }
 
 }

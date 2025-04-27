@@ -45,6 +45,12 @@ button:disabled {
     padding: 10px 0;
     display: flex;
     justify-content: center;
+  //   position: fixed; /* Makes the header sticky */
+  // top: 0; /* 
+  // z-index: 10;
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
 }
 
 .menu {
@@ -111,8 +117,17 @@ button:disabled {
     margin-bottom: 20px;
 }
 
+.mar-t-10 {
+  margin-top: 10px;
+}
+
+.mar-t-20 {
+  margin-top: 20px;
+}
+
 .main {
     width: 60%;
+    padding-top: 60px;
     margin: 25px auto;
 }
 
@@ -190,12 +205,13 @@ button:disabled {
     box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
     transition: transform 0.9s;
     margin: 10px;
+    
     // border-bottom: 4px solid rgb(247, 98, 123);
   
   }
 
  form {
-  background-color: #eff0f6;
+  // background-color: #eff0f6;
   padding: 20px;
   border-radius: 10px;
  }
@@ -204,3 +220,63 @@ button:disabled {
   margin: 10px 0;
   color: red;
  }
+
+ .skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.skeleton-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  height: 30px;
+  border-radius: 4px;
+}
+.skeleton-row span {
+  flex: 1;
+  height: 100%;
+  background-color: #e0e0e0;
+  margin: 0 5px;
+}
+.skeleton-row span:first-child {
+  margin-left: 0;
+}
+.skeleton-row span:last-child {
+  margin-right: 0;
+}
+
+.pagination-bar {
+  display: flex;
+  justify-content: right;
+}
+.pad-t-46 {
+  padding-top: 46px;
+}
+.cat {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  color: white;
+  // text-transform: uppercase;
+  white-space: nowrap;
+  margin: 8px;
+  
+  &.IT {
+    background-color: #456BBC;
+  }
+  &.Sports {
+    background-color: rgb(251, 202, 4);
+    color: black;
+  }
+  &.Music {
+    background-color: #cb1762;
+  }
+  &.real-estate {
+    background-color: #009688;
+  }
+
+}

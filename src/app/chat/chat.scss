@@ -1,0 +1,116 @@
+.chat-container {
+    width: 400px;
+    height: 600px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
+  .chat-header {
+    background-color: #007bff;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    padding: 10px;
+    background-color: #f1f1f1;
+    overflow-y: auto;
+  }
+  
+  .message {
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 16px;
+    max-width: 70%;
+    word-wrap: break-word;
+    font-size: 14px;
+  }
+  
+  .message.self {
+    background-color: #DCF8C6;
+    align-self: flex-end;
+  }
+  
+  .chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: white;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+  }
+  
+  .chat-input button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .chat-input button:hover {
+    background-color: #0056b3;
+  }
+
+
+
+  .message-container {
+    display: flex;
+    margin: 5px;
+  }
+  
+  .message-text {
+    display: flex;
+    flex-direction: column;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 15px;
+    max-width: 70%;
+    word-break: break-word;
+    padding: 10px;
+    position: relative; /* important */
+  }
+  
+  .text {
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .time {
+    align-self: flex-end; /* ⭐ pushes time to bottom-right */
+    font-size: 10px;
+    opacity: 0.8;
+    margin-top: auto; /* ⭐ makes time stick at the bottom */
+  }
+  
+  /* Align own messages to the right */
+  .message-container.self {
+    justify-content: flex-end;
+  }
+  
+  /* Align others' messages to the left */
+  .message-container.other {
+    justify-content: flex-start;
+  }
+
+  

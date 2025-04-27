@@ -1,36 +1,35 @@
+import { AsyncPipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { VehicleOverviewComponent } from './Vehicle/Components/vehicle-overview/vehicle-overview.component';
-import { HeaderComponent } from './header/header.component';
-import { CartComponent } from './Vehicle/Components/cart/cart.component';
-import { ModalContainerDirective } from './commons/directives/modal-container.directive';
+import { BehaviorSubject, Observable, Subject, delay, of } from 'rxjs';
 import { ModalHostComponent } from './commons/components/modal-host/modal-host.component';
-import { BehaviorSubject, Observable, Subject, combineLatest, delay, filter, interval, of, startWith, switchMap, take, takeUntil, tap } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import { ModalService } from './commons/services/api/modal.service';
 import { AuthService } from './commons/services/api/auth.service';
-import { VehicleService } from './commons/services/api/vehicle.service';
+import { ModalService } from './commons/services/api/modal.service';
 import { UdemyService } from './commons/services/api/udemy.service';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    AsyncPipe, 
-    RouterOutlet, 
-    VehicleOverviewComponent, 
-    HeaderComponent, 
-    CartComponent, 
-    ModalContainerDirective, 
-    ModalHostComponent
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [
+        AsyncPipe,
+        RouterOutlet,
+        HeaderComponent,
+        ModalHostComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  udemyService = inject(UdemyService)
+  name1: string = 'Bhargav';
+  name2: string = this.name1;
+
+  stu1 = {name: 'Surya', id: 10};
+  stu2 = this.stu1;
+
+
+  #udemyService = inject(UdemyService)
   id = new BehaviorSubject<number>(0);
   id$ = this.id.asObservable();
   sub$ = new Subject<boolean>();
@@ -40,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
   source2$ = of('Second').pipe(delay(4000));
 
   resp$: Observable<any> = of();
-  name: string = 'Bhargav';
+  name = signal('Bhargav');
 
   constructor() {
     const data = {
@@ -52,6 +51,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.name1 = 'Bhargav R G';
+    console.log(this.name1);
+    console.log(this.name2);
+
+    this.stu1.name = 'Surya Teja';
+    console.log(this.stu1.name);
+    console.log(this.stu2.name);
     // this.udemyService.fetchAllCreatedCourses()
     // .pipe(
     //   takeUntil(this.sub$)
@@ -89,7 +95,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   unsub() {
-    this.name = 'boby' 
+    // this.name = 'boby' 
     this.sub$.next(true);
     this.sub$.complete();
     
@@ -105,8 +111,8 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log(queryParams);
   }
 
-  authService = inject(AuthService);
-  modalService = inject(ModalService);
+  #authService = inject(AuthService);
+  #modalService = inject(ModalService);
   title = 'signals-18';
   counter = signal(0);
   showCounter = signal(false);
@@ -115,7 +121,7 @@ export class AppComponent implements OnInit, OnDestroy {
   });
 
   showModal() {
-    const compRef = this.modalService.dynamicComponentOnDOM();
+    const compRef = this.#modalService.dynamicComponentOnDOM();
     compRef.openModal({
       content: 'Are you sure that you want to remove this item from Cart?',
       primaryButton: 'Cancel',
@@ -143,8 +149,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.id.next(this.id.value+1);
   }
 
+  changeUerName() {
+    this.name.set(Math.random().toString());
+  }
+
   ngOnDestroy(): void {
-    this.authService.logout().subscribe()
+    this.#authService.logout().subscribe()
     sessionStorage.clear();
   }
 

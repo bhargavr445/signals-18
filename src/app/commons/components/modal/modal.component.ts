@@ -1,18 +1,15 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, computed, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, inject, signal } from '@angular/core';
 import { ToggleCloseTypes } from '../../Interfaces/ModalContentI';
-import { ModalService } from '../../services/api/modal.service';
 
 @Component({
-  selector: 'app-modal',
-  standalone: true,
-  imports: [],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    selector: 'app-modal',
+    imports: [],
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ModalComponent {
 
-  modalService = inject(ModalService);
   @Output() closeEvent = new EventEmitter<ToggleCloseTypes>();
   modalContent = signal(null);
 

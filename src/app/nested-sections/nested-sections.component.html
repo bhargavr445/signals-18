@@ -1,0 +1,20 @@
+<div class="container">
+    <!-- Loop through main sections (prr, vendorReports) -->
+    <div *ngFor="let key of keys">
+      <div class="section">
+        <!-- Toggle button -->
+        <button (click)="toggleSection(key)">
+          {{ expandedSections[key] ? '▼' : '▶' }} {{ data[key].label }}
+        </button>
+        <input type="checkbox" [(ngModel)]="data[key].toggleProp">
+  
+        <!-- Show nested modules if expanded -->
+        <div *ngIf="expandedSections[key]" class="nested">
+          <div *ngFor="let module of data[key].modules">
+            <app-expandable-module [module]="module"></app-expandable-module>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
