@@ -2,6 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, signal } from '@angular/core';
 import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
+import { add } from '@bhargavr445/search-utilities';
 
 @Component({
   selector: 'app-purchase-courses',
@@ -11,6 +12,12 @@ import { TableSkeletonComponent } from '../../commons/components/table-skeleton/
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PurchaseCoursesComponent {
+
+  data = add(10,20);
+
+  constructor() {
+    console.log(this.data);    
+  }
 
   categoryClassMap = {
     'IT': 'IT',
