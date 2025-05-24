@@ -10,6 +10,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, input } from '@angular/cor
 })
 export class WeeksComponent {
 
+  name = 'Bhargav';
   scheduleDays = input.required<string[]>();
   updatedWeeks = computed(() => this.updatedData(this.scheduleDays()));
 

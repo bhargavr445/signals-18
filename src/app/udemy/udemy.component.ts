@@ -2,7 +2,6 @@ import { Component, computed, inject, signal, Signal } from '@angular/core';
 import { ROUTER_OUTLET_DATA, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
-import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-udemy',
@@ -20,10 +19,10 @@ export class UdemyComponent {
   role = computed(() => this.#checkForInstructorRole(this.#authService.userProfileComputed()?.role));
 
   readonly #udemyMenu: NavMenuItem[] = [
-    { label: 'Add Course', path: '/udemy/add', isActive: false, role: 'U_INSTRUCTOR' },
-    { label: 'Buy Courses', path: '/udemy/buy', isActive: true },
-    { label: 'Purchased Courses', path: '/udemy/purchase', isActive: false },
-    { label: 'Update Profile', path: '/udemy/update', isActive: false }
+    { label: 'Add Course', path: '/udemy/add', isActive: false, role: 'U_INSTRUCTOR', val: 0 },
+    { label: 'Buy Courses', path: '/udemy/buy', isActive: true, val: 100 },
+    { label: 'Purchased Courses', path: '/udemy/purchase', isActive: false, val: 200 },
+    { label: 'Update Profile', path: '/udemy/update', isActive: false, val: 300 }
   ];
 
   #checkForInstructorRole(role: U_ROLES): NavMenuItem[] {

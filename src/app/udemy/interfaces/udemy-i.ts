@@ -41,6 +41,7 @@ export interface NavMenuItem {
     path: string;
     isActive: boolean;
     role?: U_ROLES;
+    val?: number;
   }
   
   export type U_ROLES = "U_INSTRUCTOR" | "U_STUDENT";

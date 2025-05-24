@@ -20,7 +20,7 @@ export class ResourceService {
   // value = computed(() => this.vehicleResponseResource.value());
   // error = computed(() => this.vehicleResponseResource.isLoading());
 
-  fetchData(formData: Signal<string>): HttpResourceRef<VehiclesResponseI> {    
+  fetchData123(formData: Signal<string>): HttpResourceRef<VehiclesResponseI> {    
     return httpResource<VehiclesResponseI>(() => ({
       url: formData() ?`https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/${formData()}?format=json` : undefined,
       method: 'GET',
