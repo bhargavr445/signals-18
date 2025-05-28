@@ -8,6 +8,7 @@ import { udemyReducer } from './udemy/store/udemy.reducer';
 import { HomeComponent } from './home/home.component';
 import { CommonSignalStore } from './commons/common-signal-store/store';
 import { Chat } from './chat/chat';
+import { SignalFormsComponent } from './signal-forms/signal-forms.component';
 
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
     // { path: 'game', component: GameComponent },
     // { path: 'vehicle', component: VehicleComponent },
     { path: 'vehicle', loadChildren: () => import('./Vehicle/vehicle.routing') },
+    { path: 'signal-forms', loadComponent: () => import('./signal-forms/signal-forms.component').then(c =>  c.SignalFormsComponent )},
     { path: 'game', loadComponent: () => import('./game/game.component').then(c => c.GameComponent) },
     { path: 'login', loadComponent: () => import('./login/login.component').then(c => c.LoginComponent) },
     {
