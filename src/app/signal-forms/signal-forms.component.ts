@@ -1,7 +1,4 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import {
-  form,  
-} from 'google3/experimental/angularsignalforms';
 
 
 @Component({
@@ -16,7 +13,6 @@ export class SignalFormsComponent {
   // Create a model containing the initial form data.
  userModel = signal<User>({name: '', username: ''});
 
- userForm = form(userModel);
 
 }
 
