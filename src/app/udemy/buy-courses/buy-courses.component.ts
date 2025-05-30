@@ -1,7 +1,6 @@
-import { AsyncPipe, CurrencyPipe, JsonPipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
-import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, input, OnDestroy, ResourceRef, signal } from '@angular/core';
+import { AsyncPipe, CurrencyPipe, TitleCasePipe } from '@angular/common';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, OnDestroy, signal } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
-import { UdemyService } from '../../commons/services/api/udemy.service';
 import { CourseI, UpdatedCourseI } from '../interfaces/udemy-i';
 import { Buy } from './buy';
 import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
@@ -14,7 +13,7 @@ import { TableSkeletonComponent } from '../../commons/components/table-skeleton/
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [Buy]
 })
-export class BuyCoursesComponent {
+export class BuyCoursesComponent implements OnDestroy {
 
   categoryClassMap = {
     'U_IT': 'IT',
@@ -22,35 +21,16 @@ export class BuyCoursesComponent {
     'U_MUSIC': 'Music',
     'U_REAL_ESTATE': 'real-estate'
   };
+  #udemyService = inject(Buy);
 
   paginatedRecords = signal<any[]>([]);
   purchaseCourseApiStatus$: Observable<any> = of();
 
-  #udemyService = inject(Buy);
-
   unpurchasedCourses = this.#udemyService.fetchUnpurchasedCoursesResource;
-
-
   updatedUnpurchasedCourses = computed(() => this.updatedCourseObjWithIsSelectProp(this.unpurchasedCourses.value()?.data));
   unpurchasedCoursesListLoading = computed(() => this.unpurchasedCourses.isLoading());
-  // = rxResource({
-  //   loader: () =>  this.fetchUnpurchasedCourses()
-  // })
   selectedCourses: string[] = [];
 
-  // constructor() {
-  //   this.fetchUnpurchasedCourses();
-  // }
-
-  // fetchCourses(): Observable<UpdatedCourseI[]> {    
-  //   return this.#udemyService.fetchUnpurchasedCourses().pipe(map((response) => this.updatedCourseObjWithIsSelectProp(response.data)));
-  // }
-
-  // fetchUnpurchasedCourses(): void {
-  //   this.unpurchasedCourses = rxResource({
-  //     loader: () => this.fetchCourses()
-  //   })
-  // }
 
   onToggleCheckbox(event, course_id: string): void {
     event.target.checked ? this.addIdToList(course_id) : this.removeIdFromList(course_id)
@@ -68,13 +48,6 @@ export class BuyCoursesComponent {
   }
 
   buyCourses(): void {
-    // this.unpurchasedCourses = rxResource({
-    //   loader: () => this.#udemyService.purchaseCourses(this.selectedCourses).pipe(
-    //     tap(() => this.selectedCourses = []),
-    //     switchMap(() => this.fetchCourses())
-    //   )
-    // })
-
     this.purchaseCourseApiStatus$ = this.#udemyService.purchaseCourses(this.selectedCourses).pipe(
       tap(() => {
         this.selectedCourses = [];
@@ -92,6 +65,10 @@ export class BuyCoursesComponent {
 
   handlePaginatedList(event) {
     this.paginatedRecords.set(event.detail as any[]);
+  }
+
+  ngOnDestroy(): void {
+    this.unpurchasedCourses.destroy();
   }
 
 }
