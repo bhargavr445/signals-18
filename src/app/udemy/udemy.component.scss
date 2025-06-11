@@ -9,7 +9,7 @@ body {
     background-color: #00BCD4;
     padding: 10px 0;
     border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+
 }
 .horizontal-menu a {
     margin: 0 15px;
@@ -18,10 +18,9 @@ body {
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
+
 }
-// .horizontal-menu a:hover {
-//     border-bottom: 2px solid #333;
-// }
+
 
 .active-udemy-menu {
     color: #0c50a2;

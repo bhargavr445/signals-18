@@ -27,11 +27,11 @@
 }
 
 .active-week {
-    background-color: #176917;
+    background: linear-gradient(to right, #176917, rgb(98, 185, 12));
     color: white;
 }
 
 .inactive-week {
-    background-color: orange;
+    background: linear-gradient(to right, rgb(247, 162, 4), rgb(232, 13, 188));
     color: black;
 }

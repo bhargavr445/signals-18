@@ -18,12 +18,13 @@ export class ResourceComponent {
 
   resourceService = inject(ResourceService);
   // vehiclesList = this.resourceService.response;
-  response: HttpResourceRef<VehiclesResponseI> = this.resourceService.fetchData(this.selectedVehicle);
+  response: HttpResourceRef<VehiclesResponseI>;
 
-  errorResponse = computed(() => this.response.error());
-  vehiclesList = computed(() => this.response.value());
+  errorResponse = computed(() => this.response?.error());
+  vehiclesList = computed(() => this.response?.value());
 
   onOptionChange(event) {
+    this.response = this.resourceService.fetchData123(this.selectedVehicle);
     console.log(event.target.value);
     this.selectedVehicle.set(event.target.value);
     // this reload will re-trigger httpResource, but it will load with the previous input source.
