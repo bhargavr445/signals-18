@@ -269,8 +269,10 @@ button:disabled {
     background-color: #456BBC;
   }
   &.Sports {
-    background-color: rgb(251, 202, 4);
-    color: black;
+    border: 2px solid #eab308;
+    background-color: rgba(234, 179, 8, 0.2);
+    border-radius: 12px;
+    color: #eab308;
   }
   &.Music {
     background-color: #cb1762;

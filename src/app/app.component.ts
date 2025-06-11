@@ -22,14 +22,14 @@ import { HeaderComponent } from './header/header.component';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
+  #authService = inject(AuthService);
+  #modalService = inject(ModalService);
+
   name1: string = 'Bhargav';
   name2: string = this.name1;
 
   stu1 = {name: 'Surya', id: 10};
   stu2 = this.stu1;
-
-
-  #udemyService = inject(UdemyService)
   id = new BehaviorSubject<number>(0);
   id$ = this.id.asObservable();
   sub$ = new Subject<boolean>();
@@ -40,6 +40,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   resp$: Observable<any> = of();
   name = signal('Bhargav');
+  title = 'signals-18';
+  counter = signal(0);
 
   constructor() {
     const data = {
@@ -98,9 +100,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.name = 'boby' 
     this.sub$.next(true);
     this.sub$.complete();
-    
   }
- 
 
   buildParams(dataObj) {
     const keys = Object.keys(dataObj);
@@ -108,13 +108,8 @@ export class AppComponent implements OnInit, OnDestroy {
       const prefix = index === 0 ? '?' : '&';
       return `${initialValue}${prefix}${key}=${dataObj[key]}`
     }, '');
-    console.log(queryParams);
   }
 
-  #authService = inject(AuthService);
-  #modalService = inject(ModalService);
-  title = 'signals-18';
-  counter = signal(0);
   showCounter = signal(false);
   doubleCounter = computed(() => {
     return this.counter() * 2;
