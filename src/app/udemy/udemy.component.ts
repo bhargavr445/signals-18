@@ -17,7 +17,7 @@ export class UdemyComponent {
   data1: Signal<number> = signal(1);
   readonly #authService = inject(AuthService);
   commonSignalStore = inject(CommonSignalStore)
-  data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
+  // data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
   role = computed(() => this.#checkForInstructorRole(this.#authService.userProfileComputed()?.role));
 
   readonly #udemyMenu: NavMenuItem[] = [

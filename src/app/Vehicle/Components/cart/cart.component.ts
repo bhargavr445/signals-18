@@ -28,9 +28,7 @@ export class CartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.productTypeControl.valueChanges.subscribe( (value) => {
-      console.log(value);
-      
+    this.productTypeControl.valueChanges.subscribe( (value) => {      
     });
 
     this.form.valueChanges.subscribe((v) => console.log(v))

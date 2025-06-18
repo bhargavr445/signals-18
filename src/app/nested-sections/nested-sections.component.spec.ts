@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideZonelessChangeDetection } from '@angular/core';
 import { NestedSectionsComponent } from './nested-sections.component';
 
 describe('NestedSectionsComponent', () => {
@@ -8,6 +8,8 @@ describe('NestedSectionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideZonelessChangeDetection()],
+
       imports: [NestedSectionsComponent]
     })
     .compileComponents();

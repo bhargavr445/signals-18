@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RadioButtonsComponent } from './radio-buttons.component';
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 describe('RadioButtonsComponent', () => {
@@ -11,7 +11,7 @@ describe('RadioButtonsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RadioButtonsComponent],
-      providers: [provideExperimentalZonelessChangeDetection()]
+      providers: [provideZonelessChangeDetection()]
     })
     .compileComponents();
 

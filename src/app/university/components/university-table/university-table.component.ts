@@ -28,8 +28,6 @@ export class UniversityTableComponent {
 
   constructor() {
     effect(() => {
-      console.log('exec...');
-
       this.query = this.dropDownList()[0]
     })
   }

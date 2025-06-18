@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideZonelessChangeDetection } from '@angular/core';
 import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
@@ -8,11 +8,13 @@ describe('TableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideZonelessChangeDetection()],
       imports: [TableComponent]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(TableComponent);
+    fixture.componentRef.setInput('tableData', []);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

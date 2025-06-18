@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { apiFetchingStart } from '../app-store/app.actions';
 import { apiResultsSelector, apiLoadingSelector, restSelector } from '../app-store/app.selector';
 import { Observable, of } from 'rxjs';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('StoreComponent', () => {
   let component: StoreComponent;
@@ -22,7 +23,11 @@ describe('StoreComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [StoreComponent, ReactiveFormsModule],
-      providers: [provideMockStore({ initialState })]
+      providers: [
+        provideMockStore({ initialState }),
+      provideZonelessChangeDetection()
+
+      ]
     }).compileComponents();
 
     store = TestBed.inject(MockStore);

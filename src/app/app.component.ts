@@ -54,12 +54,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.name1 = 'Bhargav R G';
-    console.log(this.name1);
-    console.log(this.name2);
+
 
     this.stu1.name = 'Surya Teja';
-    console.log(this.stu1.name);
-    console.log(this.stu2.name);
     // this.udemyService.fetchAllCreatedCourses()
     // .pipe(
     //   takeUntil(this.sub$)

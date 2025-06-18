@@ -41,9 +41,7 @@ export class StudentOverviewComponent {
     return this.#vehicleService.getVehicleData(vehicleType)
   }
 
-  dropDownSelection(event: string) {
-    console.log(event);
-    
+  dropDownSelection(event: string) {    
     this.vehicleType.set(event);
   }
 

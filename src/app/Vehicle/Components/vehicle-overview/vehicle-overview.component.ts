@@ -62,9 +62,7 @@ export class VehicleOverviewComponent {
     this.vehicleStore.updateCount();
   }
 
-  filterRecords(text: string, records: VehiclesResponseI) {
-    console.log(text);
-    
+  filterRecords(text: string, records: VehiclesResponseI) {    
     return this.response()?.Results.filter((vehiclle) => Object.keys(vehiclle).some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
   }
 

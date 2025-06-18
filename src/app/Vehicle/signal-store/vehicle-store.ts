@@ -27,7 +27,6 @@ export const VehicleStore = signalStore(
 
         loadVehicles: rxMethod<void>(
             pipe(
-                tap(d => console.log(d)),
                 switchMap(() => vehicleService.getVehicleData().pipe(
                     tap({
                         next: (response: VehiclesResponseI) => patchState(store, (state: VehicleStoreI) => ({ ...state, vehiclesList: response })),

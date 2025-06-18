@@ -59,7 +59,6 @@ export class BuyCoursesComponent implements OnDestroy {
   }
 
   updatedCourseObjWithIsSelectProp(coursesList: CourseI[]): UpdatedCourseI[] {
-    console.log('COURSES 🔴 🔴', coursesList);
     return coursesList?.map((course) => ({ ...course, isSelected: false }));
   }
 
