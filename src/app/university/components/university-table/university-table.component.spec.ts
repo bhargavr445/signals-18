@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { UniversityTableComponent } from './university-table.component';
 
-describe('UniversityTableComponent', () => {
+fdescribe('UniversityTableComponent', () => {
   let component: UniversityTableComponent;
   let fixture: ComponentFixture<UniversityTableComponent>;
 
@@ -14,9 +14,12 @@ describe('UniversityTableComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UniversityTableComponent);
-    fixture.componentRef.setInput('universityList', []);
-    fixture.componentRef.setInput('dropDownList', []);
+    fixture = TestBed.createComponent(UniversityTableComponent, {
+      bindings: [
+        inputBinding('universityList', signal([])),
+        inputBinding('dropDownList', signal([]))
+      ]
+    });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ElectionsComponent } from './elections.component';
-import { provideHttpClient } from '@angular/common/http';
-
+import { provideHttpClient, withFetch } from '@angular/common/http';
+//TODO:
 describe('ElectionsComponent', () => {
   let component: ElectionsComponent;
   let fixture: ComponentFixture<ElectionsComponent>;

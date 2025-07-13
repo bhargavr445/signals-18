@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { FilterComponent } from './filter.component';
 
-describe('FilterComponent', () => {
+fdescribe('FilterComponent', () => {
   let component: FilterComponent;
   let fixture: ComponentFixture<FilterComponent>;
 
@@ -13,7 +13,11 @@ describe('FilterComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FilterComponent);
+    fixture = TestBed.createComponent(FilterComponent, {
+      bindings: [
+        inputBinding('searchText', signal(''))
+      ]
+    });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

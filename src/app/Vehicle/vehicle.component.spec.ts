@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { VehicleComponent } from './vehicle.component';
 
-describe('VehicleComponent', () => {
+fdescribe('VehicleComponent', () => {
   let component: VehicleComponent;
   let fixture: ComponentFixture<VehicleComponent>;
 

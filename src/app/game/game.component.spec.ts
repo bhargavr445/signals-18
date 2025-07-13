@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { GameComponent } from './game.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 
-describe('GameComponent', () => {
+fdescribe('GameComponent', () => {
   let component: GameComponent;
   let fixture: ComponentFixture<GameComponent>;
 

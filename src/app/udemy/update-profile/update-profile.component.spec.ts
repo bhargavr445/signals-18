@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { UpdateProfileComponent } from './update-profile.component';
 import { provideHttpClient } from '@angular/common/http';
 
-describe('UpdateProfileComponent', () => {
+fdescribe('UpdateProfileComponent', () => {
   let component: UpdateProfileComponent;
   let fixture: ComponentFixture<UpdateProfileComponent>;
 

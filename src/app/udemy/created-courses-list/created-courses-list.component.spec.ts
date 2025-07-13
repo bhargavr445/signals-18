@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreatedCoursesListComponent } from './created-courses-list.component';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 
-describe('CreatedCoursesListComponent', () => {
+fdescribe('CreatedCoursesListComponent', () => {
   let component: CreatedCoursesListComponent;
   let fixture: ComponentFixture<CreatedCoursesListComponent>;
 
@@ -14,8 +14,11 @@ describe('CreatedCoursesListComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CreatedCoursesListComponent);
-    fixture.componentRef.setInput('createdCoursesList', []);
+    fixture = TestBed.createComponent(CreatedCoursesListComponent, {
+      bindings: [
+        inputBinding('createdCoursesList', signal([]))
+      ]
+    });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

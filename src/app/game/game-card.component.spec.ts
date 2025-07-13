@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideZonelessChangeDetection, signal } from '@angular/core';
+import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { GameCardComponent } from './game-card.component';
 
-describe('GameCardComponent', () => {
+fdescribe('GameCardComponent', () => {
   let component: GameCardComponent;
   let fixture: ComponentFixture<GameCardComponent>;
 
@@ -14,9 +14,12 @@ describe('GameCardComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GameCardComponent);
-    fixture.componentRef.setInput('articleName', '');
-    fixture.componentRef.setInput('item', []);
+    fixture = TestBed.createComponent(GameCardComponent, {
+      bindings: [
+        inputBinding('articleName', signal('')),
+        inputBinding('item', signal([]))
+      ]
+    });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

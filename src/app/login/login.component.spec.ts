@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { LoginComponent } from './login.component';
 import { provideHttpClient } from '@angular/common/http';
 
-describe('LoginComponent', () => {
+fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 

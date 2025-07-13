@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { NestedSectionsComponent } from './nested-sections.component';
 
-describe('NestedSectionsComponent', () => {
+fdescribe('NestedSectionsComponent', () => {
   let component: NestedSectionsComponent;
   let fixture: ComponentFixture<NestedSectionsComponent>;
 

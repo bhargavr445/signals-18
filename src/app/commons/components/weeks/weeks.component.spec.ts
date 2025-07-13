@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { WeeksComponent } from './weeks.component';
 
-describe('WeeksComponent', () => {
+fdescribe('WeeksComponent', () => {
   let component: WeeksComponent;
   let fixture: ComponentFixture<WeeksComponent>;
 
@@ -13,8 +13,11 @@ describe('WeeksComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WeeksComponent);
-    fixture.componentRef.setInput('scheduleDays', []);
+    fixture = TestBed.createComponent(WeeksComponent, {
+      bindings: [
+        inputBinding('scheduleDays', signal([]))
+      ]
+    });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

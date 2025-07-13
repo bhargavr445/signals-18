@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, isDevMode, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
@@ -21,7 +21,10 @@ export const appConfig: ApplicationConfig = {
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withInterceptors([authInterceptor, spinnerInterceptor])),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([authInterceptor, spinnerInterceptor])
+    ),
     provideStore(storeConfig),
     provideEffects([AppEffects, UniversityEffects, ElectionEffects]),
     provideStoreDevtools({
