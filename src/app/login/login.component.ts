@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,7 +10,8 @@ import { LoginResponseI } from './login-response-interface';
     selector: 'app-login',
     imports: [FormsModule, ReactiveFormsModule],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    styleUrl: './login.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
   
@@ -42,6 +43,11 @@ export class LoginComponent implements OnInit {
     // this.#authService.getStockPrices().pipe(map((stockInfo) =>( {...this.stocks(), ...stockInfo}))),
     // {initialValue: null}
   // )
+
+  name = 'Bhargav';
+  updN() {
+    this.name = 'Bhargav R G';
+  }
 
 
   data$ = of(null);

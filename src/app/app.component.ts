@@ -52,7 +52,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.buildParams(data)
   }
 
+  findMaxNumber(nestedArray) {
+    return nestedArray.reduce((max, val) => Array.isArray(val) ? Math.max(max, this.findMaxNumber(val)) : Math.max(max, val), -Infinity);
+  }
+
   ngOnInit(): void {
+    const nestedArray = [1, [2, 3, [4, 5], 6], [7, 8]];
+    console.log(this.findMaxNumber(nestedArray));
+    const data = [10, 40, 20];
+// console.log(Math.max(data, 40))
     this.name1 = 'Bhargav R G';
 
 
