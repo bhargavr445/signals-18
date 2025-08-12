@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { PopulationService } from './population.service';
 import { provideHttpClient } from '@angular/common/http';
 
-fdescribe('PopulationService', () => {
+describe('PopulationService', () => {
   let service: PopulationService;
 
   beforeEach(() => {

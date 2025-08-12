@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { MoviesComponent } from './movies.component';
 import { provideHttpClient } from '@angular/common/http';
 
-fdescribe('MoviesComponent', () => {
+describe('MoviesComponent', () => {
   let component: MoviesComponent;
   let fixture: ComponentFixture<MoviesComponent>;
 

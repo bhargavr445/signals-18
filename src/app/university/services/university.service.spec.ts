@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { UniversityService } from './university.service';
 import { provideHttpClient } from '@angular/common/http';
 
-fdescribe('UniversityService', () => {
+describe('UniversityService', () => {
   let service: UniversityService;
 
   beforeEach(() => {

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CreatedCoursesListComponent } from './created-courses-list.component';
 import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 
-fdescribe('CreatedCoursesListComponent', () => {
+describe('CreatedCoursesListComponent', () => {
   let component: CreatedCoursesListComponent;
   let fixture: ComponentFixture<CreatedCoursesListComponent>;
 

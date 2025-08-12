@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { DestroyComponent } from './destroy.component';
 
-fdescribe('DestroyComponent', () => {
+describe('DestroyComponent', () => {
   let component: DestroyComponent;
   let fixture: ComponentFixture<DestroyComponent>;
 

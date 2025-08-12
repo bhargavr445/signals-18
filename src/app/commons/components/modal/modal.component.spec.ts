@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 
 import { ModalComponent } from './modal.component';
 
-fdescribe('ModalComponent', () => {
+describe('ModalComponent', () => {
   let component: ModalComponent;
   let fixture: ComponentFixture<ModalComponent>;
 

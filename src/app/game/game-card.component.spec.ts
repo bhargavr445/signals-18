@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { GameCardComponent } from './game-card.component';
 
-fdescribe('GameCardComponent', () => {
+describe('GameCardComponent', () => {
   let component: GameCardComponent;
   let fixture: ComponentFixture<GameCardComponent>;
 

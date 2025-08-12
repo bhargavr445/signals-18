@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { GameService } from './game.service';
 import { provideHttpClient } from '@angular/common/http';
 
-fdescribe('GameService', () => {
+describe('GameService', () => {
   let service: GameService;
 
   beforeEach(() => {

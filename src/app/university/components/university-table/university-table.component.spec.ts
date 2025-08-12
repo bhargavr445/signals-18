@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { UniversityTableComponent } from './university-table.component';
 
-fdescribe('UniversityTableComponent', () => {
+describe('UniversityTableComponent', () => {
   let component: UniversityTableComponent;
   let fixture: ComponentFixture<UniversityTableComponent>;
 

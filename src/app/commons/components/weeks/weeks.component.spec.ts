@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { WeeksComponent } from './weeks.component';
 
-fdescribe('WeeksComponent', () => {
+describe('WeeksComponent', () => {
   let component: WeeksComponent;
   let fixture: ComponentFixture<WeeksComponent>;
 

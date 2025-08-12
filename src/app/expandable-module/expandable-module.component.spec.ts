@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 
 import { ExpandableModuleComponent } from './expandable-module.component';
 
-fdescribe('ExpandableModuleComponent', () => {
+describe('ExpandableModuleComponent', () => {
   let component: ExpandableModuleComponent;
   let fixture: ComponentFixture<ExpandableModuleComponent>;
 

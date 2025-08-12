@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { DeferComponent } from './defer.component';
 
-fdescribe('DeferComponent', () => {
+describe('DeferComponent', () => {
   let component: DeferComponent;
   let fixture: ComponentFixture<DeferComponent>;
 

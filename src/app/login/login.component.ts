@@ -24,6 +24,29 @@ export class LoginComponent implements OnInit {
     overs: 0
   });
 
+  data = [
+  { id: 1, code: 'A1', name: 'Item 1' },
+  { id: 2, code: 'B1', name: 'Item 2' },
+  { id: 3, code: 'A1', name: 'Item 3' },
+  { id: 4, code: 'C1', name: 'Item 4' },
+  { id: 5, code: 'B1', name: 'Item 5' }
+];
+
+
+constructor() {
+  const countObj = {};
+  this.data.forEach((data) => {
+    const cd = data.code;
+
+    if(countObj.hasOwnProperty(data.code)) {
+      countObj[cd] = countObj[cd]+1;
+    } else {
+      countObj[cd] = 1;
+    }
+  })
+  console.log(countObj);
+  
+}
 
   roles = [
     { label: 'Instructor', key: 'I' },

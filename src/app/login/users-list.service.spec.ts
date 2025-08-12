@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { UsersListService } from './users-list.service';
 
-fdescribe('UsersListService', () => {
+describe('UsersListService', () => {
   let service: UsersListService;
 
   beforeEach(() => {

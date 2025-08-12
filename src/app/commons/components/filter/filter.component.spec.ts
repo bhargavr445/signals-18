@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { FilterComponent } from './filter.component';
 
-fdescribe('FilterComponent', () => {
+describe('FilterComponent', () => {
   let component: FilterComponent;
   let fixture: ComponentFixture<FilterComponent>;
 

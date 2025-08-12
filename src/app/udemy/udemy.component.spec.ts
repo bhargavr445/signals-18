@@ -4,7 +4,7 @@ import { UdemyComponent } from './udemy.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 
-fdescribe('UdemyComponent', () => {
+describe('UdemyComponent', () => {
   let component: UdemyComponent;
   let fixture: ComponentFixture<UdemyComponent>;
 
