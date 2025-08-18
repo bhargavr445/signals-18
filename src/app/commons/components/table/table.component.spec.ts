@@ -22,7 +22,7 @@ fdescribe('TableComponent', () => {
 
     fixture = TestBed.createComponent(TableComponent, {
       bindings: [
-        inputBinding('dataList', dataList),
+        inputBinding('tableData', dataList),
         inputBinding('tableHeaders', headers),
       ]
     });

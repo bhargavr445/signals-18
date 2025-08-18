@@ -164,6 +164,15 @@ constructor() {
     this.#authService.closeConnection();
   }
 
+  testData = 'Bhargav';
+  check() {
+    setTimeout(() => {
+      this.testData = 'Bhargav R G';
+      console.log(this.testData);
+      
+    }, 0)
+  }
+
 
 
 

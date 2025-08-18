@@ -77,3 +77,13 @@ Now if i create Logger service and if i use 3rd approach to register Logger serv
 # SSR with problems and solutions
 # Hydration
 
+# O(1) - [constant-time] - `no matter how data gets increased but the operation time is same always`
+ex: take  1st element from the list. 
+
+# O(n) - [linear-time] - `the amount of data increases time will also grows up to perform that operation`
+ex: finding an element from array.
+
+
+
+
+
