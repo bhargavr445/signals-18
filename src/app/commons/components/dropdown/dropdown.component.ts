@@ -5,7 +5,6 @@ import { FormControl } from '@angular/forms';
     selector: 'app-dropdown',
     imports: [],
     templateUrl: './dropdown.component.html',
-    styleUrl: './dropdown.component.scss',
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DropdownComponent {
