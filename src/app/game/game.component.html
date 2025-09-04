@@ -1,24 +1,24 @@
 <!-- <iframe src="https://www.addictinggames.com/embed/html5-games/19016"  style="border:none"></iframe> -->
 <div class="main">
     <div class="cards-container">
-        @defer(when gamesListLoadingIndicator() || paginatedRecords().length >0) {
-        @for (item of paginatedRecords(); track $index) {
-            <!-- <p>{{`dispa ${gamesList().length}`}}</p> -->
-        <game-card [item]="item" [articleName]="articleName" (selectedGameInfo)="selectedGameInfo($event)"/>
-        } @empty {
-        @for(d of [1,2,3]; track $index) {
-        <div class="card">
-            <div class="skeleton skeleton-header"></div>
-            <div class="skeleton skeleton-title"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text"></div>
-            <div class="skeleton skeleton-text" style="width: 60%;"></div>
-            <div class="skeleton skeleton-button"></div>
-        </div>
-        }
-        }
+        @defer(when gamesList().length > 0) {
+            @for (item of paginatedRecords(); track $index) {
+                <!-- <p>{{`dispa ${gamesList().length}`}}</p> -->
+                <game-card [item]="item" [articleName]="articleName" (selectedGameInfo)="selectedGameInfo($event)"/>
+            } @empty {
+            @for(d of [1,2,3]; track $index) {
+                <div class="card">
+                    <div class="skeleton skeleton-header"></div>
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text" style="width: 60%;"></div>
+                    <div class="skeleton skeleton-button"></div>
+                </div>
+                }
+            }
         } @placeholder {
-        <div>Large component placeholder</div>
+        <div>No Records found</div>
         }
     </div>
     <span class="pagination-bar">

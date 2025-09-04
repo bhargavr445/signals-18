@@ -27,8 +27,8 @@ export class HeaderComponent {
   iscartUrl = signal<boolean>(false);
   
   navItems = signal<NavI[]>([
-    { label: 'Home1', navigationUrl: '/home' },
-    { label: 'Signal FOrms', navigationUrl: '/signal-forms' },
+    // { label: 'Home1', navigationUrl: '/home' },
+    // { label: 'Signal FOrms', navigationUrl: '/signal-forms' },
     { label: 'Chat', navigationUrl: '/chat' },
     { label: 'Game', navigationUrl: '/game' },
     { label: 'Vehicle', navigationUrl: '/vehicle' },
