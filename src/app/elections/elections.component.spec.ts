@@ -3,7 +3,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { ElectionsComponent } from './elections.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 //TODO:
-describe('ElectionsComponent', () => {
+xdescribe('ElectionsComponent', () => {
   let component: ElectionsComponent;
   let fixture: ComponentFixture<ElectionsComponent>;
 

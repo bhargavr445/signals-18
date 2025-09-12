@@ -12,7 +12,7 @@ export class AppEffects {
         () => this.actions$.pipe(
             // tap(d => console.log('hgjfr',d)),
             ofType(actions.fetchPopulationDataStartAction),
-            tap(d => console.log(d)),
+            // tap(d => console.log(d)),
             switchMap((action) => this.populationService.getPopulation(action.value).pipe(
                 map((resp) => actions.populationDataSuccessResponse({ value: resp })),
                 startWith(actions.populationDataLoading({ value: true })),

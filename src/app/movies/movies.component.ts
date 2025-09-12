@@ -38,7 +38,7 @@ export class MoviesComponent {
 
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
         this.isMoviesLoading.set(false);
 
       }

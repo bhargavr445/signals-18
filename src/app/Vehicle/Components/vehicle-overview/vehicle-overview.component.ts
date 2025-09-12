@@ -108,7 +108,7 @@ export class VehicleOverviewComponent {
   }
 
   emitSome(event: string) {
-    console.log(event);
+    // console.log(event);
   }
 
 }

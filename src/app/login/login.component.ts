@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { form, required, validate } from '@angular/forms/signals';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,6 +7,10 @@ import { filter, interval, map, of, Subject, takeUntil, zip } from 'rxjs';
 import { AuthService } from '../commons/services/api/auth.service';
 import { LoginResponseI } from './login-response-interface';
 
+interface LoginForm {
+  userName: string;
+  password: string;
+}
 @Component({
     selector: 'app-login',
     imports: [FormsModule, ReactiveFormsModule],
@@ -16,6 +21,19 @@ import { LoginResponseI } from './login-response-interface';
 export class LoginComponent implements OnInit {
   
   private buttonClick$ = new Subject<void>();
+
+  rawForm = signal<LoginForm>({
+    userName: '',
+    password: ''
+  })
+
+  signalLoginForm = form(this.rawForm, (controls) => {
+    required(controls.userName),
+      // validate(controls.userName, ({value, valueOf}) => {
+      //   return valueOf(controls.userName) ? undefined : { 'msg': '' }
+      // }),
+    required(controls.password)
+  });
 
 
   cricketScore = signal({
@@ -34,6 +52,9 @@ export class LoginComponent implements OnInit {
 
 
 constructor() {
+  console.log(this.signalLoginForm());
+  console.log(this.signalLoginForm().value());
+  
   const countObj = {};
   this.data.forEach((data) => {
     const cd = data.code;

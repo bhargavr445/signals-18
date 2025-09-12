@@ -72,7 +72,7 @@ export class HeaderComponent {
   }
 
   getUser() {
-    console.log('trigger....');
+    // console.log('trigger....');
     return 'Bhargav'
   }
 

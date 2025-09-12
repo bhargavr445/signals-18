@@ -58,7 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const nestedArray = [1, [2, 3, [4, 5], 6], [7, 8]];
-    console.log(this.findMaxNumber(nestedArray));
+    // console.log(this.findMaxNumber(nestedArray));
     const data = [10, 40, 20];
 // console.log(Math.max(data, 40))
     this.name1 = 'Bhargav R G';
@@ -131,7 +131,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     compRef.closeEvent.subscribe((closeType) => {
-      console.log(closeType);
+      // console.log(closeType);
     })
   }
 

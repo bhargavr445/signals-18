@@ -25,7 +25,7 @@ export class ResourceComponent {
 
   onOptionChange(event) {
     //this.response = this.resourceService.fetchData123(this.selectedVehicle);
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.selectedVehicle.set(event.target.value);
     // this reload will re-trigger httpResource, but it will load with the previous input source.
     // this.response.reload();

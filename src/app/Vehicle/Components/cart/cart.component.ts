@@ -90,7 +90,7 @@ export class CartComponent implements OnInit {
     });
 
     compRef.closeEvent.subscribe((closeType) => {
-      console.log(closeType);
+      // console.log(closeType);
       this.handleCloseType(closeType);
     })
 

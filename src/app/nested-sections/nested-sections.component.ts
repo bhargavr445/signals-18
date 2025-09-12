@@ -35,7 +35,7 @@ export class NestedSectionsComponent {
 
   checkPropValueAgainstUserProfile() {
     const keys = Object.keys(this.data);
-    console.log(keys);
+    // console.log(keys);
 
     keys.forEach((key) => this.updateToggleValues(this.data[key], this.toggleProps))
 

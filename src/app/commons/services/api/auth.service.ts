@@ -24,7 +24,6 @@ export class AuthService {
   }
 
   updateUserProfile(userProfile: User) {
-    console.log();
     this.userProfileS.set(userProfile);
     this.userProfileSub.next(userProfile);
   }

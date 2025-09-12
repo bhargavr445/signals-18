@@ -6,7 +6,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const urlPrefix = environment.apiUrl;
 
   const authHeader = `Bearer ${sessionStorage.getItem('TOKEN')}`;
-  console.log(req.url);
+  // console.log(req.url);
   // console.log('**********^^^^&&&&&&&&&&&&&',req);
   
 

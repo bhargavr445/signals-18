@@ -27,12 +27,12 @@ export class StoreComponent implements OnInit {
   constructor() {
 
     let a = 8 , b = 48;
-    console.log(a);
-    console.log(b);
+    // console.log(a);
+    // console.log(b);
     
     [a,b] = [b,a];
-    console.log(a);
-    console.log(b);
+    // console.log(a);
+    // console.log(b);
     
   }
 

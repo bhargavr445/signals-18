@@ -36,7 +36,7 @@ export class HomeComponent extends DestroyComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(() =>  this.#vehicleService.getVehicleData('').pipe(catchError((error) => throwError(() => ({...error, errorFrom: 'API call 1'})))))
     ).subscribe((value) => {
-      console.log(value);
+      // console.log(value);
     });
 
   }

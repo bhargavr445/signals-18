@@ -27,11 +27,11 @@ export class UdemyComponent {
     { label: 'Update Profile', path: '/udemy/update', isActive: false, val: 300 }
   ];
 
+  // Effect with clean up
   constructor() {
     effect((onCleanup) => {
-      console.log('$$$$$$$$$',this.commonSignalStore.noOfVehiclesInCart());
       onCleanup(() => {
-        console.log('cleaned up');
+        // console.log('cleaned up');
       })
     }, {manualCleanup: true})
   }
