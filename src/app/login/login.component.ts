@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { filter, interval, map, of, Subject, takeUntil, zip } from 'rxjs';
 import { AuthService } from '../commons/services/api/auth.service';
 import { LoginResponseI } from './login-response-interface';
+import { NgStyle } from '@angular/common';
+import { SignalFormsComponent } from '../signal-forms/signal-forms.component';
 
 interface LoginForm {
   userName: string;
@@ -13,12 +15,14 @@ interface LoginForm {
 }
 @Component({
     selector: 'app-login',
-    imports: [FormsModule, ReactiveFormsModule],
+    imports: [FormsModule, ReactiveFormsModule, NgStyle, SignalFormsComponent],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
+
+  status = signal(true)
   
   private buttonClick$ = new Subject<void>();
 
@@ -187,6 +191,7 @@ constructor() {
 
   testData = 'Bhargav';
   check() {
+    this.status.set(false)
     setTimeout(() => {
       this.testData = 'Bhargav R G';
       console.log(this.testData);

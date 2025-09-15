@@ -1,3 +1,4 @@
+<app-signal-forms />
 <!-- <div class="login-main">
     <div class="login-container">
         <div class="score-container">
@@ -71,6 +72,14 @@
     <button type="submit" (click)="updN()" > Zone Check - {{testData}}</button>
     <button type="submit" (click)="check()" > Zone Check real - {{testData}}</button>
 </div>
+
+    <div style="padding: 10px; margin: 10px;" [ngStyle]="{'background-color': status() ? 'red' : 'blue' }">
+        ng style
+    </div>
+
+    <div [style]="`padding: 10px; background-color: ${status() ? 'red' : 'blue'}`">
+        [style]
+    </div>
 
 <!-- <app-nested-sections /> -->
 <section class="section-book">
