@@ -17,7 +17,7 @@ describe('UdemyComponent', () => {
 
     fixture = TestBed.createComponent(UdemyComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.whenStable();
   });
 
   it('should create', () => {

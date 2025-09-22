@@ -8,7 +8,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authHeader = `Bearer ${sessionStorage.getItem('TOKEN')}`;
   // console.log(req.url);
   // console.log('**********^^^^&&&&&&&&&&&&&',req);
-  
+
 
   return next(
     req.context.has(skipUrlModification) ?

@@ -5,7 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 
-fdescribe('Buy', () => {
+describe('Buy', () => {
   let service:Buy ;
   let httpTesting: any;
 

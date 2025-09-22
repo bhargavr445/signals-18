@@ -26,30 +26,33 @@ export class SignalFormsComponent {
   
   courseForm = form(this.courseSignal, (path) => {
     required(path.courseId, { message: 'This is a required Field.' }),
-    maxLength(path.courseId, 20, { message: 'Max 6 chars required ' }),
-    minLength(path.courseId, 3, { message: 'Min 3 chars required ' }),
-    // validate(path.courseId, (context) => {
-      //   const priceState = context.stateOf(path.price);
-      //   console.log(priceState.touched());
-      //   return customError({
-        //     kind: 'custom123',
-        //     message: 'This is custom error'
-        //   })
-        // }),
-        
-        this.#checkIfIdAlreadyExists(path),
-        
-        required(path.price, {
-          when: ({ stateOf }) => stateOf(path.courseId).valid(),
-          message: 'This is a required Field.'
-        }),
-        // hidden(path.courseId, ({}) => )
-        disabled(path.price, ({ stateOf }) => stateOf(path.courseId).invalid())
-      });
-      doubledPrice = computed(() => this.courseForm().value().price*2);
+      maxLength(path.courseId, 20, { message: 'Max 6 chars required ' }),
+      minLength(path.courseId, 3, { message: 'Min 3 chars required ' }),
       
-      #checkIfIdAlreadyExists(path: FieldPath<CourseI>) {
-        validateHttp(path.courseId, {
+      validate(path.courseId, (context) => {
+        const priceState = context.stateOf(path.price);
+        console.log(priceState.touched());
+        return customError({
+          kind: 'custom123',
+          message: 'This is custom error'
+        })
+      }),
+
+      /* 🚀 async validation  */
+      this.#checkIfIdAlreadyExists(path),
+
+      required(path.price, {
+        when: ({ stateOf }) => stateOf(path.courseId).valid(),
+        message: 'This is a required Field.'
+      }),
+      // hidden(path.courseId, ({}) => )
+      disabled(path.price, ({ stateOf }) => stateOf(path.courseId).invalid())
+  });
+  doubledPrice = computed(() => this.courseForm().value().price * 2);
+
+
+  #checkIfIdAlreadyExists(path: FieldPath<CourseI>) {
+    validateHttp(path.courseId, {
       request: ({ value }) => ({
         url: `checkIdExists/${value()}`,
         method: 'GET'

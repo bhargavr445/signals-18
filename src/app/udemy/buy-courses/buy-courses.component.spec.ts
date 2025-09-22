@@ -16,7 +16,7 @@ describe('BuyCoursesComponent', () => {
 
     fixture = TestBed.createComponent(BuyCoursesComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.whenStable();
   });
 
   it('should create', () => {

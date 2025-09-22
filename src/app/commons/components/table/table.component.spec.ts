@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { TableComponent } from './table.component';
 
-fdescribe('TableComponent', () => {
+describe('TableComponent', () => {
   let component: TableComponent;
   let fixture: ComponentFixture<TableComponent>;
   const dataList = signal([]);
@@ -25,7 +25,7 @@ fdescribe('TableComponent', () => {
       ]
     });
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create with initial values', () => {
@@ -33,9 +33,9 @@ fdescribe('TableComponent', () => {
     expect(component.headersLength()).toEqual(0);
   });
 
-  it('should update headersLength when headers are changed', () => {
+  it('should update headersLength when headers are changed', async () => {
     tableHeaders.set([{ label: 'Name' }, { label: 'ID' }]);
-    fixture.detectChanges();
+    await fixture.whenStable();
     expect(component.headersLength()).toEqual(2);
   });
 });

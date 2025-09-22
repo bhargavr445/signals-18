@@ -1,11 +1,12 @@
-import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef, Component, Input, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
   imports: [],
   templateUrl: './dropdown.component.html',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent {
   name = signal('Test');
