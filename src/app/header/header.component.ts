@@ -76,4 +76,8 @@ export class HeaderComponent {
     return 'Bhargav'
   }
 
+  toggleChatWindow() {
+    
+  }
+
 }

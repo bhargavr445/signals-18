@@ -9,10 +9,41 @@
 <button (click)="unsub()">Un Sub</button> -->
 
 <app-header />
+<div class="extra-padding">
+  <router-outlet [routerOutletData]="name()" />
+</div>
+@if (userProfileInfo()) {
+  <app-chat />
+}
 
-<router-outlet [routerOutletData]="name()" />
+<!-- Floating Chat Window -->
+<!-- Floating Chat Widget -->
+<!-- <div class="chat-widget" [class.collapsed]="isCollapsed()">
+  <div class="chat-header" (click)="toggleChat()">
+    <span>Chat</span>
+    <button class="chat-toggle">
+      {{ isCollapsed ? '▲' : '▼' }}
+    </button>
+  </div>
 
+  @if (!isCollapsed()) {
+  
+  <div class="chat-body">
+    <div class="chat-message received">Hi there! 👋</div>
+    <div class="chat-message sent">Hello! How are you?</div>
+  </div>
+  }
+  
+  @if(!isCollapsed()){
+  <div class="chat-input">
+    <input type="text" placeholder="Type a message..." />
+    <button>Send</button>
+  </div>
+  }
 
+</div> -->
+
+<!-- Floating Chat Window -->
 
 
   <!-- <my-component [first]="counter()" last="'Dont call me a frameworkJS'" middle="'Gun'"></my-component> -->

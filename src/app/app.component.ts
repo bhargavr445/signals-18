@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, delay, of } from 'rxjs';
@@ -7,6 +7,7 @@ import { AuthService } from './commons/services/api/auth.service';
 import { ModalService } from './commons/services/api/modal.service';
 import { UdemyService } from './commons/services/api/udemy.service';
 import { HeaderComponent } from './header/header.component';
+import { Chat } from './chat/chat';
 
 @Component({
     selector: 'app-root',
@@ -14,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
         AsyncPipe,
         RouterOutlet,
         HeaderComponent,
+        Chat,
         ModalHostComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -42,6 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
   name = signal('Bhargav');
   title = 'signals-18';
   counter = signal(0);
+  userProfileInfo = computed(() =>  this.#authService.userProfileS());
 
   constructor() {
     const data = {
@@ -51,6 +54,8 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     this.buildParams(data)
   }
+
+
 
   findMaxNumber(nestedArray) {
     return nestedArray.reduce((max, val) => Array.isArray(val) ? Math.max(max, this.findMaxNumber(val)) : Math.max(max, val), -Infinity);
