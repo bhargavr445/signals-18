@@ -7,12 +7,18 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 import { VehicleStore } from '../../signal-store/vehicle-store';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
+import { DiscussionStore } from '../../signal-store/discussion-store';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
-  imports: [VehicleCardComponent, FormsModule, FilterComponent],
+  imports: [VehicleCardComponent, FormsModule, FilterComponent, JsonPipe, AsyncPipe],
   providers: [VehicleStore],
   template: `
      <div class="main">
+      <button (click)="updName()">Update name</button>
+      {{nameFromStore()}}
+      {{isApiInProgress()}}
+      {{apiList() | json}}
       @if(!vehicleApiFailed()) {
         <div class="pad-t-10">
        <app-filter  [(searchText)]="filterText"/>
@@ -45,6 +51,13 @@ import { debounceTime } from 'rxjs';
 })
 export class VehicleOverviewComponent {
 
+  #discussionStore = inject(DiscussionStore);
+  nameFromStore = this.#discussionStore.nameC;
+  listC = this.#discussionStore.listC;
+  listC$ = this.#discussionStore.vehicleResponse$;
+  apiList = this.#discussionStore.apisList;
+  isApiInProgress = this.#discussionStore.isApiInProgress;
+
   vehicleStore = inject(VehicleStore);
   isDataLoading = false;
   filterText = signal('');
@@ -56,6 +69,17 @@ export class VehicleOverviewComponent {
 
   constructor() {
     this.vehicleStore.loadVehicles();
+  }
+
+  updName() {
+    this.#discussionStore.updateName('Bhargav R G');
+    this.#discussionStore.getUnivList('tst');
+    for(const url of this.apiList()){
+      console.log('dfklgnfgn');
+      console.log(url);
+      
+    }
+
   }
 
   updateState() {
