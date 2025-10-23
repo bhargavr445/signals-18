@@ -1,6 +1,6 @@
 import { computed, effect, inject } from "@angular/core";
 import { getState, patchState, signalStore, withComputed, withHooks, withMethods, withProps, withState } from "@ngrx/signals";
-import { rxMethod,  } from "@ngrx/signals/rxjs-interop";
+import { rxMethod, } from "@ngrx/signals/rxjs-interop";
 import { of, pipe, switchMap, take, tap } from "rxjs";
 import { VehicleService } from "../../commons/services/api/vehicle.service";
 import { toObservable } from "@angular/core/rxjs-interop";
@@ -23,9 +23,9 @@ export const initialState: DiscussionStateI = {
 }
 
 export const DiscussionStore = signalStore(
-    {providedIn: 'root'},
+    { providedIn: 'root' },
     withState(initialState),
-    
+
     withProps((store) => ({
         vehicleService: inject(VehicleService),
         vehicleResponse$: toObservable(store._vehicleResponse)
@@ -33,7 +33,7 @@ export const DiscussionStore = signalStore(
 
     withMethods((store) => ({
         updateName(name: string): void {
-            patchState(store, (state: DiscussionStateI) => ({...state, _name: name}))
+            patchState(store, (state: DiscussionStateI) => ({ ...state, _name: name }))
         },
 
         showSpinner(url: string) {
@@ -58,8 +58,6 @@ export const DiscussionStore = signalStore(
 
         getUnivList: rxMethod<string>(
             pipe(
-                tap((d) => console.log(d)
-                ),
                 switchMap((_inputParam) => store.vehicleService.getVehicleData().pipe(
                     tap({
                         next: (resp) => { patchState(store, (state) => ({ ...state, _vehicleResponse: resp })) },
@@ -84,7 +82,7 @@ export const DiscussionStore = signalStore(
             effect(() => {
                 const state = getState(store)
                 console.log(state);
-                
+
             })
         },
         onDestroy() {

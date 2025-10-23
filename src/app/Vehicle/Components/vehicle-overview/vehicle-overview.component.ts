@@ -11,14 +11,13 @@ import { DiscussionStore } from '../../signal-store/discussion-store';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
-  imports: [VehicleCardComponent, FormsModule, FilterComponent, JsonPipe, AsyncPipe],
+  imports: [VehicleCardComponent, FormsModule, FilterComponent],
   providers: [VehicleStore],
   template: `
      <div class="main">
       <button (click)="updName()">Update name</button>
       {{nameFromStore()}}
       {{isApiInProgress()}}
-      {{apiList() | json}}
       @if(!vehicleApiFailed()) {
         <div class="pad-t-10">
        <app-filter  [(searchText)]="filterText"/>

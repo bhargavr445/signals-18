@@ -1,48 +1,29 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, inject, signal } from '@angular/core';
+import { injectDispatch } from '@ngrx/signals/events';
 import { WeeksComponent } from '../commons/components/weeks/weeks.component';
-import { MoviesService } from '../commons/services/api/movies.service';
-import { MoviesAPIResponseI, MoviesI } from '../university/interfaces/UniversityListI';
-// import { rxResource } from '@angular/core/rxjs-interop';
+import { MoviesI } from '../university/interfaces/UniversityListI';
+import { moviesEvents, moviesStore } from './store/movies-store';
 
 @Component({
-    selector: 'app-movies',
-    imports: [WeeksComponent],
-    templateUrl: './movies.component.html',
-    styleUrl: './movies.component.scss',
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  selector: 'app-movies',
+  imports: [WeeksComponent],
+  providers: [moviesStore],
+  templateUrl: './movies.component.html',
+  styleUrl: './movies.component.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MoviesComponent {
 
-  // readonly moviesResource = rxResource({
-    
-  // })
+  moviesEvents = injectDispatch(moviesEvents);
+  moviesStore = inject(moviesStore);
 
-  // #region Signal API
-  moviesResponse =  signal<MoviesAPIResponseI>(null);
-  paginatedMovieResults =  signal<MoviesI[]>([]);
-  isMoviesLoading = signal(false);
-  //#endregion
-
-  #moviesService = inject(MoviesService);
+  moviesResponse = this.moviesStore.moviesApiSuccessResponse;
+  moviesErrorResponse = this.moviesStore.moviesApiErrorResponse;
+  isMoviesLoading = this.moviesStore.moviesApiIsLoading;
+  paginatedMovieResults = signal<MoviesI[]>([]);
 
   constructor() {
-    this.fetchMovies();
-  }
-
-  fetchMovies() {
-    this.isMoviesLoading.set(true);
-    this.#moviesService.fetchMoviesFromApi().subscribe(
-      (resp) => {
-        this.moviesResponse.set(resp);
-        this.isMoviesLoading.set(false);
-
-      },
-      (error) => {
-        // console.log(error);
-        this.isMoviesLoading.set(false);
-
-      }
-    );
+    this.moviesEvents.loadMovies();
   }
 
   handlePaginatedList(event) {

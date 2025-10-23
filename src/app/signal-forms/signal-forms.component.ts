@@ -1,23 +1,18 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { Control, customError, disabled, FieldPath, form, maxLength, minLength, required, validate, validateHttp } from '@angular/forms/signals';
 import { ULabelComponent } from '../commons/components/u-label/u-label.component';
-import { form, required, validate, Control, maxLength, minLength, customError, disabled, validateHttp, FieldPath, hidden } from '@angular/forms/signals';
-import { JsonPipe } from '@angular/common';
 import { ApiResponseI } from '../commons/Interfaces/api-responseI';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { of } from 'rxjs';
-
-
+import { CpInputComponent } from '../commons/components/cp-input/cp-input.component';
 
 @Component({
   selector: 'app-signal-forms',
-  imports: [ULabelComponent, Control],
+  imports: [ULabelComponent, Control, CpInputComponent],
   templateUrl: './signal-forms.component.html',
   styleUrl: './signal-forms.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignalFormsComponent {
 
-  
   courseSignal = signal<CourseI>({
     courseId: '123',
     title: '',
@@ -29,14 +24,14 @@ export class SignalFormsComponent {
       maxLength(path.courseId, 20, { message: 'Max 6 chars required ' }),
       minLength(path.courseId, 3, { message: 'Min 3 chars required ' }),
       
-      validate(path.courseId, (context) => {
-        const priceState = context.stateOf(path.price);
-        console.log(priceState.touched());
-        return customError({
-          kind: 'custom123',
-          message: 'This is custom error'
-        })
-      }),
+      // validate(path.courseId, (context) => {
+      //   const priceState = context.stateOf(path.price);
+      //   console.log(priceState.touched());
+      //   return customError({
+      //     kind: 'custom123',
+      //     message: 'This is custom error'
+      //   })
+      // }),
 
       /* 🚀 async validation  */
       this.#checkIfIdAlreadyExists(path),
@@ -72,6 +67,11 @@ export class SignalFormsComponent {
   submit() {
     console.log(this.courseForm().errors());
     this.courseForm().reset();
+    console.log(this.courseForm().value());
+  }
+
+  updateVal() {
+    this.courseSignal.update((prev) => ({...prev, title: 'Allowing'}))
   }
 
 }

@@ -1,3 +1,4 @@
+<button (click)="updateVal()">Update value</button>
 <form>
         <div class="form-row">
         <div class="form-group">
@@ -5,14 +6,15 @@
             <u-label [for]="'course_id'">
                 Course ID
             </u-label>
-            <input type="text" [control]="courseForm.courseId" id="course_id" placeholder="Enter Course ID">
+            <!-- <input type="text" [control]="courseForm.courseId" id="course_id" placeholder="Enter Course ID"> -->
+            <app-cp-input [control]="courseForm.courseId"/>
             <!-- {{course_id_control().errors() | json}} -->
            
-            <div class="validation-msg">
+            <!-- <div class="validation-msg">
                 @for (item of course_id_control().errors(); track item.kind) {
                         {{item.message}}
                 }
-            </div>
+            </div> -->
             
 
             <!-- @if(!course_id_control.valid && course_id_control.hasError('exist')) {

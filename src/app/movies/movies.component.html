@@ -1,11 +1,12 @@
 <div class="main">
     @let moviesList = moviesResponse()?.data;
     <div class="cards-container">
+        @if(moviesErrorResponse()) {
+            <p>Error</p>
+        }
         @if (!isMoviesLoading()) {
-
         @for (item of paginatedMovieResults(); track $index) {
         @let days = item.schedule.days;
-
         <div class="card">
             <div class="card-content">
                 <h2 class="card-title">{{item.name}}</h2>
@@ -35,19 +36,13 @@
             }
         </div>
         }
-
     </div>
     <span class="pagination-bar">
         @if (!isMoviesLoading()) {
-
         <gbr-pagination [datalist]="moviesList ?? []" [pagesize]="9"
             (paginatedlisthandler)="handlePaginatedList($event)" />
-
         } @else {
-
         <div class="skeleton skeleton-pagination"></div>
-
         }
     </span>
-
 </div>
