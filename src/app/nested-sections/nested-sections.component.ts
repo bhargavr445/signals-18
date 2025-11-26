@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { toggles } from './toggles';
 import { ExpandableModuleComponent } from '../expandable-module/expandable-module.component';
-import { NgFor, NgIf } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-nested-sections',
-  imports: [ExpandableModuleComponent, NgFor, NgIf, FormsModule],
+  imports: [ExpandableModuleComponent, FormsModule],
   templateUrl: './nested-sections.component.html',
   styleUrl: './nested-sections.component.scss',
     encapsulation: ViewEncapsulation.ShadowDom,

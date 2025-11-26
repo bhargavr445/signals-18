@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, delay, of } from 'rxjs';
