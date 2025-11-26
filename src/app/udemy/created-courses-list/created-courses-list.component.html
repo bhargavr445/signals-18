@@ -1,7 +1,7 @@
 <table>
     <thead>
         <tr>
-            <th>Title</th>
+            <th [style.width]="'calc(100ch)'">Title</th>
             <th>Price</th>
             <th>Type</th>
         </tr>
@@ -9,7 +9,7 @@
     <tbody>
         @for (item of paginatedRecords(); track $index) {
         <tr>
-            <td>{{item.title}}</td>
+            <td [style.width]="'calc(100ch)'">{{item.title}}</td>
             <td>{{item.price | currency}}</td>
             <td [class]="`${categoryClassMap[item.categorys.type] } cat`">{{item.categorys.type}}</td>
         </tr>

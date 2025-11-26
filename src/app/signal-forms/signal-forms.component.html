@@ -2,7 +2,6 @@
 <form>
         <div class="form-row">
         <div class="form-group">
-            @let course_id_control = courseForm.courseId;
             <u-label [for]="'course_id'">
                 Course ID
             </u-label>
@@ -42,3 +41,7 @@
    
 </form>
  <button type="submit" (click)="submit()">Submit</button>
+
+ for (let i = 0; i < 3; i++) {
+    setTimeout(() => {console.log(i)}, 0)
+}
