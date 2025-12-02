@@ -7,12 +7,17 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component';
 import { VehicleStore } from '../../signal-store/vehicle-store';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
+import { DiscussionStore } from '../../signal-store/discussion-store';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
   imports: [VehicleCardComponent, FormsModule, FilterComponent],
   providers: [VehicleStore],
   template: `
      <div class="main">
+      <button (click)="updName()">Update name</button>
+      {{nameFromStore()}}
+      {{isApiInProgress()}}
       @if(!vehicleApiFailed()) {
         <div class="pad-t-10">
        <app-filter  [(searchText)]="filterText"/>
@@ -45,6 +50,13 @@ import { debounceTime } from 'rxjs';
 })
 export class VehicleOverviewComponent {
 
+  #discussionStore = inject(DiscussionStore);
+  nameFromStore = this.#discussionStore.nameC;
+  listC = this.#discussionStore.listC;
+  listC$ = this.#discussionStore.vehicleResponse$;
+  apiList = this.#discussionStore.apisList;
+  isApiInProgress = this.#discussionStore.isApiInProgress;
+
   vehicleStore = inject(VehicleStore);
   isDataLoading = false;
   filterText = signal('');
@@ -58,13 +70,22 @@ export class VehicleOverviewComponent {
     this.vehicleStore.loadVehicles();
   }
 
+  updName() {
+    this.#discussionStore.updateName('Bhargav R G');
+    this.#discussionStore.getUnivList('tst');
+    for(const url of this.apiList()){
+      console.log('dfklgnfgn');
+      console.log(url);
+      
+    }
+
+  }
+
   updateState() {
     this.vehicleStore.updateCount();
   }
 
-  filterRecords(text: string, records: VehiclesResponseI) {
-    console.log(text);
-    
+  filterRecords(text: string, records: VehiclesResponseI) {    
     return this.response()?.Results.filter((vehiclle) => Object.keys(vehiclle).some((prop) => this.checkFormatchingString(vehiclle[prop], text)));
   }
 
@@ -110,7 +131,7 @@ export class VehicleOverviewComponent {
   }
 
   emitSome(event: string) {
-    console.log(event);
+    // console.log(event);
   }
 
 }

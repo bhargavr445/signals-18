@@ -28,7 +28,7 @@ import { UdemyInitialStateI } from '../store/udemy.reducer';
 })
 export class CreateCourseComponent implements OnInit {
 
-  data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
+  // data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
   udemySignalStore = inject(UdemySignalStore);
 
 

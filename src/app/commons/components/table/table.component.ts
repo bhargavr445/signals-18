@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, computed, input, InputSignal, signal } from '@angular/core';
 
 @Component({
     selector: 'gbr-table',
@@ -9,7 +9,9 @@ import { Component, input } from '@angular/core';
 })
 export class TableComponent {
 
-  dataList = input.required<any[]>();
+  dataList: InputSignal<any[]> = input.required<any[]>();
   tableHeaders = input.required<any[]>();
+  headersLength = computed(() => this.tableHeaders().length);
+
 
 }

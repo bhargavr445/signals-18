@@ -17,7 +17,6 @@ export class UpdateProfileComponent {
     fetchGames() {
         this.gameService.getGamesData().subscribe({
             next: (rep: any) => {
-                console.log(rep);
                 this.gamesLength.set(rep.data.length);
                 
                 

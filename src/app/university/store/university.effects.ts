@@ -13,7 +13,7 @@ export class UniversityEffects {
     fetchUniversities = createEffect(
         () => this.actions$.pipe(
             ofType(FETCH_UNIVERSITIES),
-            tap((a) => console.log(a)),
+            // tap((a) => console.log(a)),
             switchMap((action: Action) => this.universityService.getUniversities(action['value']).pipe(
                 
                 map((resp) => universitiesListAction({value: resp})),

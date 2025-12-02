@@ -16,7 +16,7 @@ export class PurchaseCoursesComponent {
   data = add(10,20);
 
   constructor() {
-    console.log(this.data);    
+    // console.log(this.data);    
   }
 
   categoryClassMap = {

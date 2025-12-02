@@ -1,20 +1,43 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { form, required, validate } from '@angular/forms/signals';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { filter, interval, map, of, Subject, takeUntil, zip } from 'rxjs';
 import { AuthService } from '../commons/services/api/auth.service';
 import { LoginResponseI } from './login-response-interface';
+import { NgStyle } from '@angular/common';
+import { SignalFormsComponent } from '../signal-forms/signal-forms.component';
 
+interface LoginForm {
+  userName: string;
+  password: string;
+}
 @Component({
     selector: 'app-login',
-    imports: [FormsModule, ReactiveFormsModule],
+    imports: [FormsModule, ReactiveFormsModule, NgStyle, SignalFormsComponent],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    styleUrl: './login.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
+
+  status = signal(true)
   
   private buttonClick$ = new Subject<void>();
+
+  rawForm = signal<LoginForm>({
+    userName: '',
+    password: ''
+  })
+
+  signalLoginForm = form(this.rawForm, (controls) => {
+    required(controls.userName),
+      // validate(controls.userName, ({value, valueOf}) => {
+      //   return valueOf(controls.userName) ? undefined : { 'msg': '' }
+      // }),
+    required(controls.password)
+  });
 
 
   cricketScore = signal({
@@ -23,6 +46,32 @@ export class LoginComponent implements OnInit {
     overs: 0
   });
 
+  data = [
+  { id: 1, code: 'A1', name: 'Item 1' },
+  { id: 2, code: 'B1', name: 'Item 2' },
+  { id: 3, code: 'A1', name: 'Item 3' },
+  { id: 4, code: 'C1', name: 'Item 4' },
+  { id: 5, code: 'B1', name: 'Item 5' }
+];
+
+
+constructor() {
+  console.log(this.signalLoginForm());
+  console.log(this.signalLoginForm().value());
+  
+  const countObj = {};
+  this.data.forEach((data) => {
+    const cd = data.code;
+
+    if(countObj.hasOwnProperty(data.code)) {
+      countObj[cd] = countObj[cd]+1;
+    } else {
+      countObj[cd] = 1;
+    }
+  })
+  console.log(countObj);
+  
+}
 
   roles = [
     { label: 'Instructor', key: 'I' },
@@ -42,6 +91,11 @@ export class LoginComponent implements OnInit {
     // this.#authService.getStockPrices().pipe(map((stockInfo) =>( {...this.stocks(), ...stockInfo}))),
     // {initialValue: null}
   // )
+
+  name = 'Bhargav';
+  updN() {
+    this.name = 'Bhargav R G';
+  }
 
 
   data$ = of(null);
@@ -133,6 +187,16 @@ export class LoginComponent implements OnInit {
 
   disconnect() {
     this.#authService.closeConnection();
+  }
+
+  testData = 'Bhargav';
+  check() {
+    this.status.set(false)
+    setTimeout(() => {
+      this.testData = 'Bhargav R G';
+      console.log(this.testData);
+      
+    }, 0)
   }
 
 

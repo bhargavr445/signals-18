@@ -18,7 +18,7 @@ export class UdemyService {
     return this.#http.get<AccountTypeResponseI>('accountTypes');
   }
 
-  createCourse(course: CreateCoursePayloadI): Observable<boolean> {
+  createCourse(course: CreateCoursePayloadI): Observable<boolean> {    
     return this.#http.post<CreateAPIRespI>('createCourse', course).pipe(map((resp)=> resp.data.n ==1 && resp.data.ok ==1));
   }
 

@@ -47,9 +47,6 @@ export class UdemyEffects {
     )
 
     constructor(private actions$: Actions, private udemyService: UdemyService) {
-
-        console.log('************************* Udemy Effects loaded...')
-
     }
 
 }

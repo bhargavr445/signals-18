@@ -16,7 +16,7 @@ export class GameCardComponent {
   selectedGameInfo = output<string>();
 
   handleShortDesc(data: string) {    //300
-    if(data.length > 80) {
+    if(data?.length > 80) {
       return `${data.substring(0,80)}...`
     }
     return data

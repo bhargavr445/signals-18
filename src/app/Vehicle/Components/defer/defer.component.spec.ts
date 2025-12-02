@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideZonelessChangeDetection } from '@angular/core';
 import { DeferComponent } from './defer.component';
 
 describe('DeferComponent', () => {
@@ -8,6 +8,8 @@ describe('DeferComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideZonelessChangeDetection()],
+
       imports: [DeferComponent]
     })
     .compileComponents();

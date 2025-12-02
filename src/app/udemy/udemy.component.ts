@@ -17,7 +17,7 @@ export class UdemyComponent {
   data1: Signal<number> = signal(1);
   readonly #authService = inject(AuthService);
   commonSignalStore = inject(CommonSignalStore)
-  data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
+  // data = inject(ROUTER_OUTLET_DATA) as Signal<string>;
   role = computed(() => this.#checkForInstructorRole(this.#authService.userProfileComputed()?.role));
 
   readonly #udemyMenu: NavMenuItem[] = [
@@ -27,11 +27,11 @@ export class UdemyComponent {
     { label: 'Update Profile', path: '/udemy/update', isActive: false, val: 300 }
   ];
 
+  // Effect with clean up
   constructor() {
     effect((onCleanup) => {
-      console.log('$$$$$$$$$',this.commonSignalStore.noOfVehiclesInCart());
       onCleanup(() => {
-        console.log('cleaned up');
+        // console.log('cleaned up');
       })
     }, {manualCleanup: true})
   }

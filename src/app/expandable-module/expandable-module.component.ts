@@ -1,9 +1,9 @@
-import { NgFor, NgIf } from '@angular/common';
+
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-expandable-module',
-  imports: [NgIf, NgFor],
+  imports: [],
   templateUrl: './expandable-module.component.html',
   styleUrl: './expandable-module.component.scss',
   encapsulation: ViewEncapsulation.ShadowDom,

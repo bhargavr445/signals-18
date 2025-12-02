@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef, Component, computed, inject, signal } from '@angular/core';
 import { GameService } from './game.service';
 import { GameCardComponent } from './game-card.component';
 
@@ -11,13 +11,14 @@ import { GameCardComponent } from './game-card.component';
 })
 export class GameComponent {
 
-  articleName = 'Input Signals';
   #gameService = inject(GameService);
+  articleName = 'Input Signals';
   gamesList = this.#gameService.gamesList;
   paginatedRecords = signal<any[]>([]);
   gamesListLoadingIndicator = this.#gameService.gamesListLoadingIndicator;
 
   constructor() {
+    
     // this.isLoading.set(true);
     // // this.gamesList.set(toSignal(this.gameService.getGamesData().pipe(map((resp) => resp['data'])), {initialValue: []}));
     // this.#gameService.getGamesData().subscribe(

@@ -31,7 +31,7 @@ export class WeeksComponent {
   ];
 
   handlePaginatedList(event) {
-    console.log(event);
+    // console.log(event);
     
   }
 }

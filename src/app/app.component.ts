@@ -7,6 +7,7 @@ import { AuthService } from './commons/services/api/auth.service';
 import { ModalService } from './commons/services/api/modal.service';
 import { UdemyService } from './commons/services/api/udemy.service';
 import { HeaderComponent } from './header/header.component';
+import { Chat } from './chat/chat';
 
 @Component({
     selector: 'app-root',
@@ -14,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
         AsyncPipe,
         RouterOutlet,
         HeaderComponent,
+        Chat,
         ModalHostComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -42,6 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
   name = signal('Bhargav');
   title = 'signals-18';
   counter = signal(0);
+  userProfileInfo = computed(() =>  this.#authService.userProfileS());
 
   constructor() {
     const data = {
@@ -52,14 +55,21 @@ export class AppComponent implements OnInit, OnDestroy {
     this.buildParams(data)
   }
 
+
+
+  findMaxNumber(nestedArray) {
+    return nestedArray.reduce((max, val) => Array.isArray(val) ? Math.max(max, this.findMaxNumber(val)) : Math.max(max, val), -Infinity);
+  }
+
   ngOnInit(): void {
+    const nestedArray = [1, [2, 3, [4, 5], 6], [7, 8]];
+    // console.log(this.findMaxNumber(nestedArray));
+    const data = [10, 40, 20];
+// console.log(Math.max(data, 40))
     this.name1 = 'Bhargav R G';
-    console.log(this.name1);
-    console.log(this.name2);
+
 
     this.stu1.name = 'Surya Teja';
-    console.log(this.stu1.name);
-    console.log(this.stu2.name);
     // this.udemyService.fetchAllCreatedCourses()
     // .pipe(
     //   takeUntil(this.sub$)
@@ -126,7 +136,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     compRef.closeEvent.subscribe((closeType) => {
-      console.log(closeType);
+      // console.log(closeType);
     })
   }
 

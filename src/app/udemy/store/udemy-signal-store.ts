@@ -63,7 +63,7 @@ export const UdemySignalStore = signalStore(
 
         createCourse: rxMethod<CreateCoursePayloadI>(
             pipe(
-                tap((pay) => console.log(pay)),
+                // tap((pay) => console.log(pay)),
                 tap(() => patchState(store, (state) => ({ ...state, createCourseLoading: true }))),
                 exhaustMap((pay: CreateCoursePayloadI) => store.udemyService.createCourse(pay).pipe(
                     tap({

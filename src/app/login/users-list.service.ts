@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class UsersListService {
 
   constructor() { 
-    console.log('Users List Service');
   }
   
 }

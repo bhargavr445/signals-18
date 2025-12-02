@@ -8,6 +8,10 @@ import { ToggleCloseTypes } from '../../Interfaces/ModalContentI';
     styleUrl: './modal.component.scss',
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
+
+/**
+ * this is to display modals 
+ */
 export class ModalComponent {
 
   @Output() closeEvent = new EventEmitter<ToggleCloseTypes>();

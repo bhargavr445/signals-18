@@ -7,7 +7,7 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-chat',
-  imports: [FormsModule, AsyncPipe, DatePipe],
+  imports: [FormsModule, AsyncPipe],
   templateUrl: './chat.ng.html',
   styleUrl: './chat.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -29,6 +29,12 @@ export class Chat implements OnInit {
     scan((prev, cur) => [...prev, cur], [])
   )
 
+    isCollapsed = signal(true); // start collapsed
+
+  toggleChat() {
+    this.isCollapsed.update(prevVal => !prevVal);
+  }
+
   ngOnInit(): void {
     this.#authService.createConnection();
   }
@@ -44,3 +50,4 @@ export class Chat implements OnInit {
   }
 
 }
+

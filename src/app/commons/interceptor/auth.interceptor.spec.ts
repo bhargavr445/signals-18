@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpInterceptorFn } from '@angular/common/http';
-
+import { provideZonelessChangeDetection } from '@angular/core';
 import { authInterceptor } from './auth.interceptor';
 
 describe('authInterceptor', () => {
@@ -8,7 +8,10 @@ describe('authInterceptor', () => {
     TestBed.runInInjectionContext(() => authInterceptor(req, next));
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideZonelessChangeDetection()],
+
+    });
   });
 
   it('should be created', () => {

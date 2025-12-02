@@ -8,27 +8,62 @@
         {{item.messageText}}
     }
 </div> -->
-
+<!-- <div class="main">
 <div class="chat-container">
     <div class="chat-header">
         <h2>Chat Room</h2>
     </div>
 
     <div class="chat-messages" id="chatMessages">
-        @let userName = userProfileInfo().userName;
-        @for (item of charList$ | async; track $index) {
-        <div [class]="`message-container ${userName === item.userName ? 'self' : 'other'}`">
-            <!-- <div class="user-name">By: {{item.userName}}</div> -->
-            <div class="message-text">
-                <div class="text">{{item.messageText}}</div>
-                <div class="time">{{item.messagePostedDate | date :'h:mm a'}}</div>
-            </div>
-        </div>
-        }
+
     </div>
 
     <div class="chat-input">
         <input type="text" id="messageInput" placeholder="Type your message..." [(ngModel)]="textMessage" />
         <button (click)="sendMessage()" id="sendButton">{{ isSendingMessage() ? 'Sending...': 'Send'}}</button>
     </div>
+</div>
+</div> -->
+
+<!-- <p>{{
+    games[3]?.address?.apt
+    }}</p>
+
+
+{{stu?.name}} -->
+<div id="chat_c">
+
+
+<div [class]="`chat-container ${isCollapsed() ? 'chat-container-min-height-zero' : 'chat-container-min-height'}`" [class.collapsed]="isCollapsed()">
+  <div class="chat-header" (click)="toggleChat()" role="button" aria-expanded="{{!isCollapsed()}}">
+    <span class="chat-font">Chat</span>
+    <button class="chat-toggle" aria-label="Toggle chat">
+      {{ isCollapsed() ? '▲' : '▼' }}
+    </button>
+  </div>
+
+@if (!isCollapsed()) {
+<div class="chat-body">
+    @let userName = userProfileInfo().userName;
+    @for (item of charList$ | async; track $index) {
+    <!-- <div [class]="`message-container ${userName === item.userName ? 'self' : 'other'}`">
+            <div class="user-name">By: {{item.userName}}</div>
+            <div class="message-text">
+                <div class="text">{{item.messageText}}</div>
+                <div class="time">{{item.messagePostedDate | date :'h:mm a'}}</div>
+            </div>
+        </div> -->
+    <div [class]="`chat-message ${userName === item.userName ?  'sent' : 'received'}`">{{item.messageText}}</div>
+    <!-- <div class="chat-message sent">Hello! How are you?</div> -->
+    }
+</div>
+}
+
+@if (!isCollapsed()) {
+<div class="chat-input">
+        <input type="text" id="messageInput" placeholder="Type your message..." [(ngModel)]="textMessage" />
+        <button (click)="sendMessage()" id="sendButton">{{ isSendingMessage() ? 'Sending...': 'Send'}}</button>
+    </div>
+}
+</div>
 </div>

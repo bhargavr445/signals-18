@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { inputBinding, provideZonelessChangeDetection, signal } from '@angular/core';
 import { GameCardComponent } from './game-card.component';
 
 describe('GameCardComponent', () => {
@@ -8,11 +8,18 @@ describe('GameCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [provideZonelessChangeDetection()],
+
       imports: [GameCardComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GameCardComponent);
+    fixture = TestBed.createComponent(GameCardComponent, {
+      bindings: [
+        inputBinding('articleName', signal('')),
+        inputBinding('item', signal([]))
+      ]
+    });
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
