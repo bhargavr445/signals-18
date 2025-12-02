@@ -14,6 +14,6 @@ import { Component, input } from '@angular/core';
 })
 export class TableHeaderComponent {
 
-  headerText = input.required();
+  readonly headerText = input.required();
 
 }

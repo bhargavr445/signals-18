@@ -15,7 +15,7 @@ interface LoginForm {
 }
 @Component({
     selector: 'app-login',
-    imports: [FormsModule, ReactiveFormsModule, NgStyle, SignalFormsComponent],
+    imports: [FormsModule, ReactiveFormsModule, NgStyle],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush

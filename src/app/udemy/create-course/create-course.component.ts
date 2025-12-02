@@ -12,6 +12,7 @@ import { CreatedCoursesListComponent } from '../created-courses-list/created-cou
 import { CreateCoursePayloadI } from '../interfaces/udemy-i';
 import { UdemySignalStore } from '../store/udemy-signal-store';
 import { UdemyInitialStateI } from '../store/udemy.reducer';
+import { SignalFormsComponent } from "../../signal-forms/signal-forms.component";
 
 
 @Component({
@@ -19,8 +20,9 @@ import { UdemyInitialStateI } from '../store/udemy.reducer';
   imports: [
     ULabelComponent,
     FormsModule, ReactiveFormsModule, TableHeaderComponent,
-    CreatedCoursesListComponent, TableSkeletonComponent
-  ],
+    CreatedCoursesListComponent, TableSkeletonComponent,
+    SignalFormsComponent
+],
   templateUrl: './create-course.component.html',
   styleUrl: './create-course.component.scss',
   providers: [UdemySignalStore],
