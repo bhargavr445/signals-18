@@ -1,17 +1,20 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { Control, customError, disabled, FieldPath, form, maxLength, minLength, required, validate, validateHttp } from '@angular/forms/signals';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Field, customError, debounce, disabled, form, maxLength, minLength, required, validate, validateHttp } from '@angular/forms/signals';
 import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 import { ApiResponseI } from '../commons/Interfaces/api-responseI';
 import { CpInputComponent } from '../commons/components/cp-input/cp-input.component';
+import { GameService } from '../game/game.service';
 
 @Component({
   selector: 'app-signal-forms',
-  imports: [ULabelComponent, Control, CpInputComponent],
+  imports: [ULabelComponent, Field, CpInputComponent],
   templateUrl: './signal-forms.component.html',
   styleUrl: './signal-forms.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignalFormsComponent {
+
+  gameService = inject(GameService);
 
   courseSignal = signal<CourseI>({
     courseId: '123',
@@ -23,6 +26,7 @@ export class SignalFormsComponent {
     required(path.courseId, { message: 'This is a required Field.' }),
       maxLength(path.courseId, 20, { message: 'Max 6 chars required ' }),
       minLength(path.courseId, 3, { message: 'Min 3 chars required ' }),
+      debounce(path.courseId, 1000),
       
       // validate(path.courseId, (context) => {
       //   const priceState = context.stateOf(path.price);
@@ -46,20 +50,23 @@ export class SignalFormsComponent {
   doubledPrice = computed(() => this.courseForm().value().price * 2);
 
 
-  #checkIfIdAlreadyExists(path: FieldPath<CourseI>) {
+  // #checkIfIdAlreadyExists(path: FieldPath<CourseI>) {
+  #checkIfIdAlreadyExists(path) {
     validateHttp(path.courseId, {
       request: ({ value }) => ({
         url: `checkIdExists/${value()}`,
         method: 'GET'
       }),
-      errors: (response: ApiResponseI<boolean>, _context) => {
+      onSuccess: (response: ApiResponseI<boolean>, context) => {
         if (response.status === 1 && response.data === true) {
           return [{ kind: 'server-ssuccess', message: "Already Exists" }];
-        } else if (response.status === 1 && response.data === false) {
+        } else if(response.status === 1 && response.data === false) {
           return [];
-        } else {
-          return [{ kind: 'server-error', message: "Please verify later" }]
         }
+        return [];
+      },
+      onError: (error, context) => {
+          return [{ kind: 'Failed to validate from Server', message: "Please verify later API is down" }]
       }
     })
   }
@@ -72,6 +79,13 @@ export class SignalFormsComponent {
 
   updateVal() {
     this.courseSignal.update((prev) => ({...prev, title: 'Allowing'}))
+    this.fetchPromiseData();
+  }
+
+  fetchPromiseData() {
+    this.gameService.returnPromiseData(false)
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error))
   }
 
 }

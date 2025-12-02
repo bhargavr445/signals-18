@@ -28,4 +28,14 @@ export class GameService {
     // this.gamesResource.d
   }
 
+  returnPromiseData(isSuccess: boolean) {
+    return new Promise((resolve, reject) => {
+      if (isSuccess) {
+        resolve('This is success')
+      } else {
+        reject(new Error('Error from promise'))
+      }
+    })
+  }
+
 }
