@@ -72,7 +72,8 @@ export class SignalFormsComponent {
   }
 
   submit() {
-    console.log(this.courseForm().errors());
+    console.log(this.courseForm().errorSummary()[0]);
+    const na = this.courseForm().errorSummary()[0];
     this.courseForm().reset();
     console.log(this.courseForm().value());
   }

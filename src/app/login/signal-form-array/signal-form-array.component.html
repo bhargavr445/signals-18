@@ -1,0 +1,81 @@
+<section class="main-form card">
+    <section class="content">
+        <form (submit)="submitForm($event)">
+            <div class="grid">
+                <div class="label">
+                    First Name<span class="req">*</span>
+                    <small>Shown on your public profile.</small>
+                </div>
+                <div class="field">
+                    <input [field]="profileForm.firstName" class="input" placeholder="First Name" />
+                    @let firstNameField = profileForm.firstName;
+                    @if (firstNameField().invalid()) {
+                    @for (error of firstNameField().errors(); track $index) {
+                    <div class="validation-msg">{{error.message}}</div>
+                    }
+                    }
+                </div>
+
+                <div class="label">
+                    Last Name
+                    <small>Optional, helps with identification.</small>
+                </div>
+                <div class="field">
+                    <input [field]="profileForm.lastName" class="input" placeholder="Last Name" />
+                    @let lastNameField = profileForm.lastName;
+                    @if (lastNameField().invalid()) {
+                    @for (error of lastNameField().errors(); track $index) {
+                    <div class="validation-msg">{{error.message}}</div>
+                    }
+                    }
+                </div>
+
+                <div class="label">
+                    Social Links
+                    <small>Add links people can use to reach you.</small>
+                </div>
+
+                <div class="social-wrap">
+                    <!-- Row 1 -->
+                    @for (_link of profileSkeleton().socialLinks; track $index) {
+                    <div class="social-row">
+                        <div class="field" style="flex:1">
+                            <span class="icon-pill" aria-hidden="true">
+                                <!-- link icon -->
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                    <path d="M10 13a5 5 0 0 1 0-7l1.5-1.5a5 5 0 0 1 7 7L17 13" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" />
+                                    <path d="M14 11a5 5 0 0 1 0 7L12.5 19.5a5 5 0 0 1-7-7L7 11" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <input class="input" placeholder="https://www.linkedin.com/in/yourname"
+                                [field]="profileForm.socialLinks[$index]" />
+                        </div>
+                        <button (click)="removeSocialLink($index)" type="button" class="remove-btn"
+                            aria-label="Remove social link">X</button>
+                    </div>
+                    @let socialLinksField = profileForm.socialLinks[$index];
+                    @if(socialLinksField().invalid()) {
+                    @for (error of socialLinksField().errors(); track $index) {
+                    <div class="validation-msg">{{error.message}}</div>
+                    }
+                    }
+                    }
+                    <button (click)="addLink()" type="button" class="add-btn"
+                        [disabled]="profileForm.socialLinks().invalid()">
+                        <span aria-hidden="true">＋</span>
+                        ADD SOCIAL LINK
+                    </button>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="actions">
+                <button class="btn btn-primary" type="submit">SAVE PROFILE</button>
+                <button class="btn btn-ghost" type="button">CANCEL</button>
+            </div>
+        </form>
+    </section>
+</section>
