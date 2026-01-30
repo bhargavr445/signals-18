@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { Field, customError, debounce, disabled, form, maxLength, minLength, required, validate, validateHttp } from '@angular/forms/signals';
+import { FormField, debounce, disabled, form, maxLength, minLength, required, validateHttp } from '@angular/forms/signals';
 import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 import { ApiResponseI } from '../commons/Interfaces/api-responseI';
 import { CpInputComponent } from '../commons/components/cp-input/cp-input.component';
@@ -7,7 +7,7 @@ import { GameService } from '../game/game.service';
 
 @Component({
   selector: 'app-signal-forms',
-  imports: [ULabelComponent, Field, CpInputComponent],
+  imports: [ULabelComponent, FormField, CpInputComponent],
   templateUrl: './signal-forms.component.html',
   styleUrl: './signal-forms.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -24,6 +24,7 @@ export class SignalFormsComponent {
   
   courseForm = form(this.courseSignal, (path) => {
     required(path.courseId, { message: 'This is a required Field.' }),
+    required(path.title, { message: 'This is a required Field.' }),
       maxLength(path.courseId, 20, { message: 'Max 6 chars required ' }),
       minLength(path.courseId, 3, { message: 'Min 3 chars required ' }),
       debounce(path.courseId, 1000),
@@ -74,8 +75,9 @@ export class SignalFormsComponent {
   submit() {
     console.log(this.courseForm().errorSummary()[0]);
     const na = this.courseForm().errorSummary()[0];
-    this.courseForm().reset();
-    console.log(this.courseForm().value());
+    na.fieldTree().focusBoundControl()
+    // this.courseForm().reset();
+    // console.log(this.courseForm().value());
   }
 
   updateVal() {

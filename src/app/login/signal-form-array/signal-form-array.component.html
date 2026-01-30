@@ -7,7 +7,7 @@
                     <small>Shown on your public profile.</small>
                 </div>
                 <div class="field">
-                    <input [field]="profileForm.firstName" class="input" placeholder="First Name" />
+                    <input [formField]="profileForm.firstName" class="input" placeholder="First Name" />
                     @let firstNameField = profileForm.firstName;
                     @if (firstNameField().invalid()) {
                     @for (error of firstNameField().errors(); track $index) {
@@ -21,7 +21,7 @@
                     <small>Optional, helps with identification.</small>
                 </div>
                 <div class="field">
-                    <input [field]="profileForm.lastName" class="input" placeholder="Last Name" />
+                    <input [formField]="profileForm.lastName" class="input" placeholder="Last Name" />
                     @let lastNameField = profileForm.lastName;
                     @if (lastNameField().invalid()) {
                     @for (error of lastNameField().errors(); track $index) {
@@ -50,7 +50,7 @@
                                 </svg>
                             </span>
                             <input class="input" placeholder="https://www.linkedin.com/in/yourname"
-                                [field]="profileForm.socialLinks[$index]" />
+                                [formField]="profileForm.socialLinks[$index]" />
                         </div>
                         <button (click)="removeSocialLink($index)" type="button" class="remove-btn"
                             aria-label="Remove social link">X</button>

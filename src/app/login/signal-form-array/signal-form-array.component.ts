@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { applyEach, Field, form, required, Schema, schema, validate } from '@angular/forms/signals';
+import { applyEach, FormField, form, required, Schema, schema, validate } from '@angular/forms/signals';
 
 @Component({
   selector: 'signal-form-array',
-  imports: [Field],
+  imports: [FormField],
   templateUrl: './signal-form-array.component.html',
   styleUrl: './signal-form-array.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
