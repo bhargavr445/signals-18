@@ -6,7 +6,7 @@
                 Course ID
             </u-label>
             <!-- <input type="text" [control]="courseForm.courseId" id="course_id" placeholder="Enter Course ID"> -->
-            <app-cp-input [field]="courseForm.courseId"/>
+            <app-cp-input [formField]="courseForm.courseId"/>
             <!-- {{course_id_control().errors() | json}} -->
            
             <!-- <div class="validation-msg">
@@ -25,12 +25,12 @@
         </div>
         <div class="form-group">
             <u-label [for]="'title'">Title</u-label>
-            <input type="text" id="title" [field]="courseForm.title" placeholder="Enter title">
+            <input type="text" id="title" [formField]="courseForm.title" placeholder="Enter title">
         </div>
         <div class="form-group">
             @let price_control = courseForm.price;
             <u-label [for]="'price'">Price--{{doubledPrice()}}</u-label>
-            <input type="number" id="price" [field]="price_control" placeholder="Enter price">
+            <input type="number" id="price" [formField]="price_control" placeholder="Enter price">
             <div class="validation-msg">
                 @for (item of price_control().errors(); track item.kind) {
                         {{item.message}}

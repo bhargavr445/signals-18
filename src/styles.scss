@@ -12,6 +12,10 @@ body {
     background-color: #f8f9fa
 }
 
+@view-transition {
+  navigation: auto;
+}
+
 button {
     background-color: #d56082;
     color: white;
@@ -314,4 +318,7 @@ input, textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+div:has(input.ng-invalid.ng-touched) > label {
+  color: red;
 }

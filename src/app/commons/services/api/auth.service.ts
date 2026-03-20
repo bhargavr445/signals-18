@@ -45,5 +45,8 @@ export class AuthService {
     this.socket$.unsubscribe()
   }
 
+  getUni() {
+    return this.#http.get('http://universities.hipolabs.com/search?country=United+Kingdom');
+  }
 
 }

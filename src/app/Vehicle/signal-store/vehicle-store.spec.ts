@@ -59,7 +59,7 @@ fdescribe('testing vehicle store', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [provideZonelessChangeDetection()],
+            providers: [],
         });
         vehicleStore = TestBed.inject(VehicleStore);
         vehicleService = TestBed.inject(VehicleService);

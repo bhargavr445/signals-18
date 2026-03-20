@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { provideZonelessChangeDetection } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 
 
 xdescribe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection(), provideHttpClient()],
+      providers: [provideHttpClient()],
       imports: [AppComponent],
     }).compileComponents();
   });
@@ -18,9 +17,4 @@ xdescribe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'signals-18' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('signals-18');
-  });
 });

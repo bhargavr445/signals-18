@@ -42,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   resp$: Observable<any> = of();
   name = signal('Bhargav');
-  title = 'signals-18';
+  protected title = 'signals-18';
   counter = signal(0);
   userProfileInfo = computed(() =>  this.#authService.userProfileS());
 
@@ -53,6 +53,51 @@ export class AppComponent implements OnInit, OnDestroy {
       size: 10
     }
     this.buildParams(data)
+
+    const transactions = [
+      "Neeraja, 40, md",
+      "Bhargav, 50, va",
+      "kausar, 20, nc",
+      "Bhargav, 50, va",
+    ];
+//     const transactions = [
+//   "Neeraja, 10, md",
+//   "Neeraja, 30, va",
+//   "Neeraja, 50, ny"
+// ];
+// const transactions = [
+//   "alice, 50, sf",   // in a stream, you can't know yet it's invalid
+//   "bob, 10, la",
+//   "alice, 60, ny"    // now both alice records become invalid
+// ];
+    this.checkDuplicate(transactions);
+  }
+
+  checkIfRecordExistWithNameAndTime(tran: string, duplicateTransactions: string[]): boolean {
+    if (duplicateTransactions.length === 0) {
+      return false;
+    }
+    const [name, min, state] = tran.split(',');
+    const duplicateTranFound = duplicateTransactions.find((dupTransaction) => {
+      const [dupName, dupMin, dupState] = dupTransaction.split(',');
+      if (name.trim() === dupName.trim() && state.trim() != dupState.trim() && Math.abs(parseInt(dupMin) - parseInt(min)) <= 60) {
+        return dupTransaction
+      } else {
+        return false
+      }
+    })
+    return !!duplicateTranFound;
+  }
+
+  checkDuplicate(incomingTransactions: string[]) {
+    const duplicateTransactions: string[] = [];
+    incomingTransactions.forEach((tran) => {
+      const bol = this.checkIfRecordExistWithNameAndTime(tran, incomingTransactions)
+      if (bol) {
+        duplicateTransactions.push(tran);
+      }
+    })
+    console.log(duplicateTransactions);
   }
 
 

@@ -8,7 +8,7 @@ describe('TableHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection()],
+      providers: [],
 
       imports: [TableHeaderComponent]
     })

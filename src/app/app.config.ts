@@ -1,5 +1,6 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, isDevMode, provideZonelessChangeDetection } from '@angular/core';
+import { ApplicationConfig, isDevMode } from '@angular/core';
+import { provideSignalFormsConfig, SignalFormsConfig } from '@angular/forms/signals';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
@@ -16,11 +17,21 @@ import { universityReducer } from './university/store/university.reducer';
 
 const storeConfig = { app: appReducer, university: universityReducer, elections: electionsReducer }
 
+const NG_STATUS_CLASSES: SignalFormsConfig['classes'] = {
+  'ng-touched': ({state}) => state().touched(),
+  'ng-untouched': ({state}) => !state().touched(),
+  'ng-dirty': ({state}) => state().dirty(),
+  'ng-pristine': ({state}) => !state().dirty(),
+  'ng-valid': ({state}) => state().valid(),
+  'ng-invalid': ({state}) => state().invalid(),
+  'ng-pending': ({state}) => state().pending(),
+};
+
 export const appConfig: ApplicationConfig = {
   providers: [
-    // provideZoneChangeDetection({ eventCoalescing: true }),
-    provideZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding()),
+    provideSignalFormsConfig({ classes: NG_STATUS_CLASSES }),
+
     provideHttpClient(
       withFetch(),
       withInterceptors([authInterceptor, spinnerInterceptor])

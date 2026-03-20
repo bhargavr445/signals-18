@@ -1,5 +1,5 @@
 import { computed, inject } from "@angular/core";
-import { eventGroup, Events, on, withEffects, withReducer } from '@ngrx/signals/events';
+import { eventGroup, Events, on, withEventHandlers, withReducer } from '@ngrx/signals/events';
 import { signalStore, type, withComputed, withProps, withState } from "@ngrx/signals";
 import { MoviesService } from "../../commons/services/api/movies.service";
 import { catchError, EMPTY, map, of, switchMap, tap } from "rxjs";
@@ -48,7 +48,7 @@ export const moviesStore = signalStore(
             };
         })
     ),
-    withEffects((store) => ({
+    withEventHandlers((store) => ({
         loadMovies$: store.event.on(moviesEvents.loadMovies).pipe(
             tap(() => moviesEvents.moviesApiLoading(true)),
             switchMap(() => store.moviesService.fetchMoviesFromApi().pipe(

@@ -66,6 +66,9 @@
         <users-list/>
     } -->
 <!-- } -->
+    <signal-form-array />
+<app-signal-forms />
+
 
 <div class="test-clip">
     <!-- {{name}} -->
@@ -86,7 +89,7 @@
     <div class="row">
         <div class="book">
             <div class="book__form">
-                <div class="center-header u-header-marginn-5">
+                <div [appAppHighlight]="'pink'" class="center-header u-header-marginn-5">
                     <h2 class="header-teritory"> Login to Continue</h2>
                 </div>
                 <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">

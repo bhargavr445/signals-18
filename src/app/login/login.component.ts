@@ -8,6 +8,8 @@ import { AuthService } from '../commons/services/api/auth.service';
 import { LoginResponseI } from './login-response-interface';
 import { NgStyle } from '@angular/common';
 import { SignalFormsComponent } from '../signal-forms/signal-forms.component';
+import { SignalFormArrayComponent } from "./signal-form-array/signal-form-array.component";
+import { AppHighlightDirective } from "../app-highlight.directive";
 
 interface LoginForm {
   userName: string;
@@ -15,7 +17,7 @@ interface LoginForm {
 }
 @Component({
     selector: 'app-login',
-    imports: [FormsModule, ReactiveFormsModule, NgStyle],
+    imports: [FormsModule, ReactiveFormsModule, NgStyle, SignalFormArrayComponent, SignalFormsComponent, AppHighlightDirective],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -26,10 +28,14 @@ export class LoginComponent implements OnInit {
   
   private buttonClick$ = new Subject<void>();
 
+  uinivResp: any = null;
+
   rawForm = signal<LoginForm>({
     userName: '',
     password: ''
   })
+
+  authServvice = inject(AuthService);
 
   signalLoginForm = form(this.rawForm, (controls) => {
     required(controls.userName),
@@ -58,7 +64,7 @@ export class LoginComponent implements OnInit {
 constructor() {
   console.log(this.signalLoginForm());
   console.log(this.signalLoginForm().value());
-  
+  this.fetchUni()
   const countObj = {};
   this.data.forEach((data) => {
     const cd = data.code;
@@ -72,6 +78,18 @@ constructor() {
   console.log(countObj);
   
 }
+
+  fetchUni() {
+    this.authServvice.getUni().subscribe(
+      (resp) => {
+        
+        this.uinivResp = resp
+      },
+      (error) => {
+
+      }
+    )
+  }
 
   roles = [
     { label: 'Instructor', key: 'I' },
