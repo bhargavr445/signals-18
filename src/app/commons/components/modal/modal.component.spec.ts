@@ -9,7 +9,7 @@ describe('ModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection()],
+      providers: [],
       imports: [ModalComponent]
     })
     .compileComponents();

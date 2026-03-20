@@ -22,5 +22,10 @@ xdescribe('ElectionsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    // component.addNewCand()
+    const button: HTMLButtonElement = fixture.nativeElement.querySelector("button#new-btn"); // or ".save-btn"
+    expect(button).toBeTruthy();
+    button.click();              
+
   });
 });

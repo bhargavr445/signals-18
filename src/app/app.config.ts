@@ -1,5 +1,6 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, isDevMode } from '@angular/core';
+import { provideSignalFormsConfig, SignalFormsConfig } from '@angular/forms/signals';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
@@ -13,24 +14,23 @@ import { ElectionEffects } from './elections/store/elections-effects';
 import { electionsReducer } from './elections/store/elections-reducer';
 import { UniversityEffects } from './university/store/university.effects';
 import { universityReducer } from './university/store/university.reducer';
-import { provideSignalFormsConfig,  } from '@angular/forms/signals';
 
 const storeConfig = { app: appReducer, university: universityReducer, elections: electionsReducer }
 
-const NG_STATUS_CLASSES: any['classes'] = {
-  'ng-touched': (state) => state.touched(),
-  'ng-untouched': (state) => !state.touched(),
-  'ng-dirty': (state) => state.dirty(),
-  'ng-pristine': (state) => !state.dirty(),
-  'ng-valid': (state) => state.valid(),
-  'ng-invalid': (state) => state.invalid(),
-  'ng-pending': (state) => state.pending(),
+const NG_STATUS_CLASSES: SignalFormsConfig['classes'] = {
+  'ng-touched': ({state}) => state().touched(),
+  'ng-untouched': ({state}) => !state().touched(),
+  'ng-dirty': ({state}) => state().dirty(),
+  'ng-pristine': ({state}) => !state().dirty(),
+  'ng-valid': ({state}) => state().valid(),
+  'ng-invalid': ({state}) => state().invalid(),
+  'ng-pending': ({state}) => state().pending(),
 };
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
-    // provideSignalFormsConfig({ classes: NG_STATUS_CLASSES }),
+    provideSignalFormsConfig({ classes: NG_STATUS_CLASSES }),
 
     provideHttpClient(
       withFetch(),

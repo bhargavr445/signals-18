@@ -4,10 +4,11 @@ import { ULabelComponent } from '../commons/components/u-label/u-label.component
 import { ApiResponseI } from '../commons/Interfaces/api-responseI';
 import { CpInputComponent } from '../commons/components/cp-input/cp-input.component';
 import { GameService } from '../game/game.service';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-signal-forms',
-  imports: [ULabelComponent, FormField, CpInputComponent],
+  imports: [ULabelComponent, FormField, CpInputComponent, NgTemplateOutlet],
   templateUrl: './signal-forms.component.html',
   styleUrl: './signal-forms.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

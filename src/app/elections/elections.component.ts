@@ -31,7 +31,7 @@ export class ElectionsComponent {
     this.fetchData();
   }
 
-  fetchData() {
+  private fetchData() {
     // this.eleectiondData$.subscribe((data) =>if())
     this.store.dispatch(fetch_elections_data_start());
   }
