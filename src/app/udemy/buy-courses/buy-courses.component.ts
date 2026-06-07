@@ -1,5 +1,5 @@
 import { AsyncPipe, CurrencyPipe, TitleCasePipe } from '@angular/common';
-import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, OnDestroy, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject, OnDestroy, signal } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
 import { CourseI, UpdatedCourseI } from '../interfaces/udemy-i';
 import { Buy } from './buy';
@@ -11,7 +11,6 @@ import { TableSkeletonComponent } from '../../commons/components/table-skeleton/
   templateUrl: './buy-courses.component.html',
   styleUrl: './buy-courses.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [Buy]
 })
 export class BuyCoursesComponent implements OnDestroy {

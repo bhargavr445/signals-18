@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, inject, Signal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FilterComponent } from '../../../commons/components/filter/filter.component';
 import { VehicleService } from '../../../commons/services/api/vehicle.service';
@@ -8,12 +8,10 @@ import { VehicleStore } from '../../signal-store/vehicle-store';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime } from 'rxjs';
 import { DiscussionStore } from '../../signal-store/discussion-store';
-import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
   imports: [VehicleCardComponent, FormsModule, FilterComponent],
   providers: [VehicleStore],
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
      <div class="main">
       <button (click)="updName()">Update name</button>

@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, inject, signal } from '@angular/core';
 import { injectDispatch } from '@ngrx/signals/events';
 import { WeeksComponent } from '../commons/components/weeks/weeks.component';
 import { MoviesI } from '../university/interfaces/UniversityListI';
@@ -10,7 +10,6 @@ import { moviesEvents, moviesStore } from './store/movies-store';
   providers: [moviesStore],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MoviesComponent {

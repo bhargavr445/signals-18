@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { fetch_elections_data_start } from './store/elections-actions';
 import { electionsErrorDataSelector, electionSuccessDataSelector } from './store/elections-selector';
@@ -13,7 +13,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
   templateUrl: './elections.component.html',
   styleUrl: './elections.component.scss',
   providers: [ElectionStore],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ElectionsComponent {
 

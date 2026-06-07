@@ -1,5 +1,5 @@
 import { HttpResourceRef } from '@angular/common/http';
-import { Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { ResourceService } from '../resource.service';
 import { VehicleCardComponent } from "../Vehicle/Components/vehicle-card/vehicle-card.component";
 import { VehiclesResponseI } from '../Vehicle/Models/VehiclesI';
@@ -9,7 +9,6 @@ import { VehicleStore } from '../Vehicle/signal-store/vehicle-store';
   selector: 'app-resource',
   imports: [VehicleCardComponent],
   providers: [VehicleStore],
-  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './resource.component.html'
 })
 export class ResourceComponent {

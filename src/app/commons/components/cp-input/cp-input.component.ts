@@ -1,6 +1,5 @@
-import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, InputSignal, model, ModelSignal, OutputRef } from '@angular/core';
-import { DisabledReason, FormValueControl, ValidationError, WithOptionalFieldTree } from '@angular/forms/signals';
+import { Component, input, InputSignal, model, ModelSignal } from '@angular/core';
+import { FormValueControl, ValidationError, WithOptionalFieldTree } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-cp-input',
@@ -17,8 +16,7 @@ import { DisabledReason, FormValueControl, ValidationError, WithOptionalFieldTre
       }
       </div>
   `,
-  styleUrl: './cp-input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './cp-input.component.scss'
 })
 export class CpInputComponent implements FormValueControl<string> {
   

@@ -1,11 +1,10 @@
-import { ChangeDetectorRef, Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { GameService } from '../../game/game.service';
 
 @Component({
     selector: 'app-update-profile',
     imports: [],
     templateUrl: './update-profile.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './update-profile.component.scss'
 })
 export class UpdateProfileComponent {

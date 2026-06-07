@@ -1,5 +1,5 @@
-import { Component, computed, effect, inject, signal, Signal, ChangeDetectionStrategy } from '@angular/core';
-import { ROUTER_OUTLET_DATA, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Component, computed, effect, inject, signal, Signal } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { NavMenuItem, U_ROLES } from './interfaces/udemy-i';
 import { CommonSignalStore } from '../commons/common-signal-store/store';
@@ -8,7 +8,6 @@ import { CommonSignalStore } from '../commons/common-signal-store/store';
     selector: 'app-udemy',
     imports: [RouterOutlet, RouterLink, RouterLinkActive],
     templateUrl: './udemy.component.html',
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './udemy.component.scss'
 })
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormField, debounce, disabled, form, maxLength, minLength, required, validateHttp } from '@angular/forms/signals';
 import { ULabelComponent } from '../commons/components/u-label/u-label.component';
 import { ApiResponseI } from '../commons/Interfaces/api-responseI';
@@ -9,8 +9,7 @@ import { GameService } from '../game/game.service';
   selector: 'app-signal-forms',
   imports: [ULabelComponent, FormField, CpInputComponent],
   templateUrl: './signal-forms.component.html',
-  styleUrl: './signal-forms.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './signal-forms.component.scss'
 })
 export class SignalFormsComponent {
 

@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'u-label',
@@ -10,7 +10,6 @@ import { Component, input, ChangeDetectionStrategy } from '@angular/core';
     [ngClass]="{'label-error': isInValid()}">
     <ng-content></ng-content>
   </label>`,
-    changeDetection: ChangeDetectionStrategy.Eager,
     styles: `
   label {
     display: block;

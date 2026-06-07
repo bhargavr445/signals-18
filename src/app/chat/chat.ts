@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChatService } from './services/chat';
 import { AuthService } from '../commons/services/api/auth.service';
@@ -9,8 +9,7 @@ import { AsyncPipe, DatePipe } from '@angular/common';
   selector: 'app-chat',
   imports: [FormsModule, AsyncPipe],
   templateUrl: './chat.ng.html',
-  styleUrl: './chat.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './chat.scss'
 })
 export class Chat implements OnInit {
 

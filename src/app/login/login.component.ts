@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { form, required, validate } from '@angular/forms/signals';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -19,8 +19,7 @@ interface LoginForm {
     selector: 'app-login',
     imports: [FormsModule, ReactiveFormsModule, NgStyle, SignalFormArrayComponent, SignalFormsComponent, AppHighlightDirective],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
 

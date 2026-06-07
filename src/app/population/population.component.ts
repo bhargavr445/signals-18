@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
@@ -10,7 +10,6 @@ import { Datum } from './interfaces/population-responseI';
 
 @Component({
   selector: 'app-population',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TableComponent, TableSkeletonComponent],
   template: `
   <div class="main">

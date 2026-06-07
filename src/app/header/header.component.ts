@@ -1,5 +1,5 @@
 import { NgClass, TitleCasePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../commons/services/api/auth.service';
 import { CommonSignalStore } from '../commons/common-signal-store/store';
@@ -13,7 +13,6 @@ interface NavI {
 @Component({
   selector: 'app-header',
   imports: [NgClass, RouterLink, RouterLinkActive, TitleCasePipe],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

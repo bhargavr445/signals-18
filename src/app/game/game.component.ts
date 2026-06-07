@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef, Component, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, inject, signal } from '@angular/core';
 import { GameService } from './game.service';
 import { GameCardComponent } from './game-card.component';
 
@@ -6,7 +6,6 @@ import { GameCardComponent } from './game-card.component';
     imports: [GameCardComponent],
     templateUrl: './game.component.html',
     styleUrl: './game.component.scss',
-    changeDetection: ChangeDetectionStrategy.Eager,
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     // providers: [GameService]
 })

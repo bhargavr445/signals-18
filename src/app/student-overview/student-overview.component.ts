@@ -1,14 +1,11 @@
-import { Component, inject, ResourceRef, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Component, inject, signal } from '@angular/core';
+import { Observable } from 'rxjs';
 import { VehicleService } from '../commons/services/api/vehicle.service';
 import { VehiclesResponseI } from '../Vehicle/Models/VehiclesI';
-import { TableComponent } from './table/table.component';
-import { rxResource } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-student-overview',
   // imports: [TableComponent],
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
   <!-- {{response.isLoading()}} -->
     <!-- @defer (when response.isLoading()) {

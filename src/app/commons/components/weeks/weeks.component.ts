@@ -1,12 +1,11 @@
 import { NgClass } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, input } from '@angular/core';
 
 @Component({
     selector: 'app-weeks',
     imports: [NgClass],
     templateUrl: './weeks.component.html',
     styleUrl: './weeks.component.scss',
-    changeDetection: ChangeDetectionStrategy.Eager,
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WeeksComponent {

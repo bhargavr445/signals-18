@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { httpResource } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, signal, ChangeDetectionStrategy } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, computed, signal } from '@angular/core';
 import { TableSkeletonComponent } from '../../commons/components/table-skeleton/table-skeleton.component';
 import { add } from '@bhargavr445/search-utilities';
 
@@ -9,7 +9,6 @@ import { add } from '@bhargavr445/search-utilities';
   imports: [CurrencyPipe, TableSkeletonComponent],
   templateUrl: './purchase-courses.component.html',
   styleUrl: './purchase-courses.component.scss',
-  changeDetection: ChangeDetectionStrategy.Eager,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PurchaseCoursesComponent {

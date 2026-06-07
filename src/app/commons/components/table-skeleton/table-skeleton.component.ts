@@ -1,9 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'table-skeleton',
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="skeleton">
       <div class="skeleton-row">

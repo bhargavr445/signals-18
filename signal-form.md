@@ -68,7 +68,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-feedback',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   template: `<h1>Feedback</h1>
    <!-- Template goes here -->`

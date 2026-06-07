@@ -1,4 +1,4 @@
-import { Component, model, ChangeDetectionStrategy } from '@angular/core';
+import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
       </div>
     </div>
   `,
-    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './filter.component.scss'
 })
 export class FilterComponent {

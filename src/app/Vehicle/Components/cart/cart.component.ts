@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToggleCloseTypes } from '../../../commons/Interfaces/ModalContentI';
@@ -12,7 +12,6 @@ import { CommonSignalStore } from '../../../commons/common-signal-store/store';
     imports: [FormsModule],
     templateUrl: './cart.component.html',
     styleUrl: './cart.component.scss',
-    changeDetection: ChangeDetectionStrategy.Eager,
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CartComponent implements OnInit {

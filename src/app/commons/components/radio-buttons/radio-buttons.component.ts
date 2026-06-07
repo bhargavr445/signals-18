@@ -1,4 +1,4 @@
-import { Component, input, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -15,7 +15,6 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
           This is a required Field
       </div>
       }`,
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './radio-buttons.component.scss'
 })
 
