@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, InputSignal, model, ModelSignal, OutputRef } from '@angular/core';
-import { DisabledReason, FormValueControl, ValidationError, WithOptionalField } from '@angular/forms/signals';
+import { DisabledReason, FormValueControl, ValidationError, WithOptionalFieldTree } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-cp-input',
@@ -24,7 +24,7 @@ export class CpInputComponent implements FormValueControl<string> {
   
   value: ModelSignal<string> = model('');
   // checked?: undefined;
-  errors?: InputSignal<readonly WithOptionalField<ValidationError>[]> = input();
+  errors?: InputSignal<readonly WithOptionalFieldTree<ValidationError>[]> = input();
   // disabled?: InputSignal<boolean>;
   // disabledReasons?: InputSignal<readonly WithOptionalField<DisabledReason>[]>;
   // readonly?: InputSignal<boolean>;

@@ -82,18 +82,18 @@ export class CartComponent implements OnInit {
 
   showModal() {
     const compRef = this.#modalService.dynamicComponentOnDOM();
-    compRef.openModal({
-      content: 'Are you sure that you want to remove this item from Cart?',
-      primaryButton: 'Cancel',
-      secondaryButton: 'Delete',
-      headerLabel: 'Alert',
-      toggleStatus: 'o'
-    });
+    // compRef.openModal({
+    //   content: 'Are you sure that you want to remove this item from Cart?',
+    //   primaryButton: 'Cancel',
+    //   secondaryButton: 'Delete',
+    //   headerLabel: 'Alert',
+    //   toggleStatus: 'o'
+    // });
 
-    compRef.closeEvent.subscribe((closeType) => {
-      // console.log(closeType);
-      this.handleCloseType(closeType);
-    })
+    // compRef.closeEvent.subscribe((closeType) => {
+    //   // console.log(closeType);
+    //   this.handleCloseType(closeType);
+    // })
 
     const stu = {
       id: '101',

@@ -53,16 +53,17 @@ function checkCartItemsLength(): boolean {
     let modalService = inject(ModalService);
     if (commonSignalStore.noOfVehiclesInCart() < 1) {
         const compRef = modalService.dynamicComponentOnDOM();
-        compRef.openModal({
-            content: 'Add items to cart to access this page.',
-            // primaryButton: 'Cancel',
-            secondaryButton: 'Confirm',
-            headerLabel: 'Confirmation',
-            toggleStatus: 'o'
-        });
+        // compRef.openModal({
+        //     content: 'Add items to cart to access this page.',
+        //     // primaryButton: 'Cancel',
+        //     secondaryButton: 'Confirm',
+        //     headerLabel: 'Confirmation',
+        //     toggleStatus: 'o'
+        // });
 
-        compRef.closeEvent.subscribe();
+        // compRef.closeEvent.subscribe();
         return false;
+
 
     } else {
         return true;

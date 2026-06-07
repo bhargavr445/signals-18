@@ -173,17 +173,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   showModal() {
     const compRef = this.#modalService.dynamicComponentOnDOM();
-    compRef.openModal({
-      content: 'Are you sure that you want to remove this item from Cart?',
-      primaryButton: 'Cancel',
-      secondaryButton: 'Confirm',
-      headerLabel: 'Confirmation',
-      toggleStatus: 'o'
-    });
+    // compRef.openModal({
+    //   content: 'Are you sure that you want to remove this item from Cart?',
+    //   primaryButton: 'Cancel',
+    //   secondaryButton: 'Confirm',
+    //   headerLabel: 'Confirmation',
+    //   toggleStatus: 'o'
+    // });
 
-    compRef.closeEvent.subscribe((closeType) => {
-      // console.log(closeType);
-    })
+    // compRef.closeEvent.subscribe((closeType) => {
+    //   // console.log(closeType);
+    // })
   }
 
   inc() {
