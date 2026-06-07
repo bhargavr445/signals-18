@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { toggles } from './toggles';
 import { ExpandableModuleComponent } from '../expandable-module/expandable-module.component';
 
@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   imports: [ExpandableModuleComponent, FormsModule],
   templateUrl: './nested-sections.component.html',
   styleUrl: './nested-sections.component.scss',
+    changeDetection: ChangeDetectionStrategy.Eager,
     encapsulation: ViewEncapsulation.ShadowDom,
   
 })

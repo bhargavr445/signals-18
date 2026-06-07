@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ModalContainerDirective } from '../../directives/modal-container.directive';
 import { ModalService } from '../../services/api/modal.service';
 
 @Component({
     selector: 'app-modal-host',
     imports: [ModalContainerDirective],
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `<ng-container appModalContainer></ng-container>`
 })
 export class ModalHostComponent {

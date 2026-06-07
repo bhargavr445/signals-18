@@ -1,8 +1,8 @@
 <header class="header">
     <div class="nav-container">
     @if (userProfileInfo()) {
-    @let userName = userProfileInfo()?.userName;
-    @let role = userProfileInfo()?.role;
+    @let userName = $safeNavigationMigration(userProfileInfo()?.userName);
+    @let role = $safeNavigationMigration(userProfileInfo()?.role);
     <nav class="navbar">
         <ul class="menu">
             @for (item of navItems(); track item.label) {

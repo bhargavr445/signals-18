@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, debounceTime, distinctUntilChanged, filter, map, startWith, tap } from 'rxjs';
@@ -11,6 +11,7 @@ import { Result } from '../Vehicle/Models/VehiclesI';
     selector: 'app-store',
     imports: [AsyncPipe, FormsModule, ReactiveFormsModule],
     templateUrl: './store.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './store.component.scss'
 })
 export class StoreComponent implements OnInit {

@@ -11,7 +11,7 @@
     @for (item of dataList(); track $index) {
     <tr>
         @for(tableProps of tableHeaders(); track tableProps.key) {
-        <td [ngClass]="tableProps?.styleClass ? tableProps?.styleClass : ''">{{item[tableProps['key']]}}</td>
+        <td [ngClass]="tableProps?.styleClass ? $safeNavigationMigration(tableProps?.styleClass) : ''">{{item[tableProps['key']]}}</td>
         }
     </tr>
     }

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Buy } from './buy';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 
@@ -14,7 +14,7 @@ describe('Buy', () => {
       providers: [
         Buy,
         provideZonelessChangeDetection(),
-        provideHttpClient(),
+        provideHttpClient(withXhr()),
         provideHttpClientTesting()
       ]
     });

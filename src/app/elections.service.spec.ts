@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { ElectionsService } from './elections.service';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 
 describe('ElectionsService', () => {
   let service: ElectionsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient()],
+      providers: [provideHttpClient(withXhr())],
     });
     service = TestBed.inject(ElectionsService);
   });

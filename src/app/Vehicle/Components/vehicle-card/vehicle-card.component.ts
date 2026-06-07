@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Result } from '../../Models/VehiclesI';
 import { VehicleStore } from '../../signal-store/vehicle-store';
@@ -8,6 +8,7 @@ import { CommonSignalStore } from '../../../commons/common-signal-store/store';
     selector: 'VehicleCard',
     imports: [],
     templateUrl: './vehicle-card.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './vehicle-card.component.scss'
 })
 export class VehicleCardComponent {

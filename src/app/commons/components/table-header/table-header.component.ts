@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'table-header',
@@ -10,6 +10,7 @@ import { Component, input } from '@angular/core';
         <b>{{headerText()}}</b>
     </div>
 </div>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './table-header.component.scss'
 })
 export class TableHeaderComponent {

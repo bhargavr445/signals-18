@@ -1,4 +1,4 @@
-import { Component, signal, CUSTOM_ELEMENTS_SCHEMA, input, computed, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, signal, CUSTOM_ELEMENTS_SCHEMA, input, computed, Output, EventEmitter, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Result } from '../../Vehicle/Models/VehiclesI';
 import { reusableImports } from '../../imports.constants';
 import { NgClass } from '@angular/common';
@@ -8,6 +8,7 @@ import { NgClass } from '@angular/common';
     imports: [...reusableImports],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './table.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './table.component.scss'
 })
 export class TableComponent implements OnInit {

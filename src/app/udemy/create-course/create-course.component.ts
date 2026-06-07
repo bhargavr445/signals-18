@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, Signal, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, Signal, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -26,6 +26,7 @@ import { SignalFormsComponent } from "../../signal-forms/signal-forms.component"
   templateUrl: './create-course.component.html',
   styleUrl: './create-course.component.scss',
   providers: [UdemySignalStore],
+  changeDetection: ChangeDetectionStrategy.Eager,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CreateCourseComponent implements OnInit {

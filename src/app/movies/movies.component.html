@@ -1,5 +1,5 @@
 <div class="main">
-    @let moviesList = moviesResponse()?.data;
+    @let moviesList = $safeNavigationMigration(moviesResponse()?.data);
     <div class="cards-container">
         @if(moviesErrorResponse()) {
             <p>Error</p>

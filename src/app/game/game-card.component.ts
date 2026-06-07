@@ -1,9 +1,10 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, input, linkedSignal, output } from '@angular/core';
+import { Component, input, linkedSignal, output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'game-card',
   templateUrl: './game-card.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './game.component.scss'
 })
 export class GameCardComponent {

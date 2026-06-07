@@ -1,4 +1,4 @@
-import { Component, Signal, inject } from '@angular/core';
+import { Component, Signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { filter, map, take, tap } from 'rxjs';
@@ -11,6 +11,7 @@ import { CountryListSelector, UniversityListSelector } from './store/university.
     selector: 'app-university-overview',
     imports: [UniversityTableComponent],
     templateUrl: './university-overview.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './university-overview.component.scss'
 })
 export class UniversityOverviewComponent {

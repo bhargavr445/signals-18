@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, effect, input, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, effect, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TableComponent } from '../../../commons/components/table/table.component';
 import { UniversityListI } from '../../interfaces/UniversityListI';
@@ -8,6 +8,7 @@ import { UniversityListI } from '../../interfaces/UniversityListI';
     imports: [FormsModule, TableComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './university-table.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './university-table.component.scss'
 })
 export class UniversityTableComponent {

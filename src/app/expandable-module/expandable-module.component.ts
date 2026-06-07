@@ -1,11 +1,12 @@
 
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-expandable-module',
   imports: [],
   templateUrl: './expandable-module.component.html',
   styleUrl: './expandable-module.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ExpandableModuleComponent {

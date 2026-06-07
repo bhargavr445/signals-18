@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ElectionsComponent } from './elections.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withXhr } from '@angular/common/http';
 //TODO:
 xdescribe('ElectionsComponent', () => {
   let component: ElectionsComponent;
@@ -9,7 +9,7 @@ xdescribe('ElectionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection(), provideHttpClient()],
+      providers: [provideZonelessChangeDetection(), provideHttpClient(withXhr())],
 
       imports: [ElectionsComponent]
     })

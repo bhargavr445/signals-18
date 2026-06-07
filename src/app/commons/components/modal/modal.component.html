@@ -1,8 +1,8 @@
 <fepoc-modal 
-    [header]="modalContent()?.headerLabel"
-    [content]="modalContent()?.content"
-    [primarybutton]="modalContent()?.primaryButton"
-    [secondarybutton]="modalContent()?.secondaryButton"
-    [open]="modalContent()?.toggleStatus" 
+    [header]="$safeNavigationMigration(modalContent()?.headerLabel)"
+    [content]="$safeNavigationMigration(modalContent()?.content)"
+    [primarybutton]="$safeNavigationMigration(modalContent()?.primaryButton)"
+    [secondarybutton]="$safeNavigationMigration(modalContent()?.secondaryButton)"
+    [open]="$safeNavigationMigration(modalContent()?.toggleStatus)" 
     (closeType)="handleCloseType($event)">
 </fepoc-modal>

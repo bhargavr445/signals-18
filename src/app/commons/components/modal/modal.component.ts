@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, EventEmitter, Output, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ToggleCloseTypes } from '../../Interfaces/ModalContentI';
 
 @Component({
@@ -6,6 +6,7 @@ import { ToggleCloseTypes } from '../../Interfaces/ModalContentI';
     imports: [],
     templateUrl: './modal.component.html',
     styleUrl: './modal.component.scss',
+    changeDetection: ChangeDetectionStrategy.Eager,
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 

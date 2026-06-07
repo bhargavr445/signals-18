@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit, computed, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnDestroy, OnInit, computed, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, delay, of } from 'rxjs';
 import { ModalHostComponent } from './commons/components/modal-host/modal-host.component';
@@ -20,6 +20,7 @@ import { Chat } from './chat/chat';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './app.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit, OnDestroy {
